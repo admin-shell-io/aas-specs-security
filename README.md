@@ -1,5 +1,4 @@
-# IDTA-0100x - <fill title of Specification of Asset Administration Shell>
-
+# IDTA-01004 - Security
 [![Check](
 https://github.com/admin-shell-io/aas-specs/workflows/Check/badge.svg
 )](
@@ -11,13 +10,13 @@ https://licensebuttons.net/l/by/4.0/88x31.png
 https://creativecommons.org/licenses/by/4.0/
 )
 
-This repository contains specifications of < content > of the Asset Administration Shell. < add further information >
+This repository contains specifications of the Asset Administration Shell with respect to security.
 
 ## Industrial Digital Twin Association (IDTA)
 
 Governance of the specification is done in the working group Open Technology of the [IDTA](https://industrialdigitaltwin.org/en/)
 
-The specification number is: **IDTA-0100x**
+The specification number is: **IDTA-01004**
 
 ## Industrial Digital Twin Association (IDTA)
 
