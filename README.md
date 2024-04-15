@@ -18,12 +18,6 @@ Governance of the specification is done in the working group Open Technology of 
 
 The specification number is: **IDTA-01004**
 
-## Industrial Digital Twin Association (IDTA)
-
-Governance of the specification is done in the working group Open Technology of the [IDTA](https://industrialdigitaltwin.org/en/)
-
-The specification number is: **IDTA-0100x**
-
 ## < add further information >
 
 ## Contributing
