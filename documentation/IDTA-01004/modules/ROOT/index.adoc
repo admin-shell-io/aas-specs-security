@@ -1,219 +1,45 @@
-image:extracted-media/media/image1.jpeg[extracted-media/media/image1,width=792,height=1124]
+= Part 4: Security (IDTA-01004)
 
-Imprint
+====
+This specification is part of the https://industrialdigitaltwin.org/en/content-hub/aasspecifications[Asset Administration Shell Specification series].
+====
 
-*Publisher*
+== Version
 
-Industrial Digital Twin Association
+This is version 3.0 of the specification IDTA-01004.
 
-Lyoner Strasse 18
+== Notice
 
-60528 Frankfurt am Main
+Publisher: Industrial Digital Twin Association e.V. (IDTA)
 
-Germany
+IDTA Document Number: IDTA-01004-3-0
 
-https://www.industrialdigitaltwin.org/
+This work is licensed under a
+https://creativecommons.org/licenses/by/4.0/[Creative Commons Attribution 4.0 International License].
 
-*Status*
+SPDX-License-Identifier: CC-BY-4.0
 
-Release Candidate
+== How to Get in Contact
 
-January 2025
+Contact: https://industrialdigitaltwin.org/en/contact[IDTA]
 
-* +
-*
+Sources: https://github.com/admin-shell-io/aas-specs[GitHub]
 
-Table of Contents
+Feedback:
 
-link:#editorial-notes[1 Editorial Notes link:#editorial-notes[7]]
+* https://github.com/admin-shell-io/aas-specs/issues/new/choose[new issues, bugs]
 
-link:#terms-definitions-and-abbreviations[2 Terms&#44; Definitions and Abbreviations link:#terms-definitions-and-abbreviations[8]]
-
-link:#terms-and-definitions[2.1 Terms and Definitions link:#terms-and-definitions[8]]
-
-link:#abbreviations[2.2 Abbreviations link:#abbreviations[10]]
-
-link:#preamble[3 Preamble link:#preamble[11]]
-
-link:#metamodel-versions[3.1 Metamodel Versions link:#metamodel-versions[11]]
-
-link:#scope-of-this-document[3.2 Scope of this Document link:#scope-of-this-document[11]]
-
-link:#structure-of-the-document[3.3 Structure of the Document link:#structure-of-the-document[11]]
-
-link:#introduction[4 Introduction link:#introduction[12]]
-
-link:#protection-goals[4.1 Protection Goals link:#protection-goals[12]]
-
-link:#confidentiality-protection[4.1.1 Confidentiality protection link:#confidentiality-protection[12]]
-
-link:#integrity-protection[4.1.2 Integrity protection link:#integrity-protection[12]]
-
-link:#availability-of-data-protection[4.1.3 Availability of data protection link:#availability-of-data-protection[13]]
-
-link:#iec-63278[4.2 IEC 63278 link:#iec-63278[13]]
-
-link:#types-of-aas[4.3 Types of AAS link:#types-of-aas[13]]
-
-link:#services-interfaces-and-interface-operations[4.4 Services&#44; Interfaces and Interface Operations link:#services-interfaces-and-interface-operations[14]]
-
-link:#use-case-file-exchange[4.5 Use Case File Exchange link:#use-case-file-exchange[16]]
-
-link:#use-case-aas-servers-with-api[4.6 Use Case AAS Servers with API link:#use-case-aas-servers-with-api[18]]
-
-link:#repository-and-registry[4.7 Repository and registry link:#repository-and-registry[19]]
-
-link:#architecture-examples[4.8 Architecture Examples link:#architecture-examples[19]]
-
-link:#protecting-an-aas-server[4.8.1 Protecting an AAS Server link:#protecting-an-aas-server[19]]
-
-link:#protecting-an-aas-registry[4.8.2 Protecting an AAS Registry link:#protecting-an-aas-registry[21]]
-
-link:#attribute-based-access-control-abac[4.9 Attribute Based Access Control (ABAC) link:#attribute-based-access-control-abac[23]]
-
-link:#dataspaces[4.10 Dataspaces link:#dataspaces[24]]
-
-link:#integration-patterns[4.11 Integration Patterns link:#integration-patterns[25]]
-
-link:#integration-pattern-build-my-own-ip1[4.11.1 Integration Pattern “Build My Own” (IP1) link:#integration-pattern-build-my-own-ip1[25]]
-
-link:#integration-pattern-buy-and-use-ip2[4.11.2 Integration Pattern “Buy and Use” (IP2) link:#integration-pattern-buy-and-use-ip2[26]]
-
-link:#integration-pattern-access-to-external-ip3[4.11.3 Integration Pattern “Access to External” (IP3) link:#integration-pattern-access-to-external-ip3[26]]
-
-link:#integration-pattern-sell-but-still-access-ip4[4.11.4 Integration Pattern “Sell But Still Access” (IP4) link:#integration-pattern-sell-but-still-access-ip4[26]]
-
-link:#external-and-internal-identity-providers[4.12 External and Internal Identity Providers link:#external-and-internal-identity-providers[26]]
-
-link:#unauthenticated-access[4.12.1 Unauthenticated Access link:#unauthenticated-access[27]]
-
-link:#single-identity-provider[4.12.2 Single Identity Provider link:#single-identity-provider[27]]
-
-link:#federated-identity-provider[4.12.3 Federated Identity Provider link:#federated-identity-provider[28]]
-
-link:#token-exchange[4.12.4 Token Exchange link:#token-exchange[28]]
-
-link:#authentication-flows[4.13 Authentication Flows link:#authentication-flows[28]]
-
-link:#example-oauth-2.0-client-credential-grant[4.13.1 Example: OAuth 2.0 Client Credential Grant link:#example-oauth-2.0-client-credential-grant[29]]
-
-link:#example-openid-connect[4.13.2 Example: OpenID Connect link:#example-openid-connect[30]]
-
-link:#example-data-space-protocol[4.13.3 Example: Data Space Protocol link:#example-data-space-protocol[31]]
-
-link:#access-token[4.14 Access token link:#access-token[33]]
-
-link:#access-rule-model-normative[5 Access Rule Model (normative) link:#access-rule-model-normative[34]]
-
-link:#general[5.1 General link:#general[34]]
-
-link:#grammar-for-access-rule-model[5.2 Grammar for Access Rule Model link:#grammar-for-access-rule-model[35]]
-
-link:#bnf-grammar-of-access-rules[5.2.1 BNF grammar of Access Rules link:#bnf-grammar-of-access-rules[35]]
-
-link:#explanation-of-the-access-rule-model-bnf[5.2.2 Explanation of the Access Rule Model BNF link:#explanation-of-the-access-rule-model-bnf[39]]
-
-link:#json-serialization-of-access-rule-model[5.3 JSON Serialization of Access Rule Model link:#json-serialization-of-access-rule-model[44]]
-
-link:#explanation-of-the-access-rule-model-json-schema[5.3.1 Explanation of the Access Rule Model JSON schema link:#explanation-of-the-access-rule-model-json-schema[59]]
-
-link:#exchange-of-access-rules[5.4 Exchange of Access Rules link:#exchange-of-access-rules[73]]
-
-link:#api-queries-and-access-rules[5.5 API Queries and Access Rules link:#api-queries-and-access-rules[74]]
-
-link:#_Toc187136957[6 Summary and Outlook link:#_Toc187136957[75]]
-
-link:#_Toc187136958[Annex A. Backus-Naur-Form link:#_Toc187136958[76]]
-
-link:#examples-of-access-rules-in-text-serialization[Annex B. Examples of Access Rules in text serialization link:#examples-of-access-rules-in-text-serialization[77]]
-
-link:#allow-read-access-for-anonymous-to-complete-api[Allow READ access for Anonymous to complete API link:#allow-read-access-for-anonymous-to-complete-api[77]]
-
-link:#allow-read-access-for-anonymous-to-list-of-secmanticids-for-submodels[Allow READ access for Anonymous to list of secmanticIDs for submodels link:#allow-read-access-for-anonymous-to-list-of-secmanticids-for-submodels[77]]
-
-link:#allow-read-and-update-for-specific-authenticated-users[Allow READ and UPDATE for specific authenticated users link:#allow-read-and-update-for-specific-authenticated-users[77]]
-
-link:#allow-read-and-update-for-specific-submodel-submodel1[Allow READ and UPDATE for specific submodel "submodel1" link:#allow-read-and-update-for-specific-submodel-submodel1[78]]
-
-link:#reuse-of-acl-object-and-formula[Reuse of ACL&#44; OBJECT and FORMULA link:#reuse-of-acl-object-and-formula[78]]
-
-link:#example-with-businesspartnernumber[Example with BusinessPartnerNumber link:#example-with-businesspartnernumber[78]]
-
-link:#allow-read-for-all-authenticated-users-of-a-company-for-submodels-nameplate-and-technicaldata[Allow READ for all authenticated users of a company for submodels Nameplate and TechnicalData link:#allow-read-for-all-authenticated-users-of-a-company-for-submodels-nameplate-and-technicaldata[78]]
-
-link:#allow-read-to-all-submodels-with-id-pattern-for-all-authenticated-users-of-a-company-for-submodels-with-nameplate-and-technicaldata-from-900-1700[Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData from 9:00-17:00 link:#allow-read-to-all-submodels-with-id-pattern-for-all-authenticated-users-of-a-company-for-submodels-with-nameplate-and-technicaldata-from-900-1700[79]]
-
-link:#example-with-filter-statement[Example with FILTER statement link:#example-with-filter-statement[79]]
-
-link:#examples-of-access-rules-in-json-serialization[Annex C. Examples of Access Rules in JSON serialization link:#examples-of-access-rules-in-json-serialization[81]]
-
-link:#allow-read-access-for-anonymous-to-complete-api-1[Allow READ access for Anonymous to complete API link:#allow-read-access-for-anonymous-to-complete-api-1[81]]
-
-link:#allow-read-access-for-anonymous-to-list-of-secmanticids-for-submodels-1[Allow READ access for Anonymous to list of secmanticIDs for submodels link:#allow-read-access-for-anonymous-to-list-of-secmanticids-for-submodels-1[81]]
-
-link:#allow-read-and-update-for-specific-authenticated-users-1[Allow READ and UPDATE for specific authenticated users link:#allow-read-and-update-for-specific-authenticated-users-1[82]]
-
-link:#allow-read-and-update-for-specific-submodel-submodel1-1[Allow READ and UPDATE for specific submodel "submodel1" link:#allow-read-and-update-for-specific-submodel-submodel1-1[83]]
-
-link:#reuse-of-acl-object-and-formula-1[Reuse of ACL&#44; OBJECT and FORMULA link:#reuse-of-acl-object-and-formula-1[84]]
-
-link:#example-with-businesspartnernumber-1[Example with BusinessPartnerNumber link:#example-with-businesspartnernumber-1[86]]
-
-link:#allow-read-for-all-authenticated-users-of-a-company-for-submodels-nameplate-and-technicaldata-1[Allow READ for all authenticated users of a company for submodels Nameplate and TechnicalData link:#allow-read-for-all-authenticated-users-of-a-company-for-submodels-nameplate-and-technicaldata-1[86]]
-
-link:#allow-read-to-all-submodels-with-id-pattern-for-all-authenticated-users-of-a-company-for-submodels-with-nameplate-and-technicaldata-from-900-1700-1[Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData from 9:00-17:00 link:#allow-read-to-all-submodels-with-id-pattern-for-all-authenticated-users-of-a-company-for-submodels-with-nameplate-and-technicaldata-from-900-1700-1[87]]
-
-link:#example-with-filter-statement-1[Example with FILTER statement link:#example-with-filter-statement-1[89]]
-
-link:#bibliography[Annex D. Bibliography link:#bibliography[93]]
-
-link:#change-notes[Change Notes link:#change-notes[94]]
-
-link:#general-3[General link:#general-3[94]]
-
-Table of Figures
-
-link:#_Ref185507968[Figure 1 Detailed overview of Asset Administration Shell and related entities link:#_Ref185507968[13]]
-
-link:#_Ref185507922[Figure 2 Types of Information Exchange via Asset Administration Shells link:#_Ref185507922[14]]
-
-link:#_Toc187136066[Figure 3 Services&#44; Interfaces and Interface Operations link:#_Toc187136066[15]]
-
-link:#_Ref185508432[Figure 4 Sequence Diagram of AAS Services link:#_Ref185508432[16]]
-
-link:#_Ref185508518[Figure 5 Use Case File Exchange between Value Chain Partners link:#_Ref185508518[17]]
-
-link:#_Ref185508612[Figure 6 Example of an User Application accessing 3 AAS Servers and a Registry link:#_Ref185508612[19]]
-
-link:#_Ref185508768[Figure 7 Example of a possible AAS server implementation link:#_Ref185508768[20]]
-
-link:#_Ref185508788[Figure 8 Example of a possible AAS registry implementation link:#_Ref185508788[22]]
-
-link:#_Ref185508828[Figure 9 Attribute Based Access Control link:#_Ref185508828[23]]
-
-link:#_Ref185573374[Figure 10 Integration patterns link:#_Ref185573374[25]]
-
-link:#_Toc187136074[Figure 11 External and internal Identity Providers link:#_Toc187136074[27]]
-
-link:#_Ref185574820[Figure 12 Authentication Flow OAuth 2.0 link:#_Ref185574820[29]]
-
-link:#_Ref185574784[Figure 13 Authentication Flow OpenId link:#_Ref185574784[30]]
-
-link:#_Toc187136077[Figure 14 Authentication Flow Dataspace Protocol link:#_Toc187136077[32]]
-
-link:#_Ref185575137[Figure 15 Verifiable Credential Dataspace Protocol link:#_Ref185575137[32]]
-
-link:#_Toc187136079[Figure 16 Overview Access Rule Model link:#_Toc187136079[35]]
+* https://github.com/admin-shell-io/questions-and-answers[Questions and Answers]
 
 == Editorial Notes
 
 This document (release candidate for review) was produced from May 2023 to January 2025 by the Task Force “Security” of the working group "Open Technology" in the Industrial Digital Twin Association (IDTA).
 
-Earlier content of this document was developed in the Plattform Industrie 4.0 working group “Reference Architectures, Standards and Norms“, especially Clause 7 “Security” of the Part 1 specification Version 3.0RC02 and the discussion paper “Secure Download Service” [6].
+Earlier content of this document was developed in the Plattform Industrie 4.0 working group “Reference Architectures, Standards and Norms“, especially Clause 7 “Security” of the Part 1 specification Version 3.0RC02 and the discussion paper “Secure Download Service” link:#bib6[[6\]].
 
 This document will become Part 4 Security of the document series “Specification of the Asset Administration Shell”.
 
-This specification is versioned using Semantic Versioning 2.0.0 and follows the semver specification [4].
+This specification is versioned using Semantic Versioning 2.0.0 and follows the semver specification link:#bib4[[4\]].
 
 == Terms, Definitions and Abbreviations
 
@@ -229,47 +55,55 @@ Access Control
 
 The decision to permit or deny a subject access to system objects (network, data, application, service, etc.)
 
-{empty}[Source: NIST SP 800-162]
+[Source: NIST SP 800-162]
 
 Usage Control
 
 Enforcement of data usage restrictions on the consumer side after access to data has been granted.
 
-Note 1: Usage Control is concerned with requirements that pertain to data processing (obligations) rather than data access (provisions).
 
-{empty}[Source: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs.internationaldataspaces.org%2Fids-knowledgebase%2Fv%2Fids-ram-4%2Fperspectives-of-the-reference-architecture-model%2F4_perspectives%2F4_1_security_perspective%2F4_1_6_usage_control&data=05%7C02%7Cmarkus.heintel%40siemens.com%7C499d9258fc654d2efac908dc23d37b2e%7C38ae3bcd95794fd4addab42e1495d55a%7C1%7C0%7C638424638413668490%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=BejVFxQCJjsZDxsIIcxwxfVPHwCHV8RY0avLZfa%2BuHg%3D&reserved=0[https://docs.internationaldataspaces.org/ids-knowledgebase/v/ids-ram-4/perspectives-of-the-reference-architecture-model/4_perspectives/4_1_security_perspective/4_1_6_usage_control]]
+====
+Note 1: Usage Control is concerned with requirements that pertain to data processing (obligations) rather than data access (provisions).
+====
+
+
+[Source: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs.internationaldataspaces.org%2Fids-knowledgebase%2Fv%2Fids-ram-4%2Fperspectives-of-the-reference-architecture-model%2F4_perspectives%2F4_1_security_perspective%2F4_1_6_usage_control&data=05%7C02%7Cmarkus.heintel%40siemens.com%7C499d9258fc654d2efac908dc23d37b2e%7C38ae3bcd95794fd4addab42e1495d55a%7C1%7C0%7C638424638413668490%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=BejVFxQCJjsZDxsIIcxwxfVPHwCHV8RY0avLZfa%2BuHg%3D&reserved=0[https://docs.internationaldataspaces.org/ids-knowledgebase/v/ids-ram-4/perspectives-of-the-reference-architecture-model/4_perspectives/4_1_security_perspective/4_1_6_usage_control]]
 
 accountability
 
 property of a system (including all of its system resources) that ensures the actions of a system entity may be traced uniquely to that entity, which can be held responsible for its actions
 
-{empty}[SOURCE: IEC TS 62443-1-1:2009, 3.2.3]
+&#91;SOURCE: IEC TS 62443-1-1:2009, 3.2.3&#93;
 
 authenticate
 
 verify the identity of a user, user device, or other entity, or the integrity of data stored, transmitted, or otherwise exposed to unauthorized modification in an information system, or to establish the validity of a transmission
 
-* {empty}[SOURCE: IEC TS 62443-1-1:2009, 3.2.12]
+* &#91;SOURCE: IEC TS 62443-1-1:2009, 3.2.12&#93;
 
 authentication
 
 security measure designed to establish the validity of a transmission, message, or originator, or a means of verifying an individual's authorization to receive specific categories of information
 
-* {empty}[SOURCE: IEC TS 62443-1-1:2009, 3.2.13]
+* &#91;SOURCE: IEC TS 62443-1-1:2009, 3.2.13&#93;
 
 authorization
 
 right or permission that is granted to a system entity to access a system resource
 
-* {empty}[SOURCE: IEC TS 62443-1-1:2009, 3.2.14]
+* &#91;SOURCE: IEC TS 62443-1-1:2009, 3.2.14&#93;
 
 data integrity
 
 property that data has not been changed, destroyed, or lost in an unauthorized or accidental manner
 
-Note 1 to entry: This term deals with constancy of and confidence in data values, not with the information that the values represent or the trustworthiness of the source of the values.
 
-* {empty}[SOURCE: SOURCE: IEC TS 62443-1-1:2009, 3.2.38]
+====
+Note 1 to entry: This term deals with constancy of and confidence in data values, not with the information that the values represent or the trustworthiness of the source of the values.
+====
+
+
+* &#91;SOURCE: SOURCE: IEC TS 62443-1-1:2009, 3.2.38&#93;
 
 === Abbreviations
 
@@ -321,10 +155,10 @@ Note 1 to entry: This term deals with constancy of and confidence in data values
 
 This document uses the following parts of the “Specification of the Asset Administration Shell” series:
 
-* IDTA 01001 Part 1: Metamodel in version 3.1 [1]
-* IDTA 01002 Part 2: REST API in version 3.1 [2]
-* IDTA-01003-a Part 3a: Data Specification – IEC 61360 in version 3.1 [3]
-* IDTA 01005 Part 5: Package File Format (AASX) in version 3.1 [4]
+* IDTA 01001 Part 1: Metamodel in version 3.1 link:#bib1[[1\]]
+* IDTA 01002 Part 2: REST API in version 3.1 link:#bib2[[2\]]
+* IDTA-01003-a Part 3a: Data Specification – IEC 61360 in version 3.1 link:#bib3[[3\]]
+* IDTA 01005 Part 5: Package File Format (AASX) in version 3.1 link:#bib4[[4\]]
 
 === Scope of this Document
 
@@ -354,7 +188,7 @@ Access Tokens to be used with the Asset Administration Shell are defined. Such A
 
 An Access Rule Model is defined, which uses Attribute Based Access Control (ABAC) as underlying concept. Claims of an Access Token are used as attributes for the ABAC authorization. Further attributes as DATETIME or machine state are possible.
 
-Access rules can be defined for routes in the AAS API [2] (part 2), for Identifiables and Referables by reference or semanticId, or for certain assets.
+Access rules can be defined for routes in the AAS API link:#bib2[[2\]] (part 2), for Identifiables and Referables by reference or semanticId, or for certain assets.
 
 === Protection Goals
 
@@ -390,7 +224,7 @@ Figure 1 shows a detailed overview of AAS as defined in IEC 62378-1. The yellow 
 
 image:extracted-media/media/image2.png[extracted-media/media/image2,width=642,height=374]
 
-[#_Ref185507968 .anchor]##_Figure 1 Detailed overview of Asset Administration Shell and related entities_
+_Figure 1 Detailed overview of Asset Administration Shell and related entities_
 
 Based on Figure 4 of IEC 63278-1 +
 (Reproduced by permission of DKE, German Member of IEC (https://eur04.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.dke.de%2F&data=05%7C02%7Caorzelski%40phoenixcontact.com%7C2b9269abca4d471a05e208dc101c1a5b%7C6868843bf0124c95a18ebab826cca9ac%7C0%7C0%7C638402960110242736%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=MDSM8ugkZ4dSJ8JMadrFh8sKybokPe%2FEvuN3E213Li0%3D&reserved=0[www.dke.de]). For the valid edition see the latest publication of IEC or DIN EN IEC and https://eur04.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.dke.de%2F&data=05%7C02%7Caorzelski%40phoenixcontact.com%7C2b9269abca4d471a05e208dc101c1a5b%7C6868843bf0124c95a18ebab826cca9ac%7C0%7C0%7C638402960110242736%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=MDSM8ugkZ4dSJ8JMadrFh8sKybokPe%2FEvuN3E213Li0%3D&reserved=0[www.dke.de] and https://eur04.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.vde-verlag.de%2F&data=05%7C02%7Caorzelski%40phoenixcontact.com%7C2b9269abca4d471a05e208dc101c1a5b%7C6868843bf0124c95a18ebab826cca9ac%7C0%7C0%7C638402960110242736%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=GpBx2YhNQBgoJ%2Fde6YqFuG3crW3RkGIkoYP8lLbrWnE%3D&reserved=0[www.vde-verlag.de])
@@ -399,13 +233,13 @@ Based on Figure 4 of IEC 63278-1 +
 
 As introduced in AAS Part 2 API, Figure 2 shows 3 different types of information via the Asset Administration Shell.
 
-* Type 1 is the exchange as an AASX file [3] (part 5). Such AASX file may include a Security Model to be passed to a business partner. In the included Submodels in the AASX also the Signing of AAS may be used.
-* Type 2 is the access to AAS by the API [2] (part 2) to a server. Such server may use and enforce the ABAC rules of the Security Model. Depending on the access rules, such server may also allow to access the submodel with the Security Model by the API. Submodels on the server may also include signed elements.
+* Type 1 is the exchange as an AASX file link:#bib3[[3\]] (part 5). Such AASX file may include a Security Model to be passed to a business partner. In the included Submodels in the AASX also the Signing of AAS may be used.
+* Type 2 is the access to AAS by the API link:#bib2[[2\]] (part 2) to a server. Such server may use and enforce the ABAC rules of the Security Model. Depending on the access rules, such server may also allow to access the submodel with the Security Model by the API. Submodels on the server may also include signed elements.
 * Type 3 is the so called “Industrie 4.0 Language” with active AAS, which is similar to agents. Basically Type 3 is out of scope for this document, but the definitions of this document may also be used in the context of Type 3.
 
 image:extracted-media/media/image3.jpeg[extracted-media/media/image3,width=513,height=324]
 
-[#_Ref185507922 .anchor]##_Figure 2 Types of Information Exchange via Asset Administration Shells_
+_Figure 2 Types of Information Exchange via Asset Administration Shells_
 
 === Services, Interfaces and Interface Operations
 
@@ -428,7 +262,11 @@ The technology-specific level comprises the following concepts:
 
 * *Service Specification*: specification of a service according to the notation, architectural style, and constraints of a selected technology. Among others, it comprises and refers to the list of APIs that forms this service specification. These may be I4.0-defined standard APIs but also other, proprietary APIs.
 
+
+====
 Note: such a technology-specific service specification may be but does not have to be derived from the “service” described in the technology-neutral form. It is up to the system architect and service engineer to tailor the technology-specific service according to the needs of the use cases.
+====
+
 
 * *API*: specification of the set of operations and events that forms an API in a selected technology. It is derived from the interface description on the technology-neutral level. Hence, if there are several selected technologies, one interface may be mapped to several APIs.
 * *API-Operation*: specification of the operations (procedures) that may be called through an API. It is derived from the interface operation description on the technology-neutral level. When selecting technologies, one interface operation may be mapped to several API-operations; several interface operations may also be mapped to the same API-operation.
@@ -464,7 +302,7 @@ An AAS descriptor includes the endpoint of the AAS and of the related Submodels.
 
 image:extracted-media/media/image5.png[extracted-media/media/image5,width=642,height=237]
 
-[#_Ref185508432 .anchor]##_Figure 4 Sequence Diagram of AAS Services_
+_Figure 4 Sequence Diagram of AAS Services_
 
 === Use Case File Exchange
 
@@ -478,7 +316,7 @@ This use case is an example for the necessity of Signing, since it must be possi
 
 image:extracted-media/media/image6.png[extracted-media/media/image6,width=642,height=494]
 
-[#_Ref185508518 .anchor]##_Figure 5 Use Case File Exchange between Value Chain Partners_
+_Figure 5 Use Case File Exchange between Value Chain Partners_
 
 Figure 5 also explains the need to pass access permissions to business partners.
 
@@ -524,7 +362,7 @@ The User Application must be able to check the integrity of the provided AAS dat
 
 image:extracted-media/media/image7.png[extracted-media/media/image7,width=575,height=492]
 
-[#_Ref185508612 .anchor]##_Figure 6 Example of an User Application accessing 3 AAS Servers and a Registry_
+_Figure 6 Example of an User Application accessing 3 AAS Servers and a Registry_
 
 Further use cases are available at the Platform Industrie 4.0, e.g. Collaborative Condition Monitoring or Exchange of Engineering Data, and in IEC 63278-4 Use Cases.
 
@@ -544,7 +382,7 @@ This gives the possibility to copy the related rules made for a repository also 
 
 image:extracted-media/media/image8.png[extracted-media/media/image8,width=543,height=873]
 
-[#_Ref185508768 .anchor]##_Figure 7 Example of a possible AAS server implementation_
+_Figure 7 Example of a possible AAS server implementation_
 
 Figure 7 shows a possible AAS server implementation with security:
 
@@ -564,7 +402,7 @@ Figure 7 shows a possible AAS server implementation with security:
 
 image:extracted-media/media/image9.png[extracted-media/media/image9,width=642,height=861]
 
-[#_Ref185508788 .anchor]##_Figure 8 Example of a possible AAS registry implementation_
+_Figure 8 Example of a possible AAS registry implementation_
 
 Figure 8 shows a possible AAS registry implementation with security:
 
@@ -575,7 +413,7 @@ Figure 8 shows a possible AAS registry implementation with security:
 
 The objective of access control is to protect system resources (here: AAS content) against unauthorized access. The protection measures are specified in access control policies whose scope of validity is defined by security domains dedicated to access control.
 
-The underlying concept applied for access control is the concept of attribute-based access control (ABAC). In general, the ABAC request flow is described in [8]. Originally, ABAC relies upon the data-flow model and language model of the OASIS eXtensible Access Control Markup Language (XACML) specifications [9].
+The underlying concept applied for access control is the concept of attribute-based access control (ABAC). In general, the ABAC request flow is described in link:#bib8[[8\]]. Originally, ABAC relies upon the data-flow model and language model of the OASIS eXtensible Access Control Markup Language (XACML) specifications link:#bib9[[9\]].
 
 OASIS XACML includes concepts such as: Policy administration point (PAP): The system entity that creates a policy set.
 
@@ -590,7 +428,7 @@ The general request flow is depicted in Figure 9:
 
 image:extracted-media/media/image10.png[extracted-media/media/image10,width=460,height=372]
 
-[#_Ref185508828 .anchor]##_Figure 9 Attribute Based Access Control_
+_Figure 9 Attribute Based Access Control_
 
 In this document the concept of attributes is generalized.
 
@@ -655,7 +493,7 @@ An integration pattern describes
 
 image:extracted-media/media/image11.png[extracted-media/media/image11,width=602,height=228]
 
-[#_Ref185573374 .anchor]##_Figure 10 Integration patterns_
+_Figure 10 Integration patterns_
 
 ==== Integration Pattern “Build My Own” (IP1)
 
@@ -725,7 +563,7 @@ Figure 10 shows different alternatives of Clients, Identity Providers (IDP) and 
 
 image:extracted-media/media/image12.png[extracted-media/media/image12,width=642,height=734]
 
-[#_Toc187136074 .anchor]##_Figure 11 External and internal Identity Providers_
+_Figure 11 External and internal Identity Providers_
 
 ==== Unauthenticated Access
 
@@ -792,7 +630,7 @@ _Client credentials are used as an authorization grant typically when the client
 
 The system must authenticate and authorize the application instead of a user.image:extracted-media/media/image13.png[extracted-media/media/image13,width=525,height=279]
 
-[#_Ref185574820 .anchor]##_Figure 12 Authentication Flow OAuth 2.0_
+_Figure 12 Authentication Flow OAuth 2.0_
 
 _*Figure* 12_ represents an OAuth 2.0 Client Credentials Grant flow. Let's break down the steps:
 
@@ -845,7 +683,7 @@ The following sequence diagram explains the OpenID Connect in OAuth2 Authorizati
 
 image:extracted-media/media/image15.png[extracted-media/media/image15,width=614,height=355]
 
-[#_Ref185574784 .anchor]##_Figure 13 Authentication Flow OpenId_
+_Figure 13 Authentication Flow OpenId_
 
 Here's a step-by-step explanation of the flow depicted in Figure 13:
 
@@ -868,19 +706,19 @@ AAS are used both in contexts with and without User, i.e. often in Machine-to-Ma
 
 ==== Example: Data Space Protocol
 
-According to the Dataspace Protocol (DSP) [7], a Dataspace is “A set of technical services that facilitate interoperable Dataset sharing between entities.” The specification goes on to define interactions between a Data Provider and Data Consumer to expose metadata, agree on conditions for exchange and execute the transfer of Datasets. Asset Administration Shell resources can be such Datasets.
+According to the Dataspace Protocol (DSP) link:#bib7[[7\]], a Dataspace is “A set of technical services that facilitate interoperable Dataset sharing between entities.” The specification goes on to define interactions between a Data Provider and Data Consumer to expose metadata, agree on conditions for exchange and execute the transfer of Datasets. Asset Administration Shell resources can be such Datasets.
 
 A Dataspace may decide for a subset of AAS resources, e.g. AssetAdministrationShellDescriptor and Submodel objects via HTTPS as defined in the AssetAdministrationShellRegistryServiceSpecification and SubmodelRepositoryServiceSpecification of AAS Part 2. Specific Dataspaces define conventions on the standardized exposure of these resources for Data Consumers to discover and retrieve.
 
 image:extracted-media/media/image16.png[extracted-media/media/image16,width=532,height=343]
 
-[#_Toc187136077 .anchor]##_Figure 14 Authentication Flow Dataspace Protocol_
+_Figure 14 Authentication Flow Dataspace Protocol_
 
 A Provider will define access conditions encoded as ODRL-Policies that a potential Consumer must comply with. To authorize against these Policies, a Consumer may be required to provide access to long-living claims signed by a commonly trusted party (Identity Provider, step 1). These claims will usually follow the Verifiable Credential Data Model embedded in a jwt (see Figure 15):
 
 image:extracted-media/media/image17.png[extracted-media/media/image17,width=556,height=429]
 
-[#_Ref185575137 .anchor]##_Figure 15 Verifiable Credential Dataspace Protocol_
+_Figure 15 Verifiable Credential Dataspace Protocol_
 
 A Data Provider will verify those claims by validating the VC’s signature using the Identity Provider’s public key (step 5). This step ensures the authenticity of the claims. If the claims match the Data Provider’s expectation for a particular Policy Constraint, the Data Provider will return information about accessing the exposed AAS resources. This will usually include the URL and a short-living access token as well as a refresh token (step 6). The Tokens’ format is usually irrelevant for interoperability as it is issued and validated by the same Participant and remains opaque to the Consumer. Only scenarios where the Policy Decision Point and Policy Enforcement Point are implemented in separate runtimes, possibly from different vendors, require standardization of such tokens. Access concludes by presenting said short-lived token to the server hosting the AAS-resource (step 7).
 
@@ -935,7 +773,7 @@ The AAS Query Language and the AAS Access Rules share the same BNF grammar for 
 
 image:extracted-media/media/image18.png[bLTVRzis47yMFyKDsDC61yqUZI2e6sj5WA097BSR4EI1biusLuhqH0fBv_cxJoJb0orATlj47k_7-_FZyIYzDvRNjgaai9zsDTzK71g3zyfYNM4fkCKdNdpb6pImvj8WCr-5sl6QLr18RipCsbgi6eltXLRFub-4TunjHObGeTtgqW1Z7WWpAMT5WSOyjQQ5CKAhHIFHm9u1mAybhidMnretEpE5quMNTrTNlxp24Vsu-WiBsq59I62pGZfBXUojtsbL2YkqQhKqZp7S1-j3dC9Gv4VmWOscTdLrsqlYF3PAuuBHGfu7K4hdOKCQEh017UnPrZ8ZYT7hrtQXCJZhrZxn2cdT2BMH69AQmdCa1Ux2rYZfQSo0CqKuoYSwhTZ_a3wAvS26iY4gXvJJQKZh29h2BQo-WMgDZXiZt-EGc8OnnqHAIqExAMRbN1Yqcy9mcqc0UA_I5i7g7UZrS1LaAEmMQ-2515r388DMoMYd8vcXAi4PPypg3NhmdZ48xQ9t6yBTXwvGI1Tg9Le8PH2mBf0J8xq-4TKD-1q7ng07YGw25009p7EPxEo1ObOfpyIuI_H0QhYJN5JT8dYwOAMjrHNeTL2oRDtKdhqIrq9X2KB14jziYoUAoTv7gLTSahinoprO2_WXBmjSOusg6BLFWE-CFg7fvh_99EG_eanI68P5aHpYGgHKw4PH4LviLWvqfbqHol4IhQUNdjHKOwTmKb-ehW3hmjTUM7xROOWgp5-kNoFj5ouRKZiXw8TEClRm0uT9UrpMKHpCGvigMeAR6xU2DNTju_RMFIqBxOuqkozHMR4MV2LRoHzbcFxklb1Q7SlcQ8fQxAokNVmZX-owznxSGrHenqjuqf-Tu1BFlhVlP9UR3Y5hiTdQAIpSy7BTBNh7z1b1f4Ftl0Hq90TSjD2BAsW6svEyr9ySwS7Xq0dSBVBPCcTPEynPzlbfxgLv_f2xCVypl_li9b_kypzODdjuODboaUSk7R8TWa-DU_nZksr-_ppxy93FqvEZ2e_Ub_s9SQatek3oSTSPJjtuUl-Pgp9CT1r6fQsVA3GMozDkt1dDttOr-WVm-2xfevjfujWV8c5K6Nz6XdC_zL5nMsp9xhazb6kXgnslXT7gOhhuTvSbXd5Zkx6JfUr6z1uw1oMtFBsAPFNPra9j_FIJqxhylJJd5fUY2hQxoO4ofR29Hkkw4daZvY9sqrHJWXEKAbz-EsNC-8WlibLePRbG9aZ-3yXC_X5ssv6fobYiSODlSOQTcxFb4Y1daeaHQI8Vj9OFmhOwEPA4hPl0l_ijwnq0DtQfdGdOUvFnv-1jMkqCqhNuQtOSaTmA1aHEZElJaSJaRmU3CCQ-KsnK1Gn823ggiKGJYQDHz4Bl0sfdXQXDTF6PCTVMegTk8b-seYnHlKwYnC97u6H85Vfpf8h_3DbxL6LJIVO_ (1709×1474),width=642,height=554]
 
-[#_Toc187136079 .anchor]##_Figure 16 Overview Access Rule Model_
+_Figure 16 Overview Access Rule Model_
 
 === Grammar for Access Rule Model
 
@@ -5078,7 +4916,7 @@ Version 3.1 of the AAS API defines queries and uses the same grammar and same JS
 
 In addition using the same concepts will be needed for large amounts of AAS data. Querying such large amounts of data and protecting such data with Access Rules requires optimized access of data. Database queries may combine the filter expression provided by the client query with the FOMULAs of the Access Rules on the server.
 
-== Summary and Outlook 
+== Summary and Outlook
 
 This document specifies the Access Rule Model for the Asset Administration Shell APIs, including the APIs for repositories and registries.
 
@@ -6807,23 +6645,32 @@ ____
 
 == Bibliography
 
+[#bib1]
 [1] IDTA 01001 Specification of the Asset Administration Shell. Part 1: Metamodel, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online. Available: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01001/v3.1/index.html
 
+[#bib2]
 [2] IDTA 01002 Specification of the Asset Administration Shell. Part 2: Application Programming Interfaces, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online. Available: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/index.html
 
+[#bib3]
 [3] IDTA 01003-a Specification of the Asset Administration Shell. Part 3a: Data Specification – IEC 61360, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online. Available: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01003-a/v3.1/index.html
 
+[#bib4]
 [4] IDTA-01005 Specification of the Asset Administration Shell. Part 5: Package File Format, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online. Available: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01005/v3.1/index.html
 
+[#bib5]
 [5] file:///C:/Users/sbader/AppData/Local/Temp/Tom%20Preston-Werner[Tom Preston-Werner]. Semantic Versioning. Version 2.0.0. Online. Available: https://semver.org/spec/v2.0.0.html
 
+[#bib6]
 [6] Secure Download Service, Plattform Industrie 4.0, October 2020. Online. Available: +
 https://www.plattform-i40.de/IP/Redaktion/EN/Downloads/Publikation/secure_downloadservice.pdf
 
+[#bib7]
 [7] Dataspace Protocol 2024-01. Edited by Sebastian Steinbuß, Julia Pampus, James Marino. International Dataspaces Association. Online. Available: https://docs.internationaldataspaces.org/ids-knowledgebase/v/dataspace-protocol
 
+[#bib8]
 [8] Vincent Hu, David Ferraiolo, Rick Kuhn, Adam Schnitzer, Kenneth Sandlin, Robert Miller and Karen Scarfone, “Guide to Attribute Based Access Control (ABAC) Definition and Considerations”, NIST Special Publication 800-162, Jan. 2014. [Online]. Available: http://dx.doi.org/10.6028/NIST.SP.800-162
 
+[#bib9]
 [9] “eXtensible Access Control Markup Language (XACML)”, OASIS Standard, Version 3.0, 22. Jan. 2013, [Online]. Available: http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.pdf
 
 == Change Notes
