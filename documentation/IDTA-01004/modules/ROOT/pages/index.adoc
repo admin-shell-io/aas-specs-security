@@ -228,7 +228,7 @@ image::iec63278-1-overview.png[width=642,height=374]
 
 
 Based on Figure 4 of IEC 63278-1 +
-(Reproduced by permission of DKE, German Member of IEC (https://eur04.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.dke.de%2F&data=05%7C02%7Caorzelski%40phoenixcontact.com%7C2b9269abca4d471a05e208dc101c1a5b%7C6868843bf0124c95a18ebab826cca9ac%7C0%7C0%7C638402960110242736%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=MDSM8ugkZ4dSJ8JMadrFh8sKybokPe%2FEvuN3E213Li0%3D&reserved=0[www.dke.de]). For the valid edition see the latest publication of IEC or DIN EN IEC and https://eur04.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.dke.de%2F&data=05%7C02%7Caorzelski%40phoenixcontact.com%7C2b9269abca4d471a05e208dc101c1a5b%7C6868843bf0124c95a18ebab826cca9ac%7C0%7C0%7C638402960110242736%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=MDSM8ugkZ4dSJ8JMadrFh8sKybokPe%2FEvuN3E213Li0%3D&reserved=0[www.dke.de] and https://eur04.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.vde-verlag.de%2F&data=05%7C02%7Caorzelski%40phoenixcontact.com%7C2b9269abca4d471a05e208dc101c1a5b%7C6868843bf0124c95a18ebab826cca9ac%7C0%7C0%7C638402960110242736%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=GpBx2YhNQBgoJ%2Fde6YqFuG3crW3RkGIkoYP8lLbrWnE%3D&reserved=0[www.vde-verlag.de])
+(Reproduced by permission of DKE, German Member of IEC (https://www.dke.de/de[www.dke.de]). For the valid edition see the latest publication of IEC or DIN EN IEC and https://www.dke.de/de[www.dke.de] and https://www.vde-verlag.de/[www.vde-verlag.de])
 
 === Types of AAS
 
@@ -794,12 +794,12 @@ Each Access Rule can define an own ACL or reuse an existing one. Each Access Rul
 
 The formula decides, if an Access Rule becomes active or not. Only if the overall result of the Formula is valid and true, the Access Rule becomes active. A formula can include nested boolean expressions, comparions and string operations. A special operation match allows to work with tuples in lists, e.g. specificAssetId.
 
-The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions. In addition to the text below, the further details of the formula expressions are explained in https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/general.html#_query_language .
+The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions. In addition to the text below, the further details of the formula expressions are explained in https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/general.html#_query_language .
 
 
 .Overview Access Rule Model
 [[image-access-rule-model]]
-image::access-rule-model.png[bLTVRzis47yMFyKDsDC61yqUZI2e6sj5WA097BSR4EI1biusLuhqH0fBv_cxJoJb0orATlj47k_7-_FZyIYzDvRNjgaai9zsDTzK71g3zyfYNM4fkCKdNdpb6pImvj8WCr-5sl6QLr18RipCsbgi6eltXLRFub-4TunjHObGeTtgqW1Z7WWpAMT5WSOyjQQ5CKAhHIFHm9u1mAybhidMnretEpE5quMNTrTNlxp24Vsu-WiBsq59I62pGZfBXUojtsbL2YkqQhKqZp7S1-j3dC9Gv4VmWOscTdLrsqlYF3PAuuBHGfu7K4hdOKCQEh017UnPrZ8ZYT7hrtQXCJZhrZxn2cdT2BMH69AQmdCa1Ux2rYZfQSo0CqKuoYSwhTZ_a3wAvS26iY4gXvJJQKZh29h2BQo-WMgDZXiZt-EGc8OnnqHAIqExAMRbN1Yqcy9mcqc0UA_I5i7g7UZrS1LaAEmMQ-2515r388DMoMYd8vcXAi4PPypg3NhmdZ48xQ9t6yBTXwvGI1Tg9Le8PH2mBf0J8xq-4TKD-1q7ng07YGw25009p7EPxEo1ObOfpyIuI_H0QhYJN5JT8dYwOAMjrHNeTL2oRDtKdhqIrq9X2KB14jziYoUAoTv7gLTSahinoprO2_WXBmjSOusg6BLFWE-CFg7fvh_99EG_eanI68P5aHpYGgHKw4PH4LviLWvqfbqHol4IhQUNdjHKOwTmKb-ehW3hmjTUM7xROOWgp5-kNoFj5ouRKZiXw8TEClRm0uT9UrpMKHpCGvigMeAR6xU2DNTju_RMFIqBxOuqkozHMR4MV2LRoHzbcFxklb1Q7SlcQ8fQxAokNVmZX-owznxSGrHenqjuqf-Tu1BFlhVlP9UR3Y5hiTdQAIpSy7BTBNh7z1b1f4Ftl0Hq90TSjD2BAsW6svEyr9ySwS7Xq0dSBVBPCcTPEynPzlbfxgLv_f2xCVypl_li9b_kypzODdjuODboaUSk7R8TWa-DU_nZksr-_ppxy93FqvEZ2e_Ub_s9SQatek3oSTSPJjtuUl-Pgp9CT1r6fQsVA3GMozDkt1dDttOr-WVm-2xfevjfujWV8c5K6Nz6XdC_zL5nMsp9xhazb6kXgnslXT7gOhhuTvSbXd5Zkx6JfUr6z1uw1oMtFBsAPFNPra9j_FIJqxhylJJd5fUY2hQxoO4ofR29Hkkw4daZvY9sqrHJWXEKAbz-EsNC-8WlibLePRbG9aZ-3yXC_X5ssv6fobYiSODlSOQTcxFb4Y1daeaHQI8Vj9OFmhOwEPA4hPl0l_ijwnq0DtQfdGdOUvFnv-1jMkqCqhNuQtOSaTmA1aHEZElJaSJaRmU3CCQ-KsnK1Gn823ggiKGJYQDHz4Bl0sfdXQXDTF6PCTVMegTk8b-seYnHlKwYnC97u6H85Vfpf8h_3DbxL6LJIVO_ (1709×1474),width=642,height=554]
+image::access-rule-model.png[width=642,height=554]
 
 === Grammar for Access Rule Model
 
@@ -1068,8 +1068,8 @@ where:
 * symbols that never appear on a left side are https://en.wikipedia.org/wiki/Terminal_symbol[terminals], while symbols that appear on a left side are https://en.wikipedia.org/wiki/Nonterminal_symbol[non-terminals] and are always enclosed between the pair of angle brackets <>,
 * terminals are enclosed with quotation marks: "text". "" is an empty string,
 * optional items are enclosed in square brackets: [<item-x>],
-* items existing 0 or more times are enclosed in round brackets and suffixed with an asterisk (*) such as <word> ::= <letter> (<letter>)*,
-* Items existing 1 or more times are suffixed with an addition (plus) symbol, +, such as <word> ::= (<letter>)+,
+* items existing 0 or more times are enclosed in round brackets and suffixed with an asterisk (*) such as <word> ::= <letter> (<letter>)*,
+* Items existing 1 or more times are suffixed with an addition (plus) symbol, +, such as <word> ::= (<letter>)+,
 * round brackets are also used to explicitly define the order of expansion to indicate precedence, example: ( <symbol1> | <symbol2> ) <symbol3>,
 * text without quotation marks is an informal explanation of what is expected; this text is cursive if grammar is non-recursive and vice versa.
 
