@@ -223,7 +223,7 @@ Access rules can be defined for routes in the AAS API link:#bib2[[2\]] (part 2),
 Figure 1 shows a detailed overview of AAS as defined in IEC 62378-1. The yellow comments have been added and describe the scope of this document in relation to the defined entities in the standard. Signatures will be defined in a later version of this document.
 
 .Detailed overview of Asset Administration Shell and related entities
-image::image2.png[image2,width=642,height=374]
+image::image2.png[width=642,height=374]
 
 
 Based on Figure 4 of IEC 63278-1 +
@@ -238,7 +238,7 @@ As introduced in AAS Part 2 API, Figure 2 shows 3 different types of information
 * Type 3 is the so called “Industrie 4.0 Language” with active AAS, which is similar to agents. Basically Type 3 is out of scope for this document, but the definitions of this document may also be used in the context of Type 3.
 
 .Types of Information Exchange via Asset Administration Shells
-image::image3.jpeg[image3,width=513,height=324]
+image::image3.jpeg[width=513,height=324]
 
 
 === Services, Interfaces and Interface Operations
@@ -285,7 +285,7 @@ The runtime level comprises the following concepts:
 . *API-Operation-Instance*: instance of an API-Operation-Implementation which has an endpoint to get invoked. x
 
 
-image::image4.emf[image4,width=608,height=317]
+image::image4.emf[width=608,height=317]
 
 One important message from the Industrie 4.0 Service Model is that it is the level of the interface (mapped to technology-specific APIs) that
 
@@ -303,7 +303,7 @@ An AAS descriptor includes the endpoint of the AAS and of the related Submodels.
 * AAS or Submodels may be hosted standalone or as part of a larger AAS or Submodel Repository. In Figure 4 the first submodel is accessed by the Submodel Interface and the second submodel is accessed by the Submodel Repository Interface.
 
 .Sequence Diagram of AAS Services
-image::image5.png[image5,width=642,height=237]
+image::image5.png[width=642,height=237]
 
 
 === Use Case File Exchange
@@ -317,7 +317,7 @@ In the example a supplier sends AAS as AASX by email to an integrator. The integ
 This use case is an example for the necessity of Signing, since it must be possible to check the integrity of the AAS originally provided by the supplier. Signing will be defined in a later version of this document.
 
 .Use Case File Exchange between Value Chain Partners
-image::image6.png[image6,width=642,height=494]
+image::image6.png[width=642,height=494]
 
 
 Figure 5 also explains the need to pass access permissions to business partners.
@@ -363,7 +363,7 @@ The AAS Servers may provide data available to the public, i.e. anonymous users. 
 The User Application must be able to check the integrity of the provided AAS data.
 
 .Example of an User Application accessing 3 AAS Servers and a Registry
-image::image7.png[image7,width=575,height=492]
+image::image7.png[width=575,height=492]
 
 
 Further use cases are available at the Platform Industrie 4.0, e.g. Collaborative Condition Monitoring or Exchange of Engineering Data, and in IEC 63278-4 Use Cases.
@@ -383,7 +383,7 @@ This gives the possibility to copy the related rules made for a repository also 
 ==== Protecting an AAS Server
 
 .Example of a possible AAS server implementation
-image::image8.png[image8,width=543,height=873]
+image::image8.png[width=543,height=873]
 
 
 Figure 7 shows a possible AAS server implementation with security:
@@ -403,7 +403,7 @@ Figure 7 shows a possible AAS server implementation with security:
 ==== Protecting an AAS Registry
 
 .Example of a possible AAS registry implementation
-image::image9.png[image9,width=642,height=861]
+image::image9.png[width=642,height=861]
 
 
 Figure 8 shows a possible AAS registry implementation with security:
@@ -429,7 +429,7 @@ The general request flow is depicted in Figure 9:
 * After the evaluation a decision is taken and enforced upon the object (3), i.e. the access to the submodel element is permitted or declined.
 
 .Attribute Based Access Control
-image::image10.png[image10,width=460,height=372]
+image::image10.png[width=460,height=372]
 
 
 In this document the concept of attributes is generalized.
@@ -494,7 +494,7 @@ An integration pattern describes
 * the requirements on access rules.
 
 .Integration patterns
-image::image11.png[image11,width=602,height=228]
+image::image11.png[width=602,height=228]
 
 
 ==== Integration Pattern “Build My Own” (IP1)
@@ -564,7 +564,7 @@ A Secured System in AAS Security can be Discovery Service, Registry Service, AAS
 Figure 10 shows different alternatives of Clients, Identity Providers (IDP) and Secured Systems interacting.
 
 .External and internal Identity Providers
-image::image12.png[image12,width=642,height=734]
+image::image12.png[width=642,height=734]
 
 
 ==== Unauthenticated Access
@@ -633,7 +633,7 @@ _Client credentials are used as an authorization grant typically when the client
 The system must authenticate and authorize the application instead of a user.
 
 .Authentication Flow OAuth 2.0
-image::image13.png[image13,width=525,height=279]
+image::image13.png[width=525,height=279]
 
 
 _*Figure* 12_ represents an OAuth 2.0 Client Credentials Grant flow. Let's break down the steps:
@@ -686,7 +686,7 @@ Instead of using user context, the client credential flow uses application conte
 The following sequence diagram explains the OpenID Connect in OAuth2 Authorization code grant flow:
 
 .Authentication Flow OpenId
-image::image15.png[image15,width=614,height=355]
+image::image15.png[width=614,height=355]
 
 
 Here's a step-by-step explanation of the flow depicted in Figure 13:
@@ -715,13 +715,13 @@ According to the Dataspace Protocol (DSP) link:#bib7[[7\]], a Dataspace is “A 
 A Dataspace may decide for a subset of AAS resources, e.g. AssetAdministrationShellDescriptor and Submodel objects via HTTPS as defined in the AssetAdministrationShellRegistryServiceSpecification and SubmodelRepositoryServiceSpecification of AAS Part 2. Specific Dataspaces define conventions on the standardized exposure of these resources for Data Consumers to discover and retrieve.
 
 .Authentication Flow Dataspace Protocol
-image::image16.png[image16,width=532,height=343]
+image::image16.png[width=532,height=343]
 
 
 A Provider will define access conditions encoded as ODRL-Policies that a potential Consumer must comply with. To authorize against these Policies, a Consumer may be required to provide access to long-living claims signed by a commonly trusted party (Identity Provider, step 1). These claims will usually follow the Verifiable Credential Data Model embedded in a jwt (see Figure 15):
 
 .Verifiable Credential Dataspace Protocol
-image::image17.png[image17,width=556,height=429]
+image::image17.png[width=556,height=429]
 
 
 A Data Provider will verify those claims by validating the VC’s signature using the Identity Provider’s public key (step 5). This step ensures the authenticity of the claims. If the claims match the Data Provider’s expectation for a particular Policy Constraint, the Data Provider will return information about accessing the exposed AAS resources. This will usually include the URL and a short-living access token as well as a refresh token (step 6). The Tokens’ format is usually irrelevant for interoperability as it is issued and validated by the same Participant and remains opaque to the Consumer. Only scenarios where the Policy Decision Point and Policy Enforcement Point are implemented in separate runtimes, possibly from different vendors, require standardization of such tokens. Access concludes by presenting said short-lived token to the server hosting the AAS-resource (step 7).
