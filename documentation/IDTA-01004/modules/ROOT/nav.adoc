@@ -1,0 +1,36 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+////
+
+* xref:index.adoc[Editorial Notes]
+
+* xref:terms-definitions-and-abbreviations.adoc[Terms and Definitions]
+
+* xref:preamble.adoc[Preamble]
+
+* xref:introduction.adoc[Introduction]
+
+* xref:access-rule-model.adoc[Access Rule Model (normative)]
+
+* xref:summary-and-outlook.adoc[Summary and Outlook]
+
+
+* Annex
+
+** xref:./annex/backus-naur-form.adoc[Backus-Naur-Form]
+
+** xref:./annex/text-access-rule-examples.adoc[Examples of Access Rules in text serialization]
+
+** xref:./annex/json-access-rule-examples.adoc[Examples of Access Rules in JSON serialization]
+
+
+* xref:changelog.adoc[Change Log]
+
+* xref:bibliography.adoc[Bibliography]
+

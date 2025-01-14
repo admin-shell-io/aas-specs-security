@@ -1,0 +1,76 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+Illustrations:
+Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, designed by Publik. Agentur für Kommunikation GmbH
+////
+
+= Examples of Access Rules in text serialization
+
+== Allow READ access for Anonymous to complete API
+
+[source,bnf,linenums]
+----
+include::partial$examples/allow-read-complete-api.bnf[]
+----
+
+== Allow READ access for Anonymous to list of secmanticIDs for submodels
+
+[source,bnf,linenums]
+----
+include::partial$examples/allow-read-list-semanticids.bnf[]
+----
+
+== Allow READ and UPDATE for specific authenticated users
+
+[source,bnf,linenums]
+----
+include::partial$examples/allow-read-update-users.bnf[]
+----
+
+== Allow READ and UPDATE for specific submodel "submodel1"
+
+[source,bnf,linenums]
+----
+include::partial$examples/allow-read-update-submodel.bnf[]
+----
+
+== Reuse of ACL, OBJECT and FORMULA
+
+[source,bnf,linenums]
+----
+include::partial$examples/reuse-acl-object-formula.bnf[]
+----
+
+== Example with BusinessPartnerNumber
+
+[source,bnf,linenums]
+----
+include::partial$examples/bpn.bnf[]
+----
+
+== Allow READ for all authenticated users of a company for submodels Nameplate and TechnicalData
+
+[source,bnf,linenums]
+----
+include::partial$examples/allow-read-all-users-of-company-for-submodel.bnf[]
+----
+
+== Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData from 9:00-17:00
+
+[source,bnf,linenums]
+----
+include::partial$examples/allow-read-submodels-id-pattern.bnf[]
+----
+
+== Example with FILTER statement
+
+[source,bnf,linenums]
+----
+include::partial$examples/filter.bnf[]
+----

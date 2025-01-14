@@ -1,0 +1,118 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+Illustrations:
+Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, designed by Publik. Agentur für Kommunikation GmbH
+////
+
+[[terms-and-definitions]]
+= Terms, Definitions and Abbreviations
+
+[glossary]
+== Terms and Definitions
+
+[.underline]#Please note#: the definitions of terms are only valid in a certain context.
+This glossary applies only within the context of this document.
+
+[.mark]#Please note missing terms and definitions in the review feedback form.#
+
+If available, definitions were taken from IEC 63278-1:2023 and IEC 63278.-3.
+
+*Access Control*::
+
+The decision to permit or deny a subject access to system objects (network, data, application, service, etc.)
+
+_[Source: NIST SP 800-162]_
+
+*Usage Control*::
+
+Enforcement of data usage restrictions on the consumer side after access to data has been granted.
+
+====
+Note 1: Usage Control is concerned with requirements that pertain to data processing (obligations) rather than data access (provisions).
+====
+
+_[Source: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs.internationaldataspaces.org%2Fids-knowledgebase%2Fv%2Fids-ram-4%2Fperspectives-of-the-reference-architecture-model%2F4_perspectives%2F4_1_security_perspective%2F4_1_6_usage_control&data=05%7C02%7Cmarkus.heintel%40siemens.com%7C499d9258fc654d2efac908dc23d37b2e%7C38ae3bcd95794fd4addab42e1495d55a%7C1%7C0%7C638424638413668490%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=BejVFxQCJjsZDxsIIcxwxfVPHwCHV8RY0avLZfa%2BuHg%3D&reserved=0[https://docs.internationaldataspaces.org/ids-knowledgebase/v/ids-ram-4/perspectives-of-the-reference-architecture-model/4_perspectives/4_1_security_perspective/4_1_6_usage_control]]_
+
+*accountability*::
+
+property of a system (including all of its system resources) that ensures the actions of a system entity may be traced uniquely to that entity, which can be held responsible for its actions
+
+* _[SOURCE: IEC TS 62443-1-1:2009, 3.2.3]_
+
+*authenticate*::
+
+verify the identity of a user, user device, or other entity, or the integrity of data stored, transmitted, or otherwise exposed to unauthorized modification in an information system, or to establish the validity of a transmission
+
+* _[SOURCE: IEC TS 62443-1-1:2009, 3.2.12]_
+
+*authentication*::
+
+security measure designed to establish the validity of a transmission, message, or originator, or a means of verifying an individual's authorization to receive specific categories of information
+
+* _[SOURCE: IEC TS 62443-1-1:2009, 3.2.13]_
+
+*authorization*::
+
+right or permission that is granted to a system entity to access a system resource
+
+* _[SOURCE: IEC TS 62443-1-1:2009, 3.2.14]_
+
+*data integrity*::
+
+property that data has not been changed, destroyed, or lost in an unauthorized or accidental manner
+
+====
+Note 1 to entry: This term deals with constancy of and confidence in data values, not with the information that the values represent or the trustworthiness of the source of the values.
+====
+
+* _[SOURCE: IEC TS 62443-1-1:2009, 3.2.38]_
+
+== Abbreviations
+
+[cols="21%,79%",options="header",]
+|===
+|*Abbreviation* |*Description*
+|AAS |Asset Administration Shell
+|AASX |Package file format for the AAS
+|ABAC |Attribute Based Access Control
+|ACL |Access Control List
+|API |Application Programming Interface
+|BLOB |Binary Large Object
+|BNF |Backus Naur Form
+|DKE |Deutsche Kommission für Elektrotechnik
+|HTTP |Hypertext Transfer Protocol
+|ID |Identifier
+|IDTA |Industrial Digital Twin Association
+|IDP |Identity Provider
+|IEC |International Electrotechnical Commission
+|IRDI |International Registration Data Identifier
+|ISO |International Organization for Standardization
+|JSON |JavaScript Object Notation
+|MIME |Multipurpose Internet Mail Extensions
+|OAUTH |Open Authorization
+|ODRL |Open Digital Rights Language
+|OIDC |OpenID Connect
+|OPC |Open Packaging Conventions (ECMA-376, ISO/IEC 29500-2)
+|RDF |Resource Description Framework
+|REST |Representational State Transfer
+|RFC |Request for Comment
+|ROA |Resource Oriented Architecture
+|SOA |Service Oriented Architecture
+|UML |Unified Modeling Language
+|URI, URL, URN |Uniform Resource Identifier, Locator, Name
+|VDE |Verband der Elektrotechnik Elektronik Informationstechnik e. V.
+|VDI |Verein Deutscher Ingenieure e.V.
+|VDMA |Verband Deutscher Maschinen- und Anlagenbau e.V.
+|W3C |World Wide Web Consortium
+|XACML |eXtensible Access Control Markup Language
+|XML |eXtensible Markup Language
+|X509 |Standard format for public key certificates
+|ZIP |archive file format that supports lossless data compression
+|ZVEI |Zentralverband Elektrotechnik- und Elektronikindustrie e. V.
+|===
