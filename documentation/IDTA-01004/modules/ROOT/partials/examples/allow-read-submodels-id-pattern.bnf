@@ -1,0 +1,19 @@
+ACCESSRULE:
+  ATTRIBUTES:
+  CLAIM("companyName")
+  RIGHTS: READ
+  ACCESS: ALLOW
+  OBJECTS:
+    IDENTIFIABLE "(Submodel)*"
+  FORMULA:
+    $and(
+      $or(
+        $sm#semanticId $eq "SemanticID-Nameplate",
+        $sm#semanticId $eq "SemanticID-TechnicalData"
+      ),
+      CLAIM("companyName") $eq "company1-name",
+      $regex(REFERENCE("(Submodel)*#Id"), "^https://company1.com/.*$"),
+      GLOBAL(UTCNOW) $ge "09:00",
+      GLOBAL(UTCNOW) $le "17:00"
+    )
+

@@ -1,0 +1,15 @@
+ACCESSRULE:
+  ATTRIBUTES:
+  CLAIM("email")
+  RIGHTS: READ
+  ACCESS: ALLOW
+  OBJECTS:
+    IDENTIFIABLE "(Submodel)*"
+  FORMULA:
+    $and(
+      $or(
+        $sm#semanticId $eq "SemanticID-Nameplate",
+        $sm#semanticId $eq "SemanticID-TechnicalData"
+      ),
+      $regex(CLAIM("email"), "[\w\.]+@company\.com")
+    )

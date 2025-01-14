@@ -1,0 +1,18 @@
+<SingleAttribute> ::=
+    <ClaimAttribute> | <GlobalAttribute> | <ReferenceAttribute>
+
+<ClaimAttribute> ::=
+    "CLAIM" <ws> "(" <ws> <ClaimLiteral> <ws> ")"
+
+<GlobalAttribute> ::=
+    "GLOBAL" <ws> "(" <ws> ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" | "ANONYMOUS" ) <ws> ")"
+
+<ReferenceAttribute> ::=
+    "REFERENCE" <ws> "(" <ws> <ReferenceLiteral> <ws> ")"
+
+<AttributeGroup> ::=
+    ( <SingleAttribute> <ws> )*
+    ( <UseAttributeGroup> <ws> )*
+
+<UseAttributeGroup> ::=
+    "USEATTRIBUTES" <ws> <StringLiteral> <ws>

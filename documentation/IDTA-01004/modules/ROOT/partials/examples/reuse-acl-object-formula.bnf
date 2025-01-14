@@ -1,0 +1,26 @@
+DEFACLS "acl1"
+  ATTRIBUTES:
+    CLAIM("email")
+    GLOBAL(UTCNOW)
+  RIGHTS: READ UPDATE
+  ACCESS: ALLOW
+
+DEFOBJECTS "Properties"
+  REFERABLE "(Submodel)https://s1.com, (Property)p1"
+  REFERABLE "(Submodel)https://s1.com, (Property)p2"
+
+DEFFORMULAS "allowSubjectGroup1"
+  $and(
+    GLOBAL(UTCNOW) $gt "15:00",
+    $or(
+      CLAIM("email") $eq "user1@company1.com",
+      CLAIM("email") $eq "user2@company2.com"
+    )
+  )
+
+ACCESSRULE:
+  USEACLS "acl1"
+  OBJECTS:
+    USEOBJECTS "Properties"
+  FORMULA:
+    USEFORMULAS "allowSubjectGroup1"

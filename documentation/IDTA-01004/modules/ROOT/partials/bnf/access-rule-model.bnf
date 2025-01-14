@@ -1,0 +1,16 @@
+<AllAccessPermissionRules> ::=
+    ( "DEFATTRIBUTES" <ws> <StringLiteral> <ws> <AttributeGroup> <ws> )*
+    ( "DEFACLS" <ws> <StringLiteral> <ws> <ACL> <ws> )*
+    ( "DEFOBJECTS" <ws> <StringLiteral> <ws> <ObjectGroup> <ws> )*
+    ( "DEFFORMULAS" <ws> <StringLiteral> <ws> <Condition> <ws> )*
+    ( <AccessPermissionRule> <ws> )*
+
+<AccessPermissionRule> ::=
+    "ACCESSRULE:" <ws>
+    ( <ACL> | <UseACL> ) <ws>
+    "OBJECTS:" <ws>
+    ( <SingleObject> <ws> )*
+    ( <UseObjectGroup> <ws> )*
+    "FORMULA:" <ws>
+    ( <Condition> | <UseFormula> ) <ws>
+    ( "FILTER:" <ws> <FragmentObject> <ws> ( <Condition> | <UseFormula> ) <ws> )?

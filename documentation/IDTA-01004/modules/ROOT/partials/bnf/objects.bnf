@@ -1,0 +1,24 @@
+<SingleObject> ::=
+    <RouteObject> | <IdentifiableObject> | <ReferableObject> | <FragmentObject> | <DescriptorObject>
+
+<RouteObject> ::=
+    "ROUTE" <ws> <RouteLiteral> <ws>
+
+<IdentifiableObject> ::=
+    "IDENTIFIABLE" <ws> <IdentifiableLiteral> <ws>
+
+<ReferableObject> ::=
+    "REFERABLE" <ws> <ReferableLiteral> <ws>
+
+<FragmentObject> ::=
+    "FRAGMENT" <ws> <FragmentLiteral> <ws>
+
+<DescriptorObject> ::=
+    "DESCRIPTOR" <ws> <DescriptorLiteral> <ws>
+
+<ObjectGroup> ::=
+    ( <SingleObject> <ws> )*
+    | ( <UseObjectGroup> <ws> )*
+
+<UseObjectGroup> ::=
+    "USEOBJECTS" <ws> <StringLiteral> <ws>

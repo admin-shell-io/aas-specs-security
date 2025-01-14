@@ -1,0 +1,9 @@
+ACCESSRULE:
+  ATTRIBUTES:
+    CLAIM("email")
+  RIGHTS: READ UPDATE
+  ACCESS: ALLOW
+  OBJECTS:
+    IDENTIFIABLE "(Submodel)https://submodel1.company1.com"
+  FORMULA:
+    CLAIM("email") $eq "user1@company1.com"
