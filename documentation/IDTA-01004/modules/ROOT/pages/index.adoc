@@ -220,10 +220,11 @@ Access rules can be defined for routes in the AAS API link:#bib2[[2\]] (part 2),
 
 === IEC 63278
 
-Figure 1 shows a detailed overview of AAS as defined in IEC 62378-1. The yellow comments have been added and describe the scope of this document in relation to the defined entities in the standard. Signatures will be defined in a later version of this document.
+<<image-iec63278-1-overview>> shows a detailed overview of AAS as defined in IEC 62378-1. The yellow comments have been added and describe the scope of this document in relation to the defined entities in the standard. Signatures will be defined in a later version of this document.
 
 .Detailed overview of Asset Administration Shell and related entities
-image::image2.png[width=642,height=374]
+[[image-iec63278-1-overview]]
+image::iec63278-1-overview.png[width=642,height=374]
 
 
 Based on Figure 4 of IEC 63278-1 +
@@ -231,19 +232,20 @@ Based on Figure 4 of IEC 63278-1 +
 
 === Types of AAS
 
-As introduced in AAS Part 2 API, Figure 2 shows 3 different types of information via the Asset Administration Shell.
+As introduced in AAS Part 2 API, <<image-aas-info-exchange-types>> shows 3 different types of information via the Asset Administration Shell.
 
 * Type 1 is the exchange as an AASX file link:#bib3[[3\]] (part 5). Such AASX file may include a Security Model to be passed to a business partner. In the included Submodels in the AASX also the Signing of AAS may be used.
 * Type 2 is the access to AAS by the API link:#bib2[[2\]] (part 2) to a server. Such server may use and enforce the ABAC rules of the Security Model. Depending on the access rules, such server may also allow to access the submodel with the Security Model by the API. Submodels on the server may also include signed elements.
 * Type 3 is the so called “Industrie 4.0 Language” with active AAS, which is similar to agents. Basically Type 3 is out of scope for this document, but the definitions of this document may also be used in the context of Type 3.
 
 .Types of Information Exchange via Asset Administration Shells
-image::image3.jpeg[width=513,height=324]
+[[image-aas-info-exchange-types]]
+image::aas-info-exchange-types.jpeg[width=513,height=324]
 
 
 === Services, Interfaces and Interface Operations
 
-AAS Part 2 API also introduces the Industrie 4.0 Service Model illustrated in Figure 3 for a uniform understanding and naming. It basically distinguishes between associated concepts on several levels (from left to right):
+AAS Part 2 API also introduces the Industrie 4.0 Service Model illustrated in <<image-i40-service-model>> for a uniform understanding and naming. It basically distinguishes between associated concepts on several levels (from left to right):
 
 * technology-neutral level: concepts that are independent from selected technologies;
 * technology-specific level: concepts that are instantiated for a given technology and/or architectural style (e.g. HTTP/REST, OPC UA, MQTT);
@@ -285,7 +287,12 @@ The runtime level comprises the following concepts:
 . *API-Operation-Instance*: instance of an API-Operation-Implementation which has an endpoint to get invoked. x
 
 
-image::image4.emf[width=608,height=317]
+.Services, Interfaces and Interface Operations
+[[image-i40-service-model]]
+[plantuml, i40-service-model, svg]
+....
+include::partial$diagrams/i40-service-model.puml[]
+....
 
 One important message from the Industrie 4.0 Service Model is that it is the level of the interface (mapped to technology-specific APIs) that
 
@@ -293,22 +300,25 @@ One important message from the Industrie 4.0 Service Model is that it is the lev
 * is the foundation for interoperable services, and
 * provides the reference unit for compliance statements.
 
-Figure 4 shows AAS Services/Interfaces and an example sequence how they are called from a client application:
+<<image-seq-sm-endpoints>> shows AAS Services/Interfaces and an example sequence how they are called from a client application:
 
 * At first a client application provides an asset ID (asset link) to the AAS Discovery Interface to retrieve the corresponding AAS ID oder AAS IDs.
 * By the AAS ID the related AAS Descriptor can be retrieved through the AAS Registry Interface.
 
 An AAS descriptor includes the endpoint of the AAS and of the related Submodels.
 
-* AAS or Submodels may be hosted standalone or as part of a larger AAS or Submodel Repository. In Figure 4 the first submodel is accessed by the Submodel Interface and the second submodel is accessed by the Submodel Repository Interface.
+* AAS or Submodels may be hosted standalone or as part of a larger AAS or Submodel Repository. In <<image-seq-sm-endpoints>> the first submodel is accessed by the Submodel Interface and the second submodel is accessed by the Submodel Repository Interface.
 
 .Sequence Diagram of AAS Services
-image::image5.png[width=642,height=237]
-
+[[image-seq-sm-endpoints]]
+[plantuml, seq-aas-endpoints, svg]
+....
+include::partial$diagrams/seq-sm-endpoints.puml[]
+....
 
 === Use Case File Exchange
 
-Figure 5 shows an example use case of File Exchange between business partners
+<<image-tracking-of-changes-via-events>> shows an example use case of File Exchange between business partners
 
 as introduced by AAS Part 5 Package File.
 
@@ -317,14 +327,15 @@ In the example a supplier sends AAS as AASX by email to an integrator. The integ
 This use case is an example for the necessity of Signing, since it must be possible to check the integrity of the AAS originally provided by the supplier. Signing will be defined in a later version of this document.
 
 .Use Case File Exchange between Value Chain Partners
-image::image6.png[width=642,height=494]
+[[image-tracking-of-changes-via-events]]
+image::tracking-of-changes-via-events.png[width=642,height=494]
 
 
-Figure 5 also explains the need to pass access permissions to business partners.
+<<image-tracking-of-changes-via-events>> also explains the need to pass access permissions to business partners.
 
 As the AAS is a central point for data access, there is the need to support fine grained access control that supports multiple roles as well as separate access control policies for individual elements or submodels in the AAS. Access Control is based on Identity Management and can only be successfully implemented in a secure environment. For this document, the focus lies on the supported access control model.
 
-When having a look at the Use Case File Exchange in Figure 5 also security aspects have to be considered when transferring information from one value chain partner to the next.
+When having a look at the Use Case File Exchange in <<image-tracking-of-changes-via-events>> also security aspects have to be considered when transferring information from one value chain partner to the next.
 
 When AAS content is passed from one partner to another, this is typically related to a change in the access control domain of the partners involved (supplier, integrator, operator), i.e. the scope of the validity of access control policies.
 
@@ -350,7 +361,7 @@ The above example motivates that the access permission rules need to be passed f
 
 === Use Case AAS Servers with API
 
-Figure 6 shows an example of an User Application accessing 3 AAS Servers and a Registry. This example will be further detailed in Architecture Examples below.
+<<image-access-aas-servers>> shows an example of an User Application accessing 3 AAS Servers and a Registry. This example will be further detailed in Architecture Examples below.
 
 The User Application will access the registry by the Registry API to retrieve the endpoints of AAS and Submodels.
 
@@ -363,7 +374,8 @@ The AAS Servers may provide data available to the public, i.e. anonymous users. 
 The User Application must be able to check the integrity of the provided AAS data.
 
 .Example of an User Application accessing 3 AAS Servers and a Registry
-image::image7.png[width=575,height=492]
+[[image-access-aas-servers]]
+image::access-aas-servers.png[width=575,height=492]
 
 
 Further use cases are available at the Platform Industrie 4.0, e.g. Collaborative Condition Monitoring or Exchange of Engineering Data, and in IEC 63278-4 Use Cases.
@@ -383,10 +395,11 @@ This gives the possibility to copy the related rules made for a repository also 
 ==== Protecting an AAS Server
 
 .Example of a possible AAS server implementation
-image::image8.png[width=543,height=873]
+[[image-aas-server-implementation]]
+image::aas-server-implementation.png[width=543,height=873]
 
 
-Figure 7 shows a possible AAS server implementation with security:
+<<image-aas-server-implementation>> shows a possible AAS server implementation with security:
 
 * A *User* wants to access AAS information from a *Manufacturer* using an *AAS* *User Application*.
 * The *Manufacturer* hosts an *AAS Server* which is internally administrated by an *AAS responsibe*.
@@ -403,10 +416,11 @@ Figure 7 shows a possible AAS server implementation with security:
 ==== Protecting an AAS Registry
 
 .Example of a possible AAS registry implementation
-image::image9.png[width=642,height=861]
+[[image-aas-registry-implementation]]
+image::aas-registry-implementation.png[width=642,height=861]
 
 
-Figure 8 shows a possible AAS registry implementation with security:
+<<image-aas-registry-implementation>> shows a possible AAS registry implementation with security:
 
 * The same example as before is shown, but this time the *Discovery/Registry Service* is shown in more detail.
 * Instead of AAS Data only AAS and Submodel descriptors are stored in the descriptor storage.
@@ -423,13 +437,14 @@ OASIS XACML includes concepts such as: Policy administration point (PAP): The sy
 * Policy enforcement point (PEP): The system entity that performs access control, by making decision requests and enforcing authorization decisions.
 * Policy information point (PIP): The system entity that acts as a source of attribute values.
 +
-The general request flow is depicted in Figure 9:
+The general request flow is depicted in <<image-abac>>:
 * A subject is requesting access to an object (1). In the context of an AAS, an object is for example a submodel or a property or any other submodel element.
 * The implemented access control mechanism of the AAS evaluates the access permission rules (2a) that include constraints that need to be fulfilled w.r.t. the subject attributes (2b), the object attributes (2c) and the environment conditions (2d).
 * After the evaluation a decision is taken and enforced upon the object (3), i.e. the access to the submodel element is permitted or declined.
 
 .Attribute Based Access Control
-image::image10.png[width=460,height=372]
+[[image-abac]]
+image::abac.png[width=460,height=372]
 
 
 In this document the concept of attributes is generalized.
@@ -494,7 +509,8 @@ An integration pattern describes
 * the requirements on access rules.
 
 .Integration patterns
-image::image11.png[width=602,height=228]
+[[image-integration-patterns]]
+image::integration-patterns.png[width=602,height=228]
 
 
 ==== Integration Pattern “Build My Own” (IP1)
@@ -561,10 +577,11 @@ With respect to security this case is similar to the bilateral “Access to Exte
 
 A Secured System in AAS Security can be Discovery Service, Registry Service, AAS/Submodel Service or AAS/Submodel/ConceptDescription Repository Service.
 
-Figure 10 shows different alternatives of Clients, Identity Providers (IDP) and Secured Systems interacting.
+<<image-external-internal-idp>> shows different alternatives of Clients, Identity Providers (IDP) and Secured Systems interacting.
 
 .External and internal Identity Providers
-image::image12.png[width=642,height=734]
+[[image-external-internal-idp]]
+image::external-internal-idp.png[width=642,height=734]
 
 
 ==== Unauthenticated Access
@@ -633,10 +650,11 @@ _Client credentials are used as an authorization grant typically when the client
 The system must authenticate and authorize the application instead of a user.
 
 .Authentication Flow OAuth 2.0
-image::image13.png[width=525,height=279]
+[[image-auth-flow-oauth]]
+image::auth-flow-oauth.png[width=525,height=279]
 
 
-_*Figure* 12_ represents an OAuth 2.0 Client Credentials Grant flow. Let's break down the steps:
+<<image-auth-flow-oauth>> represents an OAuth 2.0 Client Credentials Grant flow. Let's break down the steps:
 
 [arabic]
 . *Client Requests Access Token*:
@@ -686,10 +704,11 @@ Instead of using user context, the client credential flow uses application conte
 The following sequence diagram explains the OpenID Connect in OAuth2 Authorization code grant flow:
 
 .Authentication Flow OpenId
-image::image15.png[width=614,height=355]
+[[image-auth-flow-openid]]
+image::auth-flow-openid.png[width=614,height=355]
 
 
-Here's a step-by-step explanation of the flow depicted in Figure 13:
+Here's a step-by-step explanation of the flow depicted in <<image-auth-flow-openid>>:
 
 [arabic]
 . *Authentication and Authorization Request:* The client application initiates an authentication and authorization request to the Authorization Server (Identity Provider). This request includes the openid scope, indicating that the client is requesting authentication using OpenID Connect.
@@ -715,13 +734,15 @@ According to the Dataspace Protocol (DSP) link:#bib7[[7\]], a Dataspace is “A 
 A Dataspace may decide for a subset of AAS resources, e.g. AssetAdministrationShellDescriptor and Submodel objects via HTTPS as defined in the AssetAdministrationShellRegistryServiceSpecification and SubmodelRepositoryServiceSpecification of AAS Part 2. Specific Dataspaces define conventions on the standardized exposure of these resources for Data Consumers to discover and retrieve.
 
 .Authentication Flow Dataspace Protocol
-image::image16.png[width=532,height=343]
+[[image-auth-flow-dataspace]]
+image::auth-flow-dataspace.png[width=532,height=343]
 
 
-A Provider will define access conditions encoded as ODRL-Policies that a potential Consumer must comply with. To authorize against these Policies, a Consumer may be required to provide access to long-living claims signed by a commonly trusted party (Identity Provider, step 1). These claims will usually follow the Verifiable Credential Data Model embedded in a jwt (see Figure 15):
+A Provider will define access conditions encoded as ODRL-Policies that a potential Consumer must comply with. To authorize against these Policies, a Consumer may be required to provide access to long-living claims signed by a commonly trusted party (Identity Provider, step 1). These claims will usually follow the Verifiable Credential Data Model embedded in a jwt (see <<image-verifiable-credential>>):
 
 .Verifiable Credential Dataspace Protocol
-image::image17.png[width=556,height=429]
+[[image-verifiable-credential]]
+image::verifiable-credential.png[width=556,height=429]
 
 
 A Data Provider will verify those claims by validating the VC’s signature using the Identity Provider’s public key (step 5). This step ensures the authenticity of the claims. If the claims match the Data Provider’s expectation for a particular Policy Constraint, the Data Provider will return information about accessing the exposed AAS resources. This will usually include the URL and a short-living access token as well as a refresh token (step 6). The Tokens’ format is usually irrelevant for interoperability as it is issued and validated by the same Participant and remains opaque to the Consumer. Only scenarios where the Policy Decision Point and Policy Enforcement Point are implemented in separate runtimes, possibly from different vendors, require standardization of such tokens. Access concludes by presenting said short-lived token to the server hosting the AAS-resource (step 7).
@@ -777,7 +798,8 @@ The AAS Query Language and the AAS Access Rules share the same BNF grammar for 
 
 
 .Overview Access Rule Model
-image::image18.png[bLTVRzis47yMFyKDsDC61yqUZI2e6sj5WA097BSR4EI1biusLuhqH0fBv_cxJoJb0orATlj47k_7-_FZyIYzDvRNjgaai9zsDTzK71g3zyfYNM4fkCKdNdpb6pImvj8WCr-5sl6QLr18RipCsbgi6eltXLRFub-4TunjHObGeTtgqW1Z7WWpAMT5WSOyjQQ5CKAhHIFHm9u1mAybhidMnretEpE5quMNTrTNlxp24Vsu-WiBsq59I62pGZfBXUojtsbL2YkqQhKqZp7S1-j3dC9Gv4VmWOscTdLrsqlYF3PAuuBHGfu7K4hdOKCQEh017UnPrZ8ZYT7hrtQXCJZhrZxn2cdT2BMH69AQmdCa1Ux2rYZfQSo0CqKuoYSwhTZ_a3wAvS26iY4gXvJJQKZh29h2BQo-WMgDZXiZt-EGc8OnnqHAIqExAMRbN1Yqcy9mcqc0UA_I5i7g7UZrS1LaAEmMQ-2515r388DMoMYd8vcXAi4PPypg3NhmdZ48xQ9t6yBTXwvGI1Tg9Le8PH2mBf0J8xq-4TKD-1q7ng07YGw25009p7EPxEo1ObOfpyIuI_H0QhYJN5JT8dYwOAMjrHNeTL2oRDtKdhqIrq9X2KB14jziYoUAoTv7gLTSahinoprO2_WXBmjSOusg6BLFWE-CFg7fvh_99EG_eanI68P5aHpYGgHKw4PH4LviLWvqfbqHol4IhQUNdjHKOwTmKb-ehW3hmjTUM7xROOWgp5-kNoFj5ouRKZiXw8TEClRm0uT9UrpMKHpCGvigMeAR6xU2DNTju_RMFIqBxOuqkozHMR4MV2LRoHzbcFxklb1Q7SlcQ8fQxAokNVmZX-owznxSGrHenqjuqf-Tu1BFlhVlP9UR3Y5hiTdQAIpSy7BTBNh7z1b1f4Ftl0Hq90TSjD2BAsW6svEyr9ySwS7Xq0dSBVBPCcTPEynPzlbfxgLv_f2xCVypl_li9b_kypzODdjuODboaUSk7R8TWa-DU_nZksr-_ppxy93FqvEZ2e_Ub_s9SQatek3oSTSPJjtuUl-Pgp9CT1r6fQsVA3GMozDkt1dDttOr-WVm-2xfevjfujWV8c5K6Nz6XdC_zL5nMsp9xhazb6kXgnslXT7gOhhuTvSbXd5Zkx6JfUr6z1uw1oMtFBsAPFNPra9j_FIJqxhylJJd5fUY2hQxoO4ofR29Hkkw4daZvY9sqrHJWXEKAbz-EsNC-8WlibLePRbG9aZ-3yXC_X5ssv6fobYiSODlSOQTcxFb4Y1daeaHQI8Vj9OFmhOwEPA4hPl0l_ijwnq0DtQfdGdOUvFnv-1jMkqCqhNuQtOSaTmA1aHEZElJaSJaRmU3CCQ-KsnK1Gn823ggiKGJYQDHz4Bl0sfdXQXDTF6PCTVMegTk8b-seYnHlKwYnC97u6H85Vfpf8h_3DbxL6LJIVO_ (1709×1474),width=642,height=554]
+[[image-access-rule-model]]
+image::access-rule-model.png[bLTVRzis47yMFyKDsDC61yqUZI2e6sj5WA097BSR4EI1biusLuhqH0fBv_cxJoJb0orATlj47k_7-_FZyIYzDvRNjgaai9zsDTzK71g3zyfYNM4fkCKdNdpb6pImvj8WCr-5sl6QLr18RipCsbgi6eltXLRFub-4TunjHObGeTtgqW1Z7WWpAMT5WSOyjQQ5CKAhHIFHm9u1mAybhidMnretEpE5quMNTrTNlxp24Vsu-WiBsq59I62pGZfBXUojtsbL2YkqQhKqZp7S1-j3dC9Gv4VmWOscTdLrsqlYF3PAuuBHGfu7K4hdOKCQEh017UnPrZ8ZYT7hrtQXCJZhrZxn2cdT2BMH69AQmdCa1Ux2rYZfQSo0CqKuoYSwhTZ_a3wAvS26iY4gXvJJQKZh29h2BQo-WMgDZXiZt-EGc8OnnqHAIqExAMRbN1Yqcy9mcqc0UA_I5i7g7UZrS1LaAEmMQ-2515r388DMoMYd8vcXAi4PPypg3NhmdZ48xQ9t6yBTXwvGI1Tg9Le8PH2mBf0J8xq-4TKD-1q7ng07YGw25009p7EPxEo1ObOfpyIuI_H0QhYJN5JT8dYwOAMjrHNeTL2oRDtKdhqIrq9X2KB14jziYoUAoTv7gLTSahinoprO2_WXBmjSOusg6BLFWE-CFg7fvh_99EG_eanI68P5aHpYGgHKw4PH4LviLWvqfbqHol4IhQUNdjHKOwTmKb-ehW3hmjTUM7xROOWgp5-kNoFj5ouRKZiXw8TEClRm0uT9UrpMKHpCGvigMeAR6xU2DNTju_RMFIqBxOuqkozHMR4MV2LRoHzbcFxklb1Q7SlcQ8fQxAokNVmZX-owznxSGrHenqjuqf-Tu1BFlhVlP9UR3Y5hiTdQAIpSy7BTBNh7z1b1f4Ftl0Hq90TSjD2BAsW6svEyr9ySwS7Xq0dSBVBPCcTPEynPzlbfxgLv_f2xCVypl_li9b_kypzODdjuODboaUSk7R8TWa-DU_nZksr-_ppxy93FqvEZ2e_Ub_s9SQatek3oSTSPJjtuUl-Pgp9CT1r6fQsVA3GMozDkt1dDttOr-WVm-2xfevjfujWV8c5K6Nz6XdC_zL5nMsp9xhazb6kXgnslXT7gOhhuTvSbXd5Zkx6JfUr6z1uw1oMtFBsAPFNPra9j_FIJqxhylJJd5fUY2hQxoO4ofR29Hkkw4daZvY9sqrHJWXEKAbz-EsNC-8WlibLePRbG9aZ-3yXC_X5ssv6fobYiSODlSOQTcxFb4Y1daeaHQI8Vj9OFmhOwEPA4hPl0l_ijwnq0DtQfdGdOUvFnv-1jMkqCqhNuQtOSaTmA1aHEZElJaSJaRmU3CCQ-KsnK1Gn823ggiKGJYQDHz4Bl0sfdXQXDTF6PCTVMegTk8b-seYnHlKwYnC97u6H85Vfpf8h_3DbxL6LJIVO_ (1709×1474),width=642,height=554]
 
 
 === Grammar for Access Rule Model
