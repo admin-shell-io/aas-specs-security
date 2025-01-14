@@ -32,14 +32,14 @@ In addition a corresponding JSON schema is defined.
 
 == Structure of the Document
 
-Clause 2 lists Terms, Definitions and Abbreviations
+Clause xref:terms-definitions-and-abbreviations.adoc[] lists Terms, Definitions and Abbreviations
 
-Clause 4 gives a detailed introduction to the security topic
+Clause xref:introduction.adoc[] gives a detailed introduction to the security topic
 
-Clause 5 defines the Access Rule Model (normative)
+Clause xref:access-rule-model.adoc[] defines the Access Rule Model (normative)
 
-Clause 6 provides a summary and outlook
+Clause xref:summary-and-outlook.adoc[] provides a summary and outlook
 
-Annex B contains Examples of Access Rules in text serialization
+Annex xref:annex/text-access-rule-examples.adoc[] contains Examples of Access Rules in text serialization
 
-Annex C contains Examples of Access Rules in JSON serialization
+Annex xref:annex/json-access-rule-examples.adoc[] contains Examples of Access Rules in JSON serialization

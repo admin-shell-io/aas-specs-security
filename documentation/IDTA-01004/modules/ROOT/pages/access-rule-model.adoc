@@ -50,11 +50,11 @@ image::access-rule-model.png[width=642,height=554]
 === BNF grammar of Access Rules
 
 The following BNF (Backus-Naur-Form) grammar defines the AAS Access Rule Model in a technology neutral form.
-The grammar includes whitespaces, so that the examples in Annex B can be validated.
+The grammar includes whitespaces, so that the examples in xref:annex/text-access-rule-examples.adoc[] can be validated.
 
-The Security Model is explained step by step in the following Clause 6.2.2.
+The Security Model is explained step by step in the following Chapter <<explanation-access-rule-model>>.
 
-Examples can be found in Annex B.
+Examples can be found in xref:annex/text-access-rule-examples.adoc[].
 
 *The grammar has been tested with BNF playground (*https://bnfplayground.pauliankline.com/*).
 BNF playground allows to check and test the grammar itself and if expressions are correct according to the grammar.*
@@ -66,6 +66,7 @@ BNF playground allows to check and test the grammar itself and if expressions ar
 include::partial$bnf/access-rules.bnf[]
 ----
 
+[[explanation-access-rule-model]]
 === Explanation of the Access Rule Model BNF
 
 ==== General
@@ -224,7 +225,7 @@ The use of “oneof” is limited and type information for objects must be avail
 
 It shall also possible to check a JSON with the JSON schema.
 
-Examples can be found in Annex C.
+Examples can be found in xref:annex/json-access-rule-examples.adoc[].
 
 The following schema meets such constraints:
 

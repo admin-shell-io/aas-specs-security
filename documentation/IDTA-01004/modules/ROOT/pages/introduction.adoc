@@ -14,7 +14,7 @@ This document explains the security of the Asset Administration Shell.
 
 Access Tokens to be used with the Asset Administration Shell are defined.
 Such Access Token is the result of an authentication flow which is not defined by this document.
-Important authentication flows are explained in this clause in 4.13.
+Important authentication flows are explained in this clause in <<authentication-flows>>.
 
 An Access Rule Model is defined, which uses Attribute Based Access Control (ABAC) as underlying concept.
 Claims of an Access Token are used as attributes for the ABAC authorization.
@@ -515,6 +515,7 @@ In cases, where a shared AAS/SM Registry references identifiables from different
 
 From administration point of view, the Federated Identity Provider and the Token Exchange approach enable a system owner to fully control access to their secured systems, because the Identity Provider is managed by the system owner.
 
+[[authentication-flows]]
 == Authentication Flows
 
 AAS Security supports any authentication flow which provides signed JSON Web Tokens.
