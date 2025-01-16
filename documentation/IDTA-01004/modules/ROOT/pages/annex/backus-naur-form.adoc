@@ -33,8 +33,8 @@ where:
 * symbols that never appear on a left side are https://en.wikipedia.org/wiki/Terminal_symbol[terminals], while symbols that appear on a left side are https://en.wikipedia.org/wiki/Nonterminal_symbol[non-terminals] and are always enclosed between the pair of angle brackets <>,
 * terminals are enclosed with quotation marks: "text". "" is an empty string,
 * optional items are enclosed in square brackets: [<item-x>],
-* items existing 0 or more times are enclosed in round brackets and suffixed with an asterisk (*) such as <word> ::= <letter> (<letter>)*,
-* Items existing 1 or more times are suffixed with an addition (plus) symbol, +, such as <word> ::= (<letter>)+,
+* items existing 0 or more times are enclosed in round brackets and suffixed with an asterisk (\*) such as <word> ::= <letter> (<letter>)*,
+* Items existing 1 or more times are suffixed with an addition (plus) symbol, \+, such as <word> ::= (<letter>)+,
 * round brackets are also used to explicitly define the order of expansion to indicate precedence, example: ( <symbol1> | <symbol2> ) <symbol3>,
 * text without quotation marks is an informal explanation of what is expected; this text is cursive if grammar is non-recursive and vice versa.
 
