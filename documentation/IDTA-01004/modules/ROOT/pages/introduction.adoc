@@ -69,13 +69,9 @@ It shall be possible to determine whether data is sufficiently recent (lost upda
 <<image-iec63278-1-overview>> shows a detailed overview of AAS as defined in IEC 62378-1. The yellow comments have been added and describe the scope of this document in relation to the defined entities in the standard.
 Signatures will be defined in a later version of this document.
 
-.Detailed overview of Asset Administration Shell and related entities
+.Detailed overview of Asset Administration Shell and related entities. Based on Figure 4 of IEC 63278-1 (Reproduced by permission of DKE, German Member of IEC (https://www.dke.de/de[www.dke.de]). For the valid edition see the latest publication of IEC or DIN EN IEC and https://www.dke.de/de[www.dke.de] and https://www.vde-verlag.de/[www.vde-verlag.de])
 [[image-iec63278-1-overview]]
 image::iec63278-1-overview.png[width=642,height=374]
-
-Based on Figure 4 of IEC 63278-1 +
-(Reproduced by permission of DKE, German Member of IEC (https://www.dke.de/de[www.dke.de]).
-For the valid edition see the latest publication of IEC or DIN EN IEC and https://www.dke.de/de[www.dke.de] and https://www.vde-verlag.de/[www.vde-verlag.de])
 
 == Types of AAS
 
@@ -100,10 +96,10 @@ image::aas-info-exchange-types.jpeg[width=513,height=324]
 AAS Part 2 API also introduces the Industrie 4.0 Service Model illustrated in <<image-i40-service-model>> for a uniform understanding and naming.
 It basically distinguishes between associated concepts on several levels (from left to right):
 
-* technology-neutral level: concepts that are independent from selected technologies;
-* technology-specific level: concepts that are instantiated for a given technology and/or architectural style (e.g. HTTP/REST, OPC UA, MQTT);
-* implementation level: concepts that are related to an implementation architecture that comprises one or more technologies (e. g. C#, C++, Java, Python);
-* runtime level: concepts that are related to identifiable components in an operational Industry 4.0 system.
+* *technology-neutral level*: concepts that are independent from selected technologies;
+* *technology-specific level*: concepts that are instantiated for a given technology and/or architectural style (e.g. HTTP/REST, OPC UA, MQTT);
+* *implementation level*: concepts that are related to an implementation architecture that comprises one or more technologies (e. g. C#, C++, Java, Python);
+* *runtime level*: concepts that are related to identifiable components in an operational Industry 4.0 system.
 
 This document deals with the concepts of the technology-neutral and technology-specific level.
 However, to avoid terminological and conceptual misunderstandings, the whole Industrie 4.0 Service Model is provided here.
@@ -404,69 +400,47 @@ image::integration-patterns.png[width=602,height=228]
 
 === Integration Pattern “Build My Own” (IP1)
 
-Company A creates, manages and uses its own AAS.
+- Company A creates, manages and uses its own AAS.
 The AAS is not accessible from outside the Company.
-
-Everything can be decided internally by the company (Company A).
-
-Company hosts AAS on a server internally.
+- Everything can be decided internally by the company (Company A).
+- Company hosts AAS on a server internally.
 The server software may be open source, a commercial product or a software as a service.
-
-Company will choose an Identity Provider, which fits into company’s IT infrastructure.
+- Company will choose an Identity Provider, which fits into company’s IT infrastructure.
 Chosen server software must be able to support this.
-
-Chosen server software may have predefined claims or may be fully configurable for claims.
-
-Chosen server software may have certain limited access rules or may be fully configurable for access rules according standardized AAS security.
-
-For many internal Use Cases the security may be completey company specific not using the standardized AAS security.
+- Chosen server software may have predefined claims or may be fully configurable for claims.
+- Chosen server software may have certain limited access rules or may be fully configurable for access rules according standardized AAS security.
+- For many internal Use Cases the security may be completey company specific not using the standardized AAS security.
 Since the company may decide later to make their AAS available to other companies (pattern “Access to External”) or the company may use an existing software to host their AAS, company may still make benefit from using standardized AAS security.
 
 === Integration Pattern “Buy and Use” (IP2)
 
-Company A buys a product from Company B and uses and manages it internally.
-
-Company B has created the AAS and Company A copies the AAS.
-
-The AAS is hosted on a server of company A.
-
-Company A defines Identity Provider, access token and claims.
-
-Company B may propose standardized AAS Access Rules to Company A, which Company A may simply copy and paste into his AAS Server.
-
-With respect to security this case is very similar to the “Build My Own” access pattern.
+- Company A buys a product from Company B and uses and manages it internally.
+- Company B has created the AAS and Company A copies the AAS.
+- The AAS is hosted on a server of company A.
+- Company A defines Identity Provider, access token and claims.
+- Company B may propose standardized AAS Access Rules to Company A, which Company A may simply copy and paste into his AAS Server.
+- With respect to security this case is very similar to the “Build My Own” access pattern.
 
 === Integration Pattern “Access to External” (IP3)
 
-Company A accesses an AAS on an external server of Company B.
-
-Company A may access AAS from one business partner (bilateral) or may access AAS from many different business partners (multilateral).
-
-The external business partner Company B hosts his AAS on his server.
-
-Company A accesses AAS by the API and uses it in its user applications.
+- Company A accesses an AAS on an external server of Company B.
+- Company A may access AAS from one business partner (bilateral) or may access AAS from many different business partners (multilateral).
+- The external business partner Company B hosts his AAS on his server.
+- Company A accesses AAS by the API and uses it in its user applications.
 If the usage policy from Company B allows it Company A may copy the AAS and store it in its own systems.
-
-In case of bilateral access, Identity Provider, access token and claims are defined by Company B.
-
-In case of multilateral access, a common Identity Provider of a dataspace is used.
+- In case of bilateral access, Identity Provider, access token and claims are defined by Company B.
+- In case of multilateral access, a common Identity Provider of a dataspace is used.
 The members of the dataspace have to define access token and claims.
-
-Access rules need to be defined by Company B to allow access by Company A.
+- Access rules need to be defined by Company B to allow access by Company A.
 
 === Integration Pattern “Sell But Still Access” (IP4)
 
-Company A sells a product to Company B.
-
-Company A has created the AAS and Company B copies the AAS.
-
-The AAS is hosted on a server of company B.
-
-Company B defines Identity Provider, access token and claims.
-
-Company A may propose standardized AAS Access Rules to Company B, which Company B may simply copy and paste into his AAS Server.
-
-With respect to security this case is similar to the bilateral “Access to External” access pattern.
+- Company A sells a product to Company B.
+- Company A has created the AAS and Company B copies the AAS.
+- The AAS is hosted on a server of company B.
+- Company B defines Identity Provider, access token and claims.
+- Company A may propose standardized AAS Access Rules to Company B, which Company B may simply copy and paste into his AAS Server.
+- With respect to security this case is similar to the bilateral “Access to External” access pattern.
 
 == External and Internal Identity Providers
 

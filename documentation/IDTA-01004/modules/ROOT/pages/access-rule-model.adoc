@@ -14,7 +14,7 @@ Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, d
 
 == General
 
-The introduction in Chapter 4 has explained in detail the background for AAS Security.The use of Identity Providers and Authentication Flows have been shown, which provide an access token to the client user application.
+The introduction in Chapter xref:introduction.adoc[] has explained in detail the background for AAS Security.The use of Identity Providers and Authentication Flows have been shown, which provide an access token to the client user application.
 Such access token contains claims as subject attributes which can be used in the Access Rule Model as defined below.
 
 In addition the Access Rule Model contains further ABAC attributes like global attributes or object attributes.
@@ -39,7 +39,7 @@ A formula can include nested boolean expressions, comparions and string operatio
 A special operation match allows to work with tuples in lists, e.g. specificAssetId.
 
 The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
-In addition to the text below, the further details of the formula expressions are explained in https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/general.html#_query_language .
+In addition to the text below, the further details of the formula expressions are explained in https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/general.html#query-language .
 
 .Overview Access Rule Model
 [[image-access-rule-model]]
@@ -212,10 +212,10 @@ Such references use the Part 1 Mapping in Section “Text Serialization of Value
 See: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01001/v3.1/mappings/mappings.html#reference-serialization
 
 Access Rules may also be defined for all Identifiables of the Keytypes AssetAdministrationShell, Submodel or ConceptDescription.
-In this case an IdentifiableLiteral uses the format “(AssetAdministrationShell)*”, “(Submodel)*” and “(ConceptDescription)*”.
+In this case an IdentifiableLiteral uses the format “(AssetAdministrationShell)\*”, “(Submodel)*” and “(ConceptDescription)*”.
 
 Access Rules extend the Keytypes of Part 1 by “(aasDesc)” for AAS Descriptors and “(smdesc)” for submodel descriptors.
-To define all descpriptors “(aasDesc)*” or “(smdesc)*” may be used in DescriptorLiterals accordingly.
+To define all descpriptors “(aasDesc)\*” or “(smdesc)*” may be used in DescriptorLiterals accordingly.
 
 == JSON Serialization of Access Rule Model
 

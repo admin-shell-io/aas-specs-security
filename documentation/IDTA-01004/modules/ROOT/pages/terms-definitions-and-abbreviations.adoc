@@ -43,25 +43,25 @@ _[Source: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs
 
 property of a system (including all of its system resources) that ensures the actions of a system entity may be traced uniquely to that entity, which can be held responsible for its actions
 
-* _[SOURCE: IEC TS 62443-1-1:2009, 3.2.3]_
+_[SOURCE: IEC TS 62443-1-1:2009, 3.2.3]_
 
 *authenticate*::
 
 verify the identity of a user, user device, or other entity, or the integrity of data stored, transmitted, or otherwise exposed to unauthorized modification in an information system, or to establish the validity of a transmission
 
-* _[SOURCE: IEC TS 62443-1-1:2009, 3.2.12]_
+_[SOURCE: IEC TS 62443-1-1:2009, 3.2.12]_
 
 *authentication*::
 
 security measure designed to establish the validity of a transmission, message, or originator, or a means of verifying an individual's authorization to receive specific categories of information
 
-* _[SOURCE: IEC TS 62443-1-1:2009, 3.2.13]_
+_[SOURCE: IEC TS 62443-1-1:2009, 3.2.13]_
 
 *authorization*::
 
 right or permission that is granted to a system entity to access a system resource
 
-* _[SOURCE: IEC TS 62443-1-1:2009, 3.2.14]_
+_[SOURCE: IEC TS 62443-1-1:2009, 3.2.14]_
 
 *data integrity*::
 
@@ -71,7 +71,7 @@ property that data has not been changed, destroyed, or lost in an unauthorized o
 Note 1 to entry: This term deals with constancy of and confidence in data values, not with the information that the values represent or the trustworthiness of the source of the values.
 ====
 
-* _[SOURCE: IEC TS 62443-1-1:2009, 3.2.38]_
+_[SOURCE: IEC TS 62443-1-1:2009, 3.2.38]_
 
 == Abbreviations
 
