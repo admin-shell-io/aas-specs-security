@@ -1,0 +1,204 @@
+@startuml
+class AllAccessPermissionRules {
+   +defAttributeGroups: AttributeGroup[0..*]
+   +defObjectGroups:ObjectGroup[0..*]
+   +defAcls: Acl[0..*]
+   +defConditions: Condition[0..*]
+   +accessRules: AccessPermissionRule[0..*]
+}
+AllAccessPermissionRules ..> AttributeGroup
+AllAccessPermissionRules ..> ObjectGroup
+AllAccessPermissionRules ..> Acl
+AllAccessPermissionRules ..> Condition
+AllAccessPermissionRules ..> AccessPermissionRule
+
+class AccessPermissionRule {
+	+acl: Acl[0..1]
+	+useAcl: AclName[0..1]
+	+singleObject: SingleObject[0..*]
+	+useObjectGroup: ObjectGroupName[0..*]
+	+Condition: Condition[0..1]
+	+useCondition: ConditionName[0..1]
+}
+AccessPermissionRule ..> Acl
+AccessPermissionRule::useAcl ..> Acl: > by name
+AccessPermissionRule ..> Condition
+AccessPermissionRule ..> SingleObject
+AccessPermissionRule::useObjectGoup .. ObjectGroup: > by name
+AccessPermissionRule::useCondition .. Condition : > by name
+note top of AccessPermissionRule
+	either acl or useAcl
+	either Condition or useCondition
+end note
+
+together {
+
+  class AttributeGroup {
+    +singleAttribute: SingleAttribute[0..*]
+    +useAttributeGroup: AttributeGroupName[0..*]
+    }
+
+  AttributeGroup ..> SingleAttribute
+  AttributeGroup::useAttributeGroup .. AttributeGroup : > by name
+
+  class SingleAttribute {
+  }
+
+  class Claim {
+  }
+  note bottom of Claim
+	further defined in Text
+  end note
+
+  class GlobalAttribute {
+  }
+  note bottom of GlobalAttribute
+  	further defined in Text
+  end note
+
+  class Reference {
+  }
+  note bottom of Reference
+	further defined in Text
+  end note
+
+  SingleAttribute <|-- Claim
+  SingleAttribute <|-- GlobalAttribute
+  SingleAttribute <|-- Reference
+}
+
+together {
+  class ObjectGroup {
+    singleObject: SingleObject[0..*]
+    useObjectGroup: ObjectGroup[0..*]
+  }
+  ObjectGroup ..> SingleObject
+  ObjectGroup::useObjectGroup .. ObjectGroup : > by name
+
+  class SingleObject {
+    objectType: ObjectType[1]
+    objectValue: ObjectValue[1]
+  }
+  note bottom of SingleObject
+	further defined in Text
+  end note
+
+  SingleObject ..> ObjectType
+
+  enum ObjectType <<enumeration>> {
+	Route
+	Identifiable
+	Referable
+	Fragment
+	Descriptor
+  }
+}
+
+together {
+  class Acl {
+	+scope: accessScope[1]
+	+singleAttribute: SingleAttribute[0..*]
+	+useAttributeGroup: AttributeGroup[0..*]
+	+right: Right[1..*]
+	+access: Access[1]
+  }
+  Acl ..> Right
+  Acl ..> Access
+  Acl ..> SingleAttribute
+  Acl::useAttributeGroup .l. AttributeGroup : > by name
+
+  enum Right <<enumeration>> {
+	CREATE
+	READ
+	UPDATE
+	DELETE
+	EXECUTE
+	VIEW
+	ALL
+	TREE
+  }
+
+  enum Access <<enumeration>> {
+	ALLOW
+	DISABLED
+  }
+}
+
+together {
+
+  class Condition {
+  }
+
+  enum logicalOperation <<enumeration>> {
+    $and
+    $or
+    $not
+    nested
+  }
+
+  class logicalExpression {
+    +operation: logicalOperation[1]
+    +operands: Condition[1..*]
+  }
+
+  class match {
+    +operands: Condition[1..*]
+  }
+
+  enum comparisonOperation <<enumeration>> {
+    $eq
+    $ne
+    $gt
+    $ge
+    $lt
+    $le
+  }
+  enum dataType <<enumeration>> {
+    String
+    Numerical
+    DateTime
+    Time
+  }
+  class comparison {
+    +type: dataType[1]
+    +operation: comparisonOperation[1]
+    +operands: comparisonOperand[2]
+  }
+
+  enum stringOperation <<enumeration>> {
+    $contains
+    $starts-with
+    $ends-with
+    $regex
+  }
+  class stringExpression {
+    +operation: stringOperation[1]
+    +operands: stringOperand[2]
+  }
+
+  enum BoolLiteral <<enumeration>> {
+    true
+    false
+  }
+  class castToBool {}
+
+  Condition ..> logicalExpression
+  logicalExpression ..> Condition
+  logicalExpression ..> logicalOperation
+  stringExpression ..> stringOperation
+  Condition ..> match
+  match ..> Condition
+  Condition ..> comparison
+  comparison ..> dataType
+  comparison ..> comparisonOperation
+  Condition ..> stringExpression
+  Condition .r.> castToBool
+  Condition .r.> BoolLiteral
+
+}
+
+ObjectType -l[hidden]- Condition
+Claim -[hidden]- Condition
+Right -[hidden]- ObjectGroup
+
+@enduml
