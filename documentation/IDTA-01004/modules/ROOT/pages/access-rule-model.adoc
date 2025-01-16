@@ -17,7 +17,7 @@ Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, d
 The introduction in Chapter xref:introduction.adoc[] has explained in detail the background for AAS Security.The use of Identity Providers and Authentication Flows have been shown, which provide an access token to the client user application.
 Such access token contains claims as subject attributes which can be used in the Access Rule Model as defined below.
 
-In addition the Access Rule Model contains further ABAC attributes like global attributes or object attributes.
+In addition, the Access Rule Model contains further ABAC attributes like global attributes or object attributes.
 
 Figure XX gives an overview of the Access Rule Model.
 Section xx defines the text serialization of the Access Rule Model.
@@ -35,7 +35,7 @@ Each Access Rule can define an own Formula or reuse an existing one.
 
 The formula decides, if an Access Rule becomes active or not.
 Only if the overall result of the Formula is valid and true, the Access Rule becomes active.
-A formula can include nested boolean expressions, comparions and string operations.
+A formula can include nested boolean expressions, comparisons and string operations.
 A special operation match allows to work with tuples in lists, e.g. specificAssetId.
 
 The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
@@ -135,9 +135,9 @@ Without an ALLOW rule any access is forbidden by default.
 For testing and alternative configuration purposes, an access rule may be DISABLED.
 To avoid complex conflicting situations, deny rules are not supported.
 
-In addition VIEW allows to see the existence of an element as Id or idShort, but not to read its values and its further attributes.
+In addition, VIEW allows to see the existence of an element as Id or idShort, but not to read its values and its further attributes.
 
-In addition TREE defines, that further access rules exist within its child elements, which must be processed.
+In addition, TREE defines, that further access rules exist within its child elements, which must be processed.
 
 ALL is an abbreviation to define all rights.
 
@@ -160,7 +160,7 @@ Global Attributes are:
 
 * *CLIENTNOW* - Date and time of client according ISO 8601, provided as claim in access token
 
-* *ANONYMOUS* - Tag for anonymous and non authenticated user, i.e. no access token
+* *ANONYMOUS* - Tag for anonymous and non-authenticated user, i.e. no access token
 
 References in ReferenceAttributes are defined in Section 5.2.1.8 “Text Serialization of Values of Type Reference”.
 
@@ -202,7 +202,7 @@ For specific comparisons datatypes can be casted to the other datatypes.
 Specific operations exist to extract parts from DateTime, i.e. $dayOfWeek, $dayOfMonth, $month, $year.
 This enables access rules related to week days or specific times in the year.
 
-An important special operation is $match, which can be used with any element containing a list of elements, e.g. semanticId[], specificAssetId[], SubmodelElementList or SubmodelElelementCollection.
+An important special operation is $match, which can be used with any element containing a list of elements, e.g. semanticId[], specificAssetId[], SubmodelElementList or SubmodelElementCollection.
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
 
 ==== Text Serialization of Values of Type Reference
@@ -216,7 +216,7 @@ Access Rules may also be defined for all Identifiables of the Keytypes AssetAdmi
 In this case an IdentifiableLiteral uses the format “(AssetAdministrationShell)\*”, “(Submodel)*” and “(ConceptDescription)*”.
 
 Access Rules extend the Keytypes of Part 1 by “(aasDesc)” for AAS Descriptors and “(smdesc)” for submodel descriptors.
-To define all descpriptors “(aasDesc)\*” or “(smdesc)*” may be used in DescriptorLiterals accordingly.
+To define all descriptors “(aasDesc)\*” or “(smdesc)*” may be used in DescriptorLiterals accordingly.
 
 == JSON Serialization of Access Rule Model
 
@@ -224,7 +224,7 @@ The AAS Access Rule model can also be defined as a JSON schema.
 Since the related JSON schema shall also allow automatic code generation, specific constraints must be fulfilled by such JSON schema.
 The use of “oneof” is limited and type information for objects must be available.
 
-It shall also possible to check a JSON with the JSON schema.
+It shall also be possible to check a JSON with the JSON schema.
 
 Examples can be found in xref:annex/json-access-rule-examples.adoc[].
 
@@ -316,6 +316,6 @@ An implementation may even store such serialized access rules in submodel elemen
 Version 3.1 of the AAS API defines queries and uses the same grammar and same JSON schema to define queries.
 The JSON schema serialization is used in the related API operations.
 
-In addition using the same concepts will be needed for large amounts of AAS data.
+In addition, using the same concepts will be needed for large amounts of AAS data.
 Querying such large amounts of data and protecting such data with Access Rules requires optimized access of data.
 Database queries may combine the filter expression provided by the client query with the FOMULAs of the Access Rules on the server.

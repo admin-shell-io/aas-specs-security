@@ -28,7 +28,7 @@ This document specifies the security for the Asset Administration Shell and its 
 The signing of submodel data will be specified in a next version of this document.
 
 This document includes the grammar of a technology neutral model, which is used both for HTTP API 3.1 Query Language and for the Access Rules.
-In addition a corresponding JSON schema is defined.
+In addition, a corresponding JSON schema is defined.
 
 == Structure of the Document
 

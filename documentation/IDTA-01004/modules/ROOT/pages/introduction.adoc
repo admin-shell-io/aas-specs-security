@@ -26,7 +26,7 @@ Access rules can be defined for routes in the AAS API xref:bibliography.adoc#bib
 
 === Confidentiality protection
 
-*Data leakage protection:* Access to information considered sensible by an AAS responsible shall be controlled by well defined rules.
+*Data leakage protection:* Access to information considered sensible by an AAS responsible shall be controlled by well-defined rules.
 Only authorized parties shall be able to access sensitive information managed by the AAS.
 This applies to both,
 
@@ -96,9 +96,9 @@ image::aas-info-exchange-types.jpeg[width=513,height=324]
 AAS Part 2 API also introduces the Industrie 4.0 Service Model illustrated in <<image-i40-service-model>> for a uniform understanding and naming.
 It basically distinguishes between associated concepts on several levels (from left to right):
 
-* *technology-neutral level*: concepts that are independent from selected technologies;
+* *technology-neutral level*: concepts that are independent of selected technologies;
 * *technology-specific level*: concepts that are instantiated for a given technology and/or architectural style (e.g. HTTP/REST, OPC UA, MQTT);
-* *implementation level*: concepts that are related to an implementation architecture that comprises one or more technologies (e. g. C#, C++, Java, Python);
+* *implementation level*: concepts that are related to an implementation architecture that comprises one or more technologies (e.g. C#, C++, Java, Python);
 * *runtime level*: concepts that are related to identifiable components in an operational Industry 4.0 system.
 
 This document deals with the concepts of the technology-neutral and technology-specific level.
@@ -192,7 +192,7 @@ image::tracking-of-changes-via-events.png[width=642,height=494]
 
 <<image-tracking-of-changes-via-events>> also explains the need to pass access permissions to business partners.
 
-As the AAS is a central point for data access, there is the need to support fine grained access control that supports multiple roles as well as separate access control policies for individual elements or submodels in the AAS.
+As the AAS is a central point for data access, there is the need to support fine-grained access control that supports multiple roles as well as separate access control policies for individual elements or submodels in the AAS.
 Access Control is based on Identity Management and can only be successfully implemented in a secure environment.
 For this document, the focus lies on the supported access control model.
 
@@ -227,7 +227,7 @@ The above example motivates that the access permission rules need to be passed f
 
 == Use Case AAS Servers with API
 
-<<image-access-aas-servers>> shows an example of an User Application accessing 3 AAS Servers and a Registry.
+<<image-access-aas-servers>> shows an example of a User Application accessing 3 AAS Servers and a Registry.
 This example will be further detailed in Architecture Examples below.
 
 The User Application will access the registry by the Registry API to retrieve the endpoints of AAS and Submodels.
@@ -243,7 +243,7 @@ Access rules will be validated and enforced using the attributes in the Access T
 
 The User Application must be able to check the integrity of the provided AAS data.
 
-.Example of an User Application accessing 3 AAS Servers and a Registry
+.Example of a User Application accessing 3 AAS Servers and a Registry
 [[image-access-aas-servers]]
 image::access-aas-servers.png[width=575,height=492]
 
@@ -256,7 +256,7 @@ AAS Security applies to all AAS APIs, especially to both repositories and regist
 In case of repositories the Access Rules define the access to the data in the repository itself.
 
 A registry only includes AAS descriptors or submodel descriptors.
-In that case the Access Rules define the access to the descriptors, i.e. by rules with semantiId, assetId or ID for identifiable.
+In that case the Access Rules define the access to the descriptors, i.e. by rules with semanticId, assetId or ID for identifiable.
 
 This gives the possibility to copy the related rules made for a repository also to a registry, either manually or even automatically.
 
@@ -360,7 +360,7 @@ For a dataspace with AAS there are already commonly defined:
 * Many AAS Submodel Templates (e.g. Nameplate) conformant to the AAS metamodel
 * AAS Security (i.e. this document)
 
-In addition a dataspace with AAS needs to define:
+In addition, a dataspace with AAS needs to define:
 
 * Further dataspace specific Submodel Templates
 * Allowed concept repositories to be referenced by semanticIds
@@ -373,7 +373,7 @@ Up to now no common AAS specifications for the following concepts are published 
 
 * How to find AAS registries of the dataspace members?
 Solutions may be a registry with registry endpoints or a naming convention like registry.company-domain.com.
-Also an indirect registration via dataspace connectors that also support additional data exchange patterns besides AAS, e.g. simple bilateral file exchange, is possible.
+Also, an indirect registration via dataspace connectors that also support additional data exchange patterns besides AAS, e.g. simple bilateral file exchange, is possible.
 
 How to find concept repositories?
 A solution can be a registry of concept repository endpoints or a concept repository discovery service for semantic IDs.
@@ -409,7 +409,7 @@ The server software may be open source, a commercial product or a software as a 
 Chosen server software must be able to support this.
 - Chosen server software may have predefined claims or may be fully configurable for claims.
 - Chosen server software may have certain limited access rules or may be fully configurable for access rules according standardized AAS security.
-- For many internal Use Cases the security may be completey company specific not using the standardized AAS security.
+- For many internal Use Cases the security may be complete company specific not using the standardized AAS security.
 Since the company may decide later to make their AAS available to other companies (pattern “Access to External”) or the company may use an existing software to host their AAS, company may still make benefit from using standardized AAS security.
 
 === Integration Pattern “Buy and Use” (IP2)
@@ -427,7 +427,7 @@ Since the company may decide later to make their AAS available to other companie
 - Company A may access AAS from one business partner (bilateral) or may access AAS from many different business partners (multilateral).
 - The external business partner Company B hosts his AAS on his server.
 - Company A accesses AAS by the API and uses it in its user applications.
-If the usage policy from Company B allows it Company A may copy the AAS and store it in its own systems.
+If the usage policy from Company B allows it, Company A may copy the AAS and store it in its own systems.
 - In case of bilateral access, Identity Provider, access token and claims are defined by Company B.
 - In case of multilateral access, a common Identity Provider of a dataspace is used.
 The members of the dataspace have to define access token and claims.
@@ -457,7 +457,7 @@ image::external-internal-idp.png[width=642,height=734]
 
 AAS Security supports unauthenticated access to a secured system. +
 A lot of information is publicly available to human users by web browsers.
-If such information is provided machine readable as AAS, it is typically also public without authentication.
+If such information is provided machine-readable as AAS, it is typically also public without authentication.
 Examples are the submodels Nameplate or TechnicalData.
 
 === Single Identity Provider
@@ -546,7 +546,7 @@ Let's break down the steps:
 
 * The Authorization Server receives the request and validates the client's credentials (client ID and client secret).
 * Client secrets are usually long, random strings designed to be difficult to guess.
-It is commonly an alpha numeric string or Base64 encoded string.
+It is commonly an alphanumeric string or Base64 encoded string.
 * If the credentials are valid, the Authorization Server generates an access token.
 If not, an error is returned.
 
@@ -570,7 +570,7 @@ If not, an error is returned.
 
 In the OAuth 2.0 Client Credentials Grant flow the client id and client secret can simply be any string.
 As per the official specification [RFC 6749] the client id and client secret is any visible (printable) ASCII character (*VSCHAR).
-The Resource server evaluates and checks the claims in the access token and validates it with the Acess Rules, as specified later in this specification.
+The Resource server evaluates and checks the claims in the access token and validates it with the Access Rules, as specified later in this specification.
 
 === Example: OpenID Connect
 

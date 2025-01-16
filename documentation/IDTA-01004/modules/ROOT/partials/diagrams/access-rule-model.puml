@@ -24,7 +24,7 @@ AccessPermissionRule ..> Acl
 AccessPermissionRule::useAcl ..> Acl: > by name
 AccessPermissionRule ..> Condition
 AccessPermissionRule ..> SingleObject
-AccessPermissionRule::useObjectGoup .. ObjectGroup: > by name
+AccessPermissionRule::useObjectGroup .. ObjectGroup: > by name
 AccessPermissionRule::useCondition .. Condition : > by name
 note top of AccessPermissionRule
 	either acl or useAcl

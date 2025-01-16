@@ -19,7 +19,7 @@ Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, d
 include::partial$examples/allow-read-complete-api.json[]
 ----
 
-== Allow READ access for Anonymous to list of secmanticIDs for submodels
+== Allow READ access for Anonymous to list of semanticIDs for submodels
 
 [source,json,linenums]
 ----
