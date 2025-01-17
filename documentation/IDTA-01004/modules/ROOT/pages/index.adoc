@@ -1,0 +1,55 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+Illustrations:
+Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, designed by Publik. Agentur für Kommunikation GmbH
+////
+
+= Part 4: Security (IDTA-01004)
+
+====
+This specification is part of the https://industrialdigitaltwin.org/en/content-hub/aasspecifications[Asset Administration Shell Specification series].
+====
+
+== Version
+
+This is version 3.0 of the specification IDTA-01004.
+
+== Notice
+
+Publisher: Industrial Digital Twin Association e.V. (IDTA)
+
+IDTA Document Number: IDTA-01004-3-0
+
+This work is licensed under a
+https://creativecommons.org/licenses/by/4.0/[Creative Commons Attribution 4.0 International License].
+
+SPDX-License-Identifier: CC-BY-4.0
+
+== How to Get in Contact
+
+Contact: https://industrialdigitaltwin.org/en/contact[IDTA]
+
+Sources: https://github.com/admin-shell-io/aas-specs[GitHub]
+
+Feedback:
+
+* https://github.com/admin-shell-io/aas-specs/issues/new/choose[new issues, bugs]
+
+* https://github.com/admin-shell-io/questions-and-answers[Questions and Answers]
+
+[[editorial-notes]]
+== Editorial Notes
+
+This document (release candidate for review) was produced from May 2023 to January 2025 by the Task Force “Security” of the working group "Open Technology" in the Industrial Digital Twin Association (IDTA).
+
+Earlier content of this document was developed in the Plattform Industrie 4.0 working group “Reference Architectures, Standards and Norms“, especially Clause 7 “Security” of the Part 1 specification Version 3.0RC02 and the discussion paper “Secure Download Service” xref:bibliography.adoc#bib6[[6\]].
+
+This document will become Part 4 Security of the document series “Specification of the Asset Administration Shell”.
+
+This specification is versioned using Semantic Versioning 2.0.0 and follows the semver specification xref:bibliography.adoc#bib4[[4\]].

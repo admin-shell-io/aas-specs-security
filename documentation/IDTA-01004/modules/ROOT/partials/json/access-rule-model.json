@@ -1,0 +1,370 @@
+{
+  "definitions": {
+    "attributeItem": {
+      "oneOf": [
+        {
+          "required": [
+            "CLAIM"
+          ]
+        },
+        {
+          "required": [
+            "GLOBAL"
+          ]
+        },
+        {
+          "required": [
+            "REFERENCE"
+          ]
+        }
+      ],
+      "properties": {
+        "CLAIM": {
+          "type": "string"
+        },
+        "GLOBAL": {
+          "type": "string",
+          "enum": [
+            "LOCALNOW",
+            "UTCNOW",
+            "CLIENTNOW",
+            "ANONYMOUS"
+          ]
+        },
+        "REFERENCE": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "objectItem": {
+      "oneOf": [
+        {
+          "required": [
+            "ROUTE"
+          ]
+        },
+        {
+          "required": [
+            "IDENTIFIABLE"
+          ]
+        },
+        {
+          "required": [
+            "REFERABLE"
+          ]
+        },
+        {
+          "required": [
+            "FRAGMENT"
+          ]
+        },
+        {
+          "required": [
+            "DESCRIPTOR"
+          ]
+        }
+      ],
+      "properties": {
+        "ROUTE": {
+          "type": "string"
+        },
+        "IDENTIFIABLE": {
+          "type": "string"
+        },
+        "REFERABLE": {
+          "type": "string"
+        },
+        "FRAGMENT": {
+          "type": "string"
+        },
+        "DESCRIPTOR": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rightsEnum": {
+      "type": "string",
+      "enum": [
+        "CREATE",
+        "READ",
+        "UPDATE",
+        "DELETE",
+        "EXECUTE",
+        "VIEW",
+        "ALL",
+        "TREE"
+      ],
+      "additionalProperties": false
+    },
+    "ACL": {
+      "type": "object",
+      "properties": {
+        "ATTRIBUTES": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/attributeItem"
+          }
+        },
+        "USEATTRIBUTES": {
+          "type": "string"
+        },
+        "RIGHTS": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rightsEnum"
+          }
+        },
+        "ACCESS": {
+          "type": "string",
+          "enum": [
+            "ALLOW",
+            "DISABLED"
+          ]
+        }
+      },
+      "required": [
+        "RIGHTS",
+        "ACCESS"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "ATTRIBUTES"
+          ]
+        },
+        {
+          "required": [
+            "USEATTRIBUTES"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "AccessPermissionRule": {
+      "type": "object",
+      "properties": {
+        "ACL": {
+          "$ref": "#/definitions/ACL"
+        },
+        "USEACL": {
+          "type": "string"
+        },
+        "OBJECTS": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/objectItem"
+          },
+          "additionalProperties": false
+        },
+        "USEOBJECTS": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "FORMULA": {
+          "$ref": "#/definitions/logicalExpression",
+          "additionalProperties": false
+        },
+        "USEFORMULA": {
+          "type": "string"
+        },
+        "FRAGMENT": {
+          "type": "string"
+        },
+        "FILTER": {
+          "$ref": "#/definitions/logicalExpression",
+          "additionalProperties": false
+        },
+        "USEFILTER": {
+          "type": "string"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "ACL"
+          ]
+        },
+        {
+          "required": [
+            "USEACL"
+          ]
+        }
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "OBJECTS"
+          ]
+        },
+        {
+          "required": [
+            "USEOBJECTS"
+          ]
+        }
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "FORMULA"
+          ]
+        },
+        {
+          "required": [
+            "USEFORMULA"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "properties": {
+    "Query": {
+      "type": "object",
+      "properties": {
+        "$select": {
+          "type": "string",
+          "pattern": "^id$"
+        },
+        "$condition": {
+          "$ref": "#/definitions/logicalExpression"
+        }
+      },
+      "required": [
+        "$condition"
+      ],
+      "additionalProperties": false
+    },
+    "AllAccessPermissionRules": {
+      "type": "object",
+      "properties": {
+        "DEFATTRIBUTES": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "attributes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/attributeItem"
+                }
+              }
+            },
+            "required": [
+              "name",
+              "attributes"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "DEFACLS": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "acl": {
+                "$ref": "#/definitions/ACL"
+              }
+            },
+            "required": [
+              "name",
+              "acl"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "DEFOBJECTS": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "objects": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/objectItem"
+                }
+              },
+              "USEOBJECTS": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "oneOf": [
+              {
+                "required": [
+                  "objects"
+                ]
+              },
+              {
+                "required": [
+                  "USEOBJECTS"
+                ]
+              }
+            ],
+            "additionalProperties": false
+          }
+        },
+        "DEFFORMULAS": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "formula": {
+                "$ref": "#/definitions/logicalExpression"
+              }
+            },
+            "required": [
+              "name",
+              "formula"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccessPermissionRule"
+          }
+        }
+      },
+      "required": [
+        "rules"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "Query"
+      ]
+    },
+    {
+      "required": [
+        "AllAccessPermissionRules"
+      ]
+    }
+  ],
+  "additionalProperties": false
+}

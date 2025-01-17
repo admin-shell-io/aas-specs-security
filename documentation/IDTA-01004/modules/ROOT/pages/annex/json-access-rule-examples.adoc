@@ -1,0 +1,76 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+Illustrations:
+Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, designed by Publik. Agentur für Kommunikation GmbH
+////
+
+= Examples of Access Rules in JSON serialization
+
+== Allow READ access for Anonymous to complete API
+
+[source,json,linenums]
+----
+include::partial$examples/allow-read-complete-api.json[]
+----
+
+== Allow READ access for Anonymous to list of semanticIDs for submodels
+
+[source,json,linenums]
+----
+include::partial$examples/allow-read-list-semanticids.json[]
+----
+
+== Allow READ and UPDATE for specific authenticated users
+
+[source,json,linenums]
+----
+include::partial$examples/allow-read-update-users.json[]
+----
+
+== Allow READ and UPDATE for specific submodel "submodel1"
+
+[source,json,linenums]
+----
+include::partial$examples/allow-read-update-submodel.json[]
+----
+
+== Reuse of ACL, OBJECT and FORMULA
+
+[source,json,linenums]
+----
+include::partial$examples/reuse-acl-object-formula.json[]
+----
+
+== Example with BusinessPartnerNumber
+
+[source,json,linenums]
+----
+include::partial$examples/bpn.json[]
+----
+
+== Allow READ for all authenticated users of a company for submodels Nameplate and TechnicalData
+
+[source,json,linenums]
+----
+include::partial$examples/allow-read-all-users-of-company-for-submodel.json[]
+----
+
+== Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData from 9:00-17:00
+
+[source,json,linenums]
+----
+include::partial$examples/allow-read-submodels-id-pattern.json[]
+----
+
+== Example with FILTER statement
+
+[source,json,linenums]
+----
+include::partial$examples/filter.json[]
+----

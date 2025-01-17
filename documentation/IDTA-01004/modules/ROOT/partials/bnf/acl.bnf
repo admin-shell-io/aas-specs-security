@@ -1,0 +1,15 @@
+<ACL> ::=
+    "ATTRIBUTES:" <ws>
+    ( <SingleAttribute> <ws> )*
+    ( <UseAttributeGroup> <ws> )*
+    "RIGHTS:" <ws> <Right> <ws> ( <Right> <ws> )*
+    "ACCESS:" <ws> <Access> <ws>
+
+<UseACL> ::=
+    "USEACLS" <ws> <StringLiteral> <ws>
+
+<Right> ::=
+    "CREATE" | "READ" | "UPDATE" | "DELETE" | "EXECUTE" | "VIEW" | "ALL" | "TREE"
+
+<Access> ::=
+    "ALLOW" | "DISABLED"
