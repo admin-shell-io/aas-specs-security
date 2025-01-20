@@ -245,7 +245,10 @@ The User Application must be able to check the integrity of the provided AAS dat
 
 .Example of a User Application accessing 3 AAS Servers and a Registry
 [[image-access-aas-servers]]
-image::access-aas-servers.png[width=575,height=492]
+[plantuml,access-aas-servers,svg]
+....
+include::partial$diagrams/access-aas-servers.puml[]
+....
 
 Further use cases are available at the Platform Industrie 4.0, e.g. Collaborative Condition Monitoring or Exchange of Engineering Data, and in IEC 63278-4 Use Cases.
 
@@ -266,7 +269,10 @@ This gives the possibility to copy the related rules made for a repository also 
 
 .Example of a possible AAS server implementation
 [[image-aas-server-implementation]]
-image::aas-server-implementation.png[width=543,height=873]
+[plantuml,aas-server-implementation,svg]
+....
+include::partial$diagrams/aas-server-implementation.puml[]
+....
 
 <<image-aas-server-implementation>> shows a possible AAS server implementation with security:
 
@@ -290,7 +296,10 @@ Such access rules may be stored in a proprietary way by the *AAS Server*, but th
 
 .Example of a possible AAS registry implementation
 [[image-aas-registry-implementation]]
-image::aas-registry-implementation.png[width=642,height=861]
+[plantuml,aas-registry-implementation,svg]
+....
+include::partial$diagrams/aas-registry-implementation.puml[]
+....
 
 <<image-aas-registry-implementation>> shows a possible AAS registry implementation with security:
 
@@ -450,7 +459,7 @@ A Secured System in AAS Security can be Discovery Service, Registry Service, AAS
 
 .External and internal Identity Providers
 [[image-external-internal-idp]]
-image::external-internal-idp.png[width=642,height=734]
+image::external-internal-idp.svg[width=642,height=734]
 
 
 === Unauthenticated Access
@@ -530,7 +539,10 @@ The system must authenticate and authorize the application instead of a user.
 
 .Authentication Flow OAuth 2.0
 [[image-auth-flow-oauth]]
-image::auth-flow-oauth.png[width=525,height=279]
+[plantuml,auth-flow-oauth,svg]
+....
+include::partial$diagrams/seq-auth-flow-oauth.puml[]
+....
 
 <<image-auth-flow-oauth>> represents an OAuth 2.0 Client Credentials Grant flow.
 Let's break down the steps:
@@ -591,7 +603,10 @@ The following sequence diagram explains the OpenID Connect in OAuth2 Authorizati
 
 .Authentication Flow OpenId
 [[image-auth-flow-openid]]
-image::auth-flow-openid.png[width=614,height=355]
+[plantuml,auth-flow-openid,svg]
+....
+include::partial$diagrams/seq-auth-flow-openid.puml[]
+....
 
 Here's a step-by-step explanation of the flow depicted in <<image-auth-flow-openid>>:
 

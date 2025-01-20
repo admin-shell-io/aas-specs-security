@@ -1,0 +1,36 @@
+@startuml
+participant Owner as "Resource Owner\n(e.g. AAS Responsible\nor entitled User)"
+participant Client as "Client"
+participant AuthServer as "Authorization \n Server"
+participant ResourceServer as "Resource Server \n (AAS/SM/CD Repository)"
+
+Owner -> Client: Contacts client
+
+|||
+
+Client -> AuthServer: Authentication and Authorization Request (includes openid in scope)
+
+|||
+
+AuthServer --> Owner: Requests user credentials
+
+|||
+
+AuthServer <- Owner: Provides the credentials
+
+|||
+
+AuthServer <- AuthServer: Validates credentials
+
+|||
+
+AuthServer --> Client: Authorization code
+AuthServer <- Client: Requests Token with Authorization code
+AuthServer --> Client: Access Token and ID Token
+
+||45||
+
+Client -> ResourceServer: Requests data with Access Token
+
+ResourceServer --> Client: Response (AAS/SM/CD)
+@enduml
