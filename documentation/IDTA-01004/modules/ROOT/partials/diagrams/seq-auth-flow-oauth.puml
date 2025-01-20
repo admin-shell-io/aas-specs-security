@@ -1,0 +1,20 @@
+@startuml
+participant Client as "Client \n (Machine/Service)"
+participant AuthServer as "Authorization \n Server"
+participant ResourceServer as "Resource Server \n (AAS/SM/CD Repository)"
+
+Client -> AuthServer: Requests access token with client id and client secret
+
+|||
+
+AuthServer <- AuthServer: Validate credentials
+
+|||
+
+AuthServer --> Client: Access Token
+
+||45||
+
+Client -> ResourceServer: Requests data with Access Token
+ResourceServer --> Client: Response (AAS/SM/CD)
+@enduml
