@@ -459,7 +459,7 @@ A Secured System in AAS Security can be Discovery Service, Registry Service, AAS
 
 .External and internal Identity Providers
 [[image-external-internal-idp]]
-image::external-internal-idp.svg[width=642,height=734]
+image::external-internal-idp.png[width=642,height=734]
 
 
 === Unauthenticated Access
