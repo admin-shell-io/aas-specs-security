@@ -43,13 +43,16 @@ Feedback:
 
 * https://github.com/admin-shell-io/questions-and-answers[Questions and Answers]
 
+
 [[editorial-notes]]
 == Editorial Notes
+
+=== History
 
 This document (release candidate for review) was produced from May 2023 to January 2025 by the Task Force “Security” of the working group "Open Technology" in the Industrial Digital Twin Association (IDTA).
 
 Earlier content of this document was developed in the Plattform Industrie 4.0 working group “Reference Architectures, Standards and Norms“, especially Clause 7 “Security” of the Part 1 specification Version 3.0RC02 and the discussion paper “Secure Download Service” xref:bibliography.adoc#bib6[[6\]].
 
-This document will become Part 4 Security of the document series “Specification of the Asset Administration Shell”.
+include::./shared/versioning.adoc[]
 
-This specification is versioned using Semantic Versioning 2.0.0 and follows the semver specification xref:bibliography.adoc#bib4[[4\]].
+include::./shared/conformance.adoc[]
