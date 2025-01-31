@@ -387,8 +387,8 @@ In this chapter different integration patters are described, which are used in s
 An integration pattern describes
 
 * if an own AAS or an AAS of a business partner is used.
-* If an AAS is hosted on a server internally or externally.
-* If an AAS is copied.
+* if an AAS is hosted on a server internally or externally.
+* if an AAS is copied.
 * the requirements on Identity Providers.
 * the requirements on access tokens and claims.
 * the requirements on access rules.
