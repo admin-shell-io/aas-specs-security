@@ -1,36 +1,36 @@
 ACCESSRULE:
-ATTRIBUTES:
-  CLAIM("BusinessPartnerNumber")
-RIGHTS: READ
-ACCESS: ALLOW
+  ATTRIBUTES:
+    CLAIM("BusinessPartnerNumber")
+  RIGHTS: READ
+  ACCESS: ALLOW
 OBJECTS:
-    DESCRIPTOR "(aasDesc)*"
+  DESCRIPTOR "(aasDesc)*"
 FORMULA:
-$and(
-  CLAIM("BusinessPartnerNumber") $eq "BPNL00000000000A",
-  $match(
-    $aasdesc#specificAssetIds[].name  $eq "manufacturerPartId",
-    $aasdesc#specificAssetIds[].value $eq "99991",
-    $aasdesc#specificAssetIds[].externalSubjectId.keys[0].value $eq "PUBLIC_READABLE"
-  ),
-  $match(
-    $aasdesc#specificAssetIds[].name $eq "customerPartId",
-    $aasdesc#specificAssetIds[].value $eq "ACME001"
-  )
-)
-FILTER:
-FRAGMENT "$aasdesc#assetInformation.specificAssetIds[]"
-$or(
-  $match(
-     $aasdesc#specificAssetIds[].name  $eq "manufacturerPartId",
-     $aasdesc#specificAssetIds[].value $eq "99991"
-  ),
-  $match(
-     $aasdesc#specificAssetIds[].name $eq "customerPartId",
-     $aasdesc#specificAssetIds[].value $eq "ACME001"
-  ),
-   $aasdesc#specificAssetIds[].name $eq "partInstanceId",
-   $aasdesc#specificAssetIds[].externalSubjectId.keys[0].value $eq CLAIM("BusinessPartnerNumber"),
-   $aasdesc#specificAssetIds[].externalSubjectId.keys[0].value $eq "PUBLIC_READABLE"
-)
+    $and(
+      CLAIM("BusinessPartnerNumber") $eq "BPNL00000000000A",
+      $match(
+        $aasdesc#specificAssetIds[].name  $eq "manufacturerPartId",
+        $aasdesc#specificAssetIds[].value $eq "99991",
+        $aasdesc#specificAssetIds[].externalSubjectId $eq "PUBLIC_READABLE"
+      ),
+      $match(
+        $aasdesc#specificAssetIds[].name $eq "customerPartId",
+        $aasdesc#specificAssetIds[].value $eq "ACME001"
+      )
+    )
+  FILTER:
+    FRAGMENT "$aasdesc#assetInformation.specificAssetIds[]"
+    $or(
+      $match(
+        $aasdesc#specificAssetIds[].name  $eq "manufacturerPartId",
+        $aasdesc#specificAssetIds[].value $eq "99991"
+      ),
+      $match(
+        $aasdesc#specificAssetIds[].name $eq "customerPartId",
+        $aasdesc#specificAssetIds[].value $eq "ACME001"
+      ),
+      $aasdesc#specificAssetIds[].name $eq "partInstanceId",
+      $aasdesc#specificAssetIds[].externalSubjectId $eq CLAIM("BusinessPartnerNumber"),
+      $aasdesc#specificAssetIds[].externalSubjectId $eq "PUBLIC_READABLE"
+    )
 
