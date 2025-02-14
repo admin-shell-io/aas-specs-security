@@ -1,9 +1,9 @@
 ACCESSRULE:
-ATTRIBUTES:
-CLAIM("BusinessPartnerNumber")
-RIGHTS: READ
-ACCESS: ALLOW
+  ATTRIBUTES:
+   CLAIM("BusinessPartnerNumber")
+  RIGHTS: READ
+  ACCESS: ALLOW
 OBJECTS:
-ROUTE "*"
+  ROUTE "*"
 FORMULA:
-CLAIM("BusinessPartnerNumber") $eq "BPN1234"
+  CLAIM("BusinessPartnerNumber") $eq "BPN1234"
