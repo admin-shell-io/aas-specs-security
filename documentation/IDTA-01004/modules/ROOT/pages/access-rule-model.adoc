@@ -313,7 +313,7 @@ An implementation may even store such serialized access rules in submodel elemen
 
 == API Queries and Access Rules
 
-Version 3.1 of the AAS API defines queries and uses the same grammar and same JSON schema to define queries.
+link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/general.html#query-language[Version 3.1 of the AAS API] defines queries and uses the same grammar and same JSON schema to define queries.
 The JSON schema serialization is used in the related API operations.
 
 In addition, using the same concepts will be needed for large amounts of AAS data.
