@@ -57,7 +57,7 @@ The Security Model is explained step by step in the following Chapter <<explanat
 
 Examples can be found in xref:annex/text-access-rule-examples.adoc[].
 
-*The grammar has been tested with BNF playground (*https://bnfplayground.pauliankline.com/*).
+*The grammar has been tested with BNF playground (https://bnfplayground.pauliankline.com/*).
 BNF playground allows to check and test the grammar itself and if expressions are correct according to the grammar.*
 
 *The tested BNF is:*
