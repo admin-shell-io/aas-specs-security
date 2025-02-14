@@ -3,9 +3,9 @@ ACCESSRULE:
     CLAIM("BusinessPartnerNumber")
   RIGHTS: READ
   ACCESS: ALLOW
-OBJECTS:
-  DESCRIPTOR "(aasDesc)*"
-FORMULA:
+  OBJECTS:
+    DESCRIPTOR "(aasDesc)*"
+  FORMULA:
     $and(
       CLAIM("BusinessPartnerNumber") $eq "BPNL00000000000A",
       $match(
