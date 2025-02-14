@@ -14,12 +14,13 @@ Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, d
 
 == General
 
-The introduction in Chapter xref:introduction.adoc[] has explained in detail the background for AAS Security.The use of Identity Providers and Authentication Flows have been shown, which provide an access token to the client user application.
+The introduction in Chapter xref:introduction.adoc[] has explained in detail the background for AAS Security. 
+The use of Identity Providers and Authentication Flows have been shown, which provide an access token to the client user application.
 Such access token contains claims as subject attributes which can be used in the Access Rule Model as defined below.
 
 In addition, the Access Rule Model contains further ABAC attributes like global attributes or object attributes.
 
-<<image-i40-service-model>> gives an overview of the Access Rule Model.
+<<image-access-rule-model>> gives an overview of the Access Rule Model.
 Section xx defines the text serialization of the Access Rule Model.
 Section xx defines the JSON schema of the Access Rule Model.
 
@@ -41,7 +42,9 @@ A special operation match allows to work with tuples in lists, e.g. specificAsse
 The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
 In addition to the text below, the further details of the formula expressions are explained in  link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/general.html#query-language[IDTA-01002, Query Language] .
 
-[plantuml,image-i40-service-model,svg]
+.Access Rule Model
+[[image-access-rule-model]]
+[plantuml,mage-access-rule-model,svg]
 ....
 include::partial$diagrams/access-rule-model.puml[]
 ....
