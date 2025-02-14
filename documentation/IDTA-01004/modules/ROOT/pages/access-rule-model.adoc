@@ -165,7 +165,7 @@ Global Attributes are:
 
 * *ANONYMOUS* - Tag for anonymous and non-authenticated user, i.e. no access token
 
-References in ReferenceAttributes are defined in Section 5.2.1.8 “Text Serialization of Values of Type Reference”.
+References in ReferenceAttributes are defined in Section 5.2.1.8 "Text Serialization of Values of Type Reference".
 
 ==== Objects
 
@@ -178,7 +178,7 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 
 Routes may use * or end with a *, which means that all routes with a given prefix are valid.
 
-References to IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects are defined in Section 5.2.1.8 “Text Serialization of Values of Type Reference”.
+References to IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects are defined in Section 5.2.1.8 "Text Serialization of Values of Type Reference".
 
 An Object Group defines a list of single objects and/or a list of names of other object groups.
 
@@ -212,20 +212,20 @@ The list element is written with [] to express, that $match shall check if a cer
 
 References are used in ReferenceAttributes, IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects for the corresponding ReferenceLiterals, IdentifiableLiterals, ReferableLiterals, FragmentLiterals and DescriptorLiterals.
 
-Such references use the Part 1 Mapping in Section “Text Serialization of Values of Type Reference” for specific instances of elements, e.g. an AAS, a Submodel, a ConceptDescription or a specific SubmodelElement.
+Such references use the Part 1 Mapping in Section "Text Serialization of Values of Type Reference" for specific instances of elements, e.g. an AAS, a Submodel, a ConceptDescription or a specific SubmodelElement.
 See: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01001/v3.1/mappings/mappings.html#reference-serialization
 
 Access Rules may also be defined for all Identifiables of the Keytypes AssetAdministrationShell, Submodel or ConceptDescription.
-In this case an IdentifiableLiteral uses the format “(AssetAdministrationShell)\*”, “(Submodel)*” and “(ConceptDescription)*”.
+In this case an IdentifiableLiteral uses the format "(AssetAdministrationShell)\*", "(Submodel)*" and "(ConceptDescription)*".
 
-Access Rules extend the Keytypes of Part 1 by “(aasDesc)” for AAS Descriptors and “(smdesc)” for submodel descriptors.
-To define all descriptors “(aasDesc)\*” or “(smdesc)*” may be used in DescriptorLiterals accordingly.
+Access Rules extend the Keytypes of Part 1 by "(aasDesc)" for AAS Descriptors and "(smdesc)" for submodel descriptors.
+To define all descriptors "(aasDesc)\*" or "(smdesc)*" may be used in DescriptorLiterals accordingly.
 
 == JSON Serialization of Access Rule Model
 
 The AAS Access Rule model can also be defined as a JSON schema.
 Since the related JSON schema shall also allow automatic code generation, specific constraints must be fulfilled by such JSON schema.
-The use of “oneof” is limited and type information for objects must be available.
+The use of "oneof" is limited and type information for objects must be available.
 
 It shall also be possible to check a JSON with the JSON schema.
 
