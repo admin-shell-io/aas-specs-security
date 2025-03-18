@@ -57,7 +57,7 @@
                 {
                   "$eq": [
                     {
-                      "$field": "$aasdesc#specificAssetIds[].externalSubjectId.keys[0].value"
+                      "$field": "$aasdesc#specificAssetIds[].externalSubjectId"
                     },
                     {
                       "$strVal": "PUBLIC_READABLE"
@@ -156,7 +156,7 @@
             {
               "$eq": [
                 {
-                  "$field": "$aasdesc#specificAssetIds[].externalSubjectId.keys[0].value"
+                  "$field": "$aasdesc#specificAssetIds[].externalSubjectId"
                 },
                 {
                   "$attribute": {
@@ -168,7 +168,7 @@
             {
               "$eq": [
                 {
-                  "$field": "$aasdesc#specificAssetIds[].externalSubjectId.keys[0].value"
+                  "$field": "$aasdesc#specificAssetIds[].externalSubjectId"
                 },
                 {
                   "$strVal": "PUBLIC_READABLE"
