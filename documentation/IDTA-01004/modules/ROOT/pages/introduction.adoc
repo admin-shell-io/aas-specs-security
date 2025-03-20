@@ -277,7 +277,7 @@ include::partial$diagrams/aas-server-implementation.puml[]
 <<image-aas-server-implementation>> shows a possible AAS server implementation with security:
 
 * A *User* wants to access AAS information from a *Manufacturer* using an *AAS* *User Application*.
-* The *Manufacturer* hosts an *AAS Server* which is internally administrated by an *AAS responsibe*.
+* The *Manufacturer* hosts an *AAS Server* which is internally administrated by an *AAS responsible*.
 * In step 1 the *User Application* authenticates at and receives an access token from the *Identity Provider / Authorization Server*.
 * In step 2 the *User Application* looks up e.g. the aasId at the *AAS* *Discovery/Registry Service* and receives the related AAS endpoint for the *AAS Server*.
 * In step 3 the *User Application* accesses such endpoints in the *AAS Server*.
