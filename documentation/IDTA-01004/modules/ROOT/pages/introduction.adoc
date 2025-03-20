@@ -644,7 +644,10 @@ A Dataspace may decide for a subset of AAS resources, e.g. AssetAdministrationSh
 
 .Authentication Flow Dataspace Protocol
 [[image-auth-flow-dataspace]]
-image::auth-flow-dataspace.png[width=532,height=343]
+[plantuml,auth-flow-dataspace,svg]
+....
+include::partial$diagrams/auth-flow-dataspace.puml[]
+....
 
 A Provider will define access conditions encoded as ODRL-Policies that a potential Consumer must comply with.
 To authorize against these Policies, a Consumer may be required to provide access to long-living claims signed by a commonly trusted party (Identity Provider, step 1).
