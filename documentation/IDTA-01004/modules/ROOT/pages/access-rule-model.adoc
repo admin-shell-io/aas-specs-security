@@ -302,9 +302,9 @@ As explained as an example above, a robot manufacturer suggests that for the rob
 He also suggests permissions for these roles, e.g. an installer (integrator) does have write-access to the program of the robot, but an operator does not.
 
 Providing such suggested access rules, makes the integration of the operator much easier.
-The oprator can copy and paste the access rules into his AAS implementation and only needs to make adjustments.
+The operator can copy and paste the access rules into his AAS implementation and only needs to make adjustments.
 
-The enforcement of Acess Rules is implementation specific.
+The enforcement of Access Rules is implementation specific.
 
 This specification defines the text serialization of access rules and the JSON schema serialization of access rules.
 The support of both is optional and not mandatory.
