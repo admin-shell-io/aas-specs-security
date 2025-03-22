@@ -655,7 +655,10 @@ These claims will usually follow the Verifiable Credential Data Model embedded i
 
 .Verifiable Credential Dataspace Protocol
 [[image-verifiable-credential]]
-image::verifiable-credential.png[width=556,height=429]
+[source,json,linenums]
+----
+include::partial$json/credential-dataspace-protocol.json[]
+----
 
 A Data Provider will verify those claims by validating the VC’s signature using the Identity Provider’s public key (step 5).
 This step ensures the authenticity of the claims.
