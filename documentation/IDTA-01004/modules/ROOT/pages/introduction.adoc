@@ -394,8 +394,8 @@ In addition, a dataspace with AAS needs to define:
 
 * Further dataspace specific Submodel Templates
 * Allowed concept repositories to be referenced by semanticIds
-* Technology for identities, e.g. X509 or Verifiable Credential
-* Technology for identity providers, e.g. OAUTH, OIDC, Tractus-X, Eclipse Dataspace Protocol
+* Technology for identities, e.g. X509 or Verifiable Credentials
+* Technology for identity providers, e.g. OAUTH, OIDC,  Dataspace Protocol/Decentralized Claims Protocol
 * Using central or decentral identity providers
 * Claims used and allowed in JSON Web Tokens issued by identity providers
 
@@ -519,6 +519,8 @@ In cases, where a shared AAS/SM Registry references identifiables from different
 
 From administration point of view, the Federated Identity Provider and the Token Exchange approach enable a system owner to fully control access to their secured systems, because the Identity Provider is managed by the system owner.
 
+A distributed identity layer may also be achieved via self-sovereign identity wallets.
+
 [[authentication-flows]]
 == Authentication Flows
 
@@ -622,7 +624,7 @@ Only access tokens can be obtained by applications.
 
 The following sequence diagram explains the OpenID Connect in OAuth2 Authorization code grant flow:
 
-.Authentication Flow OpenId
+.Authentication Flow OpenId Connect
 [[image-auth-flow-openid]]
 [plantuml,auth-flow-openid,svg]
 ....
@@ -655,7 +657,7 @@ For M2M typically only an Access Token and no ID Token is used.
 In both contexts the Authorization Server creates an Access Token with claims.
 The AAS server will evaluate and check these claims by the Access Rules as specified later in this specification.
 
-=== Example: Data Space Protocol
+=== Example: DataSpace Protocol
 
 According to the Dataspace Protocol (DSP) xref:bibliography.adoc#bib7[[7\]], a Dataspace is “A set of technical services that facilitate interoperable Dataset sharing between entities.”
 The specification goes on to define interactions between a Data Provider and Data Consumer to expose metadata, agree on conditions for exchange and execute the transfer of Datasets.
@@ -663,7 +665,7 @@ Asset Administration Shell resources can be such Datasets.
 
 A Dataspace may decide for a subset of AAS resources, e.g. AssetAdministrationShellDescriptor and Submodel objects via HTTPS as defined in the AssetAdministrationShellRegistryServiceSpecification and SubmodelRepositoryServiceSpecification of AAS Part 2. Specific Dataspaces define conventions on the standardized exposure of these resources for Data Consumers to discover and retrieve.
 
-.Authentication Flow Dataspace Protocol
+.Dataspace Protocol negotiation with integrated SSI-based authentication flow for credential presentation
 [[image-auth-flow-dataspace]]
 [plantuml,auth-flow-dataspace,svg]
 ....
@@ -674,7 +676,7 @@ A Provider will define access conditions encoded as ODRL-Policies that a potenti
 To authorize against these Policies, a Consumer may be required to provide access to long-living claims signed by a commonly trusted party (Identity Provider, step 1).
 These claims will usually follow the Verifiable Credential Data Model embedded in a jwt (see <<image-verifiable-credential>>):
 
-.Verifiable Credential Dataspace Protocol
+.Example Verifiable Credential for authentication and authorization against Dataspace Protocol endpoints
 [[image-verifiable-credential]]
 [source,json,linenums]
 ----
