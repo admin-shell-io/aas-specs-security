@@ -341,8 +341,9 @@ OASIS XACML includes concepts such as:
 * Policy decision point (PDP): The system entity that evaluates an applicable policy and renders an authorization decision.
 * Policy enforcement point (PEP): The system entity that performs access control, by making decision requests and enforcing authorization decisions.
 * Policy information point (PIP): The system entity that acts as a source of attribute values.
-+
+
 The general request flow is depicted in <<image-abac>>:
+
 * A subject is requesting access to an object (1).
 In the context of an AAS, an object is for example a submodel or a property or any other submodel element.
 * The implemented access control mechanism of the AAS evaluates the access permission rules (2a) that include constraints that need to be fulfilled w.r.t. the subject attributes (2b), the object attributes (2c) and the environment conditions (2d).
@@ -411,7 +412,7 @@ Additional discovery services if needed, for example for the company-domain etc.
 == Integration Patterns
 
 With AAS many use cases between business partners are supported.
-In this chapter different integration patters are described, which are used in such use cases and how standardized AAS Security supports this.
+In this chapter different integration patters, see <<image-integration-patterns>>, are described, which are used in such use cases and how standardized AAS Security supports this.
 
 An integration pattern describes
 
