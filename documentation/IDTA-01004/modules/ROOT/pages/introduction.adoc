@@ -58,7 +58,7 @@ This applies to both,
 
 *Consistent data exposure:* AAS shall ensure that data is exposed in a consistent way.
 Data exposure shall only depend on well-defined attributes.
-Attributes to be considered are, subject attributes (who is requesting the data), which action is to be performed (e.g., read, write, execute), object attributes (which data is accessed), and environmental attributes (contextual information like time, system state).
+Attributes to be considered are, subject attributes (who is requesting the data), which action is to be performed (e.g., read, write, execute), object attributes (which data is accessed), and environmental attributes (contextual information like time, system state). <<ABAC>> is explained below.
 
 *Integrity and accountability of data:* AAS users expect the data provided by the AAS to be correct and reliable.
 AAS shall consider the following:
@@ -267,6 +267,8 @@ Access rules will be validated and enforced using the attributes in the Access T
 include::partial$diagrams/access-aas-servers.puml[]
 ....
 
+AAS Server means either an AAS Repository with multiple AAS or just an AAS endpoint with a single AAS.
+
 Further use cases are available at the Platform Industrie 4.0, e.g. Collaborative Condition Monitoring or Exchange of Engineering Data, and in IEC 63278-4 Use Cases.
 
 == Repository and registry
@@ -323,6 +325,7 @@ include::partial$diagrams/aas-registry-implementation.puml[]
 * The same example as before is shown, but this time the *Discovery/Registry Service* is shown in more detail.
 * Instead of AAS Data only AAS and Submodel descriptors are stored in the descriptor storage.
 
+[[ABAC]]
 == Attribute Based Access Control (ABAC)
 
 The objective of access control is to protect system resources (here: AAS content) against unauthorized access.
@@ -416,7 +419,7 @@ An integration pattern describes
 * if an AAS is hosted on a server internally or externally.
 * if an AAS is copied.
 * the requirements on Identity Providers.
-* the requirements on access tokens and claims.
+* the requirements on access tokens and claims (as part of a JSON Web Token).
 * the requirements on access rules.
 
 .Integration patterns
