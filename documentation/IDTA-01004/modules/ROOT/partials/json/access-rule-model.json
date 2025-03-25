@@ -171,15 +171,27 @@
         "USEFORMULA": {
           "type": "string"
         },
-        "FRAGMENT": {
-          "type": "string"
-        },
         "FILTER": {
-          "$ref": "#/definitions/logicalExpression",
+          "type": "object",
+	          "properties": {
+	            "FRAGMENT": { "type": "string" },
+              "CONDITION": {
+                "$ref": "#/definitions/logicalExpression",
+			          "additionalProperties": false
+			            },
+			          "USEFORMULA": { "type": "string" }
+			        },
+			        "oneOf": [
+			          {
+			            "required": ["FRAGMENT", "CONDITION"],
+			            "not": { "required": ["USEFORMULA"] }
+			          },
+			          {
+			            "required": ["FRAGMENT", "USEFORMULA"],
+			            "not": { "required": ["CONDITION"] }
+		            }
+			        ],
           "additionalProperties": false
-        },
-        "USEFILTER": {
-          "type": "string"
         }
       },
       "oneOf": [
@@ -223,22 +235,6 @@
   },
   "type": "object",
   "properties": {
-    "Query": {
-      "type": "object",
-      "properties": {
-        "$select": {
-          "type": "string",
-          "pattern": "^id$"
-        },
-        "$condition": {
-          "$ref": "#/definitions/logicalExpression"
-        }
-      },
-      "required": [
-        "$condition"
-      ],
-      "additionalProperties": false
-    },
     "AllAccessPermissionRules": {
       "type": "object",
       "properties": {
@@ -354,17 +350,8 @@
       "additionalProperties": false
     }
   },
-  "oneOf": [
-    {
-      "required": [
-        "Query"
-      ]
-    },
-    {
-      "required": [
-        "AllAccessPermissionRules"
-      ]
-    }
+  "required": [
+    "AllAccessPermissionRules"
   ],
   "additionalProperties": false
 }
