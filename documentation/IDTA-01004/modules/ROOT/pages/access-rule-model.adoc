@@ -43,7 +43,7 @@ Access shall only be granted if there is (at least) one access rule which allows
 If there is no access rule, the default behavior shall be to deny access.
 
 The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
-In addition to the text below, the further details of the formula expressions are explained in  link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/general.html#query-language[IDTA-01002, Query Language] .
+In addition to the text below, the further details of the formula expressions are explained in  link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/query-language.html[IDTA-01002, Query Language] .
 
 .Access Rule Model
 [[image-access-rule-model]]
