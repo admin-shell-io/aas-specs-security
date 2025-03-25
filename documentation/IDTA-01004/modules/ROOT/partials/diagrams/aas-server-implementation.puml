@@ -28,7 +28,7 @@ Boundary(u_system, "User") {
     System_Ext(user_app, "AAS user application")
     Rel(user, user_app, "uses")
     BiRel(user_app, ade_idp, "step 1: authenticates and receives access token")
-    BiRel(user_app, ade_registry, "step 2: looks up assetID, receives AAS server endpoint", $tags="authenticated access")
+    BiRel(user_app, ade_registry, "step 2: looks up assetID and provides access token, receives AAS server endpoint", $tags="authenticated access")
  
 }
  
@@ -84,7 +84,7 @@ Boundary(m_system, "Manufacturer") {
 ' manufacturer activities
  
 ' user activities
-Rel(user_app, api_gw, "step 3: accesses AAS server endpoint and provide access token", $tags="authenticated access")
+Rel(user_app, api_gw, "step 3: accesses AAS server endpoint and provides access token", $tags="authenticated access")
 
 
 SHOW_LEGEND()
