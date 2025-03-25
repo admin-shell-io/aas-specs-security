@@ -65,7 +65,7 @@ AAS shall consider the following:
 
 * Protection against the entry of data by unauthorized parties.
 Entry/modification of data shall only be possible for authorized parties.
-AAS should allow to detect unintentional change of data and allow to trace the originator of data.
+* AAS should allow to detect unintentional change of data and allow to trace the originator of data.
 * Protection against manipulation of stored data.
 AAS should allow to protect asset data against unauthorized manipulation including the attribution of origin/authorship.
 This is especially important in case the AAS is operated by a 3^rd^ party.
@@ -80,9 +80,9 @@ It is important to know that AAS data actually belongs to the asset as identifie
 *Integrity of relation between services and asset:* AAS shall protect against pretense of incorrect relations between an asset and services provided by the AAS.
 It is essential that services announced by the AAS affect the intended asset and that the behavior of the service is described correctly.
 
-=== Availability of data protection
+=== Protecting the Availability of Data
 
-*Timely availability of asset data:* AAS shall protect against malicious hiding of current data.
+*Availability of asset data:* AAS shall protect against malicious hiding of current data.
 It shall be possible to determine whether data is sufficiently recent (lost updates) or data has been intentionally removed (malicious rollbacks).
 
 == IEC 63278
