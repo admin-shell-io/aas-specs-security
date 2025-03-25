@@ -21,8 +21,8 @@ Such access token contains claims as subject attributes which can be used in the
 In addition, the Access Rule Model contains further ABAC attributes like global attributes or object attributes.
 
 <<image-access-rule-model>> gives an overview of the Access Rule Model.
-Section xx defines the text serialization of the Access Rule Model.
-Section xx defines the JSON schema of the Access Rule Model.
+Section <<bnf-grammar>> defines the text serialization of the Access Rule Model.
+Section <<json-serialization>> defines the JSON schema of the Access Rule Model.
 
 The Access Rule Model allows to define Access Rules in a modular way, so that parts can be reused.
 
@@ -54,6 +54,7 @@ include::partial$diagrams/access-rule-model.puml[]
 
 == Grammar for Access Rule Model
 
+[[bnf-grammar]]
 === BNF grammar of Access Rules
 
 The following BNF (Backus-Naur-Form) grammar defines the AAS Access Rule Model in a technology neutral form.
@@ -224,6 +225,7 @@ In this case an IdentifiableLiteral uses the format "(AssetAdministrationShell)\
 Access Rules extend the Keytypes of Part 1 by "(aasDesc)" for AAS Descriptors and "(smdesc)" for submodel descriptors.
 To define all descriptors "(aasDesc)\*" or "(smdesc)*" may be used in DescriptorLiterals accordingly.
 
+[[json-serialization]]
 == JSON Serialization of Access Rule Model
 
 The AAS Access Rule model can also be defined as a JSON schema.
