@@ -6,8 +6,6 @@ https://creativecommons.org/licenses/by/4.0/).
 
 SPDX-License-Identifier: CC-BY-4.0
 
-Illustrations:
-Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, designed by Publik. Agentur für Kommunikation GmbH
 ////
 
 [[terms-and-definitions]]
@@ -27,7 +25,7 @@ If available, definitions were taken from IEC 63278-1:2023 and IEC 63278.-3.
 
 The decision to permit or deny a subject access to system objects (network, data, application, service, etc.)
 
-_[Source: NIST SP 800-162]_
+_[SOURCE: NIST SP 800-162]_
 
 *Usage Control*::
 
@@ -37,7 +35,7 @@ Enforcement of data usage restrictions on the consumer side after access to data
 Note 1: Usage Control is concerned with requirements that pertain to data processing (obligations) rather than data access (provisions).
 ====
 
-_[Source: link:[https://docs.internationaldataspaces.org/ids-knowledgebase/v/ids-ram-4/perspectives-of-the-reference-architecture-model/4_perspectives/4_1_security_perspective/4_1_6_usage_control[IDS-RAM 4 - Usage Control]]_
+_[SOURCE: link:[https://docs.internationaldataspaces.org/ids-knowledgebase/v/ids-ram-4/perspectives-of-the-reference-architecture-model/4_perspectives/4_1_security_perspective/4_1_6_usage_control[IDS-RAM 4 - Usage Control]]_
 
 *accountability*::
 
