@@ -12,6 +12,27 @@ SPDX-License-Identifier: CC-BY-4.0
 
 This document explains the security of the Asset Administration Shell.
 
+This specification defines a model for access rules. Such model targets 2 purposes.
+
+Purpose 1 is to provide guidelines for implementations.
+
+Purpose 2 is to address the definition and exchange of access rules.
+Such exchange of access rules is very useful for complex assets like robot or machine.
+The supplier of an asset may already supply a set of access rules, which the operator of the asset may simply adjust then.
+In case of switching between AAS implementations, an exchange of access rules is useful.
+
+AAS implementations may decide, to which extent the access rule model is used.
+The access rule model can be used as a guideline which shows, what a client application will expect.
+If an AAS implementation allows the exchange of access rules, it should follow the specification of the access rule model.
+
+AAS implementations may decide, which subset of the access rules is implemented.
+If an AAS implementation e.g. only provides a READ profile, only such access rules for READ shall be allowed.
+Further subsets can be e.g. AAS repository, submodel respository, concept description repository, AAS registry or submodel registry.
+
+AAS implementations (of non test systems) should consider relevant security standards and regulations, e.g. IEC 62443, ISO 27001, EU CRA or EU NIS2.
+This includes rules for the development process and for the written code.
+AAS implementations may provide millions of AAS. In such case, access rules are typically translated into the related AAS implementation to reach the needed perfomance and fulfill memory constraints.
+
 Access Tokens to be used with the Asset Administration Shell are defined.
 Such Access Token is the result of an authentication flow which is not defined by this document.
 Important authentication flows are explained in this clause in <<authentication-flows>>.
