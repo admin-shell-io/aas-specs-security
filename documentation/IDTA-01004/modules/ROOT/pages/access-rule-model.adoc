@@ -18,7 +18,7 @@ The introduction in Chapter xref:introduction.adoc[] has explained in detail the
 The use of Identity Providers and Authentication Flows have been shown, which provide an access token to the client user application.
 Such access token contains claims as subject attributes which can be used in the Access Rule Model as defined below.
 
-In addition, the Access Rule Model contains further ABAC attributes like global attributes or object attributes.
+In addition, the Access Rule Model contains further ABAC attributes like global attributes (also called environmental attributes) or object attributes.
 
 <<image-access-rule-model>> gives an overview of the Access Rule Model.
 Section <<bnf-grammar>> defines the text serialization of the Access Rule Model.
