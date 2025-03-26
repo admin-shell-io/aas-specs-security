@@ -19,7 +19,7 @@ This glossary applies only within the context of this document.
 
 [.mark]#Please note missing terms and definitions in the review feedback form.#
 
-If available, definitions were taken from IEC 63278-1:2023 and IEC 63278.-3.
+If available, definitions were taken from IEC 63278-1:2023 and IEC 63278-3.
 
 *Access Control*::
 
