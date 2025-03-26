@@ -127,7 +127,7 @@ However, to avoid terminological and conceptual misunderstandings, the whole Ind
 
 The technology-neutral level comprises the following concepts:
 
-* *Service*: a service describes a demarcated scope of functionality (including its informational and non-functional aspects), which is offered by an entity or organization via https://www.plattform-i40.de/PI40/Redaktion/EN/Glossary/I/interface_glossary.html[interfaces].
+* *Service*: a service describes a demarcated scope of functionality (including its informational and non-functional aspects), which is offered by an entity or organization via interfaces.
 * *Interface*: this is the most important concept as it is understood to be the unit of reusability across services and the unit of standardization when mapped to application programming interfaces (API) in the technology-specific level.
 One interface may be mapped to several APIs depending on the technology and architectural style used, e.g. HTTP/REST or OPC UA, whereby these API mappings also need to be standardized for the sake of interoperability.
 * *Interface-Operation*: interface operations define interaction patterns via the specified interface.
