@@ -10,32 +10,4 @@ SPDX-License-Identifier: CC-BY-4.0
 
 = Change Notes
 
-== General
-
-The change notes list the notable changes made to the document.
-
-Non-backward compatible changes (nc) are marked as such.
-
-* nc="x" means not backward compatible, if no value is added in the table, the change is backward compatible.
-
-* nc="(x)" means that the change made was implicitly contained or stated in the document before and is now being formalized.
-Therefore, the change is considered to be backward compatible.
-
-====
-Note: before V3.0, security was covered in Part 1, IDTA-01001. 
-For details see change notes in IDTA-01001.
-====
-
-== Changes V3.0 vs. V2.0RC02
-
-
-Major changes:
-
-* complete redesign
-* NEW: access rule model
-* NEW: Identity Providers
-* NEW: External and internal authentication flows
-* NEW: Access Token
-* NEW: Data spaces
-* NEW: Overview of use cases
-* NEW: Integration Patterns
+This is the first Release.
