@@ -43,7 +43,9 @@ If there is no access rule, the default behavior shall be to deny access.
 
 This grammar handles both respositories and registries. 
 The symbol FieldIdentifier allows to use attributes of
-AAS, Submodel, SubmodelElement, ConceptDescription, AAS-Descriptor and Submodel-Descriptor. Depending on the type of repository or registry such attributes are allowed or not.
+AAS, Submodel, SubmodelElement, ConceptDescription, AAS-Descriptor and Submodel-Descriptor. 
+Depending on the type of repository or registry such attributes are allowed or not.
+
 
 The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
 In addition to the text below, the further details of the formula expressions are explained in  link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/query-language.html[IDTA-01002, Query Language] .
