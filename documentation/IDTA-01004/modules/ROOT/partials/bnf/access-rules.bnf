@@ -102,7 +102,9 @@
 
 <stringComparison> ::=
     ( ( "$starts-with" | "$ends-with" | "$contains" | "$regex") <ws> "(" <ws> <stringOperand> <ws> "," <ws> <stringOperand> <ws> ")" <ws> ) |
-    ( <stringOperand> <ws> <allComparisons> <ws> <stringOperand> <ws> )
+    ( <stringOperand> <ws> <allComparisons> <ws> <stringOperand> <ws> ) |
+    ( <stringOperand> <ws> <allComparisons> <ws> <FieldIdentifierString> <ws> ) |
+    ( <FieldIdentifierString> <ws> <allComparisons> <ws> <stringOperand> <ws> )
 
 <numericalComparison> ::=
     ( <numericalOperand> <ws> <allComparisons> <ws> <numericalOperand> <ws> ) |
@@ -206,4 +208,4 @@
 <idShortPath> ::= ( <idShort> ("[" ( [0-9]* ) "]" ) ( "." <idShortPath> )* )
 <idShort> ::= ( ( [a-z] | [A-Z] ) ( [a-z] | [A-Z] | [0-9] | "_" )* )
 
-<ws> ::= ( " " | "\t" | "\r" | "\n" )*
+<ws> ::= ( " " | "\t" | "\r" | "\n" )+
