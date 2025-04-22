@@ -6,8 +6,6 @@ https://creativecommons.org/licenses/by/4.0/).
 
 SPDX-License-Identifier: CC-BY-4.0
 
-Illustrations:
-Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, designed by Publik. Agentur für Kommunikation GmbH
 ////
 
 = Access Rule Model (normative)
@@ -42,12 +40,15 @@ A special operation match allows to work with tuples in lists, e.g. specificAsse
 Access shall only be granted if there is (at least) one access rule which allows the requested action on the designated AAS object (Route/Identifiable/Referable/Fragment/Descriptor).
 If there is no access rule, the default behavior shall be to deny access.
 
-This grammar handles both respositories and registries. The symbol FieldIdentifier allows to use attributes of
-AAS, Submodel, SubmodelElement, ConceptDescription, AAS-Desriptor and Submodel-Descriptor. Depending on the type of
-repository or registry such attributes are allowed or not.
+
+This grammar handles both respositories and registries. 
+The symbol FieldIdentifier allows to use attributes of
+AAS, Submodel, SubmodelElement, ConceptDescription, AAS-Descriptor and Submodel-Descriptor. 
+Depending on the type of repository or registry such attributes are allowed or not.
+
 
 The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
-In addition to the text below, the further details of the formula expressions are explained in  link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/general.html#query-language[IDTA-01002, Query Language] .
+In addition to the text below, the further details of the formula expressions are explained in  link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/query-language.html[IDTA-01002, Query Language] .
 
 .Access Rule Model
 [[image-access-rule-model]]
@@ -173,7 +174,8 @@ Global Attributes are:
 
 * *ANONYMOUS* - Tag for anonymous and non-authenticated user, i.e. no access token
 
-References in ReferenceAttributes are defined in Section 5.2.1.8 "Text Serialization of Values of Type Reference".
+References in ReferenceAttributes are defined in Section xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[Text Serialization of Values of Type Reference].
+
 
 ==== Objects
 
@@ -186,7 +188,7 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 
 Routes may use * or end with a *, which means that all routes with a given prefix are valid.
 
-References to IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects are defined in Section 5.2.1.8 "Text Serialization of Values of Type Reference".
+References to IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects are defined in Section xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[Text Serialization of Values of Type Reference].
 
 An Object Group defines a list of single objects and/or a list of names of other object groups.
 
@@ -216,12 +218,12 @@ This enables access rules related to week days or specific times in the year.
 An important special operation is $match, which can be used with any element containing a list of elements, e.g. semanticId[], specificAssetId[], SubmodelElementList or SubmodelElementCollection.
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
 
+[[text-serialization-of-values-of-type-reference]]
 ==== Text Serialization of Values of Type Reference
 
 References are used in ReferenceAttributes, IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects for the corresponding ReferenceLiterals, IdentifiableLiterals, ReferableLiterals, FragmentLiterals and DescriptorLiterals.
 
-Such references use the Part 1 Mapping in Section "Text Serialization of Values of Type Reference" for specific instances of elements, e.g. an AAS, a Submodel, a ConceptDescription or a specific SubmodelElement.
-See: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01001/v3.1/mappings/mappings.html#reference-serialization
+Such references use the link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01001/v3.1/mappings/mappings.html#reference-serialization[Part 1 Mapping in Section "Text Serialization of Values of Type Reference"] for specific instances of elements, e.g. an AAS, a Submodel, a ConceptDescription or a specific SubmodelElement.
 
 Access Rules may also be defined for all Identifiables of the Keytypes AssetAdministrationShell, Submodel or ConceptDescription.
 In this case an IdentifiableLiteral uses the format "(AssetAdministrationShell)\*", "(Submodel)*" and "(ConceptDescription)*".
@@ -325,7 +327,7 @@ An implementation may even store such serialized access rules in submodel elemen
 
 == API Queries and Access Rules
 
-link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/general.html#query-language[Version 3.1 of the AAS API] defines queries and uses the same grammar and same JSON schema to define queries.
+link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/query-language.html#query-language[Version 3.1 of the AAS API] defines queries and uses the same grammar and same JSON schema to define queries.
 The JSON schema serialization is used in the related API operations.
 
 In addition, using the same concepts will be needed for large amounts of AAS data.
