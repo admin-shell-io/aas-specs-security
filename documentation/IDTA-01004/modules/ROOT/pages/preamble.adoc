@@ -40,7 +40,7 @@ Clause xref:access-rule-model.adoc[] defines the Access Rule Model (normative)
 
 Clause xref:summary-and-outlook.adoc[] provides a summary and outlook
 
-Annex xref:annex/backus-naur-form.adoc[] defines the grammar language used in the specification.
+Annex xref:annex/backus-naur-form.adoc[] defines the grammar language used in the specification
 
 Annex xref:annex/text-access-rule-examples.adoc[] contains Examples of Access Rules in text serialization
 
