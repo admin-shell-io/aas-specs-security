@@ -35,7 +35,7 @@ Enforcement of data usage restrictions on the consumer side after access to data
 Note 1: Usage Control is concerned with requirements that pertain to data processing (obligations) rather than data access (provisions).
 ====
 
-_[SOURCE: link:[https://docs.internationaldataspaces.org/ids-knowledgebase/v/ids-ram-4/perspectives-of-the-reference-architecture-model/4_perspectives/4_1_security_perspective/4_1_6_usage_control[IDS-RAM 4 - Usage Control]]_
+_[SOURCE: link:[https://docs.internationaldataspaces.org/ids-knowledgebase/v/ids-ram-4/perspectives-of-the-reference-architecture-model/4_perspectives/4_1_security_perspective/4_1_6_usage_control[IDS-RAM 4 - Usage Control]]]_
 
 *accountability*::
 
