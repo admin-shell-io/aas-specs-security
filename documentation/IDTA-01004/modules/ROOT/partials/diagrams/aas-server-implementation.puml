@@ -1,21 +1,11 @@
 @startuml
- 
-!include <c4/C4_Context.puml>  
-!include <c4/C4_Container.puml>  
-!include <c4/C4_Context.puml>  
-!include <c4/C4_Component.puml>  
- 
-'ref http://plantuml.com/stdlib
-!include <office/Users/user.puml>
-!include <office/Users/mobile_user.puml>
+!theme idta from https://raw.githubusercontent.com/admin-shell-io/aas-specs-antora/main/plantuml/
  
 'LAYOUT_TOP_DOWN()
 'LAYOUT_AS_SKETCH()
 LAYOUT_WITH_LEGEND()
  
-AddElementTag("system_boundary", $shape=RoundedBoxShape(), $bgColor="lightBlue")
- 
-AddRelTag("authenticated access", $textColor="green", $lineColor="green", $sprite="&key")
+AddRelTag("authenticated access", $textColor=$ORANGE, $lineColor=$ORANGE, $sprite="&key")
  
 Boundary(c_system, "AAS common services") {
     System_Ext(ade_idp, identity provider / authorization server, "user authentication and authorization")
