@@ -351,7 +351,7 @@ In the context of an AAS, an object is for example a submodel or a property or a
 
 .Attribute Based Access Control
 [[image-abac]]
-image::abac.png[width=460,height=372]
+image::abac.jpg[width=460,height=372]
 
 In this document the concept of attributes is specialized for the application of ABAC in the context of AAS authorization.
 
@@ -425,7 +425,7 @@ An integration pattern describes
 
 .Integration patterns
 [[image-integration-patterns]]
-image::integration-patterns.png[width=602,height=228]
+image::integration-patterns.jpg[width=602,height=228]
 
 
 === Integration Pattern “Build My Own” (IP1)
@@ -480,7 +480,7 @@ A Secured System in AAS Security can be Discovery Service, Registry Service, AAS
 
 .External and internal Identity Providers
 [[image-external-internal-idp]]
-image::external-internal-idp.png[width=642,height=734]
+image::external-internal-idp.jpg[width=642,height=734]
 
 
 === Unauthenticated Access
