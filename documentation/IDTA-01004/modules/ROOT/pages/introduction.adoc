@@ -110,7 +110,7 @@ Basically Type 3 is out of scope for this document, but the definitions of this 
 
 .Types of Information Exchange via Asset Administration Shells
 [[image-aas-info-exchange-types]]
-image::aas-info-exchange-types.jpeg[width=513,height=324]
+image::aas-info-exchange-types.jpg[width=513,height=324]
 
 == Services, Interfaces and Interface Operations
 
