@@ -14,22 +14,22 @@ SPDX-License-Identifier: CC-BY-4.0
 [#bib1]
 [1] IDTA 01001 Specification of the Asset Administration Shell.
 Part 1: Metamodel, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online.
-Available: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01001/v3.1/index.html
+Available: https://industrialdigitaltwin.io/aas-specifications/IDTA-01001/v3.1/index.html
 
 [#bib2]
 [2] IDTA 01002 Specification of the Asset Administration Shell.
 Part 2: Application Programming Interfaces, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online.
-Available: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/index.html
+Available: https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.1/index.html
 
 [#bib3]
 [3] IDTA 01003-a Specification of the Asset Administration Shell.
 Part 3a: Data Specification – IEC 61360, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online.
-Available: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01003-a/v3.1/index.html
+Available: https://industrialdigitaltwin.io/aas-specifications/IDTA-01003-a/v3.1/index.html
 
 [#bib4]
 [4] IDTA-01005 Specification of the Asset Administration Shell.
 Part 5: Package File Format, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online.
-Available: https://admin-shell-io.github.io/aas-specs-antora/IDTA-01005/v3.1/index.html
+Available: https://industrialdigitaltwin.io/aas-specifications/IDTA-01005/v3.1/index.html
 
 [#bib5]
 [5] Tom Preston-Werner.
