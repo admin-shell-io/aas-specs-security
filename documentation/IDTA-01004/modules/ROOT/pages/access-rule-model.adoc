@@ -48,7 +48,7 @@ Depending on the type of repository or registry such attributes are allowed or n
 
 
 The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
-In addition to the text below, the further details of the formula expressions are explained in  link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/query-language.html[IDTA-01002, Query Language] .
+In addition to the text below, the further details of the formula expressions are explained in  link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.1/query-language.html[IDTA-01002, Query Language] .
 
 .Access Rule Model
 [[image-access-rule-model]]
@@ -223,7 +223,7 @@ The list element is written with [] to express, that $match shall check if a cer
 
 References are used in ReferenceAttributes, IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects for the corresponding ReferenceLiterals, IdentifiableLiterals, ReferableLiterals, FragmentLiterals and DescriptorLiterals.
 
-Such references use the link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01001/v3.1/mappings/mappings.html#reference-serialization[Part 1 Mapping in Section "Text Serialization of Values of Type Reference"] for specific instances of elements, e.g. an AAS, a Submodel, a ConceptDescription or a specific SubmodelElement.
+Such references use the link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01001/v3.1/mappings/mappings.html#reference-serialization[Part 1 Mapping in Section "Text Serialization of Values of Type Reference"] for specific instances of elements, e.g. an AAS, a Submodel, a ConceptDescription or a specific SubmodelElement.
 
 Access Rules may also be defined for all Identifiables of the Keytypes AssetAdministrationShell, Submodel or ConceptDescription.
 In this case an IdentifiableLiteral uses the format "(AssetAdministrationShell)\*", "(Submodel)*" and "(ConceptDescription)*".
@@ -327,7 +327,7 @@ An implementation may even store such serialized access rules in submodel elemen
 
 == API Queries and Access Rules
 
-link:https://admin-shell-io.github.io/aas-specs-antora/IDTA-01002/v3.1/query-language.html#query-language[Version 3.1 of the AAS API] defines queries and uses the same grammar and same JSON schema to define queries.
+link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.1/query-language.html#query-language[Version 3.1 of the AAS API] defines queries and uses the same grammar and same JSON schema to define queries.
 The JSON schema serialization is used in the related API operations.
 
 In addition, using the same concepts will be needed for large amounts of AAS data.
