@@ -46,7 +46,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 Contact: https://industrialdigitaltwin.org/en/contact[IDTA]
 
-Sources: https://github.com/admin-shell-io/aas-specs-metamodel[GitHub]
+Sources: https://github.com/admin-shell-io/aas-specs-security[GitHub]
 
 Feedback:
 
