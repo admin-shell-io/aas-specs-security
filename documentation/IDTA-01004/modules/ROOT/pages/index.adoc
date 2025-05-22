@@ -50,7 +50,7 @@ Sources: https://github.com/admin-shell-io/aas-specs-security[GitHub]
 
 Feedback:
 
-* https://github.com/admin-shell-io/aas-specs-metamodel/issues/new/choose[new issues, bugs]
+* https://github.com/admin-shell-io/aas-specs-security/issues/new/choose[new issues, bugs]
 
 * https://github.com/admin-shell-io/questions-and-answers[Questions and Answers]
 
