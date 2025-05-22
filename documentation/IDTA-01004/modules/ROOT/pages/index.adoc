@@ -31,7 +31,7 @@ This document (version 3.0) uses the following parts of the “Specification of 
 
 == Notice
 
-Publisher: Industrial Digital Twin Association e.V. (IDTA)
+Copyright: Industrial Digital Twin Association e.V. (IDTA)
 
 DOI: https://doi.org/10.62628/IDTA.01004-3-0
 
