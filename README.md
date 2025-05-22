@@ -1,8 +1,8 @@
 # IDTA-01004 - Security
 [![Check](
-https://github.com/admin-shell-io/aas-specs/workflows/Check/badge.svg
+https://github.com/admin-shell-io/aas-specs-metamodel/workflows/Check/badge.svg
 )](
-https://github.com/admin-shell-io/aas-specs/actions?query=workflow%3ACheck
+https://github.com/admin-shell-io/aas-specs-metamodel/actions?query=workflow%3ACheck
 )
 [![Creative Commons License](
 https://licensebuttons.net/l/by/4.0/88x31.png
@@ -24,7 +24,7 @@ The specification number is: **IDTA-01004**
 
 Feature requests, reports about inconsistencies, mistakes *etc.* are highly
 welcome! Please [submit a new issue](
-https://github.com/admin-shell-io/aas-specs/issues/new/choose
+https://github.com/admin-shell-io/aas-specs-metamodel/issues/new/choose
 ).
 
 If you want to contribute, see [CONTRIBUTING.md](CONTRIBUTING.md).
