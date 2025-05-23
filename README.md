@@ -18,7 +18,21 @@ Governance of the specification is done in the working group Open Technology of 
 
 The specification number is: **IDTA-01004**
 
-## < add further information >
+## Releases
+
+The following versioning scheme is applied: 'V\<major>.\<minor>.\<patch>'. 
+Major versions indicate breaking changes while minor updates are 
+backward compatible.
+The patch position is increased whenever bugfixes need to be applied. 
+The following release contains the latest version of the AAS schemas
+ (see also the [releases](https://github.com/admin-shell-io/aas-specs-security/releases) 
+section of this repository):
+
+* [3.0.0](https://github.com/admin-shell-io/aas-specs-security/releases/tag/v3.0.0)
+is the latest release for the `V3.0.0` version of the AAS Security, 
+containing the normative sources for the published document
+ "Specification of the Asset Administration Shell: Part 4 - **Version 3.0.0**". 
+*Use this release if you want to work with the latest specified AAS version.*
 
 ## Contributing
 
