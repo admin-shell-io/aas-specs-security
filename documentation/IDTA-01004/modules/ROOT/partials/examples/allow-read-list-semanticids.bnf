@@ -1,0 +1,12 @@
+ACCESSRULE:
+  ATTRIBUTES:
+    GLOBAL(ANONYMOUS)
+  RIGHTS: READ
+  ACCESS: ALLOW
+  OBJECTS:
+    ROUTE  "*"
+  FORMULA:
+    $or(
+      $sm#semanticId $eq "SemanticID-Nameplate",
+      $sm#semanticId $eq "SemanticID-TechnicalData"
+    )

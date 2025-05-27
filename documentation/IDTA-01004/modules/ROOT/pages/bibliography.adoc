@@ -1,0 +1,57 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+////
+
+[bibliography]
+= Bibliography
+
+[#bib1]
+[1] IDTA 01001 Specification of the Asset Administration Shell.
+Part 1: Metamodel, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online.
+Available: https://industrialdigitaltwin.io/aas-specifications/IDTA-01001/v3.1/index.html
+
+[#bib2]
+[2] IDTA 01002 Specification of the Asset Administration Shell.
+Part 2: Application Programming Interfaces, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online.
+Available: https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.1/index.html
+
+[#bib3]
+[3] IDTA 01003-a Specification of the Asset Administration Shell.
+Part 3a: Data Specification – IEC 61360, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online.
+Available: https://industrialdigitaltwin.io/aas-specifications/IDTA-01003-a/v3.1/index.html
+
+[#bib4]
+[4] IDTA-01005 Specification of the Asset Administration Shell.
+Part 5: Package File Format, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online.
+Available: https://industrialdigitaltwin.io/aas-specifications/IDTA-01005/v3.1/index.html
+
+[#bib5]
+[5] Tom Preston-Werner.
+Semantic Versioning.
+Version 2.0.0. Online.
+Available: https://semver.org/spec/v2.0.0.html
+
+[#bib6]
+[6] Secure Download Service, Plattform Industrie 4.0, October 2020. Online.
+Available: +
+https://www.plattform-i40.de/IP/Redaktion/EN/Downloads/Publikation/secure_downloadservice.pdf
+
+[#bib7]
+[7] Dataspace Protocol 2024-01. Edited by Sebastian Steinbuß, Julia Pampus, James Marino.
+International Dataspaces Association.
+Online.
+Available: https://docs.internationaldataspaces.org/ids-knowledgebase/v/dataspace-protocol
+
+[#bib8]
+[8] Vincent Hu, David Ferraiolo, Rick Kuhn, Adam Schnitzer, Kenneth Sandlin, Robert Miller and Karen Scarfone, “Guide to Attribute Based Access Control (ABAC) Definition and Considerations”, NIST Special Publication 800-162, Jan. 2014. [Online].
+Available: http://dx.doi.org/10.6028/NIST.SP.800-162
+
+[#bib9]
+[9] “eXtensible Access Control Markup Language (XACML)”, OASIS Standard, Version 3.0, 22. Jan. 2013, [Online].
+Available: http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.pdf

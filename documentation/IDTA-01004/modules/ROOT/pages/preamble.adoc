@@ -1,0 +1,47 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+Illustrations:
+Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, designed by Publik. Agentur für Kommunikation GmbH
+////
+
+[[preamble]]
+= Preamble
+
+== Metamodel Versions
+
+This document uses the following parts of the “Specification of the Asset Administration Shell” series:
+
+* IDTA 01001 Part 1: Metamodel in version 3.1 xref:bibliography.adoc#bib1[[1\]]
+* IDTA 01002 Part 2: REST API in version 3.1 xref:bibliography.adoc#bib2[[2\]]
+* IDTA-01003-a Part 3a: Data Specification – IEC 61360 in version 3.1 xref:bibliography.adoc#bib3[[3\]]
+* IDTA 01005 Part 5: Package File Format (AASX) in version 3.1 xref:bibliography.adoc#bib4[[4\]]
+
+== Scope of this Document
+
+This document specifies the security for the Asset Administration Shell and its submodels, i.e. how to use Access Tokens and how to define Access Rules for Authorization.
+The signing of submodel data will be specified in a next version of this document.
+
+This document includes the grammar of a technology neutral model, which is used both for HTTP API 3.1 Query Language and for the Access Rules.
+In addition, a corresponding JSON schema is defined.
+
+== Structure of the Document
+
+Clause xref:terms-definitions-and-abbreviations.adoc[] lists Terms, Definitions and Abbreviations
+
+Clause xref:introduction.adoc[] gives a detailed introduction to the security topic
+
+Clause xref:access-rule-model.adoc[] defines the Access Rule Model (normative)
+
+Clause xref:summary-and-outlook.adoc[] provides a summary and outlook
+
+Annex xref:annex/backus-naur-form.adoc[] defines the grammar language used in the specification
+
+Annex xref:annex/text-access-rule-examples.adoc[] contains Examples of Access Rules in text serialization
+
+Annex xref:annex/json-access-rule-examples.adoc[] contains Examples of Access Rules in JSON serialization

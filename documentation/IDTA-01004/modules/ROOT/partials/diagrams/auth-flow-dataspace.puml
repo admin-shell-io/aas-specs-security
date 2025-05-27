@@ -1,0 +1,20 @@
+@startuml
+
+participant "Identity Provider" as IDP
+participant "Consumer App" as C
+participant "Consumer Wallet" as CW
+participant "Provider DSP Endpoint" as DSP
+participant "Provider Resource Server (Submodels, AAS-Registry)" as R
+
+autonumber
+IDP ->> CW: issue Verifiable Credentials
+CW -->> C: pass wallet Token
+C ->> DSP: negotiate for access
+DSP ->> CW: get Verifiable Presentation
+CW -->> DSP: VP
+DSP ->> DSP: verify
+DSP -->> C: token
+C ->> R: get data with token
+R -->> C: data
+
+@enduml

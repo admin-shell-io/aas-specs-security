@@ -1,0 +1,81 @@
+@startuml
+
+ 
+'LAYOUT_TOP_DOWN()
+'LAYOUT_AS_SKETCH()
+LAYOUT_WITH_LEGEND()
+ 
+AddRelTag("authenticated access", $textColor=$ORANGE, $lineColor=$ORANGE, $sprite="&key")
+ 
+Boundary(c_system, "AAS common services") {
+    System_Ext(ade_idp, identity provider / authorization server, "user authentication and authorization")
+    note left: Scope: Access Token
+    System_Ext(ade_registry, AAS discovery/registry service, "asset discovery and AAS registry")
+}
+ 
+Boundary(u_system, "User") {
+    Person_Ext(user  , User , "wants to access asset information from manufacturer" )
+    System_Ext(user_app, "AAS user application")
+    Rel(user, user_app, "uses")
+    BiRel(user_app, ade_idp, "step 1: authenticates and receives access token")
+    BiRel(user_app, ade_registry, "step 2: looks up assetID and provides access token, receives AAS server endpoint", $tags="authenticated access")
+ 
+}
+ 
+Boundary(m_system, "Manufacturer") {
+'    Person(m_admin  , AAS Responsible, "" )
+'   SystemDb(aasx_package, AASX package, "")
+    
+    Boundary(AAS_server, "AAS server") {
+        Boundary(AAS_interfaces, "AAS interfaces") {
+            Container(api_gw, API gateway, "AAS server endpoint")
+            Container(rest_service, AAS API, "handles AAS API")
+'            Container(aas_service, AAS service, "access to AAS instance data, enforce AAS policies")
+'            Rel(rest_service, aas_service, "handles AAS API operations")
+            Rel_D(api_gw, rest_service, "forwards authorized AAS-API queries")
+        }
+        
+        Container(authn, authentication service, "for AAS server ")
+        Rel_R(api_gw, authn, "authenticates user")
+        Rel_U(authn, ade_idp, "trusts")
+ 
+        ContainerDb(asset_data_storage, data storage, "for each AAS: AAS content, Submodel content, AAS concept dictionaries")
+        note bottom: Scope: Signing
+'        Rel_D(aas_service, asset_data_storage, "updates")
+         Rel_D(rest_service, asset_data_storage, "reads and updates")
+ 
+        Container(authz_serv, authorization service, "local server access  policies")
+        ContainerDb(access_policy_storage, policy storage, "policies for both API routes and AAS and Submodel content")
+        note bottom: Scope: Security Model
+
+        Rel_R(rest_service, authz_serv, "verifies authorization")
+        Rel_U(authz_serv, authn, "trusts")
+        Rel_D(authz_serv, access_policy_storage, "uses")
+
+'        Container(aasx_impex, AASX import and export, "")
+'        BiRel(aasx_impex, aasx_package, "imports/exports AASX package ensuring encryption and signing")
+'        BiRel_L(aasx_impex, aas_service, "import/export")
+'        Rel(m_admin, aasx_impex, "triggers AASX import/export")
+ 
+        Person(m_admin  , AAS Responsible, "" )
+        Rel_U(m_admin, access_policy_storage, "administrates access policies")
+'        Rel_L(m_admin, authz_serv, "administrates server access policies")
+ 
+'        Container(audit, audit log service, "")
+'        Lay_D(asset_data_storage, audit)
+       
+    }
+
+'    Person(m_responsible  , AAS responsible, "" )
+     Rel_U(m_admin, asset_data_storage, "governs AAS")
+'    Rel_L(m_responsible, m_admin, "advises")
+}
+ 
+' manufacturer activities
+ 
+' user activities
+Rel(user_app, api_gw, "step 3: accesses AAS server endpoint and provides access token", $tags="authenticated access")
+
+
+SHOW_LEGEND()
+@enduml

@@ -1,0 +1,335 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+////
+
+= Access Rule Model (normative)
+
+== General
+
+The introduction in Chapter xref:introduction.adoc[] has explained in detail the background for AAS Security. 
+The use of Identity Providers and Authentication Flows have been shown, which provide an access token to the client user application.
+Such access token contains claims as subject attributes which can be used in the Access Rule Model as defined below.
+
+In addition, the Access Rule Model contains further ABAC attributes like global attributes (also called environmental attributes) or object attributes.
+
+<<image-access-rule-model>> gives an overview of the Access Rule Model.
+Section <<bnf-grammar>> defines the text serialization of the Access Rule Model.
+Section <<json-serialization>> defines the JSON schema of the Access Rule Model.
+
+The Access Rule Model allows to define Access Rules in a modular way, so that parts can be reused.
+
+* Attribute Groups can be defined to reuse combinations of attributes.
+* Object Groups can be defined to reuse combinations of objects.
+* Access Control Lists (ACLs) can be defined to reuse combinations of attributes and access rights.
+
+Each Access Rule can define an own ACL or reuse an existing one.
+Each Access Rule can provide access to single objects or object groups.
+Each Access Rule can define an own Formula or reuse an existing one.
+
+The formula decides, if an Access Rule becomes active or not.
+Only if the overall result of the Formula is valid and true, the Access Rule becomes active.
+A formula can include nested boolean expressions, comparisons and string operations.
+A special operation match allows to work with tuples in lists, e.g. specificAssetId.
+
+Access shall only be granted if there is (at least) one access rule which allows the requested action on the designated AAS object (Route/Identifiable/Referable/Fragment/Descriptor).
+If there is no access rule, the default behavior shall be to deny access.
+
+
+This grammar handles both respositories and registries. 
+The symbol FieldIdentifier allows to use attributes of
+AAS, Submodel, SubmodelElement, ConceptDescription, AAS-Descriptor and Submodel-Descriptor. 
+Depending on the type of repository or registry such attributes are allowed or not.
+
+
+The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
+In addition to the text below, the further details of the formula expressions are explained in  link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.1/query-language.html[IDTA-01002, Query Language] .
+
+.Access Rule Model
+[[image-access-rule-model]]
+[plantuml,mage-access-rule-model,svg]
+....
+include::partial$diagrams/access-rule-model.puml[]
+....
+
+== Grammar for Access Rule Model
+
+[[bnf-grammar]]
+=== BNF grammar of Access Rules
+
+The following BNF (Backus-Naur-Form) grammar defines the AAS Access Rule Model in a technology neutral form.
+The grammar includes whitespaces, so that the examples in xref:annex/text-access-rule-examples.adoc[] can be validated.
+
+The Security Model is explained step by step in the following Chapter <<explanation-access-rule-model>>.
+
+Examples can be found in xref:annex/text-access-rule-examples.adoc[].
+
+*The grammar has been tested with BNF playground (https://bnfplayground.pauliankline.com/*).
+BNF playground allows to check and test the grammar itself and if expressions are correct according to the grammar.*
+
+*The tested BNF is:*
+
+[source,bnf,linenums]
+----
+include::partial$bnf/access-rules.bnf[]
+----
+
+[[explanation-access-rule-model]]
+=== Explanation of the Access Rule Model BNF
+
+==== General
+
+The AAS Access Rule Model can be used to describe access rules.
+Whether and how access rules are enforced is beyond the specification of the model for access control.
+The parties involved are supposed to agree on governance and policies.
+
+The AAS Access Rule Model uses Attribute Based Access Control (ABAC), i.e. Attributes are used in access rules.
+By ABAC also Role Based Access Control (RBAC) can be implemented by defining role attributes.
+Subject Attributes and Roles may be provided as claims in Access Tokens.
+
+Attributes in access rules are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or from a Submodel like a property for a machine state.
+
+Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submodel), Referables (e.g. SubmodelElements), Descriptors or Fragments of all those (e.g. AssetId, SemanticId, SpecificAssetId).
+
+==== Reuse
+
+The AAS Access Rule Model allows to define modular parts which can be reused in different access rules.
+
+* The first concept of reuse is groups.
+Both attributes (DEFATTRIBUTES) and objects (DEFOBJECTS) can be combined into related groups, which may also be used in other groups.
+* The second concept of reuse is Access Control Lists (DEFACLS). +
+An ACL defines which access rights are given for a certain combination of attributes.
+* The third concept of reuse are FORMULAs (DEFFORMULAS), which define a Boolean result when an Access Rule is enabled/disabled.
+FORMULAs allow to express only expressions with Boolean results, e.g. comparisons.
+Arithmetic in FORMULAS is currently not supported.
+
+==== Access Rule Model
+
+[source,bnf,linenums]
+----
+include::partial$bnf/access-rule-model.bnf[]
+----
+
+An Access Rule Model defines a list of Access Rules.
+
+For reuse in multiple Access Rules it also contains lists of Attribute Groups (DEFATTRIBUTES), Object Groups (DEFOBJECTS), ACLs (DEFACLS) and Formulas (DEFFORMULAS).
+Such elements defined for reuse get a name.
+
+One Access Rule must either directly define an ACL or reuse an existing ACL definition.
+
+One access rule may directly list Single Objects or may reuse defined Object Groups.
+
+One access rule may directly define a Formula or may reuse a Formula definition.
+
+An access rule may optionally include a FILTER, which can be used to further restrict the returned objects.
+A FILTER is an additional FORMULA, which enables by its boolean expression, which part(s) of the given object(s) can be accessed, i.e. without a FILTER the complete objects are accessed.
+The FILTER contains a FragmentObject, which defines which part of the accessed object has to be filtered.
+The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filtered, e.g. "$aasdesc#assetInformation.specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
+
+==== ACL
+
+[source,bnf,linenums]
+----
+include::partial$bnf/acl.bnf[]
+----
+
+An ACL (Access Control List) defines which access rights are given for a certain combination of attributes.
+
+Attributes can be provided as a list of single attributes and/or as a list of names of other attribute groups.
+
+The rights in ACLs essentially use the CRUDX pattern, i.e. rights for CREATE, READ, UPDATE, DELETE and EXECUTE can be defined.
+Without an ALLOW rule any access is forbidden by default.
+For testing and alternative configuration purposes, an access rule may be DISABLED.
+To avoid complex conflicting situations, deny rules are not supported.
+
+In addition, VIEW allows to see the existence of an element as Id or idShort, but not to read its values and its further attributes.
+
+In addition, TREE defines, that further access rules exist within its child elements, which must be processed.
+
+ALL is an abbreviation to define all rights.
+
+==== Attributes
+
+[source,bnf,linenums]
+----
+include::partial$bnf/attributes.bnf[]
+----
+
+Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a SubmodelElement e.g. to a property for a machine state.
+
+An Attribute Group defines a list of single attributes and/or a list of names of other attribute groups.
+
+Global Attributes are:
+
+* *LOCALNOW* - Date and time of server according ISO 8601 in local time zone
+
+* *UTCNOW* - Date and time of server according ISO 8601 as UTC time
+
+* *CLIENTNOW* - Date and time of client according ISO 8601, provided as claim in access token
+
+* *ANONYMOUS* - Tag for anonymous and non-authenticated user, i.e. no access token
+
+References in ReferenceAttributes are defined in Section xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[Text Serialization of Values of Type Reference].
+
+
+==== Objects
+
+[source,bnf,linenums]
+----
+include::partial$bnf/objects.bnf[]
+----
+
+Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submodel), Referables (e.g. SubmodelElements), Descriptors or Fragments of those (e.g. AssetId, SemanticId, SpecificAssetId).
+
+Routes may use * or end with a *, which means that all routes with a given prefix are valid.
+
+References to IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects are defined in Section xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[Text Serialization of Values of Type Reference].
+
+An Object Group defines a list of single objects and/or a list of names of other object groups.
+
+==== Formulas
+
+[source,bnf,linenums]
+----
+include::partial$bnf/formulas.bnf[]
+----
+
+FORMULAs define a logical expression with a Boolean result when an Access Rule is enabled/disabled.
+FORMULAs allow to express only expressions with Boolean results.
+Arithmetic in FORMULAS is currently not supported.
+
+Nested logical expressions create combinations of several logical expressions, where any, all or none of the expressions needs to be enabled: *<logicalNestedExpression>, <logicalOrExpression>, <logicalAndExpression>, <logicalNotExpression>*.
+
+String Comparison Operations compare or match the first given argument (left argument) with the second given argument (right argument). *$eq, $ne, $gt, $lt, $ge, $le* make an alphabetic string comparison. $**starts-with, $ends-with, $contains and $regex** check, if the first given argument is part of the second argument or if the first argument matches with the given REGEX.
+
+Numerical Comparison Operations compare the first given argument (left argument) with the second given argument (right argument).
+Since AAS also supports XS Datatypes Hex, Bool, DateTime and Time, related comparisons are available accordingly.
+
+For specific comparisons datatypes can be casted to the other datatypes.
+
+Specific operations exist to extract parts from DateTime, i.e. $dayOfWeek, $dayOfMonth, $month, $year.
+This enables access rules related to week days or specific times in the year.
+
+An important special operation is $match, which can be used with any element containing a list of elements, e.g. semanticId[], specificAssetId[], SubmodelElementList or SubmodelElementCollection.
+The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
+
+[[text-serialization-of-values-of-type-reference]]
+==== Text Serialization of Values of Type Reference
+
+References are used in ReferenceAttributes, IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects for the corresponding ReferenceLiterals, IdentifiableLiterals, ReferableLiterals, FragmentLiterals and DescriptorLiterals.
+
+Such references use the link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01001/v3.1/mappings/mappings.html#reference-serialization[Part 1 Mapping in Section "Text Serialization of Values of Type Reference"] for specific instances of elements, e.g. an AAS, a Submodel, a ConceptDescription or a specific SubmodelElement.
+
+Access Rules may also be defined for all Identifiables of the Keytypes AssetAdministrationShell, Submodel or ConceptDescription.
+In this case an IdentifiableLiteral uses the format "(AssetAdministrationShell)\*", "(Submodel)*" and "(ConceptDescription)*".
+
+Access Rules extend the Keytypes of Part 1 by "(aasDesc)" for AAS Descriptors and "(smdesc)" for submodel descriptors.
+To define all descriptors "(aasDesc)\*" or "(smdesc)*" may be used in DescriptorLiterals accordingly.
+
+[[json-serialization]]
+== JSON Serialization of Access Rule Model
+
+The AAS Access Rule model can also be defined as a JSON schema.
+Since the related JSON schema shall also allow automatic code generation, specific constraints must be fulfilled by such JSON schema.
+The use of "oneof" is limited and type information for objects must be available.
+
+It shall also be possible to check a JSON with the JSON schema.
+
+Examples can be found in xref:annex/json-access-rule-examples.adoc[].
+
+The following schema meets such constraints:
+
+[source,json,linenums]
+----
+include::partial$json/aas-queries-and-access-rules-schema.json[]
+----
+
+=== Explanation of the Access Rule Model JSON schema
+
+==== General
+
+The AAS Access Rule Model can be used to describe access rules.
+Whether and how access rules are enforced is beyond the specification of the model for access control.
+The parties involved are supposed to agree on governance and policies.
+
+==== Access Rule Model
+
+The Access Rules BNF grammar is expressed in JSON schema syntax.
+Please refer to the detailed step by step explanation of the grammar.
+
+[source,json,linenums]
+----
+include::partial$json/access-rule-model.json[]
+----
+
+==== Formulas and logical expressions
+
+A detailed step by step explanation follows below the JSON schema code.
+
+[source,json,linenums]
+----
+include::partial$json/formulas-and-logical-expressions.json[]
+----
+
+The provided JSON schema includes a _modelStringPattern_ starting with a $, so that the syntax of model elements can be checked by the schema, e.g. $sm.idShort.
+
+String, number and boolean are supported by JSON itself.
+Specific patterns with regular expressions are provided for datatypes Hex, DateTime and Time: _hexLiteralPattern_, _dateTimeLiteralPattern_ and _timeLiteralPattern_.
+
+_Value_ is used for comparisons and _StringValue_ is used for the specific string operations.
+For type safety and automatic code generation, each possible type is available as an own object:
+
+* String values can be given by _$field_, $__strVal__, $__attribute__ oder $__strCast__.
+* Numerical values can be given by $__numVal__ or $__numCast__.
+* Hex values can be given by $__hexVal__ or $__hexCast__.
+* Bool values can be given by _$boolean_ or $__boolCast__.
+* DateTime values can be given by $__dateTimeVal__ or $__dateTimeCast__.
+* Time values can be given by $__timeVal__ or $__timeCast__.
+
+Casts allow any of the values as input and convert this to the given type if possible.
+
+Parts of DateTime values can be extracted as numbers:
+
+* _$dayOfWeek_ extracts the day of week as number, starting with 0 for Sunday.
+* _$dayOfMonth_, _$month_, _$year_ extract the related part as number.
+
+If a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
+An error message shall be generated and the result of the complete expression becomes FALSE, so that the access is not allowed and/or the filter is empty.
+
+To allow the use of different types in operations, arrays are used for parameters. _comparisonItems_ is used for comparisons and _stringItems_ is used for specific string operations.
+
+_logicalExpressions_ and _match_ can be recursively nested.
+
+== Exchange of Access Rules
+
+Business Partners may be interested to exchange Access Rules.
+
+As explained as an example above, a robot manufacturer suggests that for the robot the following roles shall be defined: machine setter, operator and a maintenance role.
+He also suggests permissions for these roles, e.g. an installer (integrator) does have write-access to the program of the robot, but an operator does not.
+
+Providing such suggested access rules, makes the integration of the operator much easier.
+The operator can copy and paste the access rules into his AAS implementation and only needs to make adjustments.
+
+The enforcement of Access Rules is implementation specific.
+
+This specification defines the text serialization of access rules and the JSON schema serialization of access rules.
+The support of both is optional and not mandatory.
+
+The JSON schema serialization is recommended.
+
+Such serialization provides the possibility to exchange access rules.
+An implementation may even store such serialized access rules in submodel elements BLOB or FILE, so that these can be accessed by the API and can be protected by access rules itself.
+
+== API Queries and Access Rules
+
+link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.1/query-language.html#query-language[Version 3.1 of the AAS API] defines queries and uses the same grammar and same JSON schema to define queries.
+The JSON schema serialization is used in the related API operations.
+
+In addition, using the same concepts will be needed for large amounts of AAS data.
+Querying such large amounts of data and protecting such data with Access Rules requires optimized access of data.
+Database queries may combine the filter expression provided by the client query with the FOMULAs of the Access Rules on the server.

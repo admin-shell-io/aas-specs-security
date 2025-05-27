@@ -1,0 +1,20 @@
+= Summary and Outlook
+
+This document specifies the Access Rule Model for the Asset Administration Shell APIs, including the APIs for repositories and registries.
+
+The general concept of access tokens allows to combine the Access Rule Model with any available security infrastructure in companies, dataspaces or for legal requirements.
+
+The grammar of the Access Rule Model allows to adopt the concepts to any further technology besides AAS HTTP API.
+For AAS HTTP API a JSON schema is already defined.
+
+The grammar may also be used to create mappings to other access rule languages, e.g. XACML or ODRL.
+
+This document is the base for the upcoming IEC 63278-3 “Security of the Asset Administration Shell”.
+IEC 63278-3 uses the explained concepts of access token together with the grammar for access rules.
+
+A next version of this document shall define signatures (and possibly encryption) of AAS data.
+So far this is only possible together with AASX packages, but signatures are also needed when using APIs to exchange data.
+Some business partners like to copy AAS data to their servers, so that the signature of the originator of the AAS data must be able to be proven by a final receiver.
+
+A next version of this document may also include an API to manage access rules.
+Since the grammar and the JSON schema are already used for the Query Language in AAS HTTP API 3.1, the needed elements for such additional API are already available.

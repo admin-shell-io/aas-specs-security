@@ -1,8 +1,8 @@
 # IDTA-01004 - Security
 [![Check](
-https://github.com/admin-shell-io/aas-specs/workflows/Check/badge.svg
+https://github.com/admin-shell-io/aas-specs-metamodel/workflows/Check/badge.svg
 )](
-https://github.com/admin-shell-io/aas-specs/actions?query=workflow%3ACheck
+https://github.com/admin-shell-io/aas-specs-metamodel/actions?query=workflow%3ACheck
 )
 [![Creative Commons License](
 https://licensebuttons.net/l/by/4.0/88x31.png
@@ -18,13 +18,27 @@ Governance of the specification is done in the working group Open Technology of 
 
 The specification number is: **IDTA-01004**
 
-## < add further information >
+## Releases
+
+The following versioning scheme is applied: 'V\<major>.\<minor>.\<patch>'. 
+Major versions indicate breaking changes while minor updates are 
+backward compatible.
+The patch position is increased whenever bugfixes need to be applied. 
+The following release contains the latest version of the AAS schemas
+ (see also the [releases](https://github.com/admin-shell-io/aas-specs-security/releases) 
+section of this repository):
+
+* [3.0.0](https://github.com/admin-shell-io/aas-specs-security/releases/tag/v3.0.0)
+is the latest release for the `V3.0.0` version of the AAS Security, 
+containing the normative sources for the published document
+ "Specification of the Asset Administration Shell: Part 4 - **Version 3.0.0**". 
+*Use this release if you want to work with the latest specified AAS version.*
 
 ## Contributing
 
 Feature requests, reports about inconsistencies, mistakes *etc.* are highly
 welcome! Please [submit a new issue](
-https://github.com/admin-shell-io/aas-specs/issues/new/choose
+https://github.com/admin-shell-io/aas-specs-metamodel/issues/new/choose
 ).
 
 If you want to contribute, see [CONTRIBUTING.md](CONTRIBUTING.md).

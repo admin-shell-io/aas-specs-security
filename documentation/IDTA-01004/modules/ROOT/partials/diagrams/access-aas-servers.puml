@@ -1,0 +1,51 @@
+@startuml
+
+'LAYOUT_TOP_DOWN
+'LAYOUT_AS_SKETCH()
+LAYOUT_WITH_LEGEND()
+
+'title AAS Security Context
+
+System_Ext(registry, registry, "")
+
+
+Boundary(u_system, "User") {
+    Person_Ext(user  , User , "" )
+    System_Ext(client_app, "AAS user application")
+    Rel(user, client_app, "uses")
+}
+
+System(m1_server, Manufacturer 1 , "AAS Server")
+System(m2_server, Manufacturer 2 , "AAS Server")
+System(m3_server, Manufacturer 3 , "AAS Server")
+
+
+Rel(m1_server, registry, "registers AAS and submodels")
+Rel(m2_server, registry, "registers AAS and submodels")
+Rel(m3_server, registry, "registers AAS and submodels")
+
+
+' user activities
+Rel(client_app, m1_server, "data access")
+Rel(client_app, m2_server, "data access")
+Rel(client_app, m3_server, "data access")
+
+Rel(client_app, registry, "finds endpoints of AAS and Submodels")
+
+
+' registry
+'Rel(client_app, ade_registry, "finds")
+'Rel(m_aas_repository, ade_registry, "registers")
+
+'athn and authz
+'Rel(ade_authentication_server, client_app, "authenticates")
+'Rel(m_aas_repository, ade_authentication_server, "trusts")
+
+'semantics
+'Rel_D(ade_smt_repo, client_app, "provides common semantics")
+'Rel_D(ade_smt_repo, m_aas_repository, "provides common semantics")
+
+
+
+SHOW_LEGEND()
+@enduml
