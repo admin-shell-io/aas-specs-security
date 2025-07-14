@@ -223,7 +223,7 @@ The list element is written with [] to express, that $match shall check if a cer
 
 ====
 Note: V3.1 will include more detailed grammar definitions for <ReferenceAttribute>, <IdentifiableObject>, <ReferableObject>, <FragmentObject> and <DescriptorObject>.
-See ChangeNotes for further details.
+See Change Notes for further details.
 ====
 
 References are used in ReferenceAttributes, IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects for the corresponding ReferenceLiterals, IdentifiableLiterals, ReferableLiterals, FragmentLiterals and DescriptorLiterals.
