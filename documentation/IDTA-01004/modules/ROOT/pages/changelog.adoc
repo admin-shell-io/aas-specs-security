@@ -17,7 +17,7 @@ Major Changes:
 
 * changed: Removed whitespaces from several clauses [#477](https://github.com/admin-shell-io/aas-specs-api/issues/477)
 * fixed idShortPath definition in the BNF Grammar for the Query Language 
-* changed:  xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[text serialization of Reference]  does not follow text serialization of Part 1 of References, the updated grammar will be added in the V3.1, propsal see below
+* changed:  xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[text serialization of Reference]  does not follow text serialization of Part 1 of References, the updated grammar will be added in the V3.1, proposal see below
 
 
 Minor Changes:
