@@ -221,6 +221,11 @@ The list element is written with [] to express, that $match shall check if a cer
 [[text-serialization-of-values-of-type-reference]]
 ==== Text Serialization of Values of Type Reference
 
+====
+Note: V3.1 will include more detailed grammar definitions for <ReferenceAttribute>, <IdentifiableObject>, <ReferableObject>, <FragmentObject> and <DescriptorObject>.
+See ChangeNotes for further details.
+====
+
 References are used in ReferenceAttributes, IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects for the corresponding ReferenceLiterals, IdentifiableLiterals, ReferableLiterals, FragmentLiterals and DescriptorLiterals.
 
 Such references use the link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01001/v3.1/mappings/mappings.html#reference-serialization[Part 1 Mapping in Section "Text Serialization of Values of Type Reference"] for specific instances of elements, e.g. an AAS, a Submodel, a ConceptDescription or a specific SubmodelElement.
