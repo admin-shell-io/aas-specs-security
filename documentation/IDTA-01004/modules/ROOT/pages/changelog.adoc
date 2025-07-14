@@ -22,7 +22,7 @@ Minor Changes:
 
 Proposed changes for V3.1:
 
-The following grammar changes are proposed for V3.1 and will b explained in detail then.
+The following grammar changes are proposed for V3.1 and will be explained in detail then.
 
 <ReferenceAttribute>
 ::= "REFERENCE(" (
