@@ -10,4 +10,62 @@ SPDX-License-Identifier: CC-BY-4.0
 
 = Change Notes
 
-This is the first Release.
+== Changes w.r.t. V3.0 to V3.0.1
+
+Major Changes:
+
+* changed: Removed whitespaces from several clauses and fixed an issue with the idShortPath definition in the BNF Grammar for the Query Language [#477](https://github.com/admin-shell-io/aas-specs-api/issues/477).  
+
+Minor Changes:
+
+* Correct Example in Annex
+
+Proposed changes for V3.1:
+
+The following grammar changes are proposed for V3.1 and will b explained in detail then.
+
+<ReferenceAttribute>
+::= "REFERENCE(" (
+("$aas" <IdentifierInstance> "#" <FieldsAAS> )
+|
+("$sm" <IdentifierInstance> "#" <FieldsSM> )
+|
+("$cd" <IdentifierInstance> "#" <FieldsCD> )
+|
+("$sme" <IdentifierInstance> "." <idShortPath> "#" <FieldsSME> )
+) ")"
+
+<FieldIdentifierAAS> ::= "$aas#" <FieldsAAS>
+<FieldsAAS> ::= "idShort" | "id" | "assetInformation.assetKind" | "assetInformation.assetType" | "assetInformation.globalAssetId" | "assetInformation." <SpecificAssetIdsClause> | "submodels." <ReferenceClause>
+
+<FieldIdentifierSM> ::= "$sm#" <FieldsSM>
+<FieldsSM> ::= <SemanticIdClause> | "idShort" | "id"
+
+<FieldIdentifierCD> ::= "$cd#" <FieldsCD>
+<FieldsCD> ::= "idShort" | "id"
+
+<FieldIdentifierSME> ::= "$sme" ( "." <idShortPath> )? "#" <FieldsSME>
+<FieldsSME> ::= <SemanticIdClause> | "idShort" | "value" | "valueType" | "language"
+
+<IdentifierInstance> ::= "(" <StringLiteral> ")"
+<IdentifierInstanceOrAll> ::= <IdentifierInstance> | "(\"*\")"
+
+<IdentifiableObject> ::=
+"IDENTIFIABLE" <ws>
+("$aas" | "$sm" | "$cd")
+<IdentifierInstanceOrAll>
+
+<ReferableObject> ::=
+"REFERABLE" <ws>
+"$sme" <IdentifierInstanceOrAll> "." <idShortPath>
+
+<FragmentObject> ::=
+"FRAGMENT" <ws>
+"$sme" <IdentifierInstanceOrAll> "." <idShortPath> ( <ws> <StringLiteral> )+
+ 
+<DescriptorObject> ::=
+"DESCRIPTOR" <ws>
+("$aasdesc" | "$smdesc")
+<IdentifierInstanceOrAll>
+
+
