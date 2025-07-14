@@ -8,22 +8,29 @@ SPDX-License-Identifier: CC-BY-4.0
 
 ////
 
+[[change-notes]]
 = Change Notes
 
-== Changes w.r.t. V3.0 to V3.0.1
+== Changes w.r.t. V3.0.1 vs. V3.0
 
 Major Changes:
 
-* changed: Removed whitespaces from several clauses and fixed an issue with the idShortPath definition in the BNF Grammar for the Query Language [#477](https://github.com/admin-shell-io/aas-specs-api/issues/477).  
+* changed: Removed whitespaces from several clauses [#477](https://github.com/admin-shell-io/aas-specs-api/issues/477)
+* fixed idShortPath definition in the BNF Grammar for the Query Language 
+* changed:  xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[text serialization of Reference]  does not follow text serialization of Part 1 of References, the updated grammar will be added in the V3.1, propsal see below
+
 
 Minor Changes:
 
-* Correct Example in Annex
+* correct xref:annex/text-access-rule-examples.adoc#allow-read-submodels-id-pattern[example] in Annex
+* remove <FieldIdentifierString> in grammar and use <FieldIdentifier> directly
 
 Proposed changes for V3.1:
 
 The following grammar changes are proposed for V3.1 and will be explained in detail then.
 
+[source,json,linenums]
+----
 <ReferenceAttribute>
 ::= "REFERENCE(" (
 ("$aas" <IdentifierInstance> "#" <FieldsAAS> )
@@ -67,5 +74,5 @@ The following grammar changes are proposed for V3.1 and will be explained in det
 "DESCRIPTOR" <ws>
 ("$aasdesc" | "$smdesc")
 <IdentifierInstanceOrAll>
-
+----
 
