@@ -13,66 +13,19 @@ SPDX-License-Identifier: CC-BY-4.0
 
 == Changes w.r.t. V3.0.1 vs. V3.0
 
-Major Changes:
+Bugfixes:
 
-* changed: Removed whitespaces from several clauses [#477](https://github.com/admin-shell-io/aas-specs-api/issues/477)
-* fixed idShortPath definition in the BNF Grammar for the Query Language 
-* changed:  xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[text serialization of Reference]  does not follow text serialization of Part 1 of References, the updated grammar will be added in the V3.1, proposal see below
+* changed: Removed incorrect but required whitespaces from grammar and examples [#477 of API](https://github.com/admin-shell-io/aas-specs-api/issues/477)
+* changed: fixed idShortPath definition in the BNF Grammar for the Query Language [#34](https://github.com/admin-shell-io/aas-specs-security/issues/34)
+* changed:  xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[text serialization of Reference]  does not follow text serialization of Part 1 of References, the updated grammar will be added in the V3.1 [#33](https://github.com/admin-shell-io/aas-specs-security/issues/33)
 
 
 Minor Changes:
 
-* correct xref:annex/text-access-rule-examples.adoc#allow-read-submodels-id-pattern[example] in Annex
-* remove <FieldIdentifierString> in grammar and use <FieldIdentifier> directly
+* changed: correct xref:annex/text-access-rule-examples.adoc#allow-read-submodels-id-pattern[example] in Annex
+* removed: remove <FieldIdentifierString> in grammar and use <FieldIdentifier> directly
 
-Proposed changes for V3.1:
 
-The following grammar changes are proposed for V3.1 and will be explained in detail then.
+== Changes V3.0
 
-[source,json,linenums]
-----
-<ReferenceAttribute>
-::= "REFERENCE(" (
-("$aas" <IdentifierInstance> "#" <FieldsAAS> )
-|
-("$sm" <IdentifierInstance> "#" <FieldsSM> )
-|
-("$cd" <IdentifierInstance> "#" <FieldsCD> )
-|
-("$sme" <IdentifierInstance> "." <idShortPath> "#" <FieldsSME> )
-) ")"
-
-<FieldIdentifierAAS> ::= "$aas#" <FieldsAAS>
-<FieldsAAS> ::= "idShort" | "id" | "assetInformation.assetKind" | "assetInformation.assetType" | "assetInformation.globalAssetId" | "assetInformation." <SpecificAssetIdsClause> | "submodels." <ReferenceClause>
-
-<FieldIdentifierSM> ::= "$sm#" <FieldsSM>
-<FieldsSM> ::= <SemanticIdClause> | "idShort" | "id"
-
-<FieldIdentifierCD> ::= "$cd#" <FieldsCD>
-<FieldsCD> ::= "idShort" | "id"
-
-<FieldIdentifierSME> ::= "$sme" ( "." <idShortPath> )? "#" <FieldsSME>
-<FieldsSME> ::= <SemanticIdClause> | "idShort" | "value" | "valueType" | "language"
-
-<IdentifierInstance> ::= "(" <StringLiteral> ")"
-<IdentifierInstanceOrAll> ::= <IdentifierInstance> | "(\"*\")"
-
-<IdentifiableObject> ::=
-"IDENTIFIABLE" <ws>
-("$aas" | "$sm" | "$cd")
-<IdentifierInstanceOrAll>
-
-<ReferableObject> ::=
-"REFERABLE" <ws>
-"$sme" <IdentifierInstanceOrAll> "." <idShortPath>
-
-<FragmentObject> ::=
-"FRAGMENT" <ws>
-"$sme" <IdentifierInstanceOrAll> "." <idShortPath> ( <ws> <StringLiteral> )+
- 
-<DescriptorObject> ::=
-"DESCRIPTOR" <ws>
-("$aasdesc" | "$smdesc")
-<IdentifierInstanceOrAll>
-----
-
+This is the first release

@@ -225,7 +225,6 @@ References are used in ReferenceAttributes, IdentifiableObjects, ReferableObject
 
 ====
 Note: V3.1 will include a more detailed grammar for defining <ReferenceAttribute>, <IdentifiableObject>, <ReferableObject>, <FragmentObject> and <DescriptorObject>.
-See Change Notes for further details.
 ====
 
 
