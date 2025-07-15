@@ -18,12 +18,14 @@ This specification is part of the https://industrialdigitaltwin.org/en/content-h
 
 == Version
 
-This is version 3.0 of the specification IDTA-01004.
+This is version 3.0.1 of the specification IDTA-01004.
+
+Previous version: 3.0.
 
 [#metamodel-versions]
 == Metamodel Versions
 
-This document (version 3.0) uses the following parts of the “Specification of the Asset Administration Shell” series:
+This document uses the following parts of the “Specification of the Asset Administration Shell” series:
 
 * IDTA-01001 Part 1: Metamodel in version 3.1 xref:bibliography.adoc#bib1[[1\]]
 * IDTA-01002 Part 2: Application Programming Interfaces in version 3.1 xref:bibliography.adoc#bib2[[2\]]
