@@ -223,13 +223,10 @@ The list element is written with [] to express, that $match shall check if a cer
 
 References are used in ReferenceAttributes, IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects for the corresponding ReferenceLiterals, IdentifiableLiterals, ReferableLiterals, FragmentLiterals and DescriptorLiterals.
 
-Such references use the link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01001/v3.1/mappings/mappings.html#reference-serialization[Part 1 Mapping in Section "Text Serialization of Values of Type Reference"] for specific instances of elements, e.g. an AAS, a Submodel, a ConceptDescription or a specific SubmodelElement.
+====
+Note: V3.1 will include a more detailed grammar for defining <ReferenceAttribute>, <IdentifiableObject>, <ReferableObject>, <FragmentObject> and <DescriptorObject>.
+====
 
-Access Rules may also be defined for all Identifiables of the Keytypes AssetAdministrationShell, Submodel or ConceptDescription.
-In this case an IdentifiableLiteral uses the format "(AssetAdministrationShell)\*", "(Submodel)*" and "(ConceptDescription)*".
-
-Access Rules extend the Keytypes of Part 1 by "(aasDesc)" for AAS Descriptors and "(smdesc)" for submodel descriptors.
-To define all descriptors "(aasDesc)\*" or "(smdesc)*" may be used in DescriptorLiterals accordingly.
 
 [[json-serialization]]
 == JSON Serialization of Access Rule Model
