@@ -37,9 +37,11 @@ If there are bugfixes of the parts, these shall be used.
 
 Copyright: Industrial Digital Twin Association e.V. (IDTA)
 
-DOI: https://doi.org/10.62628/IDTA.01004-3-0
+DOI: https://doi.org/10.62628/IDTA.01004-3-0-1
 
-IDTA Document Number: IDTA-01004-3-0
+IDTA Number: IDTA-01004
+
+Version: 3.0.1
 
 This work is licensed under a
 https://creativecommons.org/licenses/by/4.0/[Creative Commons Attribution 4.0 International License].
