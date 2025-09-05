@@ -11,6 +11,12 @@ SPDX-License-Identifier: CC-BY-4.0
 [[change-notes]]
 = Change Notes
 
+== Changes w.r.t. V3.1 vs. V3.0.1
+
+*changed: <ReferenceAttribute> with more detailed definiton in BNF Grammar and JSON Schema
+*changed: <IdentifiableObject>, <ReferableObject>, <FragmentObject>, <DescriptorObject> with more detailed definiton in BNF Grammar and JSON Schema
+
+
 == Changes w.r.t. V3.0.1 vs. V3.0
 
 Bugfixes:

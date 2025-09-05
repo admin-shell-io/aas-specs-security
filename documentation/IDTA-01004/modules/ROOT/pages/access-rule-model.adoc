@@ -174,8 +174,6 @@ Global Attributes are:
 
 * *ANONYMOUS* - Tag for anonymous and non-authenticated user, i.e. no access token
 
-References in ReferenceAttributes are defined in Section xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[Text Serialization of Values of Type Reference].
-
 
 ==== Objects
 
@@ -187,8 +185,6 @@ include::partial$bnf/objects.bnf[]
 Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submodel), Referables (e.g. SubmodelElements), Descriptors or Fragments of those (e.g. AssetId, SemanticId, SpecificAssetId).
 
 Routes may use * or end with a *, which means that all routes with a given prefix are valid.
-
-References to IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects are defined in Section xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[Text Serialization of Values of Type Reference].
 
 An Object Group defines a list of single objects and/or a list of names of other object groups.
 
@@ -217,15 +213,6 @@ This enables access rules related to week days or specific times in the year.
 
 An important special operation is $match, which can be used with any element containing a list of elements, e.g. semanticId[], specificAssetId[], SubmodelElementList or SubmodelElementCollection.
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
-
-[[text-serialization-of-values-of-type-reference]]
-==== Text Serialization of Values of Type Reference
-
-References are used in ReferenceAttributes, IdentifiableObjects, ReferableObjects, FragmentObjects and DescriptorObjects for the corresponding ReferenceLiterals, IdentifiableLiterals, ReferableLiterals, FragmentLiterals and DescriptorLiterals.
-
-====
-Note: V3.1 will include a more detailed grammar for defining <ReferenceAttribute>, <IdentifiableObject>, <ReferableObject>, <FragmentObject> and <DescriptorObject>.
-====
 
 
 [[json-serialization]]
