@@ -4,7 +4,7 @@ ACCESSRULE:
   RIGHTS: READ UPDATE
   ACCESS: ALLOW
   OBJECTS:
-    IDENTIFIABLE "(Submodel)*"
+    IDENTIFIABLE $sm("*")
   FORMULA:
     $and(
       $or(
