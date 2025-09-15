@@ -61,6 +61,7 @@ include::partial$examples/bpn.bnf[]
 include::partial$examples/allow-read-all-users-of-company-for-submodel.bnf[]
 ----
 
+[[allow-read-submodels-id-pattern]]
 == Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData from 9:00-17:00
 
 [source,bnf,linenums]

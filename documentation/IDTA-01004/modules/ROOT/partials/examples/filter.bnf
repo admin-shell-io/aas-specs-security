@@ -4,7 +4,7 @@ ACCESSRULE:
   RIGHTS: READ
   ACCESS: ALLOW
   OBJECTS:
-    DESCRIPTOR "(aasDesc)*"
+    DESCRIPTOR $aasDesc("*")
   FORMULA:
     $and(
       CLAIM("BusinessPartnerNumber") $eq "BPNL00000000000A",

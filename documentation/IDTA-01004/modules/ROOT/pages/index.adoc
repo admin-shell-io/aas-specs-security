@@ -18,31 +18,37 @@ This specification is part of the https://industrialdigitaltwin.org/en/content-h
 
 == Version
 
-This is version 3.0 of the specification IDTA-01004.
+This is version 3.0.1 of the specification IDTA-01004.
+
+Previous version: 3.0.
 
 [#metamodel-versions]
 == Metamodel Versions
 
-This document (version 3.0) uses the following parts of the “Specification of the Asset Administration Shell” series:
+This document uses the following parts and versions of the “Specification of the Asset Administration Shell” series:
 
 * IDTA-01001 Part 1: Metamodel in version 3.1 xref:bibliography.adoc#bib1[[1\]]
 * IDTA-01002 Part 2: Application Programming Interfaces in version 3.1 xref:bibliography.adoc#bib2[[2\]]
 * IDTA-01003-a Part 3a: Data Specification – IEC 61360 in version 3.1 xref:bibliography.adoc#bib3[[3\]]
 
+If there are bugfixes of the parts, these shall be used.
+
 == Notice
 
 Copyright: Industrial Digital Twin Association e.V. (IDTA)
 
-DOI: https://doi.org/10.62628/IDTA.01004-3-0
+DOI: https://doi.org/10.62628/IDTA.01004-3-0-1
 
-IDTA Document Number: IDTA-01004-3-0
+IDTA Number: IDTA-01004
+
+Version: 3.0.1
 
 This work is licensed under a
 https://creativecommons.org/licenses/by/4.0/[Creative Commons Attribution 4.0 International License].
 
 SPDX-License-Identifier: CC-BY-4.0
 
-May 2025
+July 2025
 
 == How to Get in Contact
 
