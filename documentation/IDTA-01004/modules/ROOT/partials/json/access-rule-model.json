@@ -32,7 +32,7 @@
           ]
         },
         "REFERENCE": {
-          "type": "string"
+      	  "$ref": "#/definitions/ReferenceIdentifier"
         }
       },
       "additionalProperties": false
@@ -70,16 +70,16 @@
           "type": "string"
         },
         "IDENTIFIABLE": {
-          "type": "string"
+          "$ref": "#/definitions/IdentifiableIdentifier"
         },
         "REFERABLE": {
-          "type": "string"
+          "$ref": "#/definitions/ReferableIdentifier"
         },
         "FRAGMENT": {
-          "type": "string"
+          "$ref": "#/definitions/FragmentIdentifier"
         },
         "DESCRIPTOR": {
-          "type": "string"
+          "$ref": "#/definitions/DescriptorIdentifier"
         }
       },
       "additionalProperties": false
