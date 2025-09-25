@@ -22,10 +22,10 @@
         "name": "Properties",
         "objects": [
           {
-            "REFERABLE": "(Submodel)https://s1.com, (Property)p1"
+            "REFERABLE": "$sme("\https://s1.com\").p1"
           },
           {
-            "REFERABLE": "(Submodel)https://s1.com, (Property)p2"
+            "REFERABLE": "$sme(\"https://s1.com\").p2"
           }
         ]
       }
