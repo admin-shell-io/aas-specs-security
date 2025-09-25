@@ -7,9 +7,99 @@
       "type": "string",
       "pattern": "^(?!\\$).*"
     },
-    "modelStringPattern": {
+    "FieldIdentifierAAS": {
       "type": "string",
-      "pattern": "^(?:\\$aas#(?:idShort|id|assetInformation\\.assetKind|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.(?:specificAssetIds\\[[0-9]*\\](?:\\.(?:name|value|externalSubjectId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(?:type|value))?)?)?)|submodels\\.(?:type|keys\\[\\d*\\](?:\\.(?:type|value))?))|submodels\\.(type|keys\\[\\d*\\](?:\\.(type|value))?))|(?:\\$sm#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|id))|(?:\\$sme(?:\\.[a-zA-Z][a-zA-Z0-9_]*\\[[0-9]*\\]?(?:\\.[a-zA-Z][a-zA-Z0-9_]*\\[[0-9]*\\]?)*)?#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|value|valueType|language))|(?:\\$cd#(?:idShort|id)))|(?:\\$aasdesc#(?:idShort|id|assetKind|assetType|globalAssetId|specificAssetIds\\[[0-9]*\\]?(?:\\.(name|value|externalSubjectId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?)?)|endpoints\\[[0-9]*\\]\\.(interface|protocolinformation\\.href)|submodelDescriptors\\[[0-9]*\\]\\.(semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|id|endpoints\\[[0-9]*\\]\\.(interface|protocolinformation\\.href))))|(?:\\$smdesc#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|id|endpoints\\[[0-9]*\\]\\.(interface|protocolinformation\\.href)))$"
+      "pattern": "^(?:\\$aas#(?:idShort|id|assetInformation\\.assetKind|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.(?:specificAssetIds\\[[0-9]*\\](?:\\.(?:name|value|externalSubjectId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(?:type|value))?)?)?)|submodels\\.(?:type|keys\\[\\d*\\](?:\\.(?:type|value))?))|submodels\\.(type|keys\\[\\d*\\](?:\\.(type|value))?)))$"
+    },
+    "FieldIdentifierSM": {
+      "type": "string",
+      "pattern": "^(?:\\$sm#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|id))$"
+    },
+    "FieldIdentifierSME": {
+      "type": "string",
+      "pattern": "^(?:\\$sme(?:\\.[a-zA-Z][a-zA-Z0-9_]*(?:\\[[0-9]+\\])*)*#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|value|valueType|language))$"
+    },
+    "FieldIdentifierCD": {
+      "type": "string",
+      "pattern": "^(?:\\$cd#(?:idShort|id))$"
+    },
+    "FieldIdentifierAasDescriptor": {
+      "type": "string",
+      "pattern": "^(?:\\$aasdesc#(?:idShort|id|assetKind|assetType|globalAssetId|specificAssetIds\\[[0-9]*\\]?(?:\\.(name|value|externalSubjectId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?)?)|endpoints\\[[0-9]*\\]\\.(interface|protocolinformation\\.href)|submodelDescriptors\\[[0-9]*\\]\\.(semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|id|endpoints\\[[0-9]*\\]\\.(interface|protocolinformation\\.href))))$"
+    },
+    "FieldIdentifierSmDescriptor": {
+      "type": "string",
+      "pattern": "^(?:\\$smdesc#(?:semanticId(?:\\.type|\\.keys\\\\d*\\)?)?|idShort|id|endpoints\\[[0-9]*\\]\\.(interface|protocolinformation\\.href)))$"
+    },
+    "FieldIdentifier": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/FieldIdentifierAAS"
+        },
+        {
+          "$ref": "#/definitions/FieldIdentifierSM"
+        },
+        {
+          "$ref": "#/definitions/FieldIdentifierSME"
+        },
+        {
+          "$ref": "#/definitions/FieldIdentifierCD"
+        },
+        {
+          "$ref": "#/definitions/FieldIdentifierAasDescriptor"
+        },
+        {
+          "$ref": "#/definitions/FieldIdentifierSmDescriptor"
+        }
+      ]
+    },
+    "ReferenceIdentifierAAS": {
+      "type": "string",
+      "pattern": "^(?:\\$aas\\(\\\".*\\\"\\)#(?:idShort|id|assetInformation\\.assetKind|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.(?:specificAssetIds\\[[0-9]*\\](?:\\.(?:name|value|externalSubjectId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(?:type|value))?)?)?)|submodels\\.(?:type|keys\\[\\d*\\](?:\\.(?:type|value))?))|submodels\\.(type|keys\\[\\d*\\](?:\\.(type|value))?)))$"
+    },
+    "ReferenceIdentifierSM": {
+      "type": "string",
+      "pattern": "^(?:\\$sm\\(\\\".*\\\"\\)#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|id))$"
+    },
+    "ReferenceIdentifierSME": {
+      "type": "string",
+      "pattern": "^\\$sme\\(\\\".*\\\"\\)(?:\\.[a-zA-Z][a-zA-Z0-9_]*(?:\\[[0-9]+\\])*)*#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|value|valueType|language)$"
+    },
+    "ReferenceIdentifierCD": {
+      "type": "string",
+      "pattern": "^(?:\\$cd\\(\\\".*\\\"\\)#(?:idShort|id))$"
+    },
+    "ReferenceIdentifier": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ReferenceIdentifierAAS"
+        },
+        {
+          "$ref": "#/definitions/ReferenceIdentifierSM"
+        },
+        {
+          "$ref": "#/definitions/ReferenceIdentifierSME"
+        },
+        {
+          "$ref": "#/definitions/ReferenceIdentifierCD"
+        }
+      ]
+    },
+    "IdentifiableIdentifier": {
+      "type": "string",
+      "pattern": "^\\$(sm|aas|cd)\\(\\\".*\\\"\\)$"
+    },
+    "ReferableIdentifier": {
+      "type": "string",
+      "pattern": "^\\$sme\\(\\\".*\\\"\\)(?:\\.[a-zA-Z][a-zA-Z0-9_]*(?:\\[[0-9]+\\])*)*$"
+    },
+    "FragmentIdentifier": {
+      "type": "string",
+      "pattern": "^\\$sme\\(\\\".*\\\"\\)(?:\\.[a-zA-Z][a-zA-Z0-9_]*(?:\\[[0-9]+\\])*)*?(\\s+[a-zA-Z0-9_\\-\\.]+)+$"
+    },
+    "DescriptorIdentifier": {
+      "type": "string",
+      "pattern": "^(?:\\$(aasdesc|smdesc)\\(\\\".*\\\"\\))$"
     },
     "hexLiteralPattern": {
       "type": "string",
@@ -27,7 +117,7 @@
       "type": "object",
       "properties": {
         "$field": {
-          "$ref": "#/definitions/modelStringPattern"
+          "$ref": "#/definitions/FieldIdentifier"
         },
         "$strVal": {
           "$ref": "#/definitions/standardString"
@@ -179,7 +269,7 @@
       "type": "object",
       "properties": {
         "$field": {
-          "$ref": "#/definitions/modelStringPattern"
+          "$ref": "#/definitions/FieldIdentifier"
         },
         "$strVal": {
           "$ref": "#/definitions/standardString"
@@ -511,7 +601,7 @@
           ]
         },
         "REFERENCE": {
-          "type": "string"
+      	  "$ref": "#/definitions/ReferenceIdentifier"
         }
       },
       "additionalProperties": false
@@ -549,16 +639,16 @@
           "type": "string"
         },
         "IDENTIFIABLE": {
-          "type": "string"
+          "$ref": "#/definitions/IdentifiableIdentifier"
         },
         "REFERABLE": {
-          "type": "string"
+          "$ref": "#/definitions/ReferableIdentifier"
         },
         "FRAGMENT": {
-          "type": "string"
+          "$ref": "#/definitions/FragmentIdentifier"
         },
         "DESCRIPTOR": {
-          "type": "string"
+          "$ref": "#/definitions/DescriptorIdentifier"
         }
       },
       "additionalProperties": false
