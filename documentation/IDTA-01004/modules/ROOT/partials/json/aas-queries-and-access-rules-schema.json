@@ -17,7 +17,7 @@
     },
     "FieldIdentifierSME": {
       "type": "string",
-      "pattern": "^(?:\\$sme(?:\\.[a-zA-Z][a-zA-Z0-9_]*(?:\\[[0-9]+\\])*)*#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|value|valueType|language))$"
+      "pattern": "^(?:\\$sme(?:\\.[a-zA-Z]([a-zA-Z0-9_-]*[a-zA-Z0-9_])?(?:\\[[0-9]+\\])*)*#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|value|valueType|language))$"
     },
     "FieldIdentifierCD": {
       "type": "string",
@@ -63,7 +63,7 @@
     },
     "ReferenceIdentifierSME": {
       "type": "string",
-      "pattern": "^\\$sme\\(\\\".*\\\"\\)(?:\\.[a-zA-Z][a-zA-Z0-9_]*(?:\\[[0-9]+\\])*)*#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|value|valueType|language)$"
+      "pattern": "^\\$sme\\(\\\".*\\\"\\)(?:\\.[a-zA-Z]([a-zA-Z0-9_-]*[a-zA-Z0-9_])?(?:\\[[0-9]+\\])*)*#(?:semanticId(?:\\.type|\\.keys\\[\\d*\\](?:\\.(type|value))?)?|idShort|value|valueType|language)$"
     },
     "ReferenceIdentifierCD": {
       "type": "string",
@@ -91,11 +91,11 @@
     },
     "ReferableIdentifier": {
       "type": "string",
-      "pattern": "^\\$sme\\(\\\".*\\\"\\)(?:\\.[a-zA-Z][a-zA-Z0-9_]*(?:\\[[0-9]+\\])*)*$"
+      "pattern": "^\\$sme\\(\\\".*\\\"\\)(?:\\.[a-zA-Z]([a-zA-Z0-9_-]*[a-zA-Z0-9_])?(?:\\[[0-9]+\\])*)*$"
     },
     "FragmentIdentifier": {
       "type": "string",
-      "pattern": "^\\$sme\\(\\\".*\\\"\\)(?:\\.[a-zA-Z][a-zA-Z0-9_]*(?:\\[[0-9]+\\])*)*?(\\s+[a-zA-Z0-9_\\-\\.]+)+$"
+      "pattern": "^\\$sme\\(\\\".*\\\"\\)(?:\\.[a-zA-Z]([a-zA-Z0-9_-]*[a-zA-Z0-9_])?(?:\\[[0-9]+\\])*)*?(\\s+[a-zA-Z0-9_\\-\\.]+)+$"
     },
     "DescriptorIdentifier": {
       "type": "string",
