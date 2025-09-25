@@ -4,7 +4,7 @@ ACCESSRULE:
   RIGHTS: READ
   ACCESS: ALLOW
   OBJECTS:
-    IDENTIFIABLE "(Submodel)*"
+    IDENTIFIABLE $sm("*")
   FORMULA:
     $and(
       $or(
@@ -12,7 +12,7 @@ ACCESSRULE:
         $sm#semanticId $eq "SemanticID-TechnicalData"
       ),
       CLAIM("companyName") $eq "company1-name",
-      $regex(REFERENCE("(Submodel)*#Id"), "^https://company1.com/.*$"),
+      $regex($sm#id, "^https://company1.com/.*$"),
       GLOBAL(UTCNOW) $ge "09:00",
       GLOBAL(UTCNOW) $le "17:00"
     )

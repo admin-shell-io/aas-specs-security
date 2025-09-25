@@ -28,11 +28,18 @@ The following release contains the latest version of the AAS schemas
  (see also the [releases](https://github.com/admin-shell-io/aas-specs-security/releases) 
 section of this repository):
 
-* [3.0.0](https://github.com/admin-shell-io/aas-specs-security/releases/tag/v3.0.0)
-is the latest release for the `V3.0.0` version of the AAS Security, 
+* [3.0.1](https://github.com/admin-shell-io/aas-specs-security/releases/tag/v3.0.1)
+is the latest bugfix release for the `V3.0.1` version of the AAS Security, 
 containing the normative sources for the published document
- "Specification of the Asset Administration Shell: Part 4 - **Version 3.0.0**". 
+ "Specification of the Asset Administration Shell: Part 4 - **Version 3.0.1**". 
 *Use this release if you want to work with the latest specified AAS version.*
+
+Previous releases:
+
+* [3.0.0](https://github.com/admin-shell-io/aas-specs-security/releases/tag/v3.0.0)
+is the first release for the `V3.0` version of the AAS Security, 
+containing the normative sources for the published document
+ "Specification of the Asset Administration Shell: Part 4 - Version 3.0.0". 
 
 ## Contributing
 

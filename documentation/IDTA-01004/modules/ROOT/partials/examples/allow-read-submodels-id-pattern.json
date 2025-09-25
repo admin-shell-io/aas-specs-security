@@ -15,7 +15,7 @@
         },
         "OBJECTS": [
           {
-            "ROUTE": "*"
+            "IDENTIFIABLE": "$sm(\"*\")"
           }
         ],
         "FORMULA": {
@@ -60,7 +60,7 @@
               "$regex": [
                 {
                   "$attribute": {
-                    "REFERENCE": "(Submodel)*#Id"
+                    "REFERENCE": "$sm#id"
                   }
                 },
                 {
