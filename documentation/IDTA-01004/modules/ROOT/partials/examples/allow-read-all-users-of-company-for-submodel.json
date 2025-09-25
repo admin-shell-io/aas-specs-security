@@ -15,7 +15,7 @@
         },
         "OBJECTS": [
           {
-            "IDENTIFIABLE": "$sm("*")"
+            "IDENTIFIABLE": "$sm(\"*\")"
           }
         ],
         "FORMULA": {
