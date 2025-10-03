@@ -8,6 +8,30 @@ SPDX-License-Identifier: CC-BY-4.0
 
 ////
 
+[[change-notes]]
 = Change Notes
 
-This is the first Release.
+== Changes w.r.t. V3.1 vs. V3.0.1
+
+*changed: <ReferenceAttribute> with more detailed definition in BNF Grammar and JSON Schema
+*changed: <IdentifiableObject>, <ReferableObject>, <FragmentObject>, <DescriptorObject> with more detailed definition in BNF Grammar and JSON Schema
+
+
+== Changes w.r.t. V3.0.1 vs. V3.0
+
+Bugfixes:
+
+* changed: Removed incorrect but required whitespaces from grammar and examples [#477 of API](https://github.com/admin-shell-io/aas-specs-api/issues/477)
+* changed: fixed idShortPath definition in the BNF Grammar for the Query Language [#34](https://github.com/admin-shell-io/aas-specs-security/issues/34)
+* changed:  xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[text serialization of Reference]  does not follow text serialization of Part 1 of References, the updated grammar will be added in the V3.1 [#33](https://github.com/admin-shell-io/aas-specs-security/issues/33)
+
+
+Minor Changes:
+
+* changed: correct xref:annex/text-access-rule-examples.adoc#allow-read-submodels-id-pattern[example] in Annex
+* removed: remove <FieldIdentifierString> in grammar and use <FieldIdentifier> directly
+
+
+== Changes V3.0
+
+This is the first release
