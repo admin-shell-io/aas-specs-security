@@ -8,7 +8,12 @@
     "GLOBAL" <ws> "(" <ws> ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" | "ANONYMOUS" ) <ws> ")"
 
 <ReferenceAttribute> ::=
-    "REFERENCE" <ws> "(" <ws> <ReferenceLiteral> <ws> ")"
+    "REFERENCE(" (
+    ("$aas" <IdentifierInstance> "#" <FieldsAAS> ) |
+    ("$sm" <IdentifierInstance> "#" <FieldsSM> ) |
+    ("$cd" <IdentifierInstance> "#" <FieldsCD> ) |
+    ("$sme" <IdentifierInstance> "." <idShortPath> "#" <FieldsSME> )
+    ) ")"
 
 <AttributeGroup> ::=
     ( <SingleAttribute> <ws> )*
