@@ -71,9 +71,11 @@
             {
               "$ge": [
                 {
-                  "$attribute": {
-                    "GLOBAL": "UTCNOW"
-                  }
+                  "$timeCast": {
+                    "$attribute": {
+                      "GLOBAL": "UTCNOW"
+                    }
+                  }  
                 },
                 {
                   "$timeVal": "09:00"
@@ -83,9 +85,11 @@
             {
               "$le": [
                 {
-                  "$attribute": {
-                    "GLOBAL": "UTCNOW"
-                  }
+                  "$timeCast": {
+                    "$attribute": {
+                      "GLOBAL": "UTCNOW"
+                    }
+                  }  
                 },
                 {
                   "$timeVal": "17:00"
