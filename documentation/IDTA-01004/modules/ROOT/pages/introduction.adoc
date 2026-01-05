@@ -88,7 +88,7 @@ It shall be possible to determine whether data is sufficiently recent (e.g. lost
 == IEC 63278
 
 <<image-iec63278-1-overview>> shows a detailed overview of AAS as defined in IEC 62378-1. The yellow comments have been added and describe the scope of this document in relation to the defined entities in the standard.
-Signatures will be defined in a later version of this document.
+Signatures are defined in the REST API specification.
 
 .Detailed overview of Asset Administration Shell and related entities. Based on Figure 4 of IEC 63278-1 (Reproduced by permission of DKE, German Member of IEC (https://www.dke.de/de[www.dke.de]). For the valid edition see the latest publication of IEC or DIN EN IEC and https://www.dke.de/de[www.dke.de] and https://www.vde-verlag.de/[www.vde-verlag.de])
 [[image-iec63278-1-overview]]
@@ -100,11 +100,10 @@ As introduced in AAS Part 2 API, <<image-aas-info-exchange-types>> shows 3 diffe
 
 * Type 1 is the exchange as an AASX file xref:bibliography.adoc#bib3[[3\]] (part 5).
 Such AASX file may include a Security Model to be passed to a business partner.
-In the included Submodels in the AASX also the Signing of AAS may be used.
 * Type 2 is the access to AAS by the API xref:bibliography.adoc#bib2[[2\]] (part 2) to a server.
 Such server may use and enforce the ABAC rules of the Security Model.
 Depending on the access rules, such server may also allow to access the submodel with the Security Model by the API.
-Submodels on the server may also include signed elements.
+Identifiables on the server may also be signed.
 * Type 3 is the so called “Industrie 4.0 Language” with active AAS, which is similar to agents.
 Basically Type 3 is out of scope for this document, but the definitions of this document may also be used in the context of Type 3.
 
@@ -203,7 +202,7 @@ The integrator may send these AAS and additional own AAS to his customers.
 The integrator may also only select certain submodels from the supplier's AAS.
 
 This use case is an example for the necessity of Signing, since it must be possible to check the integrity of the AAS originally provided by the supplier.
-Signing will be defined in a later version of this document.
+Signing is defined in REST API specification.
 
 .Use Case File Exchange between Value Chain Partners
 [[image-tracking-of-changes-via-events]]
