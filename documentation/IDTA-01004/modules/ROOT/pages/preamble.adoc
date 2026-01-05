@@ -25,7 +25,7 @@ This document uses the following parts of the “Specification of the Asset Admi
 == Scope of this Document
 
 This document specifies the security for the Asset Administration Shell and its submodels, i.e. how to use Access Tokens and how to define Access Rules for Authorization.
-The signing of submodel data will be specified in a next version of this document.
+Identifiables (i.e. Asset Adminstration Shells, Submodels and Concept descriptions) can also be signed by the additional endpoint /$sign, as described in the REST API specification.
 
 This document includes the grammar of a technology neutral model, which is used both for HTTP API 3.1 Query Language and for the Access Rules.
 In addition, a corresponding JSON schema is defined.
