@@ -26,6 +26,13 @@ include::partial$examples/allow-read-complete-api.bnf[]
 include::partial$examples/allow-read-list-semanticids.bnf[]
 ----
 
+== Allow READ access for Anonymous to submodels only if machine not-running
+
+[source,bnf,linenums]
+----
+include::partial$examples/allow-read-list-semanticids-machinestate.bnf[]
+----
+
 == Allow READ and UPDATE for specific authenticated users
 
 [source,bnf,linenums]
