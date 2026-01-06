@@ -1,0 +1,48 @@
+{
+  "AllAccessPermissionRules": {
+    "rules": [
+      {
+        "ACL": {
+          "ATTRIBUTES": [
+            {
+              "GLOBAL": "ANONYMOUS"
+            }
+          ],
+          "RIGHTS": [
+            "READ"
+          ],
+          "ACCESS": "ALLOW"
+        },
+        "OBJECTS": [
+          {
+            "ROUTE": "*"
+          }
+        ],
+        "FORMULA": {
+          "$and": [
+            {
+              "$eq": [
+                {
+                  "CLAIM": "Role"
+                },
+                {
+                  "$strVal": "person with legitimate interest"
+                }
+              ]
+            },
+            {
+              "$eq": [
+                {
+                  "$field": "$sme#semanticId"
+                },
+                {
+                  "$strVal": "CertificateSet"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
