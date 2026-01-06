@@ -1,0 +1,12 @@
+ACCESSRULE:
+  ATTRIBUTES:
+  CLAIM("email")
+  RIGHTS: CREATE
+  ACCESS: ALLOW
+  OBJECTS:
+    IDENTIFIABLE $sm("*")
+  FORMULA:
+    $and(
+      CLAIM("Role") $eq "person with legitimate interest",
+      $sme#semanticId $eq "CertificateSet"
+    )
