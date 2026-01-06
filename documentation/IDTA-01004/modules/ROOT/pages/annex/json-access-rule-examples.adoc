@@ -81,3 +81,10 @@ include::partial$examples/allow-read-submodels-id-pattern.json[]
 ----
 include::partial$examples/filter.json[]
 ----
+
+== Allow only to add elements to the CertificateSet in any Submodel
+
+[source,json,linenums]
+----
+include::partial$examples/allow-create-only-specific.json[]
+----
