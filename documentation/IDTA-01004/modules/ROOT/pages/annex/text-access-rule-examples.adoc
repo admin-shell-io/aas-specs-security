@@ -76,6 +76,13 @@ include::partial$examples/allow-read-all-users-of-company-for-submodel.bnf[]
 include::partial$examples/allow-read-submodels-id-pattern.bnf[]
 ----
 
+== Allow only to add elements to the CertificateSet in any Submodel
+
+[source,bnf,linenums]
+----
+include::partial$examples/allow-create-only-specific.bnf[]
+----
+
 == Example with FILTER statement
 
 [source,bnf,linenums]
