@@ -24,7 +24,7 @@
               "$eq": [
                 {
                   "REFERENCE": {
-                    "$sme("SubmodelID-OperationalData").machineState#value"
+                    "$sme(\"SubmodelID-OperationalData\").machineState#value"
                   }
                 },
                 {
