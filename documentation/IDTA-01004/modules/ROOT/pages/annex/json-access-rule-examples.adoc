@@ -26,7 +26,7 @@ include::partial$examples/allow-read-complete-api.json[]
 include::partial$examples/allow-read-list-semanticids.json[]
 ----
 
-== Allow READ access for Anonymous to submodels only if machine not-running
+== Allow EXECUTE of API operations only if machine not-running
 
 [source,json,linenums]
 ----
