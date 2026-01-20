@@ -6,4 +6,4 @@ ACCESSRULE:
   OBJECTS:
     ROUTE  "*"
   FORMULA:
-    REFERENCE($sme("SubmodelID-OperationalData").machineState#value) $eq "not-running",
+    REFERENCE($sme("SubmodelID-OperationalData").machineState#value) $eq "not-running"
