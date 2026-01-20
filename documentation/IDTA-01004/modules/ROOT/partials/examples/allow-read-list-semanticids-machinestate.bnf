@@ -1,15 +1,9 @@
 ACCESSRULE:
   ATTRIBUTES:
     GLOBAL(ANONYMOUS)
-  RIGHTS: READ
+  RIGHTS: EXECUTE
   ACCESS: ALLOW
   OBJECTS:
     ROUTE  "*"
   FORMULA:
-    $and(
-      REFERENCE($sme("SubmodelID-OperationalData").machineState#value) $eq "not-running",
-      $or(
-        $sm#semanticId $eq "SemanticID-Nameplate",
-        $sm#semanticId $eq "SemanticID-TechnicalData"
-      )
-    )
+    REFERENCE($sme("SubmodelID-OperationalData").machineState#value) $eq "not-running",
