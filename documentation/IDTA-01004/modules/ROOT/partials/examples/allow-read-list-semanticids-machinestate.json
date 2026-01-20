@@ -9,7 +9,7 @@
             }
           ],
           "RIGHTS": [
-            "READ"
+            "EXECUTE"
           ],
           "ACCESS": "ALLOW"
         },
@@ -19,44 +19,9 @@
           }
         ],
         "FORMULA": {
-          "$and": [
-            {
-              "$eq": [
-                {
-                  "REFERENCE": {
-                    "$sme(\"SubmodelID-OperationalData\").machineState#value"
-                  }
-                },
-                {
-                  "$strVal": "not-running"
-                }
-              ]
-            },
-            {
-              "$or": [
-                {
-                  "$eq": [
-                    {
-                      "$field": "$sm#semanticId"
-                    },
-                    {
-                      "$strVal": "SemanticID-Nameplate"
-                    }
-                  ]
-                },
-                {
-                  "$eq": [
-                    {
-                      "$field": "$sm#semanticId"
-                    },
-                    {
-                      "$strVal": "SemanticID-TechnicalData"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "REFERENCE": {
+            "$sme(\"SubmodelID-OperationalData\").machineState#value"
+          }
         }
       }
     ]
