@@ -93,7 +93,7 @@
           ]
         },
         "FILTER": {
-          "FRAGMENT": "$aasdesc#assetInformation.specificAssetIds[]",
+          "FRAGMENT": "$aasdesc#specificAssetIds[]",
           "CONDITION": {
             "$or": [
               {
