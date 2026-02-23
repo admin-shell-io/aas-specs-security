@@ -19,7 +19,7 @@ ACCESSRULE:
       )
     )
   FILTER:
-    FRAGMENT "$aasdesc#assetInformation.specificAssetIds[]"
+    FRAGMENT "$aasdesc#specificAssetIds[]"
     $or(
       $match(
         $aasdesc#specificAssetIds[].name  $eq "manufacturerPartId",

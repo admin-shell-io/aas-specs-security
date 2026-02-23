@@ -820,11 +820,28 @@
                 "items": {
                   "$ref": "#/definitions/attributeItem"
                 }
+              },
+              "USEATTRIBUTES": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             },
             "required": [
-              "name",
-              "attributes"
+              "name"
+            ],
+            "oneOf": [
+              {
+                "required": [
+                  "attributes"
+                ]
+              },
+              {
+                "required": [
+                  "USEATTRIBUTES"
+                ]
+              }
             ],
             "additionalProperties": false
           }
