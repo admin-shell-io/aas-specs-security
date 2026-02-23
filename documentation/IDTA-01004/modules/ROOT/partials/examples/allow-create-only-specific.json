@@ -9,7 +9,7 @@
             }
           ],
           "RIGHTS": [
-            "READ"
+            "CREATE"
           ],
           "ACCESS": "ALLOW"
         },
