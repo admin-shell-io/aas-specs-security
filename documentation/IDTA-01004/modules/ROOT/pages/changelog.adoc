@@ -18,6 +18,10 @@ Major Changes:
 * changed: <ReferenceAttribute> with more detailed definition in BNF Grammar and JSON Schema
 * changed: <IdentifiableObject>, <ReferableObject>, <FragmentObject>, <DescriptorObject> with more detailed definition in BNF Grammar and JSON Schema
 
+Minor Changes:
+
+* update: Revised description text to replace 'may include signing' / 'will be' with 'is signed' / 'be signed' for clarity and consistency.
+
 Bugfixes:
 
 * changed: Fixed incorrect Fragment Field Identifiers in examples [#44 of Security Spec](https://github.com/admin-shell-io/aas-specs-security/issues/44)
