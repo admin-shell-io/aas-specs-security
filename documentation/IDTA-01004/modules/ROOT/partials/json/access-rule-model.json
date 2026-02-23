@@ -93,8 +93,7 @@
         "DELETE",
         "EXECUTE",
         "VIEW",
-        "ALL",
-        "TREE"
+        "ALL"
       ],
       "additionalProperties": false
     },

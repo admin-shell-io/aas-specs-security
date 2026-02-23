@@ -149,8 +149,6 @@ To avoid complex conflicting situations, deny rules are not supported.
 
 In addition, VIEW allows to see the existence of an element as Id or idShort, but not to read its values and its further attributes.
 
-In addition, TREE defines, that further access rules exist within its child elements, which must be processed.
-
 ALL is an abbreviation to define all rights.
 
 ==== Attributes

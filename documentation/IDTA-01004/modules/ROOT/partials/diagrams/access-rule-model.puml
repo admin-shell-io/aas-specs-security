@@ -115,7 +115,6 @@ together {
 	EXECUTE
 	VIEW
 	ALL
-	TREE
   }
 
   enum Access <<enumeration>> {
