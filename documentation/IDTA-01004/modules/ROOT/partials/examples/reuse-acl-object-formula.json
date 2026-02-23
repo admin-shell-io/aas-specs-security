@@ -38,9 +38,11 @@
             {
               "$eq": [
                 {
-                  "$attribute": {
-                    "GLOBAL": "UTCNOW"
-                  }
+                  "$timeCast": {
+                    "$attribute": {
+                      "GLOBAL": "UTCNOW"
+                    }
+                  }  
                 },
                 {
                   "$timeVal": "15:00"
