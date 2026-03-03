@@ -1,0 +1,48 @@
+{
+  "AllAccessPermissionRules": {
+    "rules": [
+      {
+        "ACL": {
+          "ATTRIBUTES": [
+            {
+              "CLAIM": "Role"
+            }
+          ],
+          "RIGHTS": [
+            "CREATE"
+          ],
+          "ACCESS": "ALLOW"
+        },
+        "OBJECTS": [
+          {
+            "IDENTIFIABLE": "$sm(\"*\")"
+          }
+        ],
+        "FORMULA": {
+          "$and": [
+            {
+              "$eq": [
+                {
+                  "CLAIM": "Role"
+                },
+                {
+                  "$strVal": "person with legitimate interest"
+                }
+              ]
+            },
+            {
+              "$eq": [
+                {
+                  "$field": "$sme#semanticId"
+                },
+                {
+                  "$strVal": "CertificateSet"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
