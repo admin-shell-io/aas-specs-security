@@ -26,7 +26,7 @@
     "USEACLS" <ws> <StringLiteral> <ws>
 
 <Right> ::=
-    "CREATE" | "READ" | "UPDATE" | "DELETE" | "EXECUTE" | "VIEW" | "ALL" | "TREE"
+    "CREATE" | "READ" | "UPDATE" | "DELETE" | "EXECUTE" | "VIEW" | "ALL"
 
 <Access> ::=
     "ALLOW" | "DISABLED"
