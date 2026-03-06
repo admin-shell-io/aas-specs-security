@@ -6,7 +6,7 @@
     "ACCESS:" <ws> <Access> <ws>
 
 <UseACL> ::=
-    "USEACLS" <ws> <StringLiteral> <ws>
+    "USEACL" <ws> <StringLiteral> <ws>
 
 <Right> ::=
     "CREATE" | "READ" | "UPDATE" | "DELETE" | "EXECUTE" | "VIEW" | "ALL"

@@ -16,6 +16,9 @@ SPDX-License-Identifier: CC-BY-4.0
 Bugfixes:
 
 * removed: TREE
+* fix: error in datetime BNF ObjectGroup
+* fix: naming inconsistencies inside BNF and json schema (https://github.com/admin-shell-io/aas-specs-api/issues/547)
+* fix: aligned BNF and json schema to api spec (https://github.com/admin-shell-io/aas-specs-api/issues/547)
 
 == Changes w.r.t. V3.0.1 vs. V3.0
 

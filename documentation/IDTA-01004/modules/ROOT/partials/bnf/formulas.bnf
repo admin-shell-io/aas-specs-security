@@ -1,7 +1,5 @@
 <UseFormula> ::=
-    "USEFORMULAS" <ws> <StringLiteral> <ws>
-
-<Condition> ::= <logicalExpression> <ws>
+    "USEFORMULA" <ws> <StringLiteral> <ws>
 
 <logicalExpression> ::= <logicalNestedExpression> | <logicalOrExpression> | <logicalAndExpression> |
 <logicalNotExpression> | <matchExpression> | <BoolLiteral> | <castToBool> | <singleComparison>

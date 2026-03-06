@@ -19,8 +19,8 @@ DEFFORMULAS "allowSubjectGroup1"
   )
 
 ACCESSRULE:
-  USEACLS "acl1"
+  USEACL "acl1"
   OBJECTS:
     USEOBJECTS "Properties"
   FORMULA:
-    USEFORMULAS "allowSubjectGroup1"
+    USEFORMULA "allowSubjectGroup1"

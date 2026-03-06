@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Common JSON Schema for AAS Queries and Access Rules",
   "description": "This schema contains the AAS Access Rule Language.",
+  "$ref": "#/definitions/AllAccessPermissionRules",
   "definitions": {
     "standardString": {
       "type": "string",
@@ -650,56 +651,76 @@
           "type": "string"
         },
         "FILTER": {
-          "type": "object",
-	          "properties": {
-	            "FRAGMENT": { "type": "string" },
-              "CONDITION": {
-                "$ref": "#/definitions/logicalExpression",
-			          "additionalProperties": false
-        			    },
-        			  "USEFORMULA": { "type": "string" }
-        			},
-        			"oneOf": [
-        			  {
-			            "required": ["FRAGMENT", "CONDITION"],
-        			    "not": { "required": ["USEFORMULA"] }
-        			  },
-        			  {
-			            "required": ["FRAGMENT", "USEFORMULA"],
-        			    "not": { "required": ["CONDITION"] }
-		            }
-			        ],
+          "$ref": "#/definitions/SecurityQueryFilter",
           "additionalProperties": false
         }
       },
-      "oneOf": [
+      "allOf": [
         {
-          "required": [
-            "ACL"
+          "oneOf": [
+            {
+              "required": [
+                "ACL"
+              ]
+            },
+            {
+              "required": [
+                "USEACL"
+              ]
+            }
           ]
         },
         {
-          "required": [
-            "USEACL"
+          "oneOf": [
+            {
+              "required": [
+                "OBJECTS"
+              ]
+            },
+            {
+              "required": [
+                "USEOBJECTS"
+              ]
+            }
+          ]
+        },
+        {
+          "oneOf": [
+            {
+              "required": [
+                "FORMULA"
+              ]
+            },
+            {
+              "required": [
+                "USEFORMULA"
+              ]
+            }
           ]
         }
+      ],
+      "additionalProperties": false
+    },
+    "SecurityQueryFilter": {
+      "type": "object",
+      "properties": {
+        "FRAGMENT": {
+          "type": "string"
+        },
+        "CONDITION": {
+          "$ref": "#/definitions/logicalExpression"
+        },
+        "USEFORMULA": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "FRAGMENT"
       ],
       "oneOf": [
         {
           "required": [
-            "OBJECTS"
-          ]
-        },
-        {
-          "required": [
-            "USEOBJECTS"
-          ]
-        }
-      ],
-      "oneOf": [
-        {
-          "required": [
-            "FORMULA"
+            "CONDITION"
           ]
         },
         {
@@ -709,10 +730,23 @@
         }
       ],
       "additionalProperties": false
-    }
-  },
-  "type": "object",
-  "properties": {
+    },
+    "Query": {
+      "type": "object",
+      "properties": {
+        "$select": {
+          "type": "string",
+          "pattern": "^id$"
+        },
+        "$condition": {
+          "$ref": "#/definitions/logicalExpression"
+        }
+      },
+      "required": [
+        "$condition"
+      ],
+      "additionalProperties": false
+    },
     "AllAccessPermissionRules": {
       "type": "object",
       "properties": {
@@ -828,8 +862,5 @@
       "additionalProperties": false
     }
   },
-  "required": [
-    "AllAccessPermissionRules"
-  ],
   "additionalProperties": false
 }
