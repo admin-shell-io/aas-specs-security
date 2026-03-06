@@ -26,8 +26,8 @@
 
 <numericalComparison> ::=
     ( <numericalOperand> <ws> <allComparisons> <ws> <numericalOperand> <ws> ) |
-    ( <numericalOperand> <ws> <allComparisons> <ws> <FieldIdentifierString> <ws> ) |
-    ( <FieldIdentifierString> <ws> <allComparisons> <ws> <numericalOperand> <ws> )
+    ( <numericalOperand> <ws> <allComparisons> <ws> <FieldIdentifier> <ws> ) |
+    ( <FieldIdentifier> <ws> <allComparisons> <ws> <numericalOperand> <ws> )
 
 <hexComparison> ::=
     <hexOperand> <ws> <allComparisons> <ws> <hexOperand> <ws>
@@ -47,7 +47,7 @@
 <operand> ::= <stringOperand> | <numericalOperand> | <hexOperand> | <boolOperand> | <dateTimeOperand> | <timeOperand>
 
 <stringOperand> ::=
-    <FieldIdentifierString> | <StringLiteral> | <castToString> | <SingleAttribute>
+    <FieldIdentifier> | <StringLiteral> | <castToString> | <SingleAttribute>
 
 <numericalOperand> ::=
     <NumericalLiteral> | <castToNumerical> | <dateTimeToNum>
