@@ -22,5 +22,4 @@ ACCESSRULE:
   USEACL "acl1"
   OBJECTS:
     USEOBJECTS "Properties"
-  FORMULA:
-    USEFORMULA "allowSubjectGroup1"
+  USEFORMULA "allowSubjectGroup1"
