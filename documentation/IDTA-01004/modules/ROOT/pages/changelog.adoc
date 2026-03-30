@@ -24,6 +24,7 @@ Minor Changes:
 Bugfixes:
 
 * changed: Fixed incorrect Fragment Field Identifiers in examples [#44 of Security Spec](https://github.com/admin-shell-io/aas-specs-security/issues/44)
+* changed: Fixed time BNF rule for ISO 8601 compliance [#63 of Security Spec](https://github.com/admin-shell-io/aas-specs-security/issues/63)
 
 
 == Changes w.r.t. V3.0.1 vs. V3.0
