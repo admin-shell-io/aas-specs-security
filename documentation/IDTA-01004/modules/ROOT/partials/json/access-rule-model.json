@@ -171,25 +171,7 @@
           "type": "string"
         },
         "FILTER": {
-          "type": "object",
-	          "properties": {
-	            "FRAGMENT": { "type": "string" },
-              "CONDITION": {
-                "$ref": "#/definitions/logicalExpression",
-			          "additionalProperties": false
-			            },
-			          "USEFORMULA": { "type": "string" }
-			        },
-			        "oneOf": [
-			          {
-			            "required": ["FRAGMENT", "CONDITION"],
-			            "not": { "required": ["USEFORMULA"] }
-			          },
-			          {
-			            "required": ["FRAGMENT", "USEFORMULA"],
-			            "not": { "required": ["CONDITION"] }
-		            }
-			        ],
+          "$ref": "#/definitions/SecurityQueryFilter",
           "additionalProperties": false
         }
       },
@@ -221,6 +203,36 @@
         {
           "required": [
             "FORMULA"
+          ]
+        },
+        {
+          "required": [
+            "USEFORMULA"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "SecurityQueryFilter": {
+      "type": "object",
+      "properties": {
+        "FRAGMENT": {
+          "type": "string"
+        },
+        "CONDITION": {
+          "$ref": "#/definitions/logicalExpression"
+        },
+        "USEFORMULA": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "FRAGMENT"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "CONDITION"
           ]
         },
         {

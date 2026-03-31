@@ -2,7 +2,7 @@
     ( "DEFATTRIBUTES" <ws> <StringLiteral> <ws> <AttributeGroup> <ws> )*
     ( "DEFACLS" <ws> <StringLiteral> <ws> <ACL> <ws> )*
     ( "DEFOBJECTS" <ws> <StringLiteral> <ws> <ObjectGroup> <ws> )*
-    ( "DEFFORMULAS" <ws> <StringLiteral> <ws> <Condition> <ws> )*
+    ( "DEFFORMULAS" <ws> <StringLiteral> <ws> <logicalExpression> <ws> )*
     ( <AccessPermissionRule> <ws> )*
 
 <AccessPermissionRule> ::=
@@ -11,9 +11,12 @@
     "OBJECTS:" <ws>
     ( <SingleObject> <ws> )*
     ( <UseObjectGroup> <ws> )*
-    "FORMULA:" <ws>
-    ( <Condition> | <UseFormula> ) <ws>
-    ( "FILTER:" <ws> <FragmentObject> <ws> ( <Condition> | <UseFormula> ) <ws> )?
+    ( ( "FORMULA:" <ws> <logicalExpression> <ws> ) | ( <UseFormula> <ws> ) )
+    ( "FILTER:" <ws> <SecurityQueryFilter> )?
+
+<SecurityQueryFilter> ::=
+    <FragmentObject> <ws>
+    ( ( "CONDITION:" <ws> <logicalExpression> <ws> ) | ( <UseFormula> <ws> ) )
 
 <ACL> ::=
     "ATTRIBUTES:" <ws>
@@ -23,7 +26,7 @@
     "ACCESS:" <ws> <Access> <ws>
 
 <UseACL> ::=
-    "USEACLS" <ws> <StringLiteral> <ws>
+    "USEACL" <ws> <StringLiteral> <ws>
 
 <Right> ::=
     "CREATE" | "READ" | "UPDATE" | "DELETE" | "EXECUTE" | "VIEW" | "ALL"
@@ -76,10 +79,7 @@
     "USEOBJECTS" <ws> <StringLiteral> <ws>
 
 <UseFormula> ::=
-    "USEFORMULAS" <ws> <StringLiteral> <ws>
-
-<Condition> ::= <logicalExpression> <ws>
-
+    "USEFORMULA" <ws> <StringLiteral> <ws>
 
 <logicalExpression> ::= <logicalNestedExpression> | <logicalOrExpression> | <logicalAndExpression> |
 <logicalNotExpression> | <matchExpression> | <BoolLiteral> | <castToBool> | <singleComparison>
@@ -166,7 +166,7 @@
 
 <DateTimeLiteral> ::= <datetime> <ws>
 <TimeLiteral> ::= <time> <ws>
-<datetime> ::= <date> ( "T" | "" ) <time> ( <timezone> )?
+<datetime> ::= <date> ( "T" )? <time> ( <timezone> )?
 <date> ::= <year> "-" <month> "-" <day>
 <year> ::= <digit> <digit> <digit> <digit>
 <month> ::= <digit> <digit>
@@ -192,7 +192,7 @@
 <BoolLiteral> ::= "true" | "false"
 
 <FieldIdentifier> ::= <FieldIdentifierAAS> | <FieldIdentifierSM> | <FieldIdentifierSME> | <FieldIdentifierCD> | <FieldIdentifierAasDescriptor> | <FieldIdentifierSmDescriptor>
-<FieldIdentifierAAS> ::= "$aas#" ( "idShort" | "id" | "assetInformation.assetKind" | "assetInformation.assetType" | "assetInformation.globalAssetId" | "assetInformation." <SpecificAssetIdsClause> | "submodels." <ReferenceClause> )
+<FieldIdentifierAAS> ::= "$aas#" ( "idShort" | "id" | "assetInformation.assetKind" | "assetInformation.assetType" | "assetInformation.globalAssetId" | "assetInformation." <SpecificAssetIdsClause> | "submodels" ( "[" ( [0-9]* ) "]" ) "." <ReferenceClause> )
 <FieldIdentifierSM> ::= "$sm#" ( <SemanticIdClause> | "idShort" | "id" )
 <FieldIdentifierSME> ::= "$sme" ( "." <idShortPath> )? "#" ( <SemanticIdClause> | "idShort" | "value" | "valueType" | "language" )
 <FieldIdentifierCD> ::= "$cd#" ( "idShort" | "id" ) <ws>
