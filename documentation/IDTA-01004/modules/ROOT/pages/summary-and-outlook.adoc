@@ -12,9 +12,8 @@ The grammar may also be used to create mappings to other access rule languages, 
 This document is the base for the upcoming IEC 63278-3 “Security of the Asset Administration Shell”.
 IEC 63278-3 uses the explained concepts of access token together with the grammar for access rules.
 
-A next version of this document shall define signatures (and possibly encryption) of AAS data.
-So far this is only possible together with AASX packages, but signatures are also needed when using APIs to exchange data.
-Some business partners like to copy AAS data to their servers, so that the signature of the originator of the AAS data must be able to be proven by a final receiver.
+Signing of Identifiables is defined in the REST API specification. This may be extended to SubmodelElements or other parts of Identifiables. Currently plain JWS (JSON Web Signature) is used for signing, which may be extended to additional formats e.g. JAdES (JSON Advanced Digital Signature).
+In addition AASX packages can be signed.
 
 A next version of this document may also include an API to manage access rules.
 Since the grammar and the JSON schema are already used for the Query Language in AAS HTTP API 3.1, the needed elements for such additional API are already available.
