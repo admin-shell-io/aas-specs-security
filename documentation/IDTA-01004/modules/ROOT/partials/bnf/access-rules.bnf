@@ -44,7 +44,12 @@
     "GLOBAL" <ws> "(" <ws> ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" | "ANONYMOUS" ) <ws> ")"
 
 <ReferenceAttribute> ::=
-    "REFERENCE" <ws> "(" <ws> <ReferenceLiteral> <ws> ")"
+    "REFERENCE(" (
+    ("$aas" <IdentifierInstance> "#" <FieldsAAS> ) |
+    ("$sm" <IdentifierInstance> "#" <FieldsSM> ) |
+    ("$cd" <IdentifierInstance> "#" <FieldsCD> ) |
+    ("$sme" <IdentifierInstance> "." <idShortPath> "#" <FieldsSME> )
+    ) ")"
 
 <AttributeGroup> ::=
     ( <SingleAttribute> <ws> )*
@@ -59,17 +64,20 @@
 <RouteObject> ::=
     "ROUTE" <ws> <RouteLiteral> <ws>
 
+<IdentifierInstance> ::= "(" <StringLiteral> ")"
+<IdentifierInstanceOrAll> ::= <IdentifierInstance> | "(\"*\")"
+
 <IdentifiableObject> ::=
-    "IDENTIFIABLE" <ws> <IdentifiableLiteral> <ws>
+    "IDENTIFIABLE" <ws> ("$aas" | "$sm" | "$cd") <IdentifierInstanceOrAll>
 
 <ReferableObject> ::=
-    "REFERABLE" <ws> <ReferableLiteral> <ws>
+    "REFERABLE" <ws> "$sme" <IdentifierInstanceOrAll> "." <idShortPath>
 
 <FragmentObject> ::=
-    "FRAGMENT" <ws> <FragmentLiteral> <ws>
-
+    "FRAGMENT" <ws> "$sme" <IdentifierInstanceOrAll> "." <idShortPath> ( <ws> <StringLiteral> )+
+ 
 <DescriptorObject> ::=
-    "DESCRIPTOR" <ws> <DescriptorLiteral> <ws>
+    "DESCRIPTOR" <ws> ("$aasdesc" | "$smdesc") <IdentifierInstanceOrAll>
 
 <ObjectGroup> ::=
     ( <SingleObject> <ws> )*
@@ -181,7 +189,6 @@
 <digit> ::= [0-9]
 <StringLiteral> ::= "\"" ( [A-Z] | [a-z] | [0-9] | "/" | "*" | "[" | "]" | "(" | ")" | " " | "_" | "@" | "#" | "\\" | "+" | "-" | "." | "," | ":" | "$" | "^" )+ "\""
 <ClaimLiteral> ::= <StringLiteral>
-<ReferenceLiteral> ::= <StringLiteral>
 <RouteLiteral> ::= <StringLiteral>
 <IdentifiableLiteral> ::= <StringLiteral>
 <ReferableLiteral> ::= <StringLiteral>

@@ -8,7 +8,7 @@
       "type": "string",
       "pattern": "^[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+$"
     },
-    "modelStringPattern": {
+    "FieldIdentifierAAS": {
       "type": "string",
       "pattern": "^(?:\\$aas#(?:idShort|id|assetInformation\\.assetKind|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.specificAssetIds\\[[0-9]*\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?)|submodels\\[[0-9]*\\]\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))|\\$sm#(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|id)|\\$sme(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[[0-9]*\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[[0-9]*\\])*)*)?#(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|value|valueType|language)|\\$cd#(?:idShort|id)|\\$aasdesc#(?:idShort|id|assetKind|assetType|globalAssetId|specificAssetIds\\[[0-9]*\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?)|endpoints\\[[0-9]*\\]\\.(?:interface|protocolinformation\\.href)|submodelDescriptors\\[[0-9]*\\]\\.(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|id|endpoints\\[[0-9]*\\]\\.(?:interface|protocolinformation\\.href)))|\\$smdesc#(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|id|endpoints\\[[0-9]*\\]\\.(?:interface|protocolinformation\\.href)))$"
     },
@@ -28,7 +28,7 @@
       "type": "object",
       "properties": {
         "$field": {
-          "$ref": "#/definitions/modelStringPattern"
+          "$ref": "#/definitions/FieldIdentifier"
         },
         "$strVal": {
           "$ref": "#/definitions/standardString"
@@ -180,7 +180,7 @@
       "type": "object",
       "properties": {
         "$field": {
-          "$ref": "#/definitions/modelStringPattern"
+          "$ref": "#/definitions/FieldIdentifier"
         },
         "$strVal": {
           "$ref": "#/definitions/standardString"
@@ -512,7 +512,7 @@
           ]
         },
         "REFERENCE": {
-          "type": "string"
+      	  "$ref": "#/definitions/ReferenceIdentifier"
         }
       },
       "additionalProperties": false
@@ -550,16 +550,16 @@
           "type": "string"
         },
         "IDENTIFIABLE": {
-          "type": "string"
+          "$ref": "#/definitions/IdentifiableIdentifier"
         },
         "REFERABLE": {
-          "type": "string"
+          "$ref": "#/definitions/ReferableIdentifier"
         },
         "FRAGMENT": {
-          "type": "string"
+          "$ref": "#/definitions/FragmentIdentifier"
         },
         "DESCRIPTOR": {
-          "type": "string"
+          "$ref": "#/definitions/DescriptorIdentifier"
         }
       },
       "additionalProperties": false
@@ -763,11 +763,28 @@
                 "items": {
                   "$ref": "#/definitions/attributeItem"
                 }
+              },
+              "USEATTRIBUTES": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             },
             "required": [
-              "name",
-              "attributes"
+              "name"
+            ],
+            "oneOf": [
+              {
+                "required": [
+                  "attributes"
+                ]
+              },
+              {
+                "required": [
+                  "USEATTRIBUTES"
+                ]
+              }
             ],
             "additionalProperties": false
           }
