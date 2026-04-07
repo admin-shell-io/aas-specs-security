@@ -13,3 +13,4 @@
     ( <UseObjectGroup> <ws> )*
     ( ( "FORMULA:" <ws> <logicalExpression> <ws> ) | ( <UseFormula> <ws> ) )
     ( "FILTER:" <ws> <SecurityQueryFilter> )?
+    ( "FILTERLIST:" <ws> ( <SecurityQueryFilter> <ws> )* )?
