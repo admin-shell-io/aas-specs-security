@@ -157,6 +157,7 @@ ALL is an abbreviation to define all rights.
 
 The RIGHTS values are technology-neutral permissions. For HTTP/REST APIs these permissions are typically enforced on interface operations and their mapped HTTP methods.
 The mapping in <<table-rights-to-verbs>> is intended to improve interoperability when ROUTE objects are used for authorization decisions.
+Concrete informative examples for RIGHTS, ROUTEs and HTTP requests are given in xref:annex/route-examples.adoc[].
 
 [[table-rights-to-verbs]]
 .Indicative mapping of RIGHTS to AAS operation verbs and HTTP methods
