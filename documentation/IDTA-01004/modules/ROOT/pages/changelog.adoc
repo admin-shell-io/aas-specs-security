@@ -17,6 +17,7 @@ Major Changes:
 
 * changed: <ReferenceAttribute> with more detailed definition in BNF Grammar and JSON Schema
 * changed: <IdentifiableObject>, <ReferableObject>, <FragmentObject>, <DescriptorObject> with more detailed definition in BNF Grammar and JSON Schema
+* added: Query Filter and FragmentFieldIdentifiers (https://github.com/admin-shell-io/aas-specs-api/issues/517)
 
 Minor Changes:
 

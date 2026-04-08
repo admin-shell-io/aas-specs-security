@@ -16,7 +16,7 @@
     ( "FILTERLIST:" <ws> ( <SecurityQueryFilter> <ws> )* )?
 
 <SecurityQueryFilter> ::=
-    <FieldIdentifierFragment> <ws>
+    ( "FRAGMENT:" <FieldIdentifierFragment> <ws> )
     ( ( "CONDITION:" <ws> <logicalExpression> <ws> ) | ( <UseFormula> <ws> ) )
 
 <ACL> ::=
