@@ -31,6 +31,8 @@ SPDX-License-Identifier: CC-BY-4.0
 
 ** xref:./annex/json-access-rule-examples.adoc[Examples of Access Rules in JSON serialization]
 
+** xref:./annex/route-examples.adoc[Examples of ROUTEs and HTTP requests]
+
 
 * xref:changelog.adoc[Change Log]
 

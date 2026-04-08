@@ -1,0 +1,225 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+////
+
+= Examples of ROUTEs and HTTP requests
+
+This annex is informative.
+It gives concrete examples for RIGHTS and ROUTE objects using AAS Part 2 HTTP/REST path templates.
+
+Unless stated otherwise, the examples use the server base URL `https://admin-shell.io/api/v3/` as published in the AAS Part 2 OpenAPI descriptions.
+Only the URL path is relevant for ROUTE matching.
+
+== Rights, operation verbs and HTTP methods
+
+The following diagram illustrates one possible relation between abstract rights, operation verbs and HTTP methods.
+It is an example to support the interpretation of the normative mapping in xref:access-rule-model.adoc#table-rights-to-verbs[].
+
+[plantuml,annex-rights-verbs-http-methods,svg]
+....
+include::partial$diagrams/rights-verbs-http-methods.puml[]
+....
+
+== Example requests by right
+
+The following requests use real path templates from the published AAS Part 2 OpenAPI descriptions.
+They are representative examples for access control decisions on ROUTE objects.
+For client-addressable routes with create-or-replace or upsert semantics, the required right depends on whether the addressed resource already exists.
+In the examples below, `PUT /api/v3/submodels/{id}` and `POST /api/v3/lookup/shells/{someencodedid}` therefore appear under both CREATE and UPDATE with different preconditions.
+
+=== CREATE
+
+Example 1: create a new AAS in the repository by POST to a collection route.
+
+[source,http]
+----
+POST /api/v3/shells HTTP/1.1
+----
+
+Example 2: create a new submodel at a client-addressable route by PUT if the addressed submodel does not yet exist.
+
+[source,http]
+----
+PUT /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU HTTP/1.1
+----
+
+Example 3: create a new submodel element in a collection by POST.
+
+[source,http]
+----
+POST /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU/submodel-elements HTTP/1.1
+----
+
+Example 4: create a lookup entry by POST if the addressed entry does not yet exist.
+
+[source,http]
+----
+POST /api/v3/lookup/shells/someencodedid HTTP/1.1
+----
+
+=== READ
+
+Example 1: read all AAS objects.
+
+[source,http]
+----
+GET /api/v3/shells?limit=50 HTTP/1.1
+----
+
+Example 2: read one submodel.
+
+[source,http]
+----
+GET /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU HTTP/1.1
+----
+
+Example 3: read one submodel element by path.
+
+[source,http]
+----
+GET /api/v3/submodel/submodel-elements/Identification/ManufacturerName HTTP/1.1
+----
+
+Example 4: read all shell descriptors from the registry.
+
+[source,http]
+----
+GET /api/v3/shell-descriptors HTTP/1.1
+----
+
+Example 5: resolve AAS IDs through discovery.
+
+This is an example of a read-like search operation implemented as POST.
+
+[source,http]
+----
+POST /api/v3/lookup/shellsByAssetLink HTTP/1.1
+----
+
+=== UPDATE
+
+Example 1: replace an existing AAS resource by PUT.
+
+[source,http]
+----
+PUT /api/v3/shells/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXMvMTIzNA HTTP/1.1
+----
+
+Example 2: replace an existing submodel at a client-addressable route by PUT if the addressed submodel already exists.
+
+[source,http]
+----
+PUT /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU HTTP/1.1
+----
+
+Example 3: partially update a submodel by PATCH.
+
+[source,http]
+----
+PATCH /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU HTTP/1.1
+----
+
+Example 4: update the value-only representation of a submodel element.
+
+[source,http]
+----
+PATCH /api/v3/submodel/submodel-elements/Identification/ManufacturerName/$value HTTP/1.1
+----
+
+Example 5: update an AAS descriptor in the registry.
+
+[source,http]
+----
+PUT /api/v3/shell-descriptors/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXMvMTIzNA HTTP/1.1
+----
+
+Example 6: update a lookup entry by POST if the addressed entry already exists.
+
+[source,http]
+----
+POST /api/v3/lookup/shells/someencodedid HTTP/1.1
+----
+
+=== DELETE
+
+Example 1: delete a submodel from the repository.
+
+[source,http]
+----
+DELETE /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU HTTP/1.1
+----
+
+Example 2: delete a submodel element by path.
+
+[source,http]
+----
+DELETE /api/v3/submodel/submodel-elements/Identification/ManufacturerName HTTP/1.1
+----
+
+Example 3: delete a shell descriptor from the registry.
+
+[source,http]
+----
+DELETE /api/v3/shell-descriptors/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXMvMTIzNA HTTP/1.1
+----
+
+=== EXECUTE
+
+Example 1: synchronously invoke an Operation.
+
+[source,http]
+----
+POST /api/v3/submodel/submodel-elements/Reset/invoke HTTP/1.1
+----
+
+Example 2: asynchronously invoke an Operation.
+
+[source,http]
+----
+POST /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9tYWludGVuYW5jZQ/submodel-elements/Reset/invoke-async HTTP/1.1
+----
+
+Example 3: retrieve the status of an asynchronous invocation.
+
+[source,http]
+----
+GET /api/v3/submodel/submodel-elements/Reset/operation-status/4a2a7aaf-6f44-4f88-bba2-0b0d2d3e7a10 HTTP/1.1
+----
+
+=== VIEW
+
+VIEW is not bound to a dedicated HTTP method.
+In HTTP/REST APIs it is usually enforced on GET operations that only expose existence information, references, identifiers, or descriptor entries.
+
+Example 1: retrieve references instead of full resource content.
+
+[source,http]
+----
+GET /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU/$reference HTTP/1.1
+----
+
+Example 2: retrieve submodel references of an AAS.
+
+[source,http]
+----
+GET /api/v3/shells/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXMvMTIzNA/submodel-refs HTTP/1.1
+----
+
+Example 3: retrieve descriptor entries without accessing the hosted AAS content itself.
+
+[source,http]
+----
+GET /api/v3/shell-descriptors HTTP/1.1
+----
+
+== Notes for access rule authors
+
+* ROUTE literals should be defined against stable path families such as `/shells/*`, `/submodels/*`, `/shell-descriptors/*` or `/lookup/*` if authorization is intended for complete interfaces.
+* Exact ROUTE literals such as `/submodel/submodel-elements/Reset/invoke` are useful for single sensitive operations.
+* If a policy shall distinguish READ from VIEW, the route alone is often not sufficient. The route should then be combined with representation-specific endpoints such as `/$reference` or with additional object constraints and FILTER rules.

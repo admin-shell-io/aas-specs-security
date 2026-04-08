@@ -69,6 +69,8 @@ The Security Model is explained step by step in the following Chapter <<explanat
 
 Examples can be found in xref:annex/text-access-rule-examples.adoc[].
 
+Further informative examples for RIGHTS, ROUTEs and HTTP requests can be found in xref:annex/route-examples.adoc[].
+
 *The grammar has been tested with BNF playground (https://bnfplayground.pauliankline.com/*).
 BNF playground allows to check and test the grammar itself and if expressions are correct according to the grammar.*
 
@@ -151,6 +153,76 @@ In addition, VIEW allows to see the existence of an element as Id or idShort, bu
 
 ALL is an abbreviation to define all rights.
 
+===== Rights and operation verbs
+
+The RIGHTS values are technology-neutral permissions. For HTTP/REST APIs these permissions are typically enforced on interface operations and their mapped HTTP methods.
+The mapping in <<table-rights-to-verbs>> is intended to improve interoperability when ROUTE objects are used for authorization decisions.
+
+[[table-rights-to-verbs]]
+.Indicative mapping of RIGHTS to AAS operation verbs and HTTP methods
+[cols="1,2,2,4",options="header"]
+|===
+|Right
+|Operation verb
+|HTTP method
+|Meaning
+
+|CREATE
+|Post
+|POST
+|Permission to create a new resource at a collection or factory-style endpoint.
+
+|CREATE
+|Put
+|PUT
+|Permission to create a new resource at a client-addressable resource endpoint if the addressed resource does not yet exist.
+
+|READ
+|Get, GetAll
+|GET
+|Permission to read resource content.
+
+|UPDATE
+|Patch
+|PATCH
+|Permission to partially update an existing resource.
+
+|UPDATE
+|Put
+|PUT
+|Permission to replace an existing resource at a client-addressable resource endpoint.
+
+|DELETE
+|Delete
+|DELETE
+|Permission to delete an existing resource.
+
+|EXECUTE
+|Invoke
+|POST
+|Permission to invoke an operation.
+
+|VIEW
+|GetAll
+|GET
+|Permission to see that a resource exists, typically as identifiers, references, idShort values, or descriptor entries without access to the full resource value.
+
+|ALL
+|n/a
+|n/a
+|Abbreviation for all eligible rights.
+|===
+
+The mapping is not intended to redefine AAS Part 2 operations.
+It clarifies how the abstract RIGHT values are typically applied when an authorization decision is made for a concrete HTTP route.
+The same HTTP method can therefore be used for different rights depending on the targeted interface operation and the representation that is returned.
+For example, GET may correspond to READ for full content access or VIEW for reference-only or existence-only access.
+Search-style read operations may also use POST in specific interfaces.
+For endpoints with create-or-replace or upsert semantics, the required right depends on whether the addressed resource already exists.
+For example, `PUT /api/v3/submodels/{base64UrlEncodedSubmodelIdentifier}` requires CREATE if the addressed submodel does not yet exist and UPDATE if it already exists.
+The same principle applies to endpoint-specific POST operations such as `POST /api/v3/lookup/shells/{someencodedid}` if the endpoint creates the addressed resource when absent and updates it when present.
+
+
 ==== Attributes
 
 [source,bnf,linenums]
@@ -182,7 +254,21 @@ include::partial$bnf/objects.bnf[]
 
 Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submodel), Referables (e.g. SubmodelElements), Descriptors or Fragments of those (e.g. AssetId, SemanticId, SpecificAssetId).
 
-Routes may use * or end with a *, which means that all routes with a given prefix are valid.
+ROUTE defines the endpoint address of an interface operation.
+This allows access control to be defined for single interface operations, groups of interface operations, or complete interfaces.
+
+For AAS HTTP/REST APIs, a ROUTE literal shall use the URL path part only, i.e. the part of the endpoint address starting with "/".
+The scheme, authority, query part and fragment identifier are not part of ROUTE matching.
+The deployment-specific server base URL is therefore handled separately from the ROUTE literal.
+
+ROUTE matching uses the following rules:
+
+* A ROUTE literal starting with "/" and not ending with "*" matches one concrete path.
+* The literal "*" matches all routes.
+* A ROUTE literal ending with "*" matches all routes with the given prefix.
+
+Examples are "/shells", "/shells/*" and "*".
+For HTTP/REST APIs the examples in xref:annex/route-examples.adoc[] show how ROUTE literals can be combined with RIGHTS and concrete request examples from AAS Part 2.
 
 An Object Group defines a list of single objects and/or a list of names of other object groups.
 
