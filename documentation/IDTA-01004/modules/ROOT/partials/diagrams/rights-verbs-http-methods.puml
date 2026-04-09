@@ -54,10 +54,4 @@ V_GET --> H_GET
 V_INVOKE --> H_POST
 V_DELETE --> H_DELETE
 
-note bottom of V_GETALL
-Examples in AAS Part 2 also use GET
-for reference, metadata and path
-representations.
-end note
-
 @enduml

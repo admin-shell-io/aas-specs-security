@@ -220,8 +220,8 @@ The same HTTP method can therefore be used for different rights depending on the
 For example, GET may correspond to READ for full content access or VIEW for reference-only or existence-only access.
 Search-style read operations may also use POST in specific interfaces.
 For endpoints with create-or-replace or upsert semantics, the required right depends on whether the addressed resource already exists.
-For example, `PUT /api/v3/submodels/{base64UrlEncodedSubmodelIdentifier}` requires CREATE if the addressed submodel does not yet exist and UPDATE if it already exists.
-The same principle applies to endpoint-specific POST operations such as `POST /api/v3/lookup/shells/{someencodedid}` if the endpoint creates the addressed resource when absent and updates it when present.
+For example, `PUT /api/v3/submodels/{submodelIdentifier}` requires CREATE if the addressed submodel does not yet exist and UPDATE if it already exists.
+The same principle applies to endpoint-specific POST operations such as `POST /api/v3/lookup/shells/{aasIdentifier}` if the endpoint creates the addressed resource when absent and updates it when present.
 
 
 ==== Attributes
