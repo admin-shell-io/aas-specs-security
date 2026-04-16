@@ -14,8 +14,8 @@
     "REFERABLE" <ws> "$sme" <IdentifierInstanceOrAll> "." <idShortPath>
 
 <FragmentObject> ::=
-    "FRAGMENT" <ws> "$sme" <IdentifierInstanceOrAll> "." <idShortPath> ( <ws> <StringLiteral> )+
- 
+    "FRAGMENT" <ws> <FragmentLiteral> <ws>
+
 <DescriptorObject> ::=
     "DESCRIPTOR" <ws> ("$aasdesc" | "$smdesc") <IdentifierInstanceOrAll>
 
