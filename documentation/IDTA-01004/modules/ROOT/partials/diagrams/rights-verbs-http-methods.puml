@@ -1,0 +1,57 @@
+@startuml
+left to right direction
+
+rectangle "RIGHT" as RIGHTS {
+  together {
+    rectangle "UPDATE" as R_UPDATE
+    rectangle "CREATE" as R_CREATE
+    rectangle "READ" as R_READ
+    rectangle "VIEW" as R_VIEW
+    rectangle "EXECUTE" as R_EXECUTE
+    rectangle "DELETE" as R_DELETE
+  }
+}
+
+rectangle "Operation Verb" as VERBS {
+  together {
+    rectangle "Patch" as V_PATCH
+    rectangle "Put" as V_PUT
+    rectangle "Post" as V_POST
+    rectangle "GetAll" as V_GETALL
+    rectangle "Get" as V_GET
+    rectangle "Invoke" as V_INVOKE
+    rectangle "Delete" as V_DELETE
+  }
+}
+
+rectangle "HTTP REST Method" as HTTP {
+  together {
+    rectangle "PATCH" as H_PATCH
+    rectangle "PUT" as H_PUT
+    rectangle "POST" as H_POST
+    rectangle "GET" as H_GET
+    rectangle "DELETE" as H_DELETE
+  }
+}
+
+R_UPDATE --> V_PATCH
+R_UPDATE --> V_PUT
+R_CREATE --> V_PUT
+R_CREATE --> V_POST
+R_READ --> V_GETALL
+R_READ --> V_GET
+R_VIEW --> V_GETALL
+R_EXECUTE --> V_INVOKE
+R_DELETE --> V_DELETE
+
+V_PATCH --> H_PATCH
+V_PATCH --> H_PUT
+V_PUT --> H_PUT
+V_POST --> H_POST
+V_GETALL --> H_GET
+V_GETALL --> H_POST
+V_GET --> H_GET
+V_INVOKE --> H_POST
+V_DELETE --> H_DELETE
+
+@enduml

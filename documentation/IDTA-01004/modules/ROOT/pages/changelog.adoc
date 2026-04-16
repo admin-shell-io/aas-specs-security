@@ -23,6 +23,8 @@ Minor Changes:
 
 * update: Revised description text to replace 'may include signing' / 'will be' with 'is signed' / 'be signed' for clarity and consistency.
 * added: Access control examples for REFERENCE & along with rules for creating only specific models, defined using BNF and JSON.
+* added: Clarified ROUTE semantics for AAS HTTP/REST path matching and added informative ROUTE and request examples [#58](https://github.com/admin-shell-io/aas-specs-security/issues/58)
+* added: Expanded the explanation of RIGHTS with a mapping to operation verbs and HTTP methods, including an illustrative table and diagram [#56](https://github.com/admin-shell-io/aas-specs-security/issues/56)
 
 Bugfixes:
 
