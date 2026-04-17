@@ -33,6 +33,8 @@ SPDX-License-Identifier: CC-BY-4.0
 
 ** xref:./annex/route-examples.adoc[Examples of ROUTEs and HTTP requests]
 
+** xref:./annex/conformance-test-corpus.adoc[Conformance Test Corpus]
+
 
 * xref:changelog.adoc[Change Log]
 
