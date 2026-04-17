@@ -217,7 +217,7 @@
 <EndpointClause> ::= "interface" | "protocolinformation.href"
 
 <ReferenceClause> ::= ( "type" | "keys" ( "[" ( [0-9]* ) "]" ) ( ".type" | ".value" ) )
-<SemanticIdClause> ::= ( "semanticId" | "semanticId." <ReferenceClause> )
+<SemanticIdClause> ::= ( "semanticId" | "semanticId." <ReferenceClause> | "supplementalSemanticIds" ( "[" ( [0-9]* ) "]" )? ( "." <ReferenceClause> )? )
 <SpecificAssetIdsClause> ::=  ( "specificAssetIds" ( "[" ( [0-9]* ) "]" ) ( ".name" | ".value" | ".externalSubjectId" | ".externalSubjectId." <ReferenceClause> ) )
 
 
@@ -234,7 +234,7 @@
 <SmDescriptorClauseFragment> ::= ( <SemanticIdClauseFragment> | "idShort" | <EndpointClauseFragment> )
 <EndpointClauseFragment> ::= "endpoints" ( "[" ( [0-9]* ) "]" )
 
-<SemanticIdClauseFragment> ::= "semanticId" | "semanticId." <ReferenceClauseFragment>
+<SemanticIdClauseFragment> ::= "semanticId" | "semanticId." <ReferenceClauseFragment> | "supplementalSemanticIds" ( "[" ( [0-9]* ) "]" )? ( "." <ReferenceClauseFragment> )?
 <ReferenceClauseFragment> ::= "keys[" ( [0-9]* ) "]"
 
 

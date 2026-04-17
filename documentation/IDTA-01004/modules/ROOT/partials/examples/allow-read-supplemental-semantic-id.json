@@ -1,0 +1,34 @@
+{
+  "AllAccessPermissionRules": {
+    "rules": [
+      {
+        "ACL": {
+          "ATTRIBUTES": [
+            {
+              "GLOBAL": "ANONYMOUS"
+            }
+          ],
+          "RIGHTS": [
+            "READ"
+          ],
+          "ACCESS": "ALLOW"
+        },
+        "OBJECTS": [
+          {
+            "ROUTE": "*"
+          }
+        ],
+        "FORMULA": {
+          "$eq": [
+            {
+              "$field": "$sm#supplementalSemanticIds[].keys[0].value"
+            },
+            {
+              "$strVal": "https://example.com/ids/IEC61360"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
