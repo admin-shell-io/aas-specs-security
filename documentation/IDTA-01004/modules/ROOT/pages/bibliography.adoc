@@ -13,13 +13,13 @@ SPDX-License-Identifier: CC-BY-4.0
 
 [#bib1]
 [1] IDTA 01001 Specification of the Asset Administration Shell.
-Part 1: Metamodel, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online.
-Available: https://industrialdigitaltwin.io/aas-specifications/IDTA-01001/v3.1/index.html
+Part 1: Metamodel, Version 3.2. Industrial Digital Twin Association (IDTA). Online.
+Available: https://industrialdigitaltwin.org/en/content-hub/aasspecifications
 
 [#bib2]
 [2] IDTA 01002 Specification of the Asset Administration Shell.
-Part 2: Application Programming Interfaces, Version 3.1. Industrial Digital Twin Association (IDTA), January 2025. Online.
-Available: https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.1/index.html
+Part 2: Application Programming Interfaces, Version 3.2. Industrial Digital Twin Association (IDTA). Online.
+Available: https://industrialdigitaltwin.org/en/content-hub/aasspecifications
 
 [#bib3]
 [3] IDTA 01003-a Specification of the Asset Administration Shell.
