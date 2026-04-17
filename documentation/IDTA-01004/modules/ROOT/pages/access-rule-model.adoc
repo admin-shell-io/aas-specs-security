@@ -374,6 +374,58 @@ To allow the use of different types in operations, arrays are used for parameter
 
 _logicalExpressions_ and _match_ can be recursively nested.
 
+[[evaluation-semantics]]
+== Evaluation Semantics (normative)
+
+This clause defines how an access rule set MUST be evaluated. It fixes the behaviour for rule combination, error cases and filter combination so that implementations behave deterministically across products.
+
+=== Rule Combination
+
+* Access rules follow a *permit-overrides* combination: a request is allowed if at least one *applicable* rule evaluates to `ACCESS: ALLOW`. Rules that evaluate to `DISABLED` are ignored for enforcement.
+* Deny rules are out of scope for this version of the specification. An absent allow is treated as denial at the enforcement point.
+* A rule is *applicable* for a request if
+  * the request matches one of its `OBJECTS`,
+  * the requested right is contained in `RIGHTS`,
+  * all FieldIdentifiers in the rule resolve to applicable data for the target object (see "Error Handling" below), and
+  * the rule's `FORMULA` evaluates to `true`.
+* If no applicable ALLOW rule exists for a given request, access MUST be denied.
+
+=== Error Handling
+
+The following situations MUST NOT cause evaluation to fail; instead the referencing rule is classified as *inapplicable* and does not contribute to the ALLOW set:
+
+* a required CLAIM is not present in the access token;
+* a cast produces an invalid value (e.g. `dateTime("abc")`);
+* a Descriptor-based FieldIdentifier is used in a non-Registry profile (see xref:#descriptor-applicability[Descriptor FieldIdentifier Applicability]).
+
+The following situations MUST produce a *comparison result of `false`*, so the containing formula continues to evaluate normally:
+
+* a FieldIdentifier does not resolve to any value on the current target object (the field does not exist);
+* a list-valued FieldIdentifier is evaluated against a comparison operator whose right-hand side is a scalar and no element matches.
+
+The following situations MUST cause the access rule set to be *rejected at load time*; evaluation MUST NOT begin:
+
+* `USEACL`, `USEOBJECTS`, `USEFORMULA`, `USEATTRIBUTES` references a name that is not defined in the document;
+* the document does not validate against the normative JSON Schema.
+
+=== Filter Combination
+
+* If several applicable ALLOW rules define a `FILTER` on the same `FRAGMENT`, the individual `CONDITION`s are combined with logical OR: the union of matching fragments is exposed.
+* `FILTER`s on different `FRAGMENT`s are applied independently to the corresponding parts of the response.
+* A `FILTERLIST` with zero entries is equivalent to the absence of a filter for that rule.
+* Absence of any `FILTER`/`FILTERLIST` means the full matched object is exposed.
+
+=== Interaction with the Query Language
+
+When access rules restrict the result set of a query (see IDTA-01002 `query-language.adoc`), the following order MUST be observed:
+
+1. The query is parsed and validated.
+2. The candidate result set is produced from the repository / registry.
+3. Each candidate object is checked against the applicable access rules; non-allowed objects are removed.
+4. Any applicable `FILTER`/`FILTERLIST` reduces the surviving candidates to the allowed fragments.
+
+Implementations MAY optimise this pipeline as long as the observable outcome is equivalent.
+
 == Exchange of Access Rules
 
 Business Partners may be interested to exchange Access Rules.
