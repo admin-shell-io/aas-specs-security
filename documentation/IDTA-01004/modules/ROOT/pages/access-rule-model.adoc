@@ -50,6 +50,15 @@ Depending on the type of repository or registry such attributes are allowed or n
 The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
 In addition to the text below, the further details of the formula expressions are explained in  link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.1/query-language.html[IDTA-01002, Query Language] .
 
+[IMPORTANT]
+====
+*Single source of truth.* The BNF grammar and JSON Schema productions for *formula expressions* (logical expressions, comparisons, FieldIdentifiers, value literals, operands, type casts, and `$match` / `$and` / `$or` / `$not` operators) are *normatively defined in IDTA-01002 Part 2* (Query Language chapter and its JSON Schema).
+
+This specification (IDTA-01004) reuses these shared productions without modification. Access-Rule-specific productions (`ACL`, `OBJECTS`, `RIGHTS`, `ACCESS`, `ROUTE`, `FILTER`, `DEFATTRIBUTES`, `DEFACLS`, `DEFOBJECTS`, `DEFFORMULAS`, etc.) are defined on top of the shared formula grammar in the sections below.
+
+In case of an editorial conflict between the two specifications for a shared production, IDTA-01002 is authoritative. Bugfixes to shared productions in IDTA-01002 are automatically inherited by IDTA-01004.
+====
+
 .Access Rule Model
 [[image-access-rule-model]]
 [plantuml,mage-access-rule-model,svg]
