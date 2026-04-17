@@ -46,6 +46,11 @@ The symbol FieldIdentifier allows to use attributes of
 AAS, Submodel, SubmodelElement, ConceptDescription, AAS-Descriptor and Submodel-Descriptor. 
 Depending on the type of repository or registry such attributes are allowed or not.
 
+[NOTE]
+====
+The FieldIdentifier prefixes `$aas`, `$sm`, `$sme`, `$cd`, `$aasdesc` and `$smdesc` correspond directly to the Metamodel classes `AssetAdministrationShell`, `Submodel`, `SubmodelElement`, `ConceptDescription`, `AssetAdministrationShellDescriptor` and `SubmodelDescriptor`, and to the API resources `/shells`, `/submodels`, `.../submodel-elements/{idShortPath}`, `/concept-descriptions`, `/shell-descriptors` and `/submodel-descriptors` respectively. The normative cross-specification mapping is given in the "Terminology Across IDTA-01001, IDTA-01002 and IDTA-01004" section of IDTA-01001 (AAS Metamodel). All prefixes are lower-case; variants such as `$aasDesc` or `$SmDesc` MUST be rejected by conforming parsers.
+====
+
 
 The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
 In addition to the text below, the further details of the formula expressions are explained in  link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.1/query-language.html[IDTA-01002, Query Language] .
