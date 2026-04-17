@@ -20,6 +20,30 @@
       "type": "string",
       "pattern": "^16#[0-9A-F]+$"
     },
+    "IdentifiableIdentifier": {
+      "type": "string",
+      "description": "Identifier for an Identifiable (AAS, Submodel, ConceptDescription) as used in OBJECTS IDENTIFIABLE. Format: $aas(\"...\") | $sm(\"...\") | $cd(\"...\") | same with wildcard \"*\".",
+      "pattern": "^\\$(?:aas|sm|cd)\\((?:\"\\*\"|\"[^\"]*\")\\)$"
+    },
+    "ReferableIdentifier": {
+      "type": "string",
+      "description": "Identifier for a Referable (Submodel element) as used in OBJECTS REFERABLE. Format: $sme(\"...\").<idShortPath> | $sme(\"*\").<idShortPath>.",
+      "pattern": "^\\$sme\\((?:\"\\*\"|\"[^\"]*\")\\)\\.[^\\s]+$"
+    },
+    "FragmentIdentifier": {
+      "type": "string",
+      "description": "Fragment literal as used in OBJECTS FRAGMENT. Carries the fragment identifier as defined by <FragmentLiteral> in the BNF."
+    },
+    "DescriptorIdentifier": {
+      "type": "string",
+      "description": "Identifier for a Descriptor (AAS Descriptor, Submodel Descriptor) as used in OBJECTS DESCRIPTOR. Format: $aasdesc(\"...\") | $smdesc(\"...\") | same with wildcard \"*\".",
+      "pattern": "^\\$(?:aasdesc|smdesc)\\((?:\"\\*\"|\"[^\"]*\")\\)$"
+    },
+    "ReferenceIdentifier": {
+      "type": "string",
+      "description": "Identifier for a REFERENCE attribute as used by <ReferenceAttribute> in the BNF. Format: $aas(\"...\")#<FieldsAAS> | $sm(\"...\")#<FieldsSM> | $cd(\"...\")#<FieldsCD> | $sme(\"...\").<idShortPath>#<FieldsSME>.",
+      "pattern": "^\\$(?:aas|sm|cd)\\(\"[^\"]*\"\\)#[^\\s]+$|^\\$sme\\(\"[^\"]*\"\\)\\.[^#\\s]+#[^\\s]+$"
+    },
     "dateTimeLiteralPattern": {
       "type": "string",
       "format": "date-time"
