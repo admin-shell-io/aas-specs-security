@@ -159,6 +159,8 @@ The RIGHTS values are technology-neutral permissions. For HTTP/REST APIs these p
 The mapping in <<table-rights-to-verbs>> is intended to improve interoperability when ROUTE objects are used for authorization decisions.
 Concrete informative examples for RIGHTS, ROUTEs and HTTP requests are given in xref:annex/route-examples.adoc[].
 
+The normative operation-level mapping for the AAS HTTP/REST API (per-operation RIGHT and ROUTE) is defined in IDTA-01002 § "Operation to RIGHT Mapping" (annex). Implementations of this specification MUST follow that mapping when evaluating access rules against concrete HTTP operations.
+
 [[table-rights-to-verbs]]
 .Indicative mapping of RIGHTS to AAS operation verbs and HTTP methods
 [cols="1,2,2,4",options="header"]
