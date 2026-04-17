@@ -273,6 +273,15 @@ For HTTP/REST APIs the examples in xref:annex/route-examples.adoc[] show how ROU
 
 An Object Group defines a list of single objects and/or a list of names of other object groups.
 
+[[descriptor-applicability]]
+===== Descriptor FieldIdentifier Applicability
+
+Descriptor-based FieldIdentifiers (`$aasdesc`, `$smdesc`) address metadata that is only available when the deployment implements a Registry profile according to IDTA-01002 (for example `AssetAdministrationShellRegistryServiceSpecification/SSP-001` or `SubmodelRegistryServiceSpecification/SSP-001`).
+
+In deployments that do not expose Registry endpoints (pure Repository profiles such as `AssetAdministrationShellRepositoryServiceSpecification/SSP-002`), access rules that reference `$aasdesc` or `$smdesc` are *not applicable*: the referenced metadata does not exist in the deployment, so the rule neither grants nor denies access. Evaluation MUST NOT fail because of such a rule; the rule is skipped for that request and any other applicable rules continue to apply.
+
+Implementations SHOULD therefore scope Descriptor-based rules to deployments in which at least one Registry profile is supported. The concrete applicability per IDTA-01002 profile is listed in IDTA-01002 § "Service Specifications and Profiles", sub-section xref:IDTA-01002:http-rest-api/service-specifications-and-profiles.adoc#fieldidentifier-applicability[FieldIdentifier applicability per profile].
+
 ==== Formulas
 
 [source,bnf,linenums]
