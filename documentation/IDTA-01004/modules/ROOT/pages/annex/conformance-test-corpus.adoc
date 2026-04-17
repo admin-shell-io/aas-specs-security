@@ -1,0 +1,145 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+////
+
+[#conformance-test-corpus]
+= Conformance Test Corpus (informative)
+
+This annex defines an informative but structured set of *acceptance tests* for conforming implementations of the AAS Access Rule Model defined in this specification. The corpus is intentionally technology-neutral and worded as a set of test cases; an implementation is said to be conformant to a given area if it passes every required test case in that area.
+
+The corpus is aligned with the conformance test corpus in IDTA-01002 Part 2: Application Programming Interfaces xref:bibliography.adoc#bib2[[2\]]. Tests that exercise shared formula grammar productions (logical expressions, comparisons, FieldIdentifiers, value literals, type casts, `$match`/`$and`/`$or`/`$not`) are normative for both specifications; IDTA-01002 is the single source of truth for those productions.
+
+Each test case has the shape:
+
+----
+ID:          <spec-id>.<category>.<nnn>
+Purpose:     <one-line intent>
+Input:       <rule / request / evaluation context>
+Expected:    <decision, match set, or behavioural predicate>
+Requirement: MUST | SHOULD
+----
+
+[#ctc-rule-loading]
+== Rule loading and validation
+
+[cols="1,4,3",options="header"]
+|===
+| ID | Purpose | Expected
+
+| RULE.load.001
+| A syntactically valid AllAccessPermissionRules document MUST be accepted.
+| Document loaded, rules made available for evaluation.
+
+| RULE.load.002
+| A rule that fails JSON Schema validation MUST be rejected at load time (not at request time).
+| Load fails, evaluation rejects all requests with a configured default (deny).
+
+| RULE.load.003
+| A rule whose BNF form is valid but whose JSON form is not (or vice versa) MUST be rejected.
+| Load fails with a single consistent error pointer.
+
+| RULE.load.004
+| Two rules with contradicting ACLs on the same ROUTE and RIGHTS MUST both be loaded.
+| Both rules are kept; combination follows permit-overrides (see Evaluation Semantics).
+|===
+
+[#ctc-evaluation]
+== Rule evaluation
+
+[cols="1,4,3",options="header"]
+|===
+| ID | Purpose | Expected
+
+| EVAL.default.001
+| If no rule matches a request, the default decision MUST be `deny`.
+| Status `403` (or transport equivalent).
+
+| EVAL.combine.001
+| If any matching rule grants access, the decision MUST be `permit` (permit-overrides).
+| Status `200` (or transport equivalent).
+
+| EVAL.error.001
+| A rule that is inapplicable (e.g. references `$aasdesc` on a non-Registry) MUST be treated as "not applicable" (no match, no error).
+| Does not contribute to the decision.
+
+| EVAL.error.002
+| A runtime error in a FORMULA (e.g. cast error) MUST evaluate that FORMULA to `false`, not produce `500`.
+| Rule does not grant access; other rules still evaluated.
+
+| EVAL.filter.001
+| Two filters over the same fragment MUST combine as OR.
+| Either filter granting visibility is sufficient.
+
+| EVAL.filter.002
+| Filters over different fragments MUST combine independently.
+| Each fragment filtered by its own set of filters.
+|===
+
+[#ctc-rights-mapping]
+== RIGHTS / operation mapping
+
+[cols="1,4,3",options="header"]
+|===
+| ID | Purpose | Expected
+
+| RIGHT.map.001
+| A `GET` on a resource MUST require the RIGHT `READ` according to xref:annex/operation-to-right-mapping.adoc[] of IDTA-01002.
+| Only rules granting `READ` on the matching ROUTE allow the request.
+
+| RIGHT.map.002
+| A `POST /.../operations/{idShortPath}/invoke` MUST require the RIGHT `EXECUTE`.
+| Only rules granting `EXECUTE` allow the request.
+
+| RIGHT.map.003
+| A `PUT` on a client-addressable resource MUST require `CREATE` if the target does not exist, otherwise `UPDATE`.
+| Resolution happens at runtime, not at rule-load time.
+
+| RIGHT.map.004
+| Rules MAY list multiple RIGHTS in one ACL; they MUST combine as OR over the requested right.
+| A rule with `RIGHTS: READ, UPDATE` allows both operations.
+|===
+
+[#ctc-supplemental]
+== Supplemental semantic IDs
+
+[cols="1,4,3",options="header"]
+|===
+| ID | Purpose | Expected
+
+| SUPP.rule.001
+| A rule with `$sm#supplementalSemanticIds[].keys[0].value $eq "X"` MUST match any Submodel whose supplemental IDs contain value `"X"`.
+| Matching Submodels are in scope of the rule.
+
+| SUPP.rule.002
+| A rule with `$sme#supplementalSemanticIds[3].keys[0].value $eq "X"` MUST match only the 4th supplemental ID.
+| No match if the 4th entry differs.
+
+| SUPP.rule.003
+| The same syntax MUST be valid in both BNF and JSON Schema form.
+| Round-trip conversion preserves semantics.
+|===
+
+[#ctc-descriptor-applicability]
+== Descriptor applicability per profile
+
+[cols="1,4,3",options="header"]
+|===
+| ID | Purpose | Expected
+
+| DESC.reg.001
+| `$aasdesc#...` is applicable in Registry profiles only.
+| In a Registry deployment: rule evaluates normally.
+
+| DESC.rep.001
+| `$aasdesc#...` in a non-Registry (Repository) deployment MUST be treated as "not applicable".
+| Rule neither grants nor denies; other rules still evaluated.
+
+| DESC.mix.001
+| A rule with both `$sm#` and `$aasdesc#` FragmentFieldIdentifiers is partially applicable.
+| The Registry-only part is ignored in non-Registry deployments; the rest is evaluated.
+|===
