@@ -1,6 +1,6 @@
 ACCESSRULE:
   ATTRIBUTES:
-  CLAIM("companyName")
+    CLAIM("companyName")
   RIGHTS: READ
   ACCESS: ALLOW
   OBJECTS:

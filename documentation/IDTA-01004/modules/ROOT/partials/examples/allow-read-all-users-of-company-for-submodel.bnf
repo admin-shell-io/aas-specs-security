@@ -1,6 +1,6 @@
 ACCESSRULE:
   ATTRIBUTES:
-  CLAIM("email")
+    CLAIM("email")
   RIGHTS: READ
   ACCESS: ALLOW
   OBJECTS:

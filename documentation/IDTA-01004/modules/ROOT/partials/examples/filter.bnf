@@ -4,7 +4,7 @@ ACCESSRULE:
   RIGHTS: READ
   ACCESS: ALLOW
   OBJECTS:
-    DESCRIPTOR $aasDesc("*")
+    DESCRIPTOR $aasdesc("*")
   FORMULA:
     $and(
       CLAIM("BusinessPartnerNumber") $eq "BPNL00000000000A",
@@ -19,7 +19,7 @@ ACCESSRULE:
       )
     )
   FILTER:
-    FRAGMENT "$aasdesc#specificAssetIds[]"
+    FRAGMENT: $aasdesc#specificAssetIds[]
     CONDITION:
     $or(
       $match(
