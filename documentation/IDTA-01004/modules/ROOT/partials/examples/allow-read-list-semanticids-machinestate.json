@@ -19,9 +19,16 @@
           }
         ],
         "FORMULA": {
-          "REFERENCE": {
-            "$sme(\"SubmodelID-OperationalData\").machineState#value"
-          }
+          "$eq": [
+            {
+              "$attribute": {
+                "REFERENCE": "$sme(\"SubmodelID-OperationalData\").machineState#value"
+              }
+            },
+            {
+              "$strVal": "not-running"
+            }
+          ]
         }
       }
     ]
