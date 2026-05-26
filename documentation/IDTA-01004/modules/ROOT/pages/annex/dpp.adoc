@@ -1,0 +1,35 @@
+////
+Copyright (c) 2023 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+////
+
+[[dpp]]
+= Digital Product Passport (DPP)
+
+== Introduction
+ 
+To support the implementation of DPPs, 8 standards have been developed:
+ 
+* EN 18219:2026 – Digital product passport – Unique identifiers
+* EN 18220:2026 – Digital product passport – Data carriers
+* EN 18216:2026 – Digital product passport – Data exchange protocols
+* EN 18222:2026 – Digital Product Passport – Application Programming Interfaces (APIs) for the product passport lifecycle management and searchability
+* EN 18223:2026 – Digital Product Passport – System interoperability
+* EN 18221:2026 – Digital product passport – data storage, archiving, and data persistence
+* EN 18239:2026 – Digital Product Passport – access rights management, information system security, and business confidentiality 
+* EN 18246:2026 – Digital Product Passport – Data authentication, reliability and integrity
+ 
+This annex specifies how the requirements as specified in
+
+* EN 18239:2026 Digital product passportaccess rights management, information system security and business confidentifality
+* EN 18246:2026 Digital product passportData authentication, reliability and integrity
+
+are mapped or realized in the context of an Asset Administration Shell (AAS) system.
+
+The two standards above are expected to be released in September 2026. 
+Until then no final mapping and explanations can be given in public.
