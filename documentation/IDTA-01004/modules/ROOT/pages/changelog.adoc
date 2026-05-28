@@ -18,6 +18,7 @@ Major Changes:
 * changed: <ReferenceAttribute> with more detailed definition in BNF Grammar and JSON Schema
 * changed: <IdentifiableObject>, <ReferableObject>, <FragmentObject>, <DescriptorObject> with more detailed definition in BNF Grammar and JSON Schema
 * added: Query Filter and FragmentFieldIdentifiers (https://github.com/admin-shell-io/aas-specs-api/issues/517)
+* added: new section in the annex on access control management and data authentification for implementing the digital product passport (DPP)
 
 Minor Changes:
 
