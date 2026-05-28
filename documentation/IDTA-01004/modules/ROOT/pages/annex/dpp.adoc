@@ -26,7 +26,7 @@ To support the implementation of DPPs, 8 standards have been developed:
  
 This annex specifies how the requirements as specified in
 
-* EN 18239:2026 Digital product passportaccess rights management, information system security and business confidentifality
+* EN 18239:2026 Digital product passport - access rights management, information system security and business confidentifality
 * EN 18246:2026 Digital product passportData authentication, reliability and integrity
 
 are mapped or realized in the context of an Asset Administration Shell (AAS) system.
