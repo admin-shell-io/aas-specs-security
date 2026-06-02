@@ -13,21 +13,21 @@ SPDX-License-Identifier: CC-BY-4.0
 
 == Introduction
  
-To support the implementation of DPPs, 8 standards have been developed:
- 
+To support the implementation of digital product passports (DPPs), 8 standards have been developed in CEN CENELEC:
+
+* EN 18216:2026 – Digital product passport – Data exchange protocols
 * EN 18219:2026 – Digital product passport – Unique identifiers
 * EN 18220:2026 – Digital product passport – Data carriers
-* EN 18216:2026 – Digital product passport – Data exchange protocols
+* EN 18221:2026 – Digital product passport – Data storage, archiving, and data persistence
 * EN 18222:2026 – Digital Product Passport – Application Programming Interfaces (APIs) for the product passport lifecycle management and searchability
 * EN 18223:2026 – Digital Product Passport – System interoperability
-* EN 18221:2026 – Digital product passport – data storage, archiving, and data persistence
-* EN 18239:2026 – Digital Product Passport – access rights management, information system security, and business confidentiality 
+* EN 18239:2026 – Digital Product Passport – Access rights management, information system security, and business confidentiality 
 * EN 18246:2026 – Digital Product Passport – Data authentication, reliability and integrity
  
 This annex specifies how the requirements as specified in
 
-* EN 18239:2026 Digital product passport - access rights management, information system security and business confidentifality
-* EN 18246:2026 Digital product passportData authentication, reliability and integrity
+* EN 18239:2026 - Digital product passport - Access rights management, information system security and business confidentifality
+* EN 18246:2026 – Digital Product Passport – Data authentication, reliability and integrity
 
 are mapped or realized in the context of an Asset Administration Shell (AAS) system.
 
