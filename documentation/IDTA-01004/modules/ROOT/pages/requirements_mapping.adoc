@@ -124,96 +124,97 @@ It is possible to use public key certificates to meet authentication requirement
 |===
 |FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
 
-| 2.1
-|
-|
-|
-|
-|
+|2.1
+|Authorization enforcement
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.3.1>>, <<@todo 6.2>>
 
-| 2.2
-|
-|
-|
-|
-|
+|2.2
+|Wireless use control
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 are hardware agnostic
 
-| 2.3
-|
-|
-|
-|
-|
+|2.3
+|Use control for portable and mobile devices
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not consider deployment aspects
 
-| 2.4
-|
-|
-|
-|
-|
+|2.4
+|Mobile code
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not consider deployment aspects
 
-| 2.5
-|
-|
-|
-|
-|
+|2.5
+|Session lock
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS does not define (direct) human access to the AAS interface. This is left to the AAS user application.
 
-| 2.6
-|
-|
-|
-|
-|
+|2.6
+|Remote session termination
+|&#x25cf;
+|&#x25cf;
+|Y
+|Limited life-time of access tokens.
+<<@todo 6.2.3>>
 
-| 2.7
-|
-|
-|
-|
-|
+|2.7
+|Concurrent session control
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS does not impose any limits on the amount and concurrency of requests from the AAS user application. This is left to the implementation.
 
-| 2.8
-|
-|
-|
-|
-|
+|2.8
+|Auditable events
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.3.2.3>>
 
-| 2.9
-|
-|
-|
-|
-|
+|2.9
+|Audit storage capacity
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS does not define audit storage.
 
-| 2.10
-|
-|
-|
-|
-|
+|2.10
+|Response to audit processing failures
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS does not audit storage.
 
-| 2.11
-|
-|
-|
-|
-|
+|2.11
+|Timestamps
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.3.3>>
 
-| 2.12
-|
-|
-|
-|
-|
+|2.12
+|Non-repudiation
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.3.4>>, <<@todo 6.3>>
 
-| 2.13
+|2.13
+|Use of physical diagnostic and test interfaces
 |
-|
-|
-|
-|
+|&#x25cf;
+|N
+|AAS is hardware agnostic.
 
 |===
 
