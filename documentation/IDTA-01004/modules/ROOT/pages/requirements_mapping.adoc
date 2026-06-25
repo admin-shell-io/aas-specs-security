@@ -224,103 +224,111 @@ It is possible to use public key certificates to meet authentication requirement
 |===
 |FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
 
-| 3.1
-|
-|
-|
-|
-|
+|3.1
+|Communication integrity
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.3.1>>
 
-| 3.2
-|
-|
-|
-|
-|
+|3.2
+|Malicious code protection
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not consider deployment and implementation specific security aspects.
 
-| 3.3
-|
-|
-|
-|
-|
+|3.3
+|Security functionality verification
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not consider deployment and implementation specific security aspects.
 
-| 3.4
-|
-|
-|
-|
-|
+|3.4
+|Software and information integrity
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.4.1>>
 
-| 3.5
-|
-|
-|
-|
-|
+|3.5
+|Input validation
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.4.2>>
 
-| 3.6
-|
-|
-|
-|
-|
+|3.6
+|Deterministic output
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS degradation behaviour is use case and implementation specific.
 
-| 3.7
-|
-|
-|
-|
-|
+|3.7
+|Error handling
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.4.3>>
 
-| 3.8
-|
-|
-|
-|
-|
+|3.8
+|Session integrity
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.4.4>>
 
-| 3.9
-|
-|
-|
-|
-|
+|3.9
+|Protection of audit information
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS does not define audit storage.
 
-| 3.10
+|3.10
+|Support for updates
 |
-|
-|
-|
-|
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not consider operations aspects.
 
-| 3.11
+|3.11
+|Physical tamper resistance and detection
 |
-|
-|
-|
-|
+|&#x25cf;
+|P
+|Potential measures to protect integrity of data represented by the AAS include technologies for physical tamper resistance and detection.
 
-| 3.12
-|
-|
-|
-|
-|
+@todo IEC 63278-1,-2,-5 do not define hardware aspects including physical tamper resistance and detection. This is left to the implementation and operation based on the assessment of the associated risks.
 
-| 3.13
-|
-|
-|
-|
-|
+<<@todo 5.2.4.1>>
 
-| 3.14
+|3.12
+|Provisioning product supplier roots of trust
 |
+|&#x25cf;
+|P
+|Entity (product) in question is the asset managed by the AAS.
+
+<<@todo 5.2.4.5>>
+
+|3.13
+|Provisioning asset owner roots of trust
 |
+|&#x25cf;
+|Y
+|Entity (asset) in question is the AAS.
+
+<<@todo 5.2.4.6>>
+
+|3.14
+|Integrity of the boot process
 |
-|
-|
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not define operation platform specific aspects including integrity of the boot process. This is left to the implementation and operation.
 
 |===
 
@@ -330,26 +338,26 @@ It is possible to use public key certificates to meet authentication requirement
 |===
 |FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
 
-| 4.1
-|
-|
-|
-|
-|
+|4.1
+|Information confidentiality
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.5.1>>
 
-| 4.2
-|
-|
-|
-|
-|
+|4.2
+|Information persistence
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1, -2, -3, -5 do not consider information persistence aspects. This is left to the operation and maintenance.
 
-| 4.3
-|
-|
-|
-|
-|
+|4.3
+|Use of cryptography
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.5.2>>
 
 |===
 
@@ -360,28 +368,28 @@ It is possible to use public key certificates to meet authentication requirement
 |===
 |FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
 
-| 5.1
+|5.1
 |
 |
 |
 |
 |
 
-| 5.2
+|5.2
 |
 |
 |
 |
 |
 
-| 5.3
+|5.3
 |
 |
 |
 |
 |
 
-| 5.4
+|5.4
 |
 |
 |
@@ -396,14 +404,14 @@ It is possible to use public key certificates to meet authentication requirement
 |===
 |FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
 
-| 6.1
+|6.1
 |
 |
 |
 |
 |
 
-| 6.2
+|6.2
 |
 |
 |
@@ -418,56 +426,56 @@ It is possible to use public key certificates to meet authentication requirement
 |===
 |FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
 
-| 7.1
+|7.1
 |
 |
 |
 |
 |
 
-| 7.2
+|7.2
 |
 |
 |
 |
 |
 
-| 7.3
+|7.3
 |
 |
 |
 |
 |
 
-| 7.4
+|7.4
 |
 |
 |
 |
 |
 
-| 7.5
+|7.5
 |
 |
 |
 |
 |
 
-| 7.6
+|7.6
 |
 |
 |
 |
 |
 
-| 7.7
+|7.7
 |
 |
 |
 |
 |
 
-| 7.8
+|7.8
 |
 |
 |
