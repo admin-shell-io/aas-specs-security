@@ -1,0 +1,145 @@
+////
+    * @todo Fix cross references
+////
+
+= Assessment of IEC 62443 requirements for AAS structure
+
+Table <<table_assessment_fr1>> ,<<table_assessment_fr2>>, <<table_assessment_fr3>>, <<table_assessment_fr4>>, <<table_assessment_fr5>>, <<table_assessment_fr6>> and <<table_assessment_fr7>> provide an assessment regarding the relevance of the foundation requirements defined by the IEC 62443 series towards the structure and interface of the AAS as defined in IEC 63278-1,-2,-5. Since AAS shares aspects of a system and a component both IEC 62443-3-3 and IEC 62443-4-2 have been considered.
+
+According to the analysis not all foundational requirements given in IEC 62443 are applicable on the level of @todo IEC 63278-1,-2,-5. “Y” means the requirement applies and is addressed within this document, “N” means the requirement does not apply. “P” means that the requirement is partially addressed by this document, details are either defined by other applicable standards or left to the implementation.
+
+The full set of IEC 62443 requirements needs to be reconsidered for additional system components (e.g., AAS user application, infrastructure) and for subsequent realization steps (detailed design, implementation, system integration, operation).
+
+.Assessment of IEC 62443 FR1 Authentication Control requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr1]]
+|===
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+
+|1.1
+|Human user, process and device identification and authentication
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.2.1>>
+
+|1.2
+|Software process and device identification and authentication
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.2.2>>
+
+|1.3
+|Account management
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.2.3>>
+
+|1.4
+|Identifier management
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.2.4>>
+
+|1.5
+|Authenticator management
+|&#x25cf;
+|&#x25cf;
+|P
+|AAS authorization solely relies on short-term authentication tokens (@todo 6.2.3). Measures for management and protection of access tokens are left to the implementation.
+
+|1.6
+|Wireless access management
+|&#x25cf;
+|&#x25cf;
+|@todo IEC 63278-1,-2,-5 do not make any assumption on network physical infrastructure. This is left to the implementation.
+|
+
+|1.7
+|Strength of password-based authentication
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS interface does not define password-based authentication. 
+
+|1.8
+|Public key infrastructure certificates
+|&#x25cf;
+|&#x25cf;
+|P
+|<<@todo 5.2.2.5>>
+It is possible to use public key certificates to meet authentication requirements for AAS regarding, e.g., acquisition of an access tokens (@todo 6.2.3), for TLS channel protection (@todo 5.2.2.1, @todo 5.2.2.2, @todo 5.2.4.1, @todo 5.2.5.1).
+
+|1.9
+|Strength of public key authentication
+|&#x25cf;
+|&#x25cf;
+|P
+|<<@todo 5.2.5.2>>
+
+|1.10
+|Authenticator feedback
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.5.2>>
+
+|1.11
+|Unsuccessful login attempts
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS interface does not provide lock-out for users. This is left to the authentication service used to acquire the access token or the AAS user application.
+
+|===
+
+.Assessment of IEC 62443 FR2 Use Control requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr2]]
+|===
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+
+|===
+
+.Assessment of IEC 62443 FR3 System Integrity requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr3]]
+|===
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+
+|===
+
+.Assessment of IEC 62443 FR4 Data confidentiality requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr4]]
+|===
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+
+|===
+
+.Assessment of IEC 62443 FR5 Restricted data flow requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr5]]
+|===
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+
+|===
+
+.Assessment of IEC 62443 FR6 Timely response to events requirements for AAS 
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr6]]
+|===
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+
+|===
+
+.Assessment of IEC 62443 FR7 Resource Availability requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr7]]
+|===
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+
+|===
