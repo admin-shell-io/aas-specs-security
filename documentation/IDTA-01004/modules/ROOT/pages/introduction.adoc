@@ -43,47 +43,54 @@ Further attributes as DATETIME or machine state can also be included in the auth
 
 Access rules can be defined for routes in the AAS API xref:bibliography.adoc#bib2[[2\]] (part 2), for Identifiables and Referables by reference or semanticId, or for certain assets.
 
-== Protection Goals
+== Security ojbectives
 
-=== Confidentiality protection
+=== Overview
 
-*Data leakage protection:* Access to information considered sensible by an AAS responsible shall be controlled by well-defined rules.
-Only authorized parties shall be able to access sensitive information managed by the AAS.
-This applies to both,
+Information security has traditionally focused on achieving three objectives, confidentiality, integrity, and availability, which are often abbreviated by the acronym CIA. IEC TS 62443-1-1:2009 observes that these priorities are sometimes completely inverted, e.g., availability, integrity, confidentiality (AIC) in case of some industrial automation scenarios. In AAS context, AAS is used in a variety of different use cases. While some domains suggest a specific ordering or priority of security objectives, the order of the following subsections on integrity, confidentiality, and availability is deliberate. The AAS responsible should consider the three objectives without predefining their priority and use a risk-based approach to determine and balance the priority of the individual security objectives for their intended use cases and applications.
 
-* actual values (Properties) as well as the
-* structure and meta-data represented by the AAS (topology described by Submodels, SubmodelElements, SubmodelElementCollections, …)
+=== Integrity
 
-=== Integrity protection
+*Integrity of AAS interface behaviour:* AAS shall ensure the logical correctness and reliability of data represented by the AAS as well as structure and occurrence of the data represented by the AAS. AAS shall ensure that data is provided in a consistent and reproducible way. The AAS interface shall ensure the authenticity, reliability, and security of API interactions, preventing unauthorized access and abuse. Execution of operations and access to data shall behave in a predictable manner.
 
-*Consistent data exposure:* AAS shall ensure that data is exposed in a consistent way.
-Data exposure shall only depend on well-defined attributes.
-Attributes to be considered are, subject attributes (who is requesting the data), which action is to be performed (e.g., read, write, execute), object attributes (which data is accessed), and environmental attributes (contextual information like time, system state). <<ABAC>> is explained below.
+====
+Note: The amount of data represented by the AAS being visible and the AAS services being available are subject to access control (5.2.3.1, 6.2). That means, the user experience depends on the privilege level of the AAS user application user. For example, it is possible that specific Submodels are only visible for privileged repair personnel.  Refer to IEC 63278-4 4.7.5 for additional explanation. Using ABAC, the amount of information can also depend on additional criteria, like the operation status of a manufacturing system.
+====
 
-*Integrity and accountability of data:* AAS users expect the data provided by the AAS to be correct and reliable.
-AAS shall consider the following:
+*Integrity and accountability of data:* The AAS user application user expects the data of the AAS provided via the AAS interface to be correct and reliable. Protection of integrity and accountability of AAS data shall consider the following:
 
-* Protection against the entry of data by unauthorized parties.
-Entry/modification of data shall only be possible for authorized parties.
-* AAS should allow to detect unintentional change of data and allow to trace the originator of data.
-* Protection against manipulation of stored data.
-AAS should allow to protect asset data against unauthorized manipulation including the attribution of origin/authorship.
-This is especially important in case the AAS is operated by a 3^rd^ party.
-* Protection against the manipulation of the AAS structure.
-It is possible that moving Properties or SubmodelElements between different SubmodelElementCollections results in incorrect interpretation of the provided data.
-* Protection against the manipulation of AAS management data.
-Management data especially includes the data relevant for the control of data exposure (e.g., access control).
+* Protection against the entry of data by an unauthorized AAS user application user. Entry/modification of data shall only be possible for an authorized user.
+* It should be possible to detect unintentional change of data represented by the AAS and allow to trace the originator of data.
+* Protection against manipulation of data represented by the AAS. Data represented by the AAS should be protected against unauthorized manipulation including the manipulation of origin/authorship. This is especially important if data represented by the AAS is handled (e.g., storage, retrieval, aggregation) by 3rd parties who are not the original source of that data.
+* Protection against the manipulation of the AAS structure. It is possible that moving Properties or SubmodelElements between different SubmodelElementCollections results in incorrect interpretation of the provided data.
+* Protection against the manipulation of AAS management information and auxiliary information used by systems realizing an AAS. Auxiliary information includes all information relevant for the correctness of data represented by the AAS and the correct functionality of the AAS interface. This especially includes the information relevant for AAS access control.
 
-*Integrity of relation between data and asset:* AAS shall protect against pretense of incorrect relations between an asset and its related data stored in the AAS.
-It is important to know that AAS data actually belongs to the asset as identified by the asset identifier recorded in the AAS.
+*Integrity of relation between data and asset:* The relation between an asset and the data stored in the AAS shall be protected. It is important to know that AAS data belongs to the asset as identified by the asset identifier recorded in the AAS management information.
 
-*Integrity of relation between services and asset:* AAS shall protect against pretense of incorrect relations between an asset and services provided by the AAS.
-It is essential that services announced by the AAS affect the intended asset and that the behavior of the service is described correctly.
+*Integrity of relation between services and asset:* There shall be no incorrect relations between an asset and asset related services provided by the AAS. It is essential that services referenced by AAS Submodels affect the intended asset and that the behaviour of the service is described correctly.
 
-=== Protecting the Availability of Data
+=== Confidentiality
 
-*Availability of asset data:* AAS shall protect against malicious hiding of current data.
-It shall be possible to determine whether data is sufficiently recent (e.g. lost updates) or data has been intentionally removed (e.g. malicious rollbacks).
+*Data exposure and data leakage protection:* AAS shall provide assurance that data represented by the AAS is not disclosed to unauthorized entities. Access to information considered sensitive by the AAS responsible shall be controllable by well-defined rules determining the visibility of data represented by the AAS. Access to  sensitive information represented by the AAS shall only be granted after authentication of the requestor (@todo 5.2.2.1, @todo 5.2.2.2). This applies to both,
+
+* actual values,
+
+as well as the
+
+* structure and meta-data represented by the AAS (topology described Submodels, SubmodelElements, SubmodelElementCollections, …).
+
+====
+@todo Note: Refer to IEC 63278-4 4.7 for additional explanation. 
+====
+
+=== Availability
+
+*Availability of asset data:* The AAS interface shall be able to process requests in a reasonable time interval. The AAS responsible shall define the quality of service provided. 
+Data represented by the AAS returned via the AAS interface shall be current. It shall not be possible to maliciously hide data stored in an AAS. It shall be possible to determine whether data is sufficiently recent (lost updates) or data has been intentionally removed (malicious rollbacks).
+
+====
+NOTE  This requirement does not affect the situation where data represented by the AAS is intentionally configured to be visible or invisible for AAS user application users depending on their privilege level (@todo 5.2.3.1, @todo 6.2).
+====
 
 == IEC 63278
 
