@@ -1,0 +1,106 @@
+= AAS Security requirements
+
+== General
+
+AAS security describes a holistic approach to address security concerns related to AAS. The requirements for AAS security have been derived from the foundational requirements given for systems and components in IEC 62443-3-3 and IEC 62443-4-2 respectively. The requirements mainly address the protection of the structure and data represented by the AAS (@todo IEC 63278-2) and made available to the AAS user application via the AAS interface (@todo IEC 63278-5). This document also describes the role of the AAS responsible for security governance. The selection of requirements from IEC 62443 applicable for AAS security follows the analysis in annex @todo A.1.
+
+== Security requirements concerning the AAS structure and interface
+
+=== Overview
+
+Following subclauses are based on the seven foundational requirements defined in the IEC 62443 series.
+
+* FR1: Identification and authentication control.
+* FR2: Use control.
+* FR3: System integrity.
+* FR4: Data confidentiality.
+* FR5: Restricted data flow.
+* FR6: Timely response to events.
+* FR7: Resource availability.
+
+=== Requirements regarding Authentication Control (FR1)
+
+==== Identification and authentication of AAS user application users
+
+Before granting access to protected data represented by the AAS or restricted services, the AAS interface shall ensure the identification and authentication of the AAS user application user.
+Authentication of the AAS user application user shall be based on the authentication of information provided by the AAS user application on behalf of a user. The subject attributes conveyed to authenticate the AAS user application user shall uniquely determine the subject credentials used for subject authentication. The identity vetting process used to issue subject credentials should be sufficient to hold the identified AAS user application user accountable (@todo see 4.2, @todo 5.2.2.5).
+If the AAS user application user is a NPE the AAS user application may be considered as the user. This especially accounts for AAS user applications with unattended operation. If there is no distinction between AAS user application user and AAS user application the identification and authentication of the AAS user application user may be replaced by the identification and authentication of the AAS user application (@todo 5.2.2.2). 
+Additional information provided by the AAS user application can be used to provide extended information on the usage context. All information provided by the AAS user application can be used for authorization decisions.
+Subclause @todo 6.2.3 describes an approach to provide information for authorization via ABAC attributes in an authenticated way.
+
+====
+Note: Derived from IEC 62443-3-3 SR 1.1, IEC 62443-4-2 CR 1.1.
+====
+
+==== Identification and authentication of AAS user applications and AAS interface
+
+Identification and authentication of AAS user applications and AAS interface provides a basis for integrity protection (@todo 4.2, @todo 5.2.4.1) and confidentiality protection (@todo 4.3, @todo 5.2.5.1) for data represented by the AAS exchanged via the AAS interface.
+
+* Before granting access to protected data represented by the AAS or restricted services, the AAS interface shall ensure the identification and authentication of the AAS user application. Authentication of the AAS user application shall include the authentication of ABAC attributes provided by the AAS user application. The content of the ABAC attributes can affect the behaviour of the AAS interface. All ABAC attributes provided by the AAS user application can be used for authorization decisions.
+* If requested by the AAS user application the AAS interface should be able to prove its identity towards the AAS user application.
+
+Identification and authentication of the AAS user application and the AAS interface can be achieved by different means, depending on the underlying communication technology and required security level (@todo 5.2.2.5).
+
+====
+Note: In case of TCP/IP based communication (mutual) TLS can be used to provide secure identification between the communication partners.
+====
+
+If an AAS user application is under the complete control of the AAS user application user, the identification and authentication of the AAS user application may be replaced by the identification and authentication of the AAS user application user (@todo 5.2.2.1). This especially accounts if a commodity application (e.g., web browser) which functions as AAS user application.
+
+====
+Note: Derived from IEC 62443-3-3 SR 1.2, IEC 62443-4-2 CR 1.2. 
+====
+
+==== Account management
+
+The AAS interface shall be able to use accounts for AAS user applications and AAS user application users from an existing service or provide a built-in account database.
+
+If a built-in account database AAS implementation shall provide means to properly protect account information and enforce authorization for the modification of account information.
+If a detached service is used to authenticate the user, the AAS responsible shall ensure that the account information is aligned between the AAS and the detached service (e.g., user roles assigned by a dedicated service need to match the roles evaluated by the AAS interface).
+Account management may be made accessible via the AAS interface.
+
+====
+Note: Derived from IEC 62443-3-3 SR 1.3, IEC 62443-4-2 CR 1.3.
+====
+
+==== Identifier management
+
+All entities within the AAS or interacting with the AAS shall be well defined and have unambiguous identifiers. The definition of an identifier includes its syntax/format and namespace management. The AAS responsible shall define a policy for identifiers used for:
+
+* AAS instances and AAS interfaces
+* Semantic identifiers and concept repositories
+* Assets
+* AAS objects (6.2.4.5, Table 10)
+* AAS user applications
+* AAS user application users
+
+====
+Note: IEC 61406-1:2022 is commonly applied for the identification of physical assets.
+====
+
+====
+Note: Derived from IEC 62443-3-3 SR 1.4, IEC 62443-4-2 CR 1.4.
+====
+
+==== Public key infrastructure
+
+Authentication of AAS user applications and AAS user application users shall support and facilitate the use of secure identities for authentication (5.2.2.1, 5.2.2.2) and provide the capability to integrate into a system used to manage these secure identities across security domains of the different stakeholders interacting along a value chain.
+
+Examples for secure identity infrastructures are:
+
+* PKI X.509 identities [ITU-T Recommendation X.509 (2005), ISO/IEC 9594-8:2005].
+* Decentralized Identifiers (DID) and Verifiable Credentials (VC) [Decentralized Identifiers (DIDs) v1.0].
+
+====
+Derived from IEC 62443-3-3 SR 1.8, IEC 62443-4-2 CR 1.8.
+====
+
+==== Authenticator feedback
+
+In case a request sent from the AAS user application to the AAS interface cannot be processed, AAS interface shall not disclose any information that would allow conclusions to be drawn about the content or structure of the AAS nor conclusions on why a specific request was rejected.
+
+Additional information to support trouble shooting or debugging may only be made available after additional authorization for this function.
+
+====
+Note: IEC 62443-4-2 CR 1.10.
+====
