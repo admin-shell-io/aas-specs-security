@@ -129,7 +129,7 @@ Note: Derived from IEC 62443-3-3 SR 2.1, IEC 62443-4-2 CR 2.1.
 The AAS interface shall create audit events. As a minimum the events listed in Table <<table_security_events>> shall be kept in an AAS interface audit trail.
 
 .Security Events
-[cols=3,5]
+[cols="1,1,1"]
 [[table_security_events]]
 |===
 | |Event|Description
@@ -162,7 +162,7 @@ If accountability is a concern, the events listed in Table <<table_accountablili
 
 .Accountability Events
 [[table_accountablility_events]]
-[cols=3,4]
+[cols="1,1,1"]
 |===
 | |Event|Description
 
