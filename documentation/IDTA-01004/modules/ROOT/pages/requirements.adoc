@@ -305,7 +305,7 @@ The definition of AAS structures should consider separation of content based on 
 
 Restricted data flow is an important concept of IEC 62443.
 
-Structuring of AAS information is described in IEC 63278-2. AAS, Submodels, and SubmodelElements should be structured in a way that reflects different security levels applying to individual information offered by the respective substructure, e.g., by confining sensitive information into separate Submodels or SubmodelElements.
+Structuring of AAS information is described in @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]]. AAS, Submodels, and SubmodelElements should be structured in a way that reflects different security levels applying to individual information offered by the respective substructure, e.g., by confining sensitive information into separate Submodels or SubmodelElements.
 
 Security attributes such as access control rules (@todo 6.2.4) shall be assignable at the level of the entire AAS, individual Submodels, and SubmodelElements.
 
@@ -341,7 +341,7 @@ In order to provide the capability to operate in a degraded state in case of a d
 The AAS can provide information about the actuality (e.g., last update received) of the information to allow AAS user applications.
 
 ====
-Note: Versioning of AAS information is described in IEC 63278-2. Versioning information can be used by the AAS user application to decide whether the data is still reliable and to detect data inconsistencies which may have occurred due to an attack (e.g., lost updates).
+Note: Versioning of AAS information is described in @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]]. Versioning information can be used by the AAS user application to decide whether the data is still reliable and to detect data inconsistencies which may have occurred due to an attack (e.g., lost updates).
 ====
 
 ====
@@ -357,7 +357,7 @@ Example: One example for realization is to provide appropriate timestamp or vers
 ====
 
 ====
-Note: Versioning of AAS information is described in IEC 63278-2.
+Note: Versioning of AAS information is described in @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]].
 ====
 
 ====
