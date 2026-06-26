@@ -369,32 +369,32 @@ It is possible to use public key certificates to meet authentication requirement
 |FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
 
 |5.1
-|
-|
-|
-|
-|
+|Network segmentation
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not consider deployment aspects.
 
 |5.2
-|
-|
-|
-|
-|
+|Zone boundary protection
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not define network deployment and topology aspects.
 
 |5.3
-|
-|
-|
-|
-|
+|General purpose person-to-person communication restrictions
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not consider person-to-person communication.
 
 |5.4
-|
-|
-|
-|
-|
+|Application partitioning
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.6.1>>
 
 |===
 
@@ -405,18 +405,18 @@ It is possible to use public key certificates to meet authentication requirement
 |FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
 
 |6.1
-|
-|
-|
-|
-|
+|Audit log accessibility
+|&#x25cf;
+|&#x25cf;
+|P
+|<<@todo 5.2.7.1>>
 
 |6.2
-|
-|
-|
-|
-|
+|Continuous monitoring
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.7.2>>
 
 |===
 
@@ -427,59 +427,59 @@ It is possible to use public key certificates to meet authentication requirement
 |FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
 
 |7.1
-|
-|
-|
-|
-|
+|Denial of service protection
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.8.1>>
 
 |7.2
-|
-|
-|
-|
-|
+|Resource management
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not define resource deployment aspects.
 
 |7.3
-|
-|
-|
-|
-|
+|Control system backup
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5, do not define resource deployment and operations aspects.
 
 |7.4
-|
-|
-|
-|
-|
+|Control system recovery and reconstitution
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.8.2>>
 
 |7.5
-|
-|
-|
-|
-|
+|Emergency power
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not define network deployment aspects.
 
 |7.6
-|
-|
-|
-|
-|
+|Network and security configuration settings
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not define network deployment aspects.
 
 |7.7
-|
-|
-|
-|
-|
+|Least functionality
+|&#x25cf;
+|&#x25cf;
+|Y
+|<<@todo 5.2.8.3>>
 
 |7.8
-|
-|
-|
-|
-|
+|Control system component inventory
+|&#x25cf;
+|&#x25cf;
+|N
+|@todo IEC 63278-1,-2,-5 do not define deployment aspects.
 
 |===
