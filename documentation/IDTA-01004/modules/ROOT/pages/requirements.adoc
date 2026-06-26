@@ -98,8 +98,8 @@ Authentication of AAS user applications and AAS user application users shall sup
 
 Examples for secure identity infrastructures are:
 
-* PKI X.509 identities [ITU-T Recommendation X.509 (2005), ISO/IEC 9594-8:2005].
-* Decentralized Identifiers (DID) and Verifiable Credentials (VC) [Decentralized Identifiers (DIDs) v1.0].
+* PKI X.509 identities (ITU-T Recommendation X.509 (2005) xref:bibliography.adoc#bib1[[10\]]).
+* Decentralized Identifiers (DID) and Verifiable Credentials (VC) (Decentralized Identifiers (DIDs) v1.0 xref:bibliography.adoc#bib1[[11\]]).
 
 ====
 Derived from IEC 62443-3-3 SR 1.8, IEC 62443-4-2 CR 1.8.

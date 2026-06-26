@@ -55,3 +55,10 @@ Available: http://dx.doi.org/10.6028/NIST.SP.800-162
 [#bib9]
 [9] “eXtensible Access Control Markup Language (XACML)”, OASIS Standard, Version 3.0, 22. Jan. 2013, [Online].
 Available: http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.pdf
+
+[#10]
+[10] ITU-T Recommendation X.509 (2005), ISO/IEC 9594-8:2005, Information technology - Open Systems Interconnection - The Directory: Public-key and attribute certificate frameworks.
+
+[#11]
+[11] Decentralized Identifiers (DIDs) v1.0, Core architecture, data model, and representations; https://www.w3.org/TR/2022/REC-did-core-20220719/; W3C; July 19, 2022
+
