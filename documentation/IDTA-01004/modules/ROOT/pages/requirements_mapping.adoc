@@ -14,7 +14,7 @@ The full set of IEC 62443 requirements needs to be reconsidered for additional s
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr1]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |1.1
 |Human user, process and device identification and authentication
@@ -56,7 +56,7 @@ The full set of IEC 62443 requirements needs to be reconsidered for additional s
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not make any assumption on network physical infrastructure. This is left to the implementation.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not make any assumption on network physical infrastructure. This is left to the implementation.
 
 
 |1.7
@@ -107,7 +107,7 @@ It is possible to use public key certificates to meet authentication requirement
 |&#x25cf;
 |&#x25cf;
 |N
-| @todo IEC 63278-1, -2, -5 do not make any assumption on network physical infrastructure. This is left to the implementation.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not make any assumption on network physical infrastructure. This is left to the implementation.
 
 |1.14
 |Strength of symmetric key authentication
@@ -122,7 +122,7 @@ It is possible to use public key certificates to meet authentication requirement
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr2]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |2.1
 |Authorization enforcement
@@ -136,21 +136,21 @@ It is possible to use public key certificates to meet authentication requirement
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 are hardware agnostic
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] are hardware agnostic
 
 |2.3
 |Use control for portable and mobile devices
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not consider deployment aspects
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not consider deployment aspects
 
 |2.4
 |Mobile code
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not consider deployment aspects
+|@todo @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not consider deployment aspects
 
 |2.5
 |Session lock
@@ -222,7 +222,7 @@ It is possible to use public key certificates to meet authentication requirement
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr3]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |3.1
 |Communication integrity
@@ -236,14 +236,14 @@ It is possible to use public key certificates to meet authentication requirement
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not consider deployment and implementation specific security aspects.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not consider deployment and implementation specific security aspects.
 
 |3.3
 |Security functionality verification
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not consider deployment and implementation specific security aspects.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not consider deployment and implementation specific security aspects.
 
 |3.4
 |Software and information integrity
@@ -292,7 +292,7 @@ It is possible to use public key certificates to meet authentication requirement
 |
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not consider operations aspects.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not consider operations aspects.
 
 |3.11
 |Physical tamper resistance and detection
@@ -301,7 +301,7 @@ It is possible to use public key certificates to meet authentication requirement
 |P
 |Potential measures to protect integrity of data represented by the AAS include technologies for physical tamper resistance and detection.
 
-@todo IEC 63278-1,-2,-5 do not define hardware aspects including physical tamper resistance and detection. This is left to the implementation and operation based on the assessment of the associated risks.
+@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not define hardware aspects including physical tamper resistance and detection. This is left to the implementation and operation based on the assessment of the associated risks.
 
 <<@todo 5.2.4.1>>
 
@@ -328,7 +328,7 @@ It is possible to use public key certificates to meet authentication requirement
 |
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not define operation platform specific aspects including integrity of the boot process. This is left to the implementation and operation.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not define operation platform specific aspects including integrity of the boot process. This is left to the implementation and operation.
 
 |===
 
@@ -336,7 +336,7 @@ It is possible to use public key certificates to meet authentication requirement
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr4]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |4.1
 |Information confidentiality
@@ -350,7 +350,7 @@ It is possible to use public key certificates to meet authentication requirement
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1, -2, -3, -5 do not consider information persistence aspects. This is left to the operation and maintenance.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not consider information persistence aspects. This is left to the operation and maintenance.
 
 |4.3
 |Use of cryptography
@@ -366,28 +366,28 @@ It is possible to use public key certificates to meet authentication requirement
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr5]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |5.1
 |Network segmentation
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not consider deployment aspects.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not consider deployment aspects.
 
 |5.2
 |Zone boundary protection
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not define network deployment and topology aspects.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not define network deployment and topology aspects.
 
 |5.3
 |General purpose person-to-person communication restrictions
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not consider person-to-person communication.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not consider person-to-person communication.
 
 |5.4
 |Application partitioning
@@ -402,7 +402,7 @@ It is possible to use public key certificates to meet authentication requirement
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr6]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |6.1
 |Audit log accessibility
@@ -424,7 +424,7 @@ It is possible to use public key certificates to meet authentication requirement
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr7]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IEC 63278-1,-2,-5|@todo IEC 63278-3 clause or comment
+|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |7.1
 |Denial of service protection
@@ -438,14 +438,14 @@ It is possible to use public key certificates to meet authentication requirement
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not define resource deployment aspects.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not define resource deployment aspects.
 
 |7.3
 |Control system backup
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5, do not define resource deployment and operations aspects.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not define resource deployment and operations aspects.
 
 |7.4
 |Control system recovery and reconstitution
@@ -459,14 +459,14 @@ It is possible to use public key certificates to meet authentication requirement
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not define network deployment aspects.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not define network deployment aspects.
 
 |7.6
 |Network and security configuration settings
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not define network deployment aspects.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not define network deployment aspects.
 
 |7.7
 |Least functionality
@@ -480,6 +480,6 @@ It is possible to use public key certificates to meet authentication requirement
 |&#x25cf;
 |&#x25cf;
 |N
-|@todo IEC 63278-1,-2,-5 do not define deployment aspects.
+|@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]], IDTA 01002 xref:bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:bibliography.adoc#bib3[[3\]] do not define deployment aspects.
 
 |===
