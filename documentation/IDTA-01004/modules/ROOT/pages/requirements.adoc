@@ -31,8 +31,11 @@ Following subclauses are based on the seven foundational requirements defined in
 
 Before granting access to protected data represented by the AAS or restricted services, the AAS interface shall ensure the identification and authentication of the AAS user application user.
 Authentication of the AAS user application user shall be based on the authentication of information provided by the AAS user application on behalf of a user. The subject attributes conveyed to authenticate the AAS user application user shall uniquely determine the subject credentials used for subject authentication. The identity vetting process used to issue subject credentials should be sufficient to hold the identified AAS user application user accountable (@todo see 4.2, <<_public_key_infrastructure>>).
-If the AAS user application user is a NPE the AAS user application may be considered as the user. This especially accounts for AAS user applications with unattended operation. If there is no distinction between AAS user application user and AAS user application the identification and authentication of the AAS user application user may be replaced by the identification and authentication of the AAS user application (<<_identification_and_authentication_of_aas_user_application_users>>). 
+
+If the AAS user application user is a NPE the AAS user application may be considered as the user. This especially accounts for AAS user applications with unattended operation. If there is no distinction between AAS user application user and AAS user application the identification and authentication of the AAS user application user may be replaced by the identification and authentication of the AAS user application (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>). 
+
 Additional information provided by the AAS user application can be used to provide extended information on the usage context. All information provided by the AAS user application can be used for authorization decisions.
+
 Subclause @todo 6.2.3 describes an approach to provide information for authorization via ABAC attributes in an authenticated way.
 
 ====
@@ -64,6 +67,7 @@ The AAS interface shall be able to use accounts for AAS user applications and AA
 
 If a built-in account database AAS implementation shall provide means to properly protect account information and enforce authorization for the modification of account information.
 If a detached service is used to authenticate the user, the AAS responsible shall ensure that the account information is aligned between the AAS and the detached service (e.g., user roles assigned by a dedicated service need to match the roles evaluated by the AAS interface).
+
 Account management may be made accessible via the AAS interface.
 
 ====
