@@ -203,7 +203,7 @@ The integrity of the structure of the AAS itself and information represented by 
 This requirement is relevant for two aspects of the AAS security model:
 
 * Data at rest protection, i.e., storage of information represented by an AAS shall be protected against tampering.
-* Data in transit protection, i.e., ensure authenticity of source and recipient (@todo xref:introduction.adoc#_integrity[Integrity], <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>) and protect integrity of information delivered via the AAS interface while in transit to the AAS user application.
+* Data in transit protection, i.e., ensure authenticity of source and recipient (xref:introduction.adoc#_integrity[Integrity], <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>) and protect integrity of information delivered via the AAS interface while in transit to the AAS user application.
 
 ====
 Note: In case of TCP/IP based communication TLS can be used to ensure information integrity for data in transit.
@@ -336,7 +336,7 @@ In order to provide the capability to operate in a degraded state in case of a d
 
 * Shall reject any AAS user application that is not able to meet the authentication requirement (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>).
 
-* Should reject unauthorized requests as early as possible (cf. <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_authorization_enforcement>>), for example, by applying upfront access restriction rules which do not depend on AAS authorization mechanisms (@todo 6.2).  Potential measures are network protection and restricted data flow (@todo <<_requirements_regarding_restricted_data_flow_fr5>>), AAS user application quotas (e.g., limit the amount of  requests/data retrieved from a specific AAS user application), proof-of-work provided by the AAS user application (e.g., CAPTCHAs, cryptographic puzzles). These measures can also be used to prevent against data scraping by authorized users.
+* Should reject unauthorized requests as early as possible (cf. <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_authorization_enforcement>>), for example, by applying upfront access restriction rules which do not depend on AAS authorization mechanisms (@todo 6.2).  Potential measures are network protection and restricted data flow (<<_requirements_regarding_restricted_data_flow_fr5>>), AAS user application quotas (e.g., limit the amount of  requests/data retrieved from a specific AAS user application), proof-of-work provided by the AAS user application (e.g., CAPTCHAs, cryptographic puzzles). These measures can also be used to prevent against data scraping by authorized users.
 
 The AAS can provide information about the actuality (e.g., last update received) of the information to allow AAS user applications.
 
