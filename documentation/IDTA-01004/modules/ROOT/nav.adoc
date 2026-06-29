@@ -25,6 +25,8 @@ SPDX-License-Identifier: CC-BY-4.0
 
 * Annex
 
+** xref:annex/dpp.adoc[Digital Product Passport]
+
 ** xref:./annex/backus-naur-form.adoc[Backus-Naur-Form]
 
 ** xref:./annex/text-access-rule-examples.adoc[Examples of Access Rules in text serialization]

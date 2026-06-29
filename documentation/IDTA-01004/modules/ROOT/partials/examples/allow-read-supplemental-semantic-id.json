@@ -9,7 +9,7 @@
             }
           ],
           "RIGHTS": [
-            "EXECUTE"
+            "READ"
           ],
           "ACCESS": "ALLOW"
         },
@@ -21,12 +21,10 @@
         "FORMULA": {
           "$eq": [
             {
-              "$attribute": {
-                "REFERENCE": "$sme(\"SubmodelID-OperationalData\").machineState#value"
-              }
+              "$field": "$sm#supplementalSemanticIds[].keys[0].value"
             },
             {
-              "$strVal": "not-running"
+              "$strVal": "https://example.com/ids/IEC61360"
             }
           ]
         }

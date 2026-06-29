@@ -23,7 +23,9 @@
             {
               "$eq": [
                 {
-                  "CLAIM": "Role"
+                  "$attribute": {
+                    "CLAIM": "Role"
+                  }
                 },
                 {
                   "$strVal": "person with legitimate interest"
