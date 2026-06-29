@@ -66,11 +66,6 @@
       "description": "Identifier for a Descriptor (AAS Descriptor, Submodel Descriptor) as used in OBJECTS DESCRIPTOR. Format: $aasdesc(\"...\") | $smdesc(\"...\") | same with wildcard \"*\".",
       "pattern": "^\\$(?:aasdesc|smdesc)\\((?:\"\\*\"|\"[^\"]*\")\\)$"
     },
-    "ReferenceIdentifier": {
-      "type": "string",
-      "description": "Identifier for a REFERENCE attribute as used by <ReferenceAttribute> in the BNF. Format: $aas(\"...\")#<FieldsAAS> | $sm(\"...\")#<FieldsSM> | $cd(\"...\")#<FieldsCD> | $sme(\"...\").<idShortPath>#<FieldsSME>.",
-      "pattern": "^\\$(?:aas|sm|cd)\\(\"[^\"]*\"\\)#[^\\s]+$|^\\$sme\\(\"[^\"]*\"\\)\\.[^#\\s]+#[^\\s]+$"
-    },
     "dateTimeLiteralPattern": {
       "type": "string",
       "format": "date-time"
