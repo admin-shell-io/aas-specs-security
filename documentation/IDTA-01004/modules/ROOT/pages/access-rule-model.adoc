@@ -131,7 +131,7 @@ One access rule may directly define a Formula or may reuse a Formula definition.
 An access rule may optionally include a FILTER, which can be used to further restrict the returned objects.
 A FILTER is an additional FORMULA, which enables by its boolean expression, which part(s) of the given object(s) can be accessed, i.e. without a FILTER the complete objects are accessed.
 The FILTER contains a FragmentObject, which defines which part of the accessed object has to be filtered.
-The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filtered, e.g. "$aasdesc#assetInformation.specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
+The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filtered, e.g. "$aasdesc#specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
 
 ==== ACL
 

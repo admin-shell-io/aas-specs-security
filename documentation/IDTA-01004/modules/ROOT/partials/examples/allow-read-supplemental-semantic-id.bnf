@@ -1,0 +1,9 @@
+ACCESSRULE:
+  ATTRIBUTES:
+    GLOBAL(ANONYMOUS)
+  RIGHTS: READ
+  ACCESS: ALLOW
+  OBJECTS:
+    ROUTE  "*"
+  FORMULA:
+    $sm#supplementalSemanticIds[].keys[0].value $eq "https://example.com/ids/IEC61360"
