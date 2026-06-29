@@ -17,15 +17,8 @@
       "pattern": "^[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+$"
     },
     "ReferenceIdentifier": {
-      "oneOf": [
-        {
-          "$ref": "#/definitions/FieldIdentifier"
-        },
-        {
-          "type": "string",
-          "pattern": "^(?:\\$(?:aas|sm|cd)\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)#[A-Za-z][A-Za-z0-9_\\.\\[\\]-]*|\\$sme\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*)*#[A-Za-z][A-Za-z0-9_\\.\\[\\]-]*)$"
-        }
-      ]
+      "type": "string",
+      "pattern": "^(?:\\$aas\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)#(?:idShort|id|assetInformation\\.assetKind|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.specificAssetIds\\[(?:0|[1-9][0-9]*)?\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?)|submodels\\[(?:0|[1-9][0-9]*)?\\](?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?)|\\$sm\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)#(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|id)|\\$cd\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)#(?:idShort|id)|\\$sme\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*)*#(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|value|valueType|language))$"
     },
     "IdentifiableIdentifier": {
       "type": "string",

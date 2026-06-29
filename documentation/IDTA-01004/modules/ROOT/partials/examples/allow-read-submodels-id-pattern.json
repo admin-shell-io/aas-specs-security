@@ -59,9 +59,7 @@
             {
               "$regex": [
                 {
-                  "$attribute": {
-                    "REFERENCE": "$sm#id"
-                  }
+                  "$field": "$sm#id"
                 },
                 {
                   "$strVal": "^https://company1.com/.*$"

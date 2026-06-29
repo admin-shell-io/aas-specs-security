@@ -226,6 +226,10 @@ def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], valid
         ("FragmentFieldIdentifier", "$sm#supplementalSemanticIds[]", True),
         ("FragmentFieldIdentifier", "$sm#supplementalSemanticIds[0].keys[]", True),
         ("FragmentFieldIdentifier", "$sm#supplementalSemanticIds[01]", False),
+        ("ReferenceIdentifier", "$sm(\"SubmodelID\")#id", True),
+        ("ReferenceIdentifier", "$sme(\"SubmodelID\").machineState#value", True),
+        ("ReferenceIdentifier", "$sm#id", False),
+        ("ReferenceIdentifier", "$sm(\"SubmodelID\")#martinwarhier", False),
     ]
 
     validators: dict[str, Draft7Validator] = {}

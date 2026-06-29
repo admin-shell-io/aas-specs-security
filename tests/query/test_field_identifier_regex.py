@@ -191,5 +191,55 @@ class FieldIdentifierRegexTest(unittest.TestCase):
         self.assertEqual(self.pattern, schema_pattern(FORMULAS_SCHEMA, "FieldIdentifier"))
 
 
+class ReferenceIdentifierRegexTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        pattern = schema_pattern(COMMON_SCHEMA, "ReferenceIdentifier")
+        cls.reference_identifier = re.compile(pattern)
+
+    def assert_allowed(self, value):
+        self.assertIsNotNone(
+            self.reference_identifier.fullmatch(value),
+            f"Expected ReferenceIdentifier to allow: {value}",
+        )
+
+    def assert_not_allowed(self, value):
+        self.assertIsNone(
+            self.reference_identifier.fullmatch(value),
+            f"Expected ReferenceIdentifier to reject: {value}",
+        )
+
+    def test_allowed_reference_identifiers(self):
+        allowed = [
+            "$aas(\"aas-id\")#assetInformation.specificAssetIds[].externalSubjectId.keys[0].value",
+            "$sm(\"SubmodelID\")#id",
+            "$sm(\"SubmodelID\")#supplementalSemanticIds[].keys[].value",
+            "$cd(\"ConceptDescriptionID\")#idShort",
+            "$sme(\"SubmodelID-OperationalData\").machineState#value",
+            "$sme(\"SubmodelID\").AddressInformation[0].Zipcode#semanticId.keys[].value",
+        ]
+
+        for value in allowed:
+            with self.subTest(value=value):
+                self.assert_allowed(value)
+
+    def test_not_allowed_reference_identifiers(self):
+        not_allowed = [
+            "$sm#id",
+            "$sm(\"SubmodelID\")#bogus",
+            "$sm(\"SubmodelID\")#supplementalSemanticIds[01]",
+            "$aas(\"aas-id\")#assetInformation.specificAssetIds[]",
+            "$cd(\"ConceptDescriptionID\")#description",
+            "$sme(\"SubmodelID\").machineState",
+            "$sme(\"SubmodelID\").machineState#id",
+            "$sme(\"SubmodelID\").1Invalid#value",
+            "$aasdesc(\"aas-id\")#idShort",
+        ]
+
+        for value in not_allowed:
+            with self.subTest(value=value):
+                self.assert_not_allowed(value)
+
+
 if __name__ == "__main__":
     unittest.main()
