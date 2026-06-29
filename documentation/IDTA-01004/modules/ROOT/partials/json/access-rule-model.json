@@ -32,7 +32,7 @@
           ]
         },
         "REFERENCE": {
-      	  "$ref": "#/definitions/ReferenceIdentifier"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/ReferenceIdentifier"
         }
       },
       "additionalProperties": false
@@ -70,16 +70,16 @@
           "type": "string"
         },
         "IDENTIFIABLE": {
-          "$ref": "#/definitions/IdentifiableIdentifier"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/IdentifiableIdentifier"
         },
         "REFERABLE": {
-          "$ref": "#/definitions/ReferableIdentifier"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/ReferableIdentifier"
         },
         "FRAGMENT": {
-          "$ref": "#/definitions/FragmentIdentifier"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/FragmentIdentifier"
         },
         "DESCRIPTOR": {
-          "$ref": "#/definitions/DescriptorIdentifier"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/DescriptorIdentifier"
         }
       },
       "additionalProperties": false
@@ -164,7 +164,7 @@
           }
         },
         "FORMULA": {
-          "$ref": "#/definitions/logicalExpression",
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/logicalExpression",
           "additionalProperties": false
         },
         "USEFORMULA": {
@@ -231,10 +231,10 @@
       "type": "object",
       "properties": {
         "FRAGMENT": {
-          "$ref": "#/definitions/FragmentFieldIdentifier"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/FragmentFieldIdentifier"
         },
         "CONDITION": {
-          "$ref": "#/definitions/logicalExpression"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/logicalExpression"
         },
         "USEFORMULA": {
           "type": "string"
@@ -369,7 +369,7 @@
                 "type": "string"
               },
               "formula": {
-                "$ref": "#/definitions/logicalExpression"
+                "$ref": "aas-queries-and-access-rules-schema.json#/definitions/logicalExpression"
               }
             },
             "required": [

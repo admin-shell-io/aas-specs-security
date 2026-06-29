@@ -2,11 +2,45 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Common JSON Schema for AAS Queries and Access Rules",
   "description": "This schema contains the AAS Access Rule Language.",
-  "$ref": "#/definitions/AllAccessPermissionRules",
+  "type": "object",
+  "properties": {
+    "AllAccessPermissionRules": {
+      "$ref": "#/definitions/AllAccessPermissionRules"
+    }
+  },
+  "required": [
+    "AllAccessPermissionRules"
+  ],
   "definitions": {
     "standardString": {
       "type": "string",
       "pattern": "^[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+$"
+    },
+    "ReferenceIdentifier": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/FieldIdentifier"
+        },
+        {
+          "type": "string",
+          "pattern": "^(?:\\$(?:aas|sm|cd)\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)#[A-Za-z][A-Za-z0-9_\\.\\[\\]-]*|\\$sme\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*)*#[A-Za-z][A-Za-z0-9_\\.\\[\\]-]*)$"
+        }
+      ]
+    },
+    "IdentifiableIdentifier": {
+      "type": "string",
+      "pattern": "^\\$(?:aas|sm|cd)\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)$"
+    },
+    "ReferableIdentifier": {
+      "type": "string",
+      "pattern": "^\\$sme\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*)*$"
+    },
+    "FragmentIdentifier": {
+      "$ref": "#/definitions/FragmentFieldIdentifier"
+    },
+    "DescriptorIdentifier": {
+      "type": "string",
+      "pattern": "^\\$(?:aasdesc|smdesc)\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)$"
     },
     "FieldIdentifier": {
       "type": "string",
