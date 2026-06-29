@@ -4,9 +4,9 @@
       "type": "string",
       "pattern": "^[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+$"
     },
-    "FieldIdentifierAAS": {
+    "FieldIdentifier": {
       "type": "string",
-      "pattern": "^(?:\\$aas#(?:idShort|id|assetInformation\\.assetKind|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.specificAssetIds\\[[0-9]*\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?)|submodels\\[[0-9]*\\]\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))|\\$sm#(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|id)|\\$sme(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[[0-9]*\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[[0-9]*\\])*)*)?#(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|value|valueType|language)|\\$cd#(?:idShort|id)|\\$aasdesc#(?:idShort|id|assetKind|assetType|globalAssetId|specificAssetIds\\[[0-9]*\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?)|endpoints\\[[0-9]*\\]\\.(?:interface|protocolinformation\\.href)|submodelDescriptors\\[[0-9]*\\]\\.(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|id|endpoints\\[[0-9]*\\]\\.(?:interface|protocolinformation\\.href)))|\\$smdesc#(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|id|endpoints\\[[0-9]*\\]\\.(?:interface|protocolinformation\\.href)))$"
+      "pattern": "^(?:\\$aas#(?:idShort|id|assetInformation\\.assetKind|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.specificAssetIds\\[(?:0|[1-9][0-9]*)?\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?)|submodels\\[(?:0|[1-9][0-9]*)?\\](?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?)|\\$sm#(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|id)|\\$sme(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*)*)?#(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|value|valueType|language)|\\$cd#(?:idShort|id)|\\$aasdesc#(?:idShort|id|assetKind|assetType|globalAssetId|specificAssetIds\\[(?:0|[1-9][0-9]*)?\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?)|endpoints\\[(?:0|[1-9][0-9]*)?\\]\\.(?:interface|protocolinformation\\.href)|submodelDescriptors\\[(?:0|[1-9][0-9]*)?\\]\\.(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|id|endpoints\\[(?:0|[1-9][0-9]*)?\\]\\.(?:interface|protocolinformation\\.href)))|\\$smdesc#(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|id|endpoints\\[(?:0|[1-9][0-9]*)?\\]\\.(?:interface|protocolinformation\\.href)))$"
     },
     "hexLiteralPattern": {
       "type": "string",
@@ -18,7 +18,7 @@
     },
     "timeLiteralPattern": {
       "type": "string",
-      "pattern": "^[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?$"
+      "pattern": "^[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?(\\.[0-9]+)?(Z|[+-][0-9][0-9]:[0-9][0-9])?$"
     },
     "Value": {
       "type": "object",
@@ -30,7 +30,7 @@
           "$ref": "#/definitions/standardString"
         },
         "$attribute": {
-          "$ref": "#/definitions/attributeItem"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
         },
         "$numVal": {
           "type": "number"
@@ -66,16 +66,44 @@
           "$ref": "#/definitions/Value"
         },
         "$dayOfWeek": {
-          "$ref": "#/definitions/dateTimeLiteralPattern"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/dateTimeLiteralPattern"
+            },
+            {
+              "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
+            }
+          ]
         },
         "$dayOfMonth": {
-          "$ref": "#/definitions/dateTimeLiteralPattern"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/dateTimeLiteralPattern"
+            },
+            {
+              "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
+            }
+          ]
         },
         "$month": {
-          "$ref": "#/definitions/dateTimeLiteralPattern"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/dateTimeLiteralPattern"
+            },
+            {
+              "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
+            }
+          ]
         },
         "$year": {
-          "$ref": "#/definitions/dateTimeLiteralPattern"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/dateTimeLiteralPattern"
+            },
+            {
+              "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
+            }
+          ]
         }
       },
       "oneOf": [
@@ -185,7 +213,7 @@
           "$ref": "#/definitions/Value"
         },
         "$attribute": {
-          "$ref": "#/definitions/attributeItem"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
         }
       },
       "oneOf": [

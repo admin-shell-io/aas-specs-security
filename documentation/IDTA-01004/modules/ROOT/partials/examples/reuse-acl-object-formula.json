@@ -22,7 +22,7 @@
         "name": "Properties",
         "objects": [
           {
-            "REFERABLE": "$sme("\https://s1.com\").p1"
+            "REFERABLE": "$sme(\"https://s1.com\").p1"
           },
           {
             "REFERABLE": "$sme(\"https://s1.com\").p2"
