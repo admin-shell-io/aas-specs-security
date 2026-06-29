@@ -243,7 +243,7 @@
 
 
 <idShortPath> ::= ( <idShort> ("[" <ArrayIndex>? "]" )* ( "." <idShortPath> )* )
-<idShort> ::= ( ( [a-z] | [A-Z] ) ( [a-z] | [A-Z] | [0-9] | "_" | "-" )* ( [a-z] | [A-Z] | [0-9] | "_" ) )
+<idShort> ::= ( ( [a-z] | [A-Z] ) (( [a-z] | [A-Z] | [0-9] | "_" | "-" )* ( [a-z] | [A-Z] | [0-9] | "_" ) )? )
 <ArrayIndex> ::= "0" | ( [1-9] [0-9]* )
 
 <ws> ::= ( " " | "\t" | "\r" | "\n" )*
