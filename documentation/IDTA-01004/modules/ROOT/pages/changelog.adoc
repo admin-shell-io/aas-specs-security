@@ -18,6 +18,7 @@ Major Changes:
 * changed: <ReferenceAttribute> with more detailed definition in BNF Grammar and JSON Schema
 * changed: <IdentifiableObject>, <ReferableObject>, <FragmentObject>, <DescriptorObject> with more detailed definition in BNF Grammar and JSON Schema
 * added: Query Filter and FragmentFieldIdentifiers (https://github.com/admin-shell-io/aas-specs-api/issues/517)
+* added: new section in the annex on access control management and data authentification for implementing the digital product passport (DPP)
 
 Minor Changes:
 
@@ -28,6 +29,7 @@ Minor Changes:
 
 Bugfixes:
 
+* fix: Aligned date/time extraction functions (`$dayOfWeek`, `$dayOfMonth`, `$month`, `$year`) in JSON Schema to accept all `dateTimeOperand` types per BNF grammar, and widened `timeLiteralPattern` to support fractional seconds.
 * changed: Fixed incorrect Fragment Field Identifiers in examples [#44 of Security Spec](https://github.com/admin-shell-io/aas-specs-security/issues/44)
 
 == Changes w.r.t. V3.0.2 vs. V3.0.1
