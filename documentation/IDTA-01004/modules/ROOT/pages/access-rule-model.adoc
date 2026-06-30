@@ -296,6 +296,10 @@ Numerical Comparison Operations compare the first given argument (left argument)
 Since AAS also supports XS Datatypes Hex, Bool, DateTime and Time, related comparisons are available accordingly.
 
 For specific comparisons datatypes can be casted to the other datatypes.
+If a FieldIdentifier is used directly in a typed comparison, it is implicitly interpreted as the comparison type.
+This implicit conversion is tried for all values addressed by the FieldIdentifier.
+Values that cannot be converted are ignored for this FieldIdentifier evaluation.
+If no addressed value can be converted, the comparison evaluates to FALSE.
 
 Specific operations exist to extract parts from DateTime, i.e. $dayOfWeek, $dayOfMonth, $month, $year.
 This enables access rules related to week days or specific times in the year.
@@ -373,7 +377,7 @@ Parts of DateTime values can be extracted as numbers:
 * _$dayOfWeek_ extracts the day of week as number, starting with 0 for Sunday.
 * _$dayOfMonth_, _$month_, _$year_ extract the related part as number.
 
-If a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
+Except for direct FieldIdentifier operands in typed comparisons, if a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
 An error message shall be generated and the result of the complete expression becomes FALSE, so that the access is not allowed and/or the filter is empty.
 
 To allow the use of different types in operations, arrays are used for parameters. _comparisonItems_ is used for comparisons and _stringItems_ is used for specific string operations.

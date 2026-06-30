@@ -448,36 +448,156 @@
       ]
     },
     "hexComparisonItems": {
-      "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
-      "items": {
-        "$ref": "#/definitions/hexOperand"
-      }
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/definitions/hexOperand"
+          }
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/hexOperand"
+            },
+            {
+              "$ref": "#/definitions/fieldOperand"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/fieldOperand"
+            },
+            {
+              "$ref": "#/definitions/hexOperand"
+            }
+          ]
+        }
+      ]
     },
     "boolComparisonItems": {
-      "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
-      "items": {
-        "$ref": "#/definitions/boolOperand"
-      }
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/definitions/boolOperand"
+          }
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/boolOperand"
+            },
+            {
+              "$ref": "#/definitions/fieldOperand"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/fieldOperand"
+            },
+            {
+              "$ref": "#/definitions/boolOperand"
+            }
+          ]
+        }
+      ]
     },
     "dateTimeComparisonItems": {
-      "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
-      "items": {
-        "$ref": "#/definitions/dateTimeOperand"
-      }
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/definitions/dateTimeOperand"
+          }
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/dateTimeOperand"
+            },
+            {
+              "$ref": "#/definitions/fieldOperand"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/fieldOperand"
+            },
+            {
+              "$ref": "#/definitions/dateTimeOperand"
+            }
+          ]
+        }
+      ]
     },
     "timeComparisonItems": {
-      "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
-      "items": {
-        "$ref": "#/definitions/timeOperand"
-      }
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/definitions/timeOperand"
+          }
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/timeOperand"
+            },
+            {
+              "$ref": "#/definitions/fieldOperand"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/fieldOperand"
+            },
+            {
+              "$ref": "#/definitions/timeOperand"
+            }
+          ]
+        }
+      ]
     },
     "orderedComparisonItems": {
       "oneOf": [

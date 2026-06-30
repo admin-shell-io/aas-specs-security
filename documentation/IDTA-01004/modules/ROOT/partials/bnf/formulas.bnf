@@ -32,19 +32,27 @@
     ( <FieldIdentifier> <ws> <allComparisons> <ws> <numericalOperand> <ws> )
 
 <hexComparison> ::=
-    <hexOperand> <ws> <allComparisons> <ws> <hexOperand> <ws>
+    ( <hexOperand> <ws> <allComparisons> <ws> <hexOperand> <ws> ) |
+    ( <hexOperand> <ws> <allComparisons> <ws> <FieldIdentifier> <ws> ) |
+    ( <FieldIdentifier> <ws> <allComparisons> <ws> <hexOperand> <ws> )
 
 <boolComparison> ::=
-    <boolOperand> <ws> ( "$eq" | "$ne" ) <ws> <boolOperand> <ws>
+    ( <boolOperand> <ws> ( "$eq" | "$ne" ) <ws> <boolOperand> <ws> ) |
+    ( <boolOperand> <ws> ( "$eq" | "$ne" ) <ws> <FieldIdentifier> <ws> ) |
+    ( <FieldIdentifier> <ws> ( "$eq" | "$ne" ) <ws> <boolOperand> <ws> )
 
 <dateTimeComparison> ::=
-    <dateTimeOperand> <ws> <allComparisons> <ws> <dateTimeOperand> <ws>
+    ( <dateTimeOperand> <ws> <allComparisons> <ws> <dateTimeOperand> <ws> ) |
+    ( <dateTimeOperand> <ws> <allComparisons> <ws> <FieldIdentifier> <ws> ) |
+    ( <FieldIdentifier> <ws> <allComparisons> <ws> <dateTimeOperand> <ws> )
 
 <dateTimeToNum> ::=
     ( "$dayOfWeek" | "$dayOfMonth" | "$month" | "$year" ) <ws> "(" <ws> <dateTimeOperand> <ws> ")" <ws>
 
 <timeComparison> ::=
-    <timeOperand> <ws> <allComparisons> <ws> <timeOperand> <ws>
+    ( <timeOperand> <ws> <allComparisons> <ws> <timeOperand> <ws> ) |
+    ( <timeOperand> <ws> <allComparisons> <ws> <FieldIdentifier> <ws> ) |
+    ( <FieldIdentifier> <ws> <allComparisons> <ws> <timeOperand> <ws> )
 
 <operand> ::= <stringOperand> | <numericalOperand> | <hexOperand> | <boolOperand> | <dateTimeOperand> | <timeOperand>
 

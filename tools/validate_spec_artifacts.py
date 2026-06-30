@@ -258,6 +258,16 @@ def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], valid
         ),
         ("logicalExpression", {"$eq": [{"$timeCast": {"$dateTimeVal": "2026-06-30T09:00:00Z"}}, {"$timeVal": "09:00:00Z"}]}, True),
         ("logicalExpression", {"$eq": [{"$timeCast": {"$numVal": 1}}, {"$timeVal": "09:00:00Z"}]}, False),
+        ("logicalExpression", {"$eq": [{"$field": "$sme#value"}, {"$hexVal": "16#ABCD"}]}, True),
+        ("logicalExpression", {"$eq": [{"$hexVal": "16#ABCD"}, {"$field": "$sme#value"}]}, True),
+        ("logicalExpression", {"$eq": [{"$field": "$sme#value"}, {"$boolean": True}]}, True),
+        ("logicalExpression", {"$eq": [{"$boolean": False}, {"$field": "$sme#value"}]}, True),
+        (
+            "logicalExpression",
+            {"$ge": [{"$field": "$sme#value"}, {"$dateTimeVal": "2026-06-30T09:00:00Z"}]},
+            True,
+        ),
+        ("logicalExpression", {"$le": [{"$timeVal": "09:00:00Z"}, {"$field": "$sme#value"}]}, True),
         ("matchExpression", {"$boolean": True}, False),
     ]
 
