@@ -243,6 +243,22 @@ def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], valid
         ("Value", {"$dayOfWeek": "2026-06-30T09:00:00Z"}, False),
         ("Value", {"$dayOfWeek": {"$attribute": {"GLOBAL": "ANONYMOUS"}}}, False),
         ("Value", {"$dayOfWeek": {"$attribute": {"CLAIM": "iat"}}}, False),
+        ("logicalExpression", {"$eq": [{"$boolean": True}, {"$boolean": False}]}, True),
+        ("logicalExpression", {"$gt": [{"$boolean": True}, {"$boolean": False}]}, False),
+        ("logicalExpression", {"$boolCast": {"$strVal": "true"}}, True),
+        (
+            "logicalExpression",
+            {"$eq": [{"$dateTimeCast": {"$strVal": "2026-06-30T09:00:00Z"}}, {"$dateTimeVal": "2026-06-30T09:00:00Z"}]},
+            True,
+        ),
+        (
+            "logicalExpression",
+            {"$eq": [{"$dateTimeCast": {"$numVal": 1}}, {"$dateTimeVal": "2026-06-30T09:00:00Z"}]},
+            False,
+        ),
+        ("logicalExpression", {"$eq": [{"$timeCast": {"$dateTimeVal": "2026-06-30T09:00:00Z"}}, {"$timeVal": "09:00:00Z"}]}, True),
+        ("logicalExpression", {"$eq": [{"$timeCast": {"$numVal": 1}}, {"$timeVal": "09:00:00Z"}]}, False),
+        ("matchExpression", {"$boolean": True}, False),
     ]
 
     validators: dict[str, Draft7Validator] = {}
