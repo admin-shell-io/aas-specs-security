@@ -13,7 +13,6 @@ ACCESSRULE:
       ),
       CLAIM("companyName") $eq "company1-name",
       $regex($sm#id, "^https://company1.com/.*$"),
-      GLOBAL(UTCNOW) $ge "09:00",
-      GLOBAL(UTCNOW) $le "17:00"
+      time(GLOBAL(UTCNOW)) $ge 09:00:00Z,
+      time(GLOBAL(UTCNOW)) $le 17:00:00Z
     )
-

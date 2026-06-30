@@ -11,7 +11,7 @@ DEFOBJECTS "Properties"
 
 DEFFORMULAS "allowSubjectGroup1"
   $and(
-    GLOBAL(UTCNOW) $gt "15:00",
+    time(GLOBAL(UTCNOW)) $gt 15:00:00Z,
     $or(
       CLAIM("email") $eq "user1@company1.com",
       CLAIM("email") $eq "user2@company2.com"

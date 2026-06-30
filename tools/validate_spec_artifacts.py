@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 try:
-    from jsonschema import Draft7Validator, FormatChecker
+    from jsonschema import Draft7Validator
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", DeprecationWarning)
@@ -128,7 +128,7 @@ def resolve_pointer(document: Any, pointer: str) -> Any:
 
 def schema_validator(schema_path: Path, schema: dict[str, Any], ref: str) -> Draft7Validator:
     resolver = RefResolver(base_uri=schema_path.resolve().as_uri(), referrer=schema)
-    return Draft7Validator({"$ref": ref}, resolver=resolver, format_checker=FormatChecker())
+    return Draft7Validator({"$ref": ref}, resolver=resolver, format_checker=Draft7Validator.FORMAT_CHECKER)
 
 
 def definition_validator(
@@ -230,6 +230,13 @@ def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], valid
         ("ReferenceIdentifier", "$sme(\"SubmodelID\").machineState#value", True),
         ("ReferenceIdentifier", "$sm#id", False),
         ("ReferenceIdentifier", "$sm(\"SubmodelID\")#martinwarhier", False),
+        ("timeLiteralPattern", "09:00:00Z", True),
+        ("timeLiteralPattern", "09:00:30Z", True),
+        ("timeLiteralPattern", "09:00:30.123Z", True),
+        ("timeLiteralPattern", "09:00:30+01:00", True),
+        ("timeLiteralPattern", "09:00", False),
+        ("timeLiteralPattern", "09:00:30", False),
+        ("timeLiteralPattern", "09:00.123", False),
     ]
 
     validators: dict[str, Draft7Validator] = {}

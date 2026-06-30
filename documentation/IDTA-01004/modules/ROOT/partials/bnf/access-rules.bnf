@@ -174,13 +174,13 @@
     "time" <ws> "(" <ws> ( <stringOperand> | <dateTimeOperand> ) <ws> ")" <ws>
 
 <DateTimeLiteral> ::= <datetime> <ws>
-<TimeLiteral> ::= <time> ( <timezone> )? <ws>
-<datetime> ::= <date> ( "T" )? <time> ( <timezone> )?
+<TimeLiteral> ::= <time> <timezone> <ws>
+<datetime> ::= <date> "T" <time> <timezone>
 <date> ::= <year> "-" <month> "-" <day>
 <year> ::= <digit> <digit> <digit> <digit>
 <month> ::= <digit> <digit>
 <day> ::= <digit> <digit>
-<time> ::= <hour> ":" <minute> ( ":" <second> )? ( "." <fraction> )?
+<time> ::= <hour> ":" <minute> ":" <second> ( "." <fraction> )?
 <timezone> ::= ( "Z" | ( "+" | "-" ) <hour> ":" <minute> )
 <hour> ::= <digit> <digit>
 <minute> ::= <digit> <digit>

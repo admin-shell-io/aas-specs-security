@@ -350,7 +350,7 @@ include::partial$json/formulas-and-logical-expressions.json[]
 The provided JSON schema includes a _modelStringPattern_ starting with a $, so that the syntax of model elements can be checked by the schema, e.g. $sm.idShort.
 
 String, number and boolean are supported by JSON itself.
-Specific patterns with regular expressions are provided for datatypes Hex, DateTime and Time: _hexLiteralPattern_, _dateTimeLiteralPattern_ and _timeLiteralPattern_.
+Specific JSON Schema definitions are provided for datatypes Hex, DateTime and Time: _hexLiteralPattern_, _dateTimeLiteralPattern_ and _timeLiteralPattern_.
 
 _Value_ is used for comparisons and _StringValue_ is used for the specific string operations.
 For type safety and automatic code generation, each possible type is available as an own object:

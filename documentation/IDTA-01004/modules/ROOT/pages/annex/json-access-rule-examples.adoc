@@ -68,7 +68,7 @@ include::partial$examples/bpn.json[]
 include::partial$examples/allow-read-all-users-of-company-for-submodel.json[]
 ----
 
-== Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData from 9:00-17:00
+== Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData from 09:00:00Z-17:00:00Z
 
 [source,json,linenums]
 ----
