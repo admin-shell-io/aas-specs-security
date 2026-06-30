@@ -20,6 +20,38 @@
       "type": "string",
       "format": "time"
     },
+    "dateTimeOperand": {
+      "type": "object",
+      "properties": {
+        "$dateTimeVal": {
+          "$ref": "#/definitions/dateTimeLiteralPattern"
+        },
+        "$dateTimeCast": {
+          "$ref": "#/definitions/Value"
+        },
+        "$attribute": {
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/dateTimeAttributeItem"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "$dateTimeVal"
+          ]
+        },
+        {
+          "required": [
+            "$dateTimeCast"
+          ]
+        },
+        {
+          "required": [
+            "$attribute"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
     "Value": {
       "type": "object",
       "properties": {
@@ -66,44 +98,16 @@
           "$ref": "#/definitions/Value"
         },
         "$dayOfWeek": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/dateTimeLiteralPattern"
-            },
-            {
-              "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
-            }
-          ]
+          "$ref": "#/definitions/dateTimeOperand"
         },
         "$dayOfMonth": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/dateTimeLiteralPattern"
-            },
-            {
-              "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
-            }
-          ]
+          "$ref": "#/definitions/dateTimeOperand"
         },
         "$month": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/dateTimeLiteralPattern"
-            },
-            {
-              "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
-            }
-          ]
+          "$ref": "#/definitions/dateTimeOperand"
         },
         "$year": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/dateTimeLiteralPattern"
-            },
-            {
-              "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
-            }
-          ]
+          "$ref": "#/definitions/dateTimeOperand"
         }
       },
       "oneOf": [

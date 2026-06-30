@@ -61,7 +61,7 @@
     <BoolLiteral> | <castToBool>
 
 <dateTimeOperand> ::=
-    <DateTimeLiteral> | <castToDateTime> | <GlobalAttribute>
+    <DateTimeLiteral> | <castToDateTime> | <DateTimeGlobalAttribute>
 
 <timeOperand> ::=
     <TimeLiteral> | <castToTime>

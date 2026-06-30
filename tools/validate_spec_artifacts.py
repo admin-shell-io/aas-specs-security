@@ -237,6 +237,12 @@ def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], valid
         ("timeLiteralPattern", "09:00", False),
         ("timeLiteralPattern", "09:00:30", False),
         ("timeLiteralPattern", "09:00.123", False),
+        ("Value", {"$dayOfWeek": {"$dateTimeVal": "2026-06-30T09:00:00Z"}}, True),
+        ("Value", {"$dayOfWeek": {"$dateTimeCast": {"$strVal": "2026-06-30T09:00:00Z"}}}, True),
+        ("Value", {"$dayOfWeek": {"$attribute": {"GLOBAL": "UTCNOW"}}}, True),
+        ("Value", {"$dayOfWeek": "2026-06-30T09:00:00Z"}, False),
+        ("Value", {"$dayOfWeek": {"$attribute": {"GLOBAL": "ANONYMOUS"}}}, False),
+        ("Value", {"$dayOfWeek": {"$attribute": {"CLAIM": "iat"}}}, False),
     ]
 
     validators: dict[str, Draft7Validator] = {}

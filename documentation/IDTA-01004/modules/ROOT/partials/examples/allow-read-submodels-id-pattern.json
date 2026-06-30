@@ -69,6 +69,34 @@
             {
               "$ge": [
                 {
+                  "$dayOfWeek": {
+                    "$attribute": {
+                      "GLOBAL": "UTCNOW"
+                    }
+                  }
+                },
+                {
+                  "$numVal": 1
+                }
+              ]
+            },
+            {
+              "$le": [
+                {
+                  "$dayOfWeek": {
+                    "$attribute": {
+                      "GLOBAL": "UTCNOW"
+                    }
+                  }
+                },
+                {
+                  "$numVal": 5
+                }
+              ]
+            },
+            {
+              "$ge": [
+                {
                   "$timeCast": {
                     "$attribute": {
                       "GLOBAL": "UTCNOW"

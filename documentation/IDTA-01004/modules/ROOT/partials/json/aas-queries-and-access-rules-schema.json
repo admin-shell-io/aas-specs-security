@@ -55,6 +55,55 @@
       "type": "string",
       "format": "time"
     },
+    "dateTimeAttributeItem": {
+      "type": "object",
+      "properties": {
+        "GLOBAL": {
+          "type": "string",
+          "enum": [
+            "LOCALNOW",
+            "UTCNOW",
+            "CLIENTNOW"
+          ]
+        }
+      },
+      "required": [
+        "GLOBAL"
+      ],
+      "additionalProperties": false
+    },
+    "dateTimeOperand": {
+      "type": "object",
+      "properties": {
+        "$dateTimeVal": {
+          "$ref": "#/definitions/dateTimeLiteralPattern"
+        },
+        "$dateTimeCast": {
+          "$ref": "#/definitions/Value"
+        },
+        "$attribute": {
+          "$ref": "#/definitions/dateTimeAttributeItem"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "$dateTimeVal"
+          ]
+        },
+        {
+          "required": [
+            "$dateTimeCast"
+          ]
+        },
+        {
+          "required": [
+            "$attribute"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
     "Value": {
       "type": "object",
       "properties": {
@@ -101,44 +150,16 @@
           "$ref": "#/definitions/Value"
         },
         "$dayOfWeek": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/dateTimeLiteralPattern"
-            },
-            {
-              "$ref": "#/definitions/attributeItem"
-            }
-          ]
+          "$ref": "#/definitions/dateTimeOperand"
         },
         "$dayOfMonth": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/dateTimeLiteralPattern"
-            },
-            {
-              "$ref": "#/definitions/attributeItem"
-            }
-          ]
+          "$ref": "#/definitions/dateTimeOperand"
         },
         "$month": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/dateTimeLiteralPattern"
-            },
-            {
-              "$ref": "#/definitions/attributeItem"
-            }
-          ]
+          "$ref": "#/definitions/dateTimeOperand"
         },
         "$year": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/dateTimeLiteralPattern"
-            },
-            {
-              "$ref": "#/definitions/attributeItem"
-            }
-          ]
+          "$ref": "#/definitions/dateTimeOperand"
         }
       },
       "oneOf": [
