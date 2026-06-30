@@ -233,7 +233,9 @@ The same principle applies to endpoint-specific POST operations such as `POST /a
 include::partial$bnf/attributes.bnf[]
 ----
 
-Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a SubmodelElement e.g. to a property for a machine state.
+Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a model field, e.g. to a SubmodelElement property for a machine state.
+A REFERENCE attribute addresses a field by identifier, independently of the object currently evaluated.
+This is useful when a rule for one object needs state data from another model context, for example checking a machine state from an OperationalData Submodel while filtering maintenance documents in a different Submodel.
 
 An Attribute Group defines a list of single attributes and/or a list of names of other attribute groups.
 
@@ -300,6 +302,7 @@ This enables access rules related to week days or specific times in the year.
 
 An important special operation is $match, which can be used with any element containing a list of elements, e.g. semanticId[], specificAssetId[], SubmodelElementList or SubmodelElementCollection.
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
+FILTER defines one fragment restriction for a returned object, while FILTERLIST defines several fragment restrictions with independent conditions.
 
 
 [[json-serialization]]
@@ -362,7 +365,8 @@ For type safety and automatic code generation, each possible type is available a
 * DateTime values can be given by $__dateTimeVal__ or $__dateTimeCast__.
 * Time values can be given by $__timeVal__ or $__timeCast__.
 
-Casts allow any of the values as input and convert this to the given type if possible.
+Casts convert values to the given type if possible.
+DateTime casts use string operands; Time casts use string or DateTime operands.
 
 Parts of DateTime values can be extracted as numbers:
 

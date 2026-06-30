@@ -82,6 +82,13 @@ include::partial$examples/allow-read-submodels-id-pattern.json[]
 include::partial$examples/filter.json[]
 ----
 
+== Example with Reference Attribute and state-dependent filtering
+
+[source,json,linenums]
+----
+include::partial$examples/reference-machine-state-filter.json[]
+----
+
 == Allow only to add elements to the CertificateSet in any Submodel
 
 [source,json,linenums]

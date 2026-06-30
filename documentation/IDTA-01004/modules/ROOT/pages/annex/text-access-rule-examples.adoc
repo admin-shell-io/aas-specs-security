@@ -89,3 +89,10 @@ include::partial$examples/allow-create-only-specific.bnf[]
 ----
 include::partial$examples/filter.bnf[]
 ----
+
+== Example with Reference Attribute and state-dependent filtering
+
+[source,bnf,linenums]
+----
+include::partial$examples/reference-machine-state-filter.bnf[]
+----
