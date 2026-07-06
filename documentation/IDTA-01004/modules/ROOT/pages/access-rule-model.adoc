@@ -318,6 +318,7 @@ String Comparison Operations compare or match the first given argument (left arg
 
 Numerical Comparison Operations compare the first given argument (left argument) with the second given argument (right argument).
 Since AAS also supports XS Datatypes Hex, Bool, DateTime and Time, related comparisons are available accordingly.
+For AASQL and the Security part of this specification, DateTime and Time values are interpreted according to RFC 3339. This is more specific and more detailed than the generic XSD matching concepts MatchesXsTime and MatchesXsDateTime, which are less explicit about the lexical form of the values.
 
 For specific comparisons datatypes can be casted to the other datatypes.
 
@@ -377,6 +378,7 @@ The provided JSON schema includes a _modelStringPattern_ starting with a $, so t
 
 String, number and boolean are supported by JSON itself.
 Specific patterns with regular expressions are provided for datatypes Hex, DateTime and Time: _hexLiteralPattern_, _dateTimeLiteralPattern_ and _timeLiteralPattern_.
+These literal patterns are aligned with the RFC 3339-based interpretation used for AASQL and the Security part of this specification.
 
 _Value_ is used for comparisons and _StringValue_ is used for the specific string operations.
 For type safety and automatic code generation, each possible type is available as an own object:
