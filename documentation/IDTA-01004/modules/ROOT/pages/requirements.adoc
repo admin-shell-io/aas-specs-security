@@ -1,0 +1,84 @@
+== Requirements
+The supplier of an asset MAY already supply a set of access rules, which the operator of the asset MAY simply adjust then.
+AAS implementations MAY decide, to which extent the access rule model is used.
+The access rule model CAN be used as a guideline which shows, what a client application will expect.
+If an AAS implementation allows the exchange of access rules, it SHOULD follow the specification of the access rule model.
+AAS implementations MAY decide, which subset of the access rules is implemented.
+If an AAS implementation e.g. only provides a READ profile, only such access rules for READ SHALL be allowed.
+Further subsets CAN be e.g. AAS repository, submodel respository, concept description repository, AAS registry or submodel registry.
+AAS implementations (of non test systems) SHOULD consider relevant security standards and regulations, e.g. IEC 62443, ISO 27001, EU CRA or EU NIS2.
+AAS implementations MAY provide millions of AAS. In such case, access rules are typically translated into the related AAS implementation to reach the needed perfomance and fulfill memory constraints.
+Further attributes as DATETIME or machine state CAN also be included in the authorization.
+Access rules CAN be defined for routes in the AAS API xref:bibliography.adoc#bib2[[2\]] (part 2), for Identifiables and Referables by reference or semanticId, or for certain assets.
+Such AASX file MAY include a Security Model to be passed to a business partner.
+Such server MAY use and enforce the ABAC rules of the Security Model.
+Depending on the access rules, such server MAY also allow to access the submodel with the Security Model by the API.
+Identifiables on the server MAY also be signed.
+Basically Type 3 is out of scope for this document, but the definitions of this document MAY also be used in the context of Type 3.
+One interface MAY be mapped to several APIs depending on the technology and architectural style used, e.g. HTTP/REST or OPC UA, whereby these API mappings also need to be standardized for the sake of interoperability.
+These MAY be I4.0-defined standard APIs but also other, proprietary APIs.
+Note: such a technology-specific service specification MAY be but does not have to be derived from the “service” described in the technology-neutral form.
+Hence, if there are several selected technologies, one interface MAY be mapped to several APIs.
+* *API-Operation*: specification of the operations (procedures) that MAY be called through an API.
+When selecting technologies, one interface operation MAY be mapped to several API-operations; several interface operations MAY also be mapped to the same API-operation.
+* By the AAS ID the related AAS Descriptor CAN be retrieved through the AAS Registry Interface.
+* AAS or Submodels MAY be hosted standalone or as part of a larger AAS or Submodel Repository.
+The integrator MAY send these AAS and additional own AAS to his customers.
+The integrator MAY also only select certain submodels from the supplier's AAS.
+This use case is an example for the necessity of Signing, since it MUST be possible to check the integrity of the AAS originally provided by the supplier.
+Access Control is based on Identity Management and CAN only be successfully implemented in a secure environment.
+ABAC is a very flexible approach, that also encompasses role-based access as a role CAN be considered as one attribute in this context.
+. Access permissions to information elements of an AAS MUST be established in each access control domain.
+. One partner MUST be able to pass a suggestion which access permissions SHOULD be established for the asset that is described in the AAS.
+A robot manufacturer suggests that for the robot the following roles SHALL be defined: machine setter, operator and a maintenance role.
+The AAS Servers MAY provide data available to the public, i.e. anonymous users.
+But an AAS Server MAY also restrict the access of certain data to specific users.
+In such case the User Application MUST first authenticate (not in the figure) and get an Access Token to supply its identity and further attributes to an AAS Server and also to the Registry.
+This MAY be defined by related ABAC access rules for that API route.
+This MAY be defined by related ABAC access rules with IDs of Identifiables, Referables, Assets or semanticIds.
+* The *AAS Responsible* MAY receive proposed ABAC access rules from his business partners, e.g. a machine supplier proposes such rules to a machine operator.
+Such access rules MAY be stored in a proprietary way by the *AAS Server*, but they might also be stored in the Data Storage in AAS format as received.
+* As described for the *AAS Server*, the AAS *User Application* will also provide the access token to the *Discovery/Registry Service* which CAN make the verification and authorization accordingly.
+Attributes MAY be claims from an access token (e.g. subject attributes), global attributes (e.g. environmental conditions) or attributes from AAS and submodel data (e.g. object attributes).
+Identity Providers issue identity tokes to the participants who CAN in turn decide which issuers to trust.
+In a dataspace members CAN exchange data securely and interoperably.
+Such data exchange is always done in the same way, so that scalability and efficiency CAN be achieved.
+Millions of business partners SHALL be able to easily exchange data with each other in a dataspace.
+The data exchange CAN be with and without user interaction.
+To achieve interoperability, members of a dataspace MUST agree on:
+Solutions MAY be a registry with registry endpoints or a naming convention like registry.company-domain.com.
+A solution CAN be a registry of concept repository endpoints or a concept repository discovery service for semantic IDs.
+The server software MAY be open source, a commercial product or a software as a service.
+Chosen server software MUST be able to support this.
+Since the company MAY decide later to make their AAS available to other companies (pattern “Access to External”) or the company MAY use existing software to host their AAS, company MAY still benefit from using standardized AAS security.
+If the usage policy from Company B allows it, Company A MAY copy the AAS and store it in its own systems.
+A Secured System in AAS Security CAN be Discovery Service, Registry Service, AAS/Submodel Service or AAS/Submodel/ConceptDescription Repository Service.
+In case an internal system is set up, an internal Identity Provider will be used, which CAN be used by internal user applications.
+In that case still AAS with AAS Security CAN be provided, but using a company specific Identity Provider.
+Such federation is possible, when an Identity Provider of a company CAN check the validity of the external token and trusts the External Identity Provider.
+A distributed identity layer MAY also be achieved via self-sovereign identity wallets.
+An authentication flow CAN be with or without user interaction, depending on the dataspace or use case.
+Authentication flows like OAUTH 2.0 or OIDC CAN be used.
+Authentication flows as defined by a specific dataspace or by a specific dataspace protocol CAN be used.
+In any case a signed JSON Web Token MUST be provided by the related Identity Provider.
+The following sections describe example flows that CAN be used.The following terms are used in the description:
+The system MUST authenticate and authorize the application instead of a user.
+In the OAuth 2.0 Client Credentials Grant flow the client id and client secret CAN simply be any string.
+Client Credentials Flow in OIDC: While the Client Credentials flow is typically used for authorization (OAuth 2.0), OIDC CAN also be used in a similar manner but is more often used for scenarios involving (human) user authentication.
+Only access tokens CAN be obtained by applications.
+Asset Administration Shell resources CAN be such Datasets.
+A Dataspace MAY decide for a subset of all AAS Service Specifications of AAS Part 2, e.g. using both AssetAdministrationShellRegistryServiceSpecification and SubmodelRepositoryServiceSpecification together with AssetAdministrationShellDescriptors and included SubmodelDescriptors. Specific Dataspaces define conventions on the standardized exposure of these resources for Data Consumers to discover and retrieve.
+A Provider will define access conditions encoded as ODRL-Policies that a potential Consumer MUST comply with.
+To authorize against these Policies, a Consumer MAY be REQUIRED to provide access to long-living claims signed by a commonly trusted party (Identity Provider, step 1).
+To strike a balance between granularity and public meta-data exposure, AAS resources MAY be exposed in a granular manner masking implicit information like the number of Submodels or AAS-Descriptors.
+An Identity Provider MAY also give the possibility to federate identities to/from other Identity Providers.
+Trust means, that for such Identity Provider(s) an AAS Data Server CAN verify the public key of the Identity Provider.
+Such public key MAY be available directly as a key, by a public certificate or by a verifiable credential.
+The public key needs to be accessible by the AAS server, such that the JWT CAN be verified.
+The key length SHOULD follow best practices.
+Other properties like the lifetime of the token or Proof-of-Possession (RFC 7800) properties CAN be determined based on the use case.
+Dataspaces SHOULD define their specific requirements on “iss”, “sub” and “aud”.
+All claims in an Access Token CAN be used in ABAC access rules as attributes and as described in the Access Rule Model below.
+Access rules CAN also be defined for anonymous access, i.e. no Access Token exists. +
+Further definitions CAN be made by dataspaces.
+A specific dataspace MAY define the technology how to get an access token and MAY also define the attributes which CAN be used in the ABAC access rules.

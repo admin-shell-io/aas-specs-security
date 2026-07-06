@@ -30,12 +30,12 @@ include::partial$diagrams/rights-verbs-http-methods.puml[]
 
 The following requests use real path templates from the published AAS Part 2 OpenAPI descriptions.
 They are representative examples for access control decisions on ROUTE objects.
-For client-addressable routes with create-or-replace or upsert semantics, the required right depends on whether the addressed resource already exists.
+For client-addressable routes with create-or-replace or upsert semantics, the REQUIRED right depends on whether the addressed resource already exists.
 In the examples below, `PUT /api/v3/submodels/{id}` and `POST /api/v3/lookup/shells/{someencodedid}` therefore appear under both CREATE and UPDATE with different preconditions.
 
 === CREATE
 
-Here are endpoints that can need CREATE rights to create new resources or entries in the repository or registry. PUT endpoints with create-or-replace semantics can require UPDATE instead of CREATE rights if the addressed resource already exists.
+Here are endpoints that CAN need CREATE rights to create new resources or entries in the repository or registry. PUT endpoints with create-or-replace semantics CAN require UPDATE instead of CREATE rights if the addressed resource already exists.
 
 Example 1: create a new AAS in the repository by POST.
 
@@ -67,7 +67,7 @@ POST /api/v3/lookup/shells/someencodedid
 
 === READ
 
-Here are endpoints that can need READ rights to access existing resources or entries in the repository or registry. VIEW right can be used as an alternative for GetAll endpointsif only existence information, references, identifiers, or descriptor entries shall be accessible.
+Here are endpoints that CAN need READ rights to access existing resources or entries in the repository or registry. VIEW right CAN be used as an alternative for GetAll endpointsif only existence information, references, identifiers, or descriptor entries SHALL be accessible.
 
 Example 1: read all AAS objects.
 
@@ -108,7 +108,7 @@ POST /api/v3/lookup/shellsByAssetLink
 
 === UPDATE
 
-Here are endpoints that can need UPDATE rights to modify existing resources or entries in the repository or registry. For client-addressable routes with create-or-replace semantics, CREATE rights can be sufficient if the addressed resource does not yet exist.
+Here are endpoints that CAN need UPDATE rights to modify existing resources or entries in the repository or registry. For client-addressable routes with create-or-replace semantics, CREATE rights CAN be sufficient if the addressed resource does not yet exist.
 
 Example 1: replace an existing AAS resource by PUT.
 
@@ -154,7 +154,7 @@ POST /api/v3/lookup/shells/someencodedid
 
 === DELETE
 
-Here are endpoints that can need DELETE rights to delete existing resources or entries in the repository or registry.
+Here are endpoints that CAN need DELETE rights to delete existing resources or entries in the repository or registry.
 
 Example 1: delete a submodel from the repository.
 
@@ -179,7 +179,7 @@ DELETE /api/v3/shell-descriptors/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXMvMTIzNA
 
 === EXECUTE
 
-Here are endpoints that can need EXECUTE rights to invoke operations on the repository or registry.
+Here are endpoints that CAN need EXECUTE rights to invoke operations on the repository or registry.
 
 Example 1: synchronously invoke an Operation.
 
@@ -230,5 +230,5 @@ GET /api/v3/shell-descriptors
 
 == Notes for access rule authors
 
-* ROUTE literals should be defined against stable path families such as `/shells/*`, `/submodels/*`, `/shell-descriptors/*` or `/lookup/*` if authorization is intended for complete interfaces.
+* ROUTE literals SHOULD be defined against stable path families such as `/shells/*`, `/submodels/*`, `/shell-descriptors/*` or `/lookup/*` if authorization is intended for complete interfaces.
 * Exact ROUTE literals such as `/submodel/submodel-elements/Reset/invoke` are useful for single sensitive operations.

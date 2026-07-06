@@ -32,4 +32,4 @@ This annex specifies how the requirements as specified in
 are mapped or realized in the context of an Asset Administration Shell (AAS) system.
 
 The two standards above are expected to be released in September 2026. 
-Until then no final mapping and explanations can be given in public.
+Until then no final mapping and explanations CAN be given in public.

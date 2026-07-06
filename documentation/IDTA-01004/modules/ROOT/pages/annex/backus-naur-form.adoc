@@ -28,11 +28,11 @@ A BNF specification is a set of derivation rules, written as
 where:
 
 * <https://en.wikipedia.org/wiki/Symbol[symbol]> is a https://en.wikipedia.org/wiki/Nonterminal[nonterminal] (variable) and the https://en.wikipedia.org/wiki/Expression_(mathematics)[__expression__] consists of one or more sequences of either terminal or nonterminal symbols,
-* ::= means that the symbol on the left must be replaced with the expression on the right,
+* ::= means that the symbol on the left MUST be replaced with the expression on the right,
 * more sequences of symbols are separated by the https://en.wikipedia.org/wiki/Vertical_bar[vertical bar] "|", indicating a https://en.wikipedia.org/wiki/Alternation_(formal_language_theory)[choice], the whole being a possible substitution for the symbol on the left,
 * symbols that never appear on a left side are https://en.wikipedia.org/wiki/Terminal_symbol[terminals], while symbols that appear on a left side are https://en.wikipedia.org/wiki/Nonterminal_symbol[non-terminals] and are always enclosed between the pair of angle brackets <>,
 * terminals are enclosed with quotation marks: "text". "" is an empty string,
-* optional items are enclosed in square brackets: [<item-x>],
+* OPTIONAL items are enclosed in square brackets: [<item-x>],
 * items existing 0 or more times are enclosed in round brackets and suffixed with an asterisk (\*) such as <word> ::= <letter> (<letter>)*,
 * Items existing 1 or more times are suffixed with an addition (plus) symbol, \+, such as <word> ::= (<letter>)+,
 * round brackets are also used to explicitly define the order of expansion to indicate precedence, example: ( <symbol1> | <symbol2> ) <symbol3>,

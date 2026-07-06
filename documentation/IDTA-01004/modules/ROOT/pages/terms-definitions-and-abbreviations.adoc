@@ -39,7 +39,7 @@ _[SOURCE: link:[https://docs.internationaldataspaces.org/ids-knowledgebase/v/ids
 
 *accountability*::
 
-property of a system (including all of its system resources) that ensures the actions of a system entity may be traced uniquely to that entity, which can be held responsible for its actions
+property of a system (including all of its system resources) that ensures the actions of a system entity MAY be traced uniquely to that entity, which CAN be held responsible for its actions
 
 _[SOURCE: IEC TS 62443-1-1:2009, 3.2.3]_
 
