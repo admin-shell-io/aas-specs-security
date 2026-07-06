@@ -33,26 +33,6 @@ This document uses the following parts and versions of the “Specification of t
 
 If there are bugfixes of the parts, these shall be used.
 
-[#cross-spec-alignment]
-=== Alignment with other AAS Specifications
-
-This version of IDTA-01004 (v3.1) is designed to be used together with the following companion specifications:
-
-[cols="2,2,3",options="header"]
-|===
-| Specification | Aligned Version | Notes
-
-| IDTA-01001 Part 1: Metamodel
-| v3.2
-| Defines the classes referenced by FieldIdentifier prefixes (`$aas`, `$sm`, `$sme`, `$cd`, `$aasdesc`, `$smdesc`).
-
-| IDTA-01002 Part 2: Application Programming Interfaces
-| v3.2
-| HTTP/REST API and AAS Query Language. IDTA-01002 and IDTA-01004 share the same BNF grammar and JSON Schema for formula expressions; the Query Language chapter in IDTA-01002 is normative for formula semantics.
-|===
-
-Bugfix (patch) releases of aligned specifications MAY be substituted. Implementations conforming to this version of IDTA-01004 SHOULD declare which versions of IDTA-01001 and IDTA-01002 they implement.
-
 == Notice
 
 Copyright: Industrial Digital Twin Association e.V. (IDTA)
