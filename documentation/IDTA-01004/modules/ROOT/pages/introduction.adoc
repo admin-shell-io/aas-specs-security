@@ -54,7 +54,7 @@ Information security has traditionally focused on achieving three objectives, co
 *Integrity of AAS interface behaviour:* AAS shall ensure the logical correctness and reliability of data represented by the AAS as well as structure and occurrence of the data represented by the AAS. AAS shall ensure that data is provided in a consistent and reproducible way. The AAS interface shall ensure the authenticity, reliability, and security of API interactions, preventing unauthorized access and abuse. Execution of operations and access to data shall behave in a predictable manner.
 
 ====
-Note: The amount of data represented by the AAS being visible and the AAS services being available are subject to access control (xref:requirements.adoc#_authorization_enforcement[Authorization enforcement], @todo xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]). That means, the user experience depends on the privilege level of the AAS user application user. For example, it is possible that specific Submodels are only visible for privileged repair personnel.  Refer to @todo IEC 63278-4 4.7.5 for additional explanation. Using ABAC, the amount of information can also depend on additional criteria, like the operation status of a manufacturing system.
+Note: The amount of data represented by the AAS being visible and the AAS services being available are subject to access control (xref:requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]). That means, the user experience depends on the privilege level of the AAS user application user. For example, it is possible that specific Submodels are only visible for privileged repair personnel. Refer to IEC 63278-4 4.7.5 for additional explanation. Using ABAC, the amount of information can also depend on additional criteria, like the operation status of a manufacturing system.
 ====
 
 *Integrity and accountability of data:* The AAS user application user expects the data of the AAS provided via the AAS interface to be correct and reliable. Protection of integrity and accountability of AAS data shall consider the following:
@@ -80,7 +80,7 @@ as well as the
 * structure and meta-data represented by the AAS (topology described Submodels, SubmodelElements, SubmodelElementCollections, …).
 
 ====
-@todo Note: Refer to IEC 63278-4 4.7 for additional explanation. 
+Note: Refer to IEC 63278-4 4.7 for additional explanation.
 ====
 
 === Availability
@@ -90,7 +90,7 @@ as well as the
 Data represented by the AAS returned via the AAS interface shall be current. It shall not be possible to maliciously hide data stored in an AAS. It shall be possible to determine whether data is sufficiently recent (lost updates) or data has been intentionally removed (malicious rollbacks).
 
 ====
-Note: This requirement does not affect the situation where data represented by the AAS is intentionally configured to be visible or invisible for AAS user application users depending on their privilege level (xref:requirements.adoc#_authorization_enforcement[Authorization enforcement], @todo 6.2).
+Note: This requirement does not affect the situation where data represented by the AAS is intentionally configured to be visible or invisible for AAS user application users depending on their privilege level (xref:requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]).
 ====
 
 == IEC 63278

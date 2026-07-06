@@ -1,14 +1,8 @@
-////
-@todo
-    * Resolve cross file cross references
-    * Formating of examples (search for "Example:"); currently formated the same as notes.
-////
-
 = AAS Security requirements
 
 == General
 
-AAS security describes a holistic approach to address security concerns related to AAS. The requirements for AAS security have been derived from the foundational requirements given for systems and components in IEC 62443-3-3 and IEC 62443-4-2 respectively. The requirements mainly address the protection of the structure and data represented by the AAS (@todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]]) and made available to the AAS user application via the AAS interface (@todo IDTA 01002 xref:bibliography.adoc#bib1[[2\]]). This document also describes the role of the AAS responsible for security governance. The selection of requirements from IEC 62443 applicable for AAS security follows the analysis in xref:annex/requirements_mapping#_assessment_of_iec_62443_requirements_for_aas_structure[Assessment of IEC 62443 requirements for AAS structure] provided as annex.
+AAS security describes a holistic approach to address security concerns related to AAS. The requirements for AAS security have been derived from the foundational requirements given for systems and components in IEC 62443-3-3 and IEC 62443-4-2 respectively. The requirements mainly address the protection of the structure and data represented by the AAS (IDTA 01001 xref:bibliography.adoc#bib1[[1\]]) and made available to the AAS user application via the AAS interface (IDTA 01002 xref:bibliography.adoc#bib2[[2\]]). This document also describes the role of the AAS responsible for security governance. The selection of requirements from IEC 62443 applicable for AAS security follows the analysis in xref:annex/requirements_mapping#_assessment_of_iec_62443_requirements_for_aas_structure[Assessment of IEC 62443 requirements for AAS structure] provided as annex.
 
 == Security requirements concerning the AAS structure and interface
 
@@ -35,7 +29,7 @@ If the AAS user application user is a NPE the AAS user application may be consid
 
 Additional information provided by the AAS user application can be used to provide extended information on the usage context. All information provided by the AAS user application can be used for authorization decisions.
 
-Subclause @todo 6.2.3 describes an approach to provide information for authorization via ABAC attributes in an authenticated way.
+xref:access-rule-model.adoc#_attributes[Attributes] describes an approach to provide information for authorization via ABAC attributes in an authenticated way.
 
 ====
 Note: Derived from IEC 62443-3-3 SR 1.1, IEC 62443-4-2 CR 1.1.
@@ -80,7 +74,7 @@ All entities within the AAS or interacting with the AAS shall be well defined an
 * AAS instances and AAS interfaces
 * Semantic identifiers and concept repositories
 * Assets
-* AAS objects (@todo 6.2.4.5, Table 10)
+* AAS objects (xref:access-rule-model.adoc#_objects[Objects])
 * AAS user applications
 * AAS user application users
 
@@ -98,8 +92,8 @@ Authentication of AAS user applications and AAS user application users shall sup
 
 Examples for secure identity infrastructures are:
 
-* PKI X.509 identities (ITU-T Recommendation X.509 (2005) xref:bibliography.adoc#bib1[[10\]]).
-* Decentralized Identifiers (DID) and Verifiable Credentials (VC) (Decentralized Identifiers (DIDs) v1.0 xref:bibliography.adoc#bib1[[11\]]).
+* PKI X.509 identities (ITU-T Recommendation X.509 (2005) xref:bibliography.adoc#bib10[[10\]]).
+* Decentralized Identifiers (DID) and Verifiable Credentials (VC) (Decentralized Identifiers (DIDs) v1.0 xref:bibliography.adoc#bib11[[11\]]).
 
 ====
 Derived from IEC 62443-3-3 SR 1.8, IEC 62443-4-2 CR 1.8.
@@ -121,7 +115,7 @@ Note: IEC 62443-4-2 CR 1.10.
 
 Authorization enforcement happens at the AAS interface. The authorization of AAS user application users accessing the AAS interface shall be based on a defined set of rules. Authorization rules may be based on ABAC attributes provided by the AAS user application during authentication.
 
-Details on how this requirement is to be met by the information model are outlined in @todo 6.2.
+Details on how this requirement is to be met by the information model are outlined in xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model].
 
 ====
 Note: Derived from IEC 62443-3-3 SR 2.1, IEC 62443-4-2 CR 2.1.
@@ -139,7 +133,7 @@ The AAS interface shall create audit events. As a minimum the events listed in T
 
 | S1
 | SecurityUnauthorizedAccessEvent
-a| Any attempt of unauthorized access or modifiy the AAS (<<_authorization_enforcement>>). The event shall contain information on the origin of the unauthorized access (e.g., network source, subject name) and on the target AAS object (@todo 6.2.4.5).
+a| Any attempt of unauthorized access or modifiy the AAS (<<_authorization_enforcement>>). The event shall contain information on the origin of the unauthorized access (e.g., network source, subject name) and on the target AAS object (xref:access-rule-model.adoc#_objects[Objects]).
 
 |S2
 | SecurityIdentityConfigChange
@@ -160,7 +154,7 @@ a| Modification of access control rules.
 
 If accountability is a concern, the events listed in Table <<table_accountablility_events>> shall be reported. Each accountability related event shall provide:
 
-* Which AAS object (@todo 6.2.4.5) is affected
+* Which AAS object (xref:access-rule-model.adoc#_objects[Objects]) is affected
 * Whether the operation could be completed successful
 
 .Accountability Events
@@ -175,7 +169,7 @@ If accountability is a concern, the events listed in Table <<table_accountablili
 
 | A2
 | AASInformationUpdate
-| Update of information of an existing AAS object (@todo 6.2.4.5).
+| Update of information of an existing AAS object (xref:access-rule-model.adoc#_objects[Objects]).
 
 | A3
 | AASInformationDelete
@@ -245,7 +239,7 @@ Note: Derived from IEC 62443-4-2 CR 3.8, IEC 62443-3-3 SR 3.8
 
 ==== Asset roots of trust management
 
-AAS Submodels can be used to distribute roots of trust to facilitate the authentication and communication with respect to the managed assets. For instance, an AAS Submodel can contain current root certificates of product suppliers or asset owners to support authentication of assets equipped with cryptographic credentials like manufacturer device certificates or IEEE 802.1AR device identifiers (see @todo 6.4).
+AAS Submodels can be used to distribute roots of trust to facilitate the authentication and communication with respect to the managed assets. For instance, an AAS Submodel can contain current root certificates of product suppliers or asset owners to support authentication of assets equipped with cryptographic credentials like manufacturer device certificates or IEEE 802.1AR device identifiers.
 
 ====
 Note: Derived from IEC 62443-4-2 CR 3.12.
@@ -255,8 +249,8 @@ Note: Derived from IEC 62443-4-2 CR 3.12.
 
 AAS Responsible shall define roots of trust for:
 
-* Protection and authentication of communication (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, _information_integrity).
-* Authentication and authorization services used for the realization of an AAS (<<_identification_and_authentication_of_aas_user_application_users>>, <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, @todo 6.2.3).
+* Protection and authentication of communication (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_information_integrity>>).
+* Authentication and authorization services used for the realization of an AAS (<<_identification_and_authentication_of_aas_user_application_users>>, <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, xref:access-rule-model.adoc#_attributes[Attributes]).
 
 ====
 Note: Derived from IEC 62443-4-2 CR 3.13.
@@ -305,9 +299,9 @@ The definition of AAS structures should consider separation of content based on 
 
 Restricted data flow is an important concept of IEC 62443.
 
-Structuring of AAS information is described in @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]]. AAS, Submodels, and SubmodelElements should be structured in a way that reflects different security levels applying to individual information offered by the respective substructure, e.g., by confining sensitive information into separate Submodels or SubmodelElements.
+Structuring of AAS information is described in IDTA 01001 xref:bibliography.adoc#bib1[[1\]]. AAS, Submodels, and SubmodelElements should be structured in a way that reflects different security levels applying to individual information offered by the respective substructure, e.g., by confining sensitive information into separate Submodels or SubmodelElements.
 
-Security attributes such as access control rules (@todo 6.2.4) shall be assignable at the level of the entire AAS, individual Submodels, and SubmodelElements.
+Security attributes such as access control rules (xref:access-rule-model.adoc#_access_rule_model[Access Rule Model]) shall be assignable at the level of the entire AAS, individual Submodels, and SubmodelElements.
 
 The elements of the AAS can be distributed across different entities (e.g., local device, edge device, on-premise cloud service, public cloud) according to their sensitivity. Each entity providing a different level of protection according to its security capabilities.
 
@@ -336,12 +330,12 @@ In order to provide the capability to operate in a degraded state in case of a d
 
 * Shall reject any AAS user application that is not able to meet the authentication requirement (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>).
 
-* Should reject unauthorized requests as early as possible (cf. <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_authorization_enforcement>>), for example, by applying upfront access restriction rules which do not depend on AAS authorization mechanisms (@todo 6.2).  Potential measures are network protection and restricted data flow (<<_requirements_regarding_restricted_data_flow_fr5>>), AAS user application quotas (e.g., limit the amount of  requests/data retrieved from a specific AAS user application), proof-of-work provided by the AAS user application (e.g., CAPTCHAs, cryptographic puzzles). These measures can also be used to prevent against data scraping by authorized users.
+* Should reject unauthorized requests as early as possible (cf. <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_authorization_enforcement>>), for example, by applying upfront access restriction rules which do not depend on AAS authorization mechanisms (xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]). Potential measures are network protection and restricted data flow (<<_requirements_regarding_restricted_data_flow_fr5>>), AAS user application quotas (e.g., limit the amount of  requests/data retrieved from a specific AAS user application), proof-of-work provided by the AAS user application (e.g., CAPTCHAs, cryptographic puzzles). These measures can also be used to prevent against data scraping by authorized users.
 
 The AAS can provide information about the actuality (e.g., last update received) of the information to allow AAS user applications.
 
 ====
-Note: Versioning of AAS information is described in @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]]. Versioning information can be used by the AAS user application to decide whether the data is still reliable and to detect data inconsistencies which may have occurred due to an attack (e.g., lost updates).
+Note: Versioning of AAS information is described in IDTA 01001 xref:bibliography.adoc#bib1[[1\]]. Versioning information can be used by the AAS user application to decide whether the data is still reliable and to detect data inconsistencies which may have occurred due to an attack (e.g., lost updates).
 ====
 
 ====
@@ -357,7 +351,7 @@ Example: One example for realization is to provide appropriate timestamp or vers
 ====
 
 ====
-Note: Versioning of AAS information is described in @todo IDTA 01001 xref:bibliography.adoc#bib1[[1\]].
+Note: Versioning of AAS information is described in IDTA 01001 xref:bibliography.adoc#bib1[[1\]].
 ====
 
 ====
@@ -368,7 +362,7 @@ Note: Derived from IEC 62443-3-3 SR 7.4, IEC 62443-4-2 CR 7.4.
 
 The AAS interface shall provide the capability to restrict the discovery, exploration, and use of the AAS itself and Submodels contained therein.
 
-The discovery, exploration, and use of Submodels is addressed by <<_authorization_enforcement>> and @todo 6.2.
+The discovery, exploration, and use of Submodels is addressed by <<_authorization_enforcement>> and xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model].
 
 ====
 Derived from IEC 62443-3-3 SR 7.7, IEC 62443-4-2 CR 7.7.
