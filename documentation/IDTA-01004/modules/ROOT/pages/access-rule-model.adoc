@@ -37,8 +37,8 @@ Only if the overall result of the Formula is valid and true, the Access Rule bec
 A formula can include nested boolean expressions, comparisons and string operations.
 A special operation match allows to work with tuples in lists, e.g. specificAssetId.
 
-Access shall only be granted if there is (at least) one access rule which allows the requested action on the designated AAS object (Route/Identifiable/Referable/Fragment/Descriptor).
-If there is no access rule, the default behavior shall be to deny access.
+Access SHALL only be granted if there is (at least) one access rule which allows the requested action on the designated AAS object (Route/Identifiable/Referable/Fragment/Descriptor).
+If there is no access rule, the default behavior SHALL be to deny access.
 
 
 This grammar handles both respositories and registries. 
@@ -92,7 +92,7 @@ The parties involved are supposed to agree on governance and policies.
 
 The AAS Access Rule Model uses Attribute Based Access Control (ABAC), i.e. Attributes are used in access rules.
 By ABAC also Role Based Access Control (RBAC) can be implemented by defining role attributes.
-Subject Attributes and Roles may be provided as claims in Access Tokens.
+Subject Attributes and Roles MAY be provided as claims in Access Tokens.
 
 Attributes in access rules are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or from a Submodel like a property for a machine state.
 
@@ -103,7 +103,7 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 The AAS Access Rule Model allows to define modular parts which can be reused in different access rules.
 
 * The first concept of reuse is groups.
-Both attributes (DEFATTRIBUTES) and objects (DEFOBJECTS) can be combined into related groups, which may also be used in other groups.
+Both attributes (DEFATTRIBUTES) and objects (DEFOBJECTS) can be combined into related groups, which MAY also be used in other groups.
 * The second concept of reuse is Access Control Lists (DEFACLS). +
 An ACL defines which access rights are given for a certain combination of attributes.
 * The third concept of reuse are FORMULAs (DEFFORMULAS), which define a Boolean result when an Access Rule is enabled/disabled.
@@ -122,16 +122,16 @@ An Access Rule Model defines a list of Access Rules.
 For reuse in multiple Access Rules it also contains lists of Attribute Groups (DEFATTRIBUTES), Object Groups (DEFOBJECTS), ACLs (DEFACLS) and Formulas (DEFFORMULAS).
 Such elements defined for reuse get a name.
 
-One Access Rule must either directly define an ACL or reuse an existing ACL definition.
+One Access Rule MUST either directly define an ACL or reuse an existing ACL definition.
 
-One access rule may directly list Single Objects or may reuse defined Object Groups.
+One access rule MAY directly list Single Objects or MAY reuse defined Object Groups.
 
-One access rule may directly define a Formula or may reuse a Formula definition.
+One access rule MAY directly define a Formula or MAY reuse a Formula definition.
 
-An access rule may optionally include a FILTER, which can be used to further restrict the returned objects.
+An access rule MAY optionally include a FILTER, which can be used to further restrict the returned objects.
 A FILTER is an additional FORMULA, which enables by its boolean expression, which part(s) of the given object(s) can be accessed, i.e. without a FILTER the complete objects are accessed.
 The FILTER contains a FragmentObject, which defines which part of the accessed object has to be filtered.
-The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filtered, e.g. "$aasdesc#specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
+The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filtered, e.g. "$aasdesc#specificAssetIds[]" defines that the specificAssetIds part SHALL be filtered.
 
 ==== ACL
 
@@ -146,7 +146,7 @@ Attributes can be provided as a list of single attributes and/or as a list of na
 
 The rights in ACLs essentially use the CRUDX pattern, i.e. rights for CREATE, READ, UPDATE, DELETE and EXECUTE can be defined.
 Without an ALLOW rule any access is forbidden by default.
-For testing and alternative configuration purposes, an access rule may be DISABLED.
+For testing and alternative configuration purposes, an access rule MAY be DISABLED.
 To avoid complex conflicting situations, deny rules are not supported.
 
 In addition, VIEW allows to see the existence of an element as Id or idShort, but not to read its values and its further attributes.
@@ -219,9 +219,9 @@ The normative operation-level mapping for the AAS HTTP/REST API (per-operation R
 The mapping is not intended to redefine AAS Part 2 operations.
 It clarifies how the abstract RIGHT values are typically applied when an authorization decision is made for a concrete HTTP route.
 The same HTTP method can therefore be used for different rights depending on the targeted interface operation and the representation that is returned.
-For example, GET may correspond to READ for full content access or VIEW for reference-only or existence-only access.
-Search-style read operations may also use POST in specific interfaces.
-For endpoints with create-or-replace or upsert semantics, the required right depends on whether the addressed resource already exists.
+For example, GET MAY correspond to READ for full content access or VIEW for reference-only or existence-only access.
+Search-style read operations MAY also use POST in specific interfaces.
+For endpoints with create-or-replace or upsert semantics, the REQUIRED right depends on whether the addressed resource already exists.
 For example, `PUT /api/v3/submodels/{submodelIdentifier}` requires CREATE if the addressed submodel does not yet exist and UPDATE if it already exists.
 The same principle applies to endpoint-specific POST operations such as `POST /api/v3/lookup/shells/{aasIdentifier}` if the endpoint creates the addressed resource when absent and updates it when present.
 
@@ -260,7 +260,7 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 ROUTE defines the endpoint address of an interface operation.
 This allows access control to be defined for single interface operations, groups of interface operations, or complete interfaces.
 
-For AAS HTTP/REST APIs, a ROUTE literal shall use the URL path part only, i.e. the part of the endpoint address starting with "/".
+For AAS HTTP/REST APIs, a ROUTE literal SHALL use the URL path part only, i.e. the part of the endpoint address starting with "/".
 The scheme, authority, query part and fragment identifier are not part of ROUTE matching.
 The deployment-specific server base URL is therefore handled separately from the ROUTE literal.
 
@@ -299,17 +299,17 @@ Specific operations exist to extract parts from DateTime, i.e. $dayOfWeek, $dayO
 This enables access rules related to week days or specific times in the year.
 
 An important special operation is $match, which can be used with any element containing a list of elements, e.g. semanticId[], specificAssetId[], SubmodelElementList or SubmodelElementCollection.
-The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
+The list element is written with [] to express, that $match SHALL check if a certain expression is true for at least one element in the list.
 
 
 [[json-serialization]]
 == JSON Serialization of Access Rule Model
 
 The AAS Access Rule model can also be defined as a JSON schema.
-Since the related JSON schema shall also allow automatic code generation, specific constraints must be fulfilled by such JSON schema.
-The use of "oneof" is limited and type information for objects must be available.
+Since the related JSON schema SHALL also allow automatic code generation, specific constraints MUST be fulfilled by such JSON schema.
+The use of "oneof" is limited and type information for objects MUST be available.
 
-It shall also be possible to check a JSON with the JSON schema.
+It SHALL also be possible to check a JSON with the JSON schema.
 
 Examples can be found in xref:annex/json-access-rule-examples.adoc[].
 
@@ -370,7 +370,7 @@ Parts of DateTime values can be extracted as numbers:
 * _$dayOfMonth_, _$month_, _$year_ extract the related part as number.
 
 If a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
-An error message shall be generated and the result of the complete expression becomes FALSE, so that the access is not allowed and/or the filter is empty.
+An error message SHALL be generated and the result of the complete expression becomes FALSE, so that the access is not allowed and/or the filter is empty.
 
 To allow the use of different types in operations, arrays are used for parameters. _comparisonItems_ is used for comparisons and _stringItems_ is used for specific string operations.
 
@@ -378,9 +378,9 @@ _logicalExpressions_ and _match_ can be recursively nested.
 
 == Exchange of Access Rules
 
-Business Partners may be interested to exchange Access Rules.
+Business Partners MAY be interested to exchange Access Rules.
 
-As explained as an example above, a robot manufacturer suggests that for the robot the following roles shall be defined: machine setter, operator and a maintenance role.
+As explained as an example above, a robot manufacturer suggests that for the robot the following roles SHALL be defined: machine setter, operator and a maintenance role.
 He also suggests permissions for these roles, e.g. an installer (integrator) does have write-access to the program of the robot, but an operator does not.
 
 Providing such suggested access rules, makes the integration of the operator much easier.
@@ -389,12 +389,12 @@ The operator can copy and paste the access rules into his AAS implementation and
 The enforcement of Access Rules is implementation specific.
 
 This specification defines the text serialization of access rules and the JSON schema serialization of access rules.
-The support of both is optional and not mandatory.
+The support of both is OPTIONAL and not mandatory.
 
-The JSON schema serialization is recommended.
+The JSON schema serialization is RECOMMENDED.
 
 Such serialization provides the possibility to exchange access rules.
-An implementation may even store such serialized access rules in submodel elements BLOB or FILE, so that these can be accessed by the API and can be protected by access rules itself.
+An implementation MAY even store such serialized access rules in submodel elements BLOB or FILE, so that these can be accessed by the API and can be protected by access rules itself.
 
 == API Queries and Access Rules
 
@@ -403,4 +403,4 @@ The JSON schema serialization is used in the related API operations.
 
 In addition, using the same concepts will be needed for large amounts of AAS data.
 Querying such large amounts of data and protecting such data with Access Rules requires optimized access of data.
-Database queries may combine the filter expression provided by the client query with the FOMULAs of the Access Rules on the server.
+Database queries MAY combine the filter expression provided by the client query with the FOMULAs of the Access Rules on the server.

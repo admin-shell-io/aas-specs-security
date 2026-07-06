@@ -22,7 +22,7 @@ Major Changes:
 
 Minor Changes:
 
-* update: Revised description text to replace 'may include signing' / 'will be' with 'is signed' / 'be signed' for clarity and consistency.
+* update: Revised description text to replace 'MAY include signing' / 'will be' with 'is signed' / 'be signed' for clarity and consistency.
 * added: Support for supplementalSemanticIds in Access Rule FieldIdentifiers and FragmentFieldIdentifiers, including BNF, JSON Schema, and examples [#77](https://github.com/admin-shell-io/aas-specs-security/pull/77)
 * added: Access control examples for REFERENCE & along with rules for creating only specific models, defined using BNF and JSON.
 * added: Clarified ROUTE semantics for AAS HTTP/REST path matching and added informative ROUTE and request examples [#58](https://github.com/admin-shell-io/aas-specs-security/issues/58)
@@ -50,7 +50,7 @@ Bugfixes:
 
 Bugfixes:
 
-* changed: Removed incorrect but required whitespaces from grammar and examples [#477 of API](https://github.com/admin-shell-io/aas-specs-api/issues/477)
+* changed: Removed incorrect but REQUIRED whitespaces from grammar and examples [#477 of API](https://github.com/admin-shell-io/aas-specs-api/issues/477)
 * changed: fixed idShortPath definition in the BNF Grammar for the Query Language [#34](https://github.com/admin-shell-io/aas-specs-security/issues/34)
 * changed:  xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[text serialization of Reference]  does not follow text serialization of Part 1 of References, the updated grammar will be added in the V3.1 [#33](https://github.com/admin-shell-io/aas-specs-security/issues/33)
 

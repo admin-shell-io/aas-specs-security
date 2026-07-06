@@ -18,20 +18,20 @@ Purpose 1 is to provide guidelines for implementations.
 
 Purpose 2 is to address the definition and exchange of access rules.
 Such exchange of access rules is very useful for complex assets like robot or machine.
-The supplier of an asset may already supply a set of access rules, which the operator of the asset may simply adjust then.
+The supplier of an asset MAY already supply a set of access rules, which the operator of the asset MAY simply adjust then.
 In case of switching between AAS implementations, an exchange of access rules is useful.
 
-AAS implementations may decide, to which extent the access rule model is used.
+AAS implementations MAY decide, to which extent the access rule model is used.
 The access rule model can be used as a guideline which shows, what a client application will expect.
-If an AAS implementation allows the exchange of access rules, it should follow the specification of the access rule model.
+If an AAS implementation allows the exchange of access rules, it SHOULD follow the specification of the access rule model.
 
-AAS implementations may decide, which subset of the access rules is implemented.
-If an AAS implementation e.g. only provides a READ profile, only such access rules for READ shall be allowed.
+AAS implementations MAY decide, which subset of the access rules is implemented.
+If an AAS implementation e.g. only provides a READ profile, only such access rules for READ SHALL be allowed.
 Further subsets can be e.g. AAS repository, submodel respository, concept description repository, AAS registry or submodel registry.
 
-AAS implementations (of non test systems) should consider relevant security standards and regulations, e.g. IEC 62443, ISO 27001, EU CRA or EU NIS2.
+AAS implementations (of non test systems) SHOULD consider relevant security standards and regulations, e.g. IEC 62443, ISO 27001, EU CRA or EU NIS2.
 This includes rules for the development process and for the written code.
-AAS implementations may provide millions of AAS. In such case, access rules are typically translated into the related AAS implementation to reach the needed perfomance and fulfill memory constraints.
+AAS implementations MAY provide millions of AAS. In such case, access rules are typically translated into the related AAS implementation to reach the needed perfomance and fulfill memory constraints.
 
 Access Tokens to be used with the Asset Administration Shell are defined.
 Such Access Token is the result of an authentication flow which is not defined by this document.
@@ -47,31 +47,31 @@ Access rules can be defined for routes in the AAS API xref:bibliography.adoc#bib
 
 === Overview
 
-Information security has traditionally focused on achieving three objectives, confidentiality, integrity, and availability, which are often abbreviated by the acronym CIA. IEC TS 62443-1-1:2009 observes that these priorities are sometimes completely inverted, e.g., availability, integrity, confidentiality (AIC) in case of some industrial automation scenarios. In AAS context, AAS is used in a variety of different use cases. While some domains suggest a specific ordering or priority of security objectives, the order of the following subsections on integrity, confidentiality, and availability is deliberate. The AAS responsible should consider the three objectives without predefining their priority and use a risk-based approach to determine and balance the priority of the individual security objectives for their intended use cases and applications.
+Information security has traditionally focused on achieving three objectives, confidentiality, integrity, and availability, which are often abbreviated by the acronym CIA. IEC TS 62443-1-1:2009 observes that these priorities are sometimes completely inverted, e.g., availability, integrity, confidentiality (AIC) in case of some industrial automation scenarios. In AAS context, AAS is used in a variety of different use cases. While some domains suggest a specific ordering or priority of security objectives, the order of the following subsections on integrity, confidentiality, and availability is deliberate. The AAS responsible SHOULD consider the three objectives without predefining their priority and use a risk-based approach to determine and balance the priority of the individual security objectives for their intended use cases and applications.
 
 === Integrity
 
-*Integrity of AAS interface behaviour:* AAS shall ensure the logical correctness and reliability of data represented by the AAS as well as structure and occurrence of the data represented by the AAS. AAS shall ensure that data is provided in a consistent and reproducible way. The AAS interface shall ensure the authenticity, reliability, and security of API interactions, preventing unauthorized access and abuse. Execution of operations and access to data shall behave in a predictable manner.
+*Integrity of AAS interface behaviour:* AAS SHALL ensure the logical correctness and reliability of data represented by the AAS as well as structure and occurrence of the data represented by the AAS. AAS SHALL ensure that data is provided in a consistent and reproducible way. The AAS interface SHALL ensure the authenticity, reliability, and security of API interactions, preventing unauthorized access and abuse. Execution of operations and access to data SHALL behave in a predictable manner.
 
 ====
 Note: The amount of data represented by the AAS being visible and the AAS services being available are subject to access control (xref:requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]). That means, the user experience depends on the privilege level of the AAS user application user. For example, it is possible that specific Submodels are only visible for privileged repair personnel. Refer to IEC 63278-4 4.7.5 for additional explanation. Using ABAC, the amount of information can also depend on additional criteria, like the operation status of a manufacturing system.
 ====
 
-*Integrity and accountability of data:* The AAS user application user expects the data of the AAS provided via the AAS interface to be correct and reliable. Protection of integrity and accountability of AAS data shall consider the following:
+*Integrity and accountability of data:* The AAS user application user expects the data of the AAS provided via the AAS interface to be correct and reliable. Protection of integrity and accountability of AAS data SHALL consider the following:
 
-* Protection against the entry of data by an unauthorized AAS user application user. Entry/modification of data shall only be possible for an authorized user.
-* It should be possible to detect unintentional change of data represented by the AAS and allow to trace the originator of data.
-* Protection against manipulation of data represented by the AAS. Data represented by the AAS should be protected against unauthorized manipulation including the manipulation of origin/authorship. This is especially important if data represented by the AAS is handled (e.g., storage, retrieval, aggregation) by 3rd parties who are not the original source of that data.
+* Protection against the entry of data by an unauthorized AAS user application user. Entry/modification of data SHALL only be possible for an authorized user.
+* It SHOULD be possible to detect unintentional change of data represented by the AAS and allow to trace the originator of data.
+* Protection against manipulation of data represented by the AAS. Data represented by the AAS SHOULD be protected against unauthorized manipulation including the manipulation of origin/authorship. This is especially important if data represented by the AAS is handled (e.g., storage, retrieval, aggregation) by 3rd parties who are not the original source of that data.
 * Protection against the manipulation of the AAS structure. It is possible that moving Properties or SubmodelElements between different SubmodelElementCollections results in incorrect interpretation of the provided data.
 * Protection against the manipulation of AAS management information and auxiliary information used by systems realizing an AAS. Auxiliary information includes all information relevant for the correctness of data represented by the AAS and the correct functionality of the AAS interface. This especially includes the information relevant for AAS access control.
 
-*Integrity of relation between data and asset:* The relation between an asset and the data stored in the AAS shall be protected. It is important to know that AAS data belongs to the asset as identified by the asset identifier recorded in the AAS management information.
+*Integrity of relation between data and asset:* The relation between an asset and the data stored in the AAS SHALL be protected. It is important to know that AAS data belongs to the asset as identified by the asset identifier recorded in the AAS management information.
 
-*Integrity of relation between services and asset:* There shall be no incorrect relations between an asset and asset related services provided by the AAS. It is essential that services referenced by AAS Submodels affect the intended asset and that the behaviour of the service is described correctly.
+*Integrity of relation between services and asset:* There SHALL be no incorrect relations between an asset and asset related services provided by the AAS. It is essential that services referenced by AAS Submodels affect the intended asset and that the behaviour of the service is described correctly.
 
 === Confidentiality
 
-*Data exposure and data leakage protection:* AAS shall provide assurance that data represented by the AAS is not disclosed to unauthorized entities. Access to information considered sensitive by the AAS responsible shall be controllable by well-defined rules determining the visibility of data represented by the AAS. Access to  sensitive information represented by the AAS shall only be granted after authentication of the requestor (xref:requirements.adoc#_identification_and_authentication_of_aas_user_application_users[Identification and authentication of AAS user application users], xref:requirements.adoc#_identification_and_authentication_of_aas_user_applications_and_aas_interface[Identification and authentication of AAS user applications and AAS interface]). This applies to both,
+*Data exposure and data leakage protection:* AAS SHALL provide assurance that data represented by the AAS is not disclosed to unauthorized entities. Access to information considered sensitive by the AAS responsible SHALL be controllable by well-defined rules determining the visibility of data represented by the AAS. Access to  sensitive information represented by the AAS SHALL only be granted after authentication of the requestor (xref:requirements.adoc#_identification_and_authentication_of_aas_user_application_users[Identification and authentication of AAS user application users], xref:requirements.adoc#_identification_and_authentication_of_aas_user_applications_and_aas_interface[Identification and authentication of AAS user applications and AAS interface]). This applies to both,
 
 * actual values,
 
@@ -85,9 +85,9 @@ Note: Refer to IEC 63278-4 4.7 for additional explanation.
 
 === Availability
 
-*Availability of asset data:* The AAS interface shall be able to process requests in a reasonable time interval. The AAS responsible shall define the quality of service provided.
+*Availability of asset data:* The AAS interface SHALL be able to process requests in a reasonable time interval. The AAS responsible SHALL define the quality of service provided.
 
-Data represented by the AAS returned via the AAS interface shall be current. It shall not be possible to maliciously hide data stored in an AAS. It shall be possible to determine whether data is sufficiently recent (lost updates) or data has been intentionally removed (malicious rollbacks).
+Data represented by the AAS returned via the AAS interface SHALL be current. It SHALL NOT be possible to maliciously hide data stored in an AAS. It SHALL be possible to determine whether data is sufficiently recent (lost updates) or data has been intentionally removed (malicious rollbacks).
 
 ====
 Note: This requirement does not affect the situation where data represented by the AAS is intentionally configured to be visible or invisible for AAS user application users depending on their privilege level (xref:requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]).
@@ -107,13 +107,13 @@ image::iec63278-1-overview.png[width=642,height=374]
 As introduced in AAS Part 2 API, <<image-aas-info-exchange-types>> shows 3 different types of information via the Asset Administration Shell.
 
 * Type 1 is the exchange as an AASX file xref:bibliography.adoc#bib3[[3\]] (part 5).
-Such AASX file may include a Security Model to be passed to a business partner.
+Such AASX file MAY include a Security Model to be passed to a business partner.
 * Type 2 is the access to AAS by the API xref:bibliography.adoc#bib2[[2\]] (part 2) to a server.
-Such server may use and enforce the ABAC rules of the Security Model.
-Depending on the access rules, such server may also allow to access the submodel with the Security Model by the API.
-Identifiables on the server may also be signed.
+Such server MAY use and enforce the ABAC rules of the Security Model.
+Depending on the access rules, such server MAY also allow to access the submodel with the Security Model by the API.
+Identifiables on the server MAY also be signed.
 * Type 3 is the so called “Industrie 4.0 Language” with active AAS, which is similar to agents.
-Basically Type 3 is out of scope for this document, but the definitions of this document may also be used in the context of Type 3.
+Basically Type 3 is out of scope for this document, but the definitions of this document MAY also be used in the context of Type 3.
 
 .Types of Information Exchange via Asset Administration Shells
 [[image-aas-info-exchange-types]]
@@ -136,26 +136,26 @@ The technology-neutral level comprises the following concepts:
 
 * *Service*: a service describes a demarcated scope of functionality (including its informational and non-functional aspects), which is offered by an entity or organization via interfaces.
 * *Interface*: this is the most important concept as it is understood to be the unit of reusability across services and the unit of standardization when mapped to application programming interfaces (API) in the technology-specific level.
-One interface may be mapped to several APIs depending on the technology and architectural style used, e.g. HTTP/REST or OPC UA, whereby these API mappings also need to be standardized for the sake of interoperability.
+One interface MAY be mapped to several APIs depending on the technology and architectural style used, e.g. HTTP/REST or OPC UA, whereby these API mappings also need to be standardized for the sake of interoperability.
 * *Interface-Operation*: interface operations define interaction patterns via the specified interface.
 
 The technology-specific level comprises the following concepts:
 
 * *Service Specification*: specification of a service according to the notation, architectural style, and constraints of a selected technology.
 Among others, it comprises and refers to the list of APIs that forms this service specification.
-These may be I4.0-defined standard APIs but also other, proprietary APIs.
+These MAY be I4.0-defined standard APIs but also other, proprietary APIs.
 
 ====
-Note: such a technology-specific service specification may be but does not have to be derived from the “service” described in the technology-neutral form.
+Note: such a technology-specific service specification MAY be but does not have to be derived from the “service” described in the technology-neutral form.
 It is up to the system architect and service engineer to tailor the technology-specific service according to the needs of the use cases.
 ====
 
 * *API*: specification of the set of operations and events that forms an API in a selected technology.
 It is derived from the interface description on the technology-neutral level.
-Hence, if there are several selected technologies, one interface may be mapped to several APIs.
-* *API-Operation*: specification of the operations (procedures) that may be called through an API.
+Hence, if there are several selected technologies, one interface MAY be mapped to several APIs.
+* *API-Operation*: specification of the operations (procedures) that MAY be called through an API.
 It is derived from the interface operation description on the technology-neutral level.
-When selecting technologies, one interface operation may be mapped to several API-operations; several interface operations may also be mapped to the same API-operation.
+When selecting technologies, one interface operation MAY be mapped to several API-operations; several interface operations MAY also be mapped to the same API-operation.
 
 The implementation level comprises the following concepts:
 
@@ -191,7 +191,7 @@ One important message from the Industrie 4.0 Service Model is that it is the lev
 
 An AAS descriptor includes the endpoint of the AAS and of the related Submodels.
 
-* AAS or Submodels may be hosted standalone or as part of a larger AAS or Submodel Repository.
+* AAS or Submodels MAY be hosted standalone or as part of a larger AAS or Submodel Repository.
 In <<image-seq-sm-endpoints>> the first submodel is accessed by the Submodel Interface and the second submodel is accessed by the Submodel Repository Interface.
 
 .Sequence Diagram of AAS Services
@@ -206,10 +206,10 @@ include::partial$diagrams/seq-sm-endpoints.puml[]
 <<image-tracking-of-changes-via-events>> shows an example use case of File Exchange between business partners as introduced by AAS Part 5 Package File.
 
 In the example a supplier sends AAS as AASX by email to an integrator.
-The integrator may send these AAS and additional own AAS to his customers.
-The integrator may also only select certain submodels from the supplier's AAS.
+The integrator MAY send these AAS and additional own AAS to his customers.
+The integrator MAY also only select certain submodels from the supplier's AAS.
 
-This use case is an example for the necessity of Signing, since it must be possible to check the integrity of the AAS originally provided by the supplier.
+This use case is an example for the necessity of Signing, since it MUST be possible to check the integrity of the AAS originally provided by the supplier.
 Signing is defined in REST API specification.
 
 .Use Case File Exchange between Value Chain Partners
@@ -240,12 +240,12 @@ Other attributes might be the time-of-day, the location of the asset, the origin
 In addition to the AAS content itself, also the defined access permissions have to be transferred between the partners due to the following two reasons:
 
 [arabic]
-. Access permissions to information elements of an AAS must be established in each access control domain.
-. One partner must be able to pass a suggestion which access permissions should be established for the asset that is described in the AAS.
+. Access permissions to information elements of an AAS MUST be established in each access control domain.
+. One partner MUST be able to pass a suggestion which access permissions SHOULD be established for the asset that is described in the AAS.
 
 An example for the requirement (2):
 
-A robot manufacturer suggests that for the robot the following roles shall be defined: machine setter, operator and a maintenance role.
+A robot manufacturer suggests that for the robot the following roles SHALL be defined: machine setter, operator and a maintenance role.
 Note that the roles have to be expressed by means of attributes of the AAS representing the robot.
 He also suggests permissions for these roles, e.g. an integrator does have write-access to the program of the robot, but an operator does not.
 
@@ -262,9 +262,9 @@ It will then access the data on the different AAS servers by the related APIs.
 
 This use case is an example for the necessity of Authentication, Authorization and Signing.
 
-The AAS Servers may provide data available to the public, i.e. anonymous users.
-But an AAS Server may also restrict the access of certain data to specific users.
-In such case the User Application must first authenticate (not in the figure) and get an Access Token to supply its identity and further attributes to an AAS Server and also to the Registry.
+The AAS Servers MAY provide data available to the public, i.e. anonymous users.
+But an AAS Server MAY also restrict the access of certain data to specific users.
+In such case the User Application MUST first authenticate (not in the figure) and get an Access Token to supply its identity and further attributes to an AAS Server and also to the Registry.
 Access rules will be validated and enforced using the attributes in the Access Token.
 
 .Example of a User Application accessing 3 AAS Servers and a Registry
@@ -310,12 +310,12 @@ include::partial$diagrams/aas-server-implementation.puml[]
 * First such access will be handled by the *API Gateway* in the *AAS Server*.
 Such *API Gateway* will verify the signature of the access token by the *Authentication Service*, which uses the public key of the *Identity Provider / Authorization Server*.
 * Second the *AAS API* verifies by the *Authorization Service*, that the requested API route is authorized.
-This may be defined by related ABAC access rules for that API route.
+This MAY be defined by related ABAC access rules for that API route.
 * Third the *AAS API* verifies by the *Authorization Service*, that the requested AAS element is authorized.
-This may be defined by related ABAC access rules with IDs of Identifiables, Referables, Assets or semanticIds.
+This MAY be defined by related ABAC access rules with IDs of Identifiables, Referables, Assets or semanticIds.
 * Fourth the *AAS API* will access the *Data Storage*, but only in case of all the positive authorizations above.
-* The *AAS Responsible* may receive proposed ABAC access rules from his business partners, e.g. a machine supplier proposes such rules to a machine operator.
-Such access rules may be stored in a proprietary way by the *AAS Server*, but they might also be stored in the Data Storage in AAS format as received.
+* The *AAS Responsible* MAY receive proposed ABAC access rules from his business partners, e.g. a machine supplier proposes such rules to a machine operator.
+Such access rules MAY be stored in a proprietary way by the *AAS Server*, but they might also be stored in the Data Storage in AAS format as received.
 * As described for the *AAS Server*, the AAS *User Application* will also provide the access token to the *Discovery/Registry Service* which can make the verification and authorization accordingly.
 
 === Protecting an AAS Registry
@@ -362,7 +362,7 @@ image::abac.jpg[width=460,height=372]
 
 In this document the concept of attributes is specialized for the application of ABAC in the context of AAS authorization.
 
-Attributes may be claims from an access token (e.g. subject attributes), global attributes (e.g. environmental conditions) or attributes from AAS and submodel data (e.g. object attributes).
+Attributes MAY be claims from an access token (e.g. subject attributes), global attributes (e.g. environmental conditions) or attributes from AAS and submodel data (e.g. object attributes).
 
 == Dataspaces
 
@@ -380,11 +380,11 @@ In a dataspace members can exchange data securely and interoperably.
 
 Such data exchange is always done in the same way, so that scalability and efficiency can be achieved.
 
-Millions of business partners shall be able to easily exchange data with each other in a dataspace.
+Millions of business partners SHALL be able to easily exchange data with each other in a dataspace.
 
 The data exchange can be with and without user interaction.
 
-To achieve interoperability, members of a dataspace must agree on:
+To achieve interoperability, members of a dataspace MUST agree on:
 
 * Common models
 * Common APIs
@@ -409,7 +409,7 @@ In addition, a dataspace with AAS needs to define:
 Remark: Until now no common AAS specifications for the following concepts are published and need also to be defined in a dataspace with AAS:
 
 * How to find AAS registries of the dataspace members?
-Solutions may be a registry with registry endpoints or a naming convention like registry.company-domain.com.
+Solutions MAY be a registry with registry endpoints or a naming convention like registry.company-domain.com.
 Also, an indirect registration via dataspace connectors that also support additional data exchange patterns besides AAS, e.g. simple bilateral file exchange, is possible.
 
 * How to find concept repositories?
@@ -441,13 +441,13 @@ image::integration-patterns.jpg[width=602,height=228]
 The AAS is not accessible from outside the Company.
 - Everything can be decided internally by the company (Company A).
 - Company hosts AAS on a server internally.
-The server software may be open source, a commercial product or a software as a service.
+The server software MAY be open source, a commercial product or a software as a service.
 - Company will choose an Identity Provider, that is aligned with company’s IT infrastructure.
-Chosen server software must be able to support this.
-- Chosen server software may have predefined claims or may be fully configurable for claims.
-- Chosen server software may have certain limited access rules or may be fully configurable for access rules according standardized AAS security.
-- For many internal Use Cases the security may be complete company specific not using the standardized AAS security.
-Since the company may decide later to make their AAS available to other companies (pattern “Access to External”) or the company may use existing software to host their AAS, company may still benefit from using standardized AAS security.
+Chosen server software MUST be able to support this.
+- Chosen server software MAY have predefined claims or MAY be fully configurable for claims.
+- Chosen server software MAY have certain limited access rules or MAY be fully configurable for access rules according standardized AAS security.
+- For many internal Use Cases the security MAY be complete company specific not using the standardized AAS security.
+Since the company MAY decide later to make their AAS available to other companies (pattern “Access to External”) or the company MAY use existing software to host their AAS, company MAY still benefit from using standardized AAS security.
 
 === Integration Pattern “Buy and Use” (IP2)
 
@@ -455,16 +455,16 @@ Since the company may decide later to make their AAS available to other companie
 - Company B has created the AAS and Company A copies the AAS.
 - The AAS is hosted on a server of company A.
 - Company A defines Identity Provider, access token and claims.
-- Company B may propose standardized AAS Access Rules to Company A, which Company A may simply copy and paste into his AAS Server.
+- Company B MAY propose standardized AAS Access Rules to Company A, which Company A MAY simply copy and paste into his AAS Server.
 - With respect to security this case is very similar to the “Build My Own” access pattern.
 
 === Integration Pattern “Access to External” (IP3)
 
 - Company A accesses an AAS on an external server of Company B.
-- Company A may access AAS from one business partner (bilateral) or may access AAS from many different business partners (multilateral).
+- Company A MAY access AAS from one business partner (bilateral) or MAY access AAS from many different business partners (multilateral).
 - The external business partner Company B hosts his AAS on his server.
 - Company A accesses AAS by the API and uses it in its user applications.
-If the usage policy from Company B allows it, Company A may copy the AAS and store it in its own systems.
+If the usage policy from Company B allows it, Company A MAY copy the AAS and store it in its own systems.
 - In case of bilateral access, Identity Provider, access token and claims are defined by Company B.
 - In case of multilateral access, a common Identity Provider of a dataspace is used.
 The members of the dataspace have to define access token and claims.
@@ -476,7 +476,7 @@ The members of the dataspace have to define access token and claims.
 - Company A has created the AAS and Company B copies the AAS.
 - The AAS is hosted on a server of company B.
 - Company B defines Identity Provider, access token and claims.
-- Company A may propose standardized AAS Access Rules to Company B, which Company B may simply copy and paste into his AAS Server.
+- Company A MAY propose standardized AAS Access Rules to Company B, which Company B MAY simply copy and paste into his AAS Server.
 - With respect to security this case is similar to the bilateral “Access to External” access pattern.
 
 == External and Internal Identity Providers
@@ -526,7 +526,7 @@ In cases where a shared AAS/SM Registry references identifiables from different 
 
 From administration point of view, the Federated Identity Provider and the Token Exchange approach enable a system owner to fully control access to their secured systems, because the Identity Provider is managed by the system owner.
 
-A distributed identity layer may also be achieved via self-sovereign identity wallets.
+A distributed identity layer MAY also be achieved via self-sovereign identity wallets.
 
 [[authentication-flows]]
 == Authentication Flows
@@ -540,7 +540,7 @@ Authentication flows like OAUTH 2.0 or OIDC can be used.
 
 Authentication flows as defined by a specific dataspace or by a specific dataspace protocol can be used.
 
-In any case a signed JSON Web Token must be provided by the related Identity Provider.
+In any case a signed JSON Web Token MUST be provided by the related Identity Provider.
 
 The following sections describe example flows that can be used.The following terms are used in the description:
 
@@ -565,7 +565,7 @@ _Client credentials are used as an authorization grant typically when the client
 * The application credentials are client id and client secret.
 * This flow is best suited for Machine-to-Machine (M2M) applications, such as CLIs, daemons, or backend services.
 
-The system must authenticate and authorize the application instead of a user.
+The system MUST authenticate and authorize the application instead of a user.
 
 .Authentication Flow OAuth 2.0
 [[image-auth-flow-oauth]]
@@ -669,7 +669,7 @@ According to the Dataspace Protocol (DSP) xref:bibliography.adoc#bib7[[7\]], a D
 The specification goes on to define interactions between a Data Provider and Data Consumer to expose metadata, agree on conditions for exchange and execute the transfer of Datasets.
 Asset Administration Shell resources can be such Datasets.
 
-A Dataspace may decide for a subset of all AAS Service Specifications of AAS Part 2, e.g. using both AssetAdministrationShellRegistryServiceSpecification and SubmodelRepositoryServiceSpecification together with AssetAdministrationShellDescriptors and included SubmodelDescriptors. Specific Dataspaces define conventions on the standardized exposure of these resources for Data Consumers to discover and retrieve.
+A Dataspace MAY decide for a subset of all AAS Service Specifications of AAS Part 2, e.g. using both AssetAdministrationShellRegistryServiceSpecification and SubmodelRepositoryServiceSpecification together with AssetAdministrationShellDescriptors and included SubmodelDescriptors. Specific Dataspaces define conventions on the standardized exposure of these resources for Data Consumers to discover and retrieve.
 
 .Dataspace Protocol negotiation with integrated SSI-based authentication flow for credential presentation
 [[image-auth-flow-dataspace]]
@@ -678,8 +678,8 @@ A Dataspace may decide for a subset of all AAS Service Specifications of AAS Par
 include::partial$diagrams/auth-flow-dataspace.puml[]
 ....
 
-A Provider will define access conditions encoded as ODRL-Policies that a potential Consumer must comply with.
-To authorize against these Policies, a Consumer may be required to provide access to long-living claims signed by a commonly trusted party (Identity Provider, step 1).
+A Provider will define access conditions encoded as ODRL-Policies that a potential Consumer MUST comply with.
+To authorize against these Policies, a Consumer MAY be REQUIRED to provide access to long-living claims signed by a commonly trusted party (Identity Provider, step 1).
 These claims will usually follow the Verifiable Credential Data Model embedded in a jwt (see <<image-verifiable-credential>>):
 
 .Example Verifiable Credential for authentication and authorization against Dataspace Protocol endpoints
@@ -697,7 +697,7 @@ The Tokens’ format is usually irrelevant for interoperability as it is issued 
 Only scenarios where the Policy Decision Point and Policy Enforcement Point are implemented in separate runtimes, possibly from different vendors, require standardization of such tokens.
 Access concludes by presenting said short-lived token to the server hosting the AAS-resource (step 7).
 
-To strike a balance between granularity and public meta-data exposure, AAS resources may be exposed in a granular manner masking implicit information like the number of Submodels or AAS-Descriptors.
+To strike a balance between granularity and public meta-data exposure, AAS resources MAY be exposed in a granular manner masking implicit information like the number of Submodels or AAS-Descriptors.
 The AAS-Registry API completes the Data Consumer’s discovery-sequence by linking the Submodels from distributed data sources while at the same time protecting the AAS-Descriptor objects from the public.
 
 The AAS data server and the AAS registry will evaluate and check the claims in the token by the Access Rules as specified later in this specification.
@@ -705,21 +705,21 @@ The AAS data server and the AAS registry will evaluate and check the claims in t
 == Access token
 
 An AAS Data Server trusts one or several Identity Providers.
-An Identity Provider may also give the possibility to federate identities to/from other Identity Providers.
+An Identity Provider MAY also give the possibility to federate identities to/from other Identity Providers.
 
 Trust means, that for such Identity Provider(s) an AAS Data Server can verify the public key of the Identity Provider.
-Such public key may be available directly as a key, by a public certificate or by a verifiable credential.
+Such public key MAY be available directly as a key, by a public certificate or by a verifiable credential.
 
 AAS Security uses signed JWT (JSON Web Token) bearer tokens as Access Tokens, as they are defined in RFC 7519.
 
 The JWT is digitally signed according to RFC 7519 with the private key of the Identity Provider.
 The public key needs to be accessible by the AAS server, such that the JWT can be verified.
-The key length should follow best practices.
+The key length SHOULD follow best practices.
 Other properties like the lifetime of the token or Proof-of-Possession (RFC 7800) properties can be determined based on the use case.
 
 AAS Security only requires the standard claims of the RFC 9068 Chapter 2.2 Data Structure for the JWT, i.e “iss” (Issuer), “exp” (Expiration time), “aud” (Audience), “sub” (Subject), “client_id” (Client identifier), “iat” (Issued at), “jti” (JWT ID).
 
-Dataspaces should define their specific requirements on “iss”, “sub” and “aud”.
+Dataspaces SHOULD define their specific requirements on “iss”, “sub” and “aud”.
 
 All claims in an Access Token can be used in ABAC access rules as attributes and as described in the Access Rule Model below.
 
@@ -727,6 +727,6 @@ Access rules can also be defined for anonymous access, i.e. no Access Token exis
 This is especially important for the Digital Product Passport to be able to scan the QRCODE according to IEC 61406 with a normal mobile phone camera.
 
 Further definitions can be made by dataspaces.
-A specific dataspace may define the technology how to get an access token and may also define the attributes which can be used in the ABAC access rules.
+A specific dataspace MAY define the technology how to get an access token and MAY also define the attributes which can be used in the ABAC access rules.
 
 This both assures interoperability and makes it possible to integrate new dataspaces in the future.

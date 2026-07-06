@@ -22,10 +22,10 @@ Following subclauses are based on the seven foundational requirements defined in
 
 ==== Identification and authentication of AAS user application users
 
-Before granting access to protected data represented by the AAS or restricted services, the AAS interface shall ensure the identification and authentication of the AAS user application user.
-Authentication of the AAS user application user shall be based on the authentication of information provided by the AAS user application on behalf of a user. The subject attributes conveyed to authenticate the AAS user application user shall uniquely determine the subject credentials used for subject authentication. The identity vetting process used to issue subject credentials should be sufficient to hold the identified AAS user application user accountable (see xref:introduction.adoc#_integrity[Integrity], <<_public_key_infrastructure>>).
+Before granting access to protected data represented by the AAS or restricted services, the AAS interface SHALL ensure the identification and authentication of the AAS user application user.
+Authentication of the AAS user application user SHALL be based on the authentication of information provided by the AAS user application on behalf of a user. The subject attributes conveyed to authenticate the AAS user application user SHALL uniquely determine the subject credentials used for subject authentication. The identity vetting process used to issue subject credentials SHOULD be sufficient to hold the identified AAS user application user accountable (see xref:introduction.adoc#_integrity[Integrity], <<_public_key_infrastructure>>).
 
-If the AAS user application user is a NPE the AAS user application may be considered as the user. This especially accounts for AAS user applications with unattended operation. If there is no distinction between AAS user application user and AAS user application the identification and authentication of the AAS user application user may be replaced by the identification and authentication of the AAS user application (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>). 
+If the AAS user application user is a NPE the AAS user application MAY be considered as the user. This especially accounts for AAS user applications with unattended operation. If there is no distinction between AAS user application user and AAS user application the identification and authentication of the AAS user application user MAY be replaced by the identification and authentication of the AAS user application (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>). 
 
 Additional information provided by the AAS user application can be used to provide extended information on the usage context. All information provided by the AAS user application can be used for authorization decisions.
 
@@ -39,16 +39,16 @@ Note: Derived from IEC 62443-3-3 SR 1.1, IEC 62443-4-2 CR 1.1.
 
 Identification and authentication of AAS user applications and AAS interface provides a basis for integrity protection (xref:introduction.adoc#_integrity[Integrity]) and confidentiality protection (xref:introduction.adoc#_confidentiality[Confidentiality]) for data represented by the AAS exchanged via the AAS interface.
 
-* Before granting access to protected data represented by the AAS or restricted services, the AAS interface shall ensure the identification and authentication of the AAS user application. Authentication of the AAS user application shall include the authentication of ABAC attributes provided by the AAS user application. The content of the ABAC attributes can affect the behaviour of the AAS interface. All ABAC attributes provided by the AAS user application can be used for authorization decisions.
-* If requested by the AAS user application the AAS interface should be able to prove its identity towards the AAS user application.
+* Before granting access to protected data represented by the AAS or restricted services, the AAS interface SHALL ensure the identification and authentication of the AAS user application. Authentication of the AAS user application SHALL include the authentication of ABAC attributes provided by the AAS user application. The content of the ABAC attributes can affect the behaviour of the AAS interface. All ABAC attributes provided by the AAS user application can be used for authorization decisions.
+* If requested by the AAS user application the AAS interface SHOULD be able to prove its identity towards the AAS user application.
 
-Identification and authentication of the AAS user application and the AAS interface can be achieved by different means, depending on the underlying communication technology and required security level (<<_public_key_infrastructure>>).
+Identification and authentication of the AAS user application and the AAS interface can be achieved by different means, depending on the underlying communication technology and REQUIRED security level (<<_public_key_infrastructure>>).
 
 ====
 Note: In case of TCP/IP based communication (mutual) TLS can be used to provide secure identification between the communication partners.
 ====
 
-If an AAS user application is under the complete control of the AAS user application user, the identification and authentication of the AAS user application may be replaced by the identification and authentication of the AAS user application user (<<_identification_and_authentication_of_aas_user_application_users>>). This especially accounts if a commodity application (e.g., web browser) which functions as AAS user application.
+If an AAS user application is under the complete control of the AAS user application user, the identification and authentication of the AAS user application MAY be replaced by the identification and authentication of the AAS user application user (<<_identification_and_authentication_of_aas_user_application_users>>). This especially accounts if a commodity application (e.g., web browser) which functions as AAS user application.
 
 ====
 Note: Derived from IEC 62443-3-3 SR 1.2, IEC 62443-4-2 CR 1.2. 
@@ -56,12 +56,12 @@ Note: Derived from IEC 62443-3-3 SR 1.2, IEC 62443-4-2 CR 1.2.
 
 ==== Account management
 
-The AAS interface shall be able to use accounts for AAS user applications and AAS user application users from an existing service or provide a built-in account database.
+The AAS interface SHALL be able to use accounts for AAS user applications and AAS user application users from an existing service or provide a built-in account database.
 
-If a built-in account database AAS implementation shall provide means to properly protect account information and enforce authorization for the modification of account information.
-If a detached service is used to authenticate the user, the AAS responsible shall ensure that the account information is aligned between the AAS and the detached service (e.g., user roles assigned by a dedicated service need to match the roles evaluated by the AAS interface).
+If a built-in account database AAS implementation SHALL provide means to properly protect account information and enforce authorization for the modification of account information.
+If a detached service is used to authenticate the user, the AAS responsible SHALL ensure that the account information is aligned between the AAS and the detached service (e.g., user roles assigned by a dedicated service need to match the roles evaluated by the AAS interface).
 
-Account management may be made accessible via the AAS interface.
+Account management MAY be made accessible via the AAS interface.
 
 ====
 Note: Derived from IEC 62443-3-3 SR 1.3, IEC 62443-4-2 CR 1.3.
@@ -69,7 +69,7 @@ Note: Derived from IEC 62443-3-3 SR 1.3, IEC 62443-4-2 CR 1.3.
 
 ==== Identifier management
 
-All entities within the AAS or interacting with the AAS shall be well defined and have unambiguous identifiers. The definition of an identifier includes its syntax/format and namespace management. The AAS responsible shall define a policy for identifiers used for:
+All entities within the AAS or interacting with the AAS SHALL be well defined and have unambiguous identifiers. The definition of an identifier includes its syntax/format and namespace management. The AAS responsible SHALL define a policy for identifiers used for:
 
 * AAS instances and AAS interfaces
 * Semantic identifiers and concept repositories
@@ -88,7 +88,7 @@ Note: Derived from IEC 62443-3-3 SR 1.4, IEC 62443-4-2 CR 1.4.
 
 ==== Public key infrastructure
 
-Authentication of AAS user applications and AAS user application users shall support and facilitate the use of secure identities for authentication (<<_identification_and_authentication_of_aas_user_application_users>>, <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>) and provide the capability to integrate into a system used to manage these secure identities across security domains of the different stakeholders interacting along a value chain.
+Authentication of AAS user applications and AAS user application users SHALL support and facilitate the use of secure identities for authentication (<<_identification_and_authentication_of_aas_user_application_users>>, <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>) and provide the capability to integrate into a system used to manage these secure identities across security domains of the different stakeholders interacting along a value chain.
 
 Examples for secure identity infrastructures are:
 
@@ -101,9 +101,9 @@ Derived from IEC 62443-3-3 SR 1.8, IEC 62443-4-2 CR 1.8.
 
 ==== Authenticator feedback
 
-In case a request sent from the AAS user application to the AAS interface cannot be processed, AAS interface shall not disclose any information that would allow conclusions to be drawn about the content or structure of the AAS nor conclusions on why a specific request was rejected.
+In case a request sent from the AAS user application to the AAS interface cannot be processed, AAS interface SHALL NOT disclose any information that would allow conclusions to be drawn about the content or structure of the AAS nor conclusions on why a specific request was rejected.
 
-Additional information to support trouble shooting or debugging may only be made available after additional authorization for this function.
+Additional information to support trouble shooting or debugging MAY only be made available after additional authorization for this function.
 
 ====
 Note: IEC 62443-4-2 CR 1.10.
@@ -113,7 +113,7 @@ Note: IEC 62443-4-2 CR 1.10.
 
 ==== Authorization enforcement
 
-Authorization enforcement happens at the AAS interface. The authorization of AAS user application users accessing the AAS interface shall be based on a defined set of rules. Authorization rules may be based on ABAC attributes provided by the AAS user application during authentication.
+Authorization enforcement happens at the AAS interface. The authorization of AAS user application users accessing the AAS interface SHALL be based on a defined set of rules. Authorization rules MAY be based on ABAC attributes provided by the AAS user application during authentication.
 
 Details on how this requirement is to be met by the information model are outlined in xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model].
 
@@ -123,7 +123,7 @@ Note: Derived from IEC 62443-3-3 SR 2.1, IEC 62443-4-2 CR 2.1.
 
 ==== Auditable Events
 
-The AAS interface shall create audit events. As a minimum the events listed in Table <<table_security_events>> shall be kept in an AAS interface audit trail.
+The AAS interface SHALL create audit events. As a minimum the events listed in Table <<table_security_events>> SHALL be kept in an AAS interface audit trail.
 
 .Security Events
 [cols="1,1,1"]
@@ -133,7 +133,7 @@ The AAS interface shall create audit events. As a minimum the events listed in T
 
 | S1
 | SecurityUnauthorizedAccessEvent
-a| Any attempt of unauthorized access or modifiy the AAS (<<_authorization_enforcement>>). The event shall contain information on the origin of the unauthorized access (e.g., network source, subject name) and on the target AAS object (xref:access-rule-model.adoc#_objects[Objects]).
+a| Any attempt of unauthorized access or modifiy the AAS (<<_authorization_enforcement>>). The event SHALL contain information on the origin of the unauthorized access (e.g., network source, subject name) and on the target AAS object (xref:access-rule-model.adoc#_objects[Objects]).
 
 |S2
 | SecurityIdentityConfigChange
@@ -152,7 +152,7 @@ a| Modification of access control rules.
 
 |===
 
-If accountability is a concern, the events listed in Table <<table_accountablility_events>> shall be reported. Each accountability related event shall provide:
+If accountability is a concern, the events listed in Table <<table_accountablility_events>> SHALL be reported. Each accountability related event SHALL provide:
 
 * Which AAS object (xref:access-rule-model.adoc#_objects[Objects]) is affected
 * Whether the operation could be completed successful
@@ -183,7 +183,7 @@ Note: Derived from IEC 62443-3-3 SR 2.8, IEC 62443-4-2 CR 2.8.
 
 ==== Timestamps
 
-Each auditable event shall contain a time stamp of the event with precision at least to seconds.
+Each auditable event SHALL contain a time stamp of the event with precision at least to seconds.
 
 ====
 Note: Derived from IEC 62443-3-3 SR 2.11, IEC 62443-4-2 CR 2.11.
@@ -192,11 +192,11 @@ Note: Derived from IEC 62443-3-3 SR 2.11, IEC 62443-4-2 CR 2.11.
 === Requirements regarding AAS Integrity (FR3)
 
 ==== Information integrity
-The integrity of the structure of the AAS itself and information represented by the AAS, for example, Submodels, SubmodelElements shall be protected.
+The integrity of the structure of the AAS itself and information represented by the AAS, for example, Submodels, SubmodelElements SHALL be protected.
 
 This requirement is relevant for two aspects of the AAS security model:
 
-* Data at rest protection, i.e., storage of information represented by an AAS shall be protected against tampering.
+* Data at rest protection, i.e., storage of information represented by an AAS SHALL be protected against tampering.
 * Data in transit protection, i.e., ensure authenticity of source and recipient (xref:introduction.adoc#_integrity[Integrity], <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>) and protect integrity of information delivered via the AAS interface while in transit to the AAS user application.
 
 ====
@@ -209,9 +209,9 @@ Note: Derived from IEC 62443-3-3 SR 3.1, IEC 62443-4-2 CR 3.1 and IEC 62443-3-3 
 
 ==== Input validation
 
-The AAS metamodel, Submodel templates, and concept repositories provide information supporting input validation checks for asset related information. The AAS interface should implement checks to ensure that data handed into or retrieved from the Asset Administration Shell for either storage or further processing meets those constraints.
+The AAS metamodel, Submodel templates, and concept repositories provide information supporting input validation checks for asset related information. The AAS interface SHOULD implement checks to ensure that data handed into or retrieved from the Asset Administration Shell for either storage or further processing meets those constraints.
 
-From a security perspective, the AAS Responsible should discourage the deployment of Submodels which are not guided by a Submodel template.
+From a security perspective, the AAS Responsible SHOULD discourage the deployment of Submodels which are not guided by a Submodel template.
 
 Strict use of Submodel templates for Submodels and concept repositories for Submodel template elements respectively SubmodelElements can support the validation of the AAS structure and content.
 
@@ -223,7 +223,7 @@ Note: Derived from IEC 62443-3-3 SR 3.5, IEC 62443-4-2 CR 3.5.
 
 An AAS constitutes a large aggregation of data and even the acquisition of meta-information is considered a potential goal of attackers. A potential attack is sending brute-force trial-and-error requests and using the error codes returned as oracle for business relevant information. Examples are information on whether a specific asset exists, amount of assets, existence of a specific Submodel.
 
-In case a request sent from the AAS user application to the AAS interface cannot be processed, AAS interface should not disclose any information that could be exploited by adversaries to attack the AAS. Especially, the AAS interface should not disclose any information that would allow conclusions to be drawn about the content or structure of the AAS.
+In case a request sent from the AAS user application to the AAS interface cannot be processed, AAS interface SHOULD NOT disclose any information that could be exploited by adversaries to attack the AAS. Especially, the AAS interface SHOULD NOT disclose any information that would allow conclusions to be drawn about the content or structure of the AAS.
 
 ====
 Note: Derived from IEC 62443-3-3 SR 3.8, IEC 62443-4-2 CR 3.8.
@@ -231,7 +231,7 @@ Note: Derived from IEC 62443-3-3 SR 3.8, IEC 62443-4-2 CR 3.8.
 
 ==== Session integrity
 
-The AAS interface shall only accept ABAC attributes from the AAS user application (<<_identification_and_authentication_of_aas_user_application_users>>) which are properly bound to the respective communication context/channel (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_information_integrity>>) and the information returned needs to be bound to that same communication context/channel (channel binding).
+The AAS interface SHALL only accept ABAC attributes from the AAS user application (<<_identification_and_authentication_of_aas_user_application_users>>) which are properly bound to the respective communication context/channel (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_information_integrity>>) and the information returned needs to be bound to that same communication context/channel (channel binding).
 
 ====
 Note: Derived from IEC 62443-4-2 CR 3.8, IEC 62443-3-3 SR 3.8
@@ -247,7 +247,7 @@ Note: Derived from IEC 62443-4-2 CR 3.12.
 
 ==== AAS roots of trust management
 
-AAS Responsible shall define roots of trust for:
+AAS Responsible SHALL define roots of trust for:
 
 * Protection and authentication of communication (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_information_integrity>>).
 * Authentication and authorization services used for the realization of an AAS (<<_identification_and_authentication_of_aas_user_application_users>>, <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, xref:access-rule-model.adoc#_attributes[Attributes]).
@@ -260,24 +260,24 @@ Note: Derived from IEC 62443-4-2 CR 3.13.
 
 ==== Information confidentiality
 
-The confidentiality of information represented by an AAS shall be protected. This information includes both meta-information, e.g., which Submodels are available, and content provided via AAS, for example, Submodels, SubmodelElements.
+The confidentiality of information represented by an AAS SHALL be protected. This information includes both meta-information, e.g., which Submodels are available, and content provided via AAS, for example, Submodels, SubmodelElements.
 
 This requirement is relevant for two aspects of the AAS security model:
 
-* Data at rest protection, i.e., storage of information represented by an AAS shall provide protection against unintended data disclosure.
+* Data at rest protection, i.e., storage of information represented by an AAS SHALL provide protection against unintended data disclosure.
 * Data in transit protection, i.e., ensure authenticity of source and recipient (xref:introduction.adoc#_integrity[Integrity], <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>) to avoid exposure of data to unintended recipients and protect confidentiality of information delivered via the AAS interface while in transit to the AAS user application (xref:introduction.adoc#_confidentiality[Confidentiality]).
 
 ====
 Note: In case of TCP/IP based communication TLS can be used to ensure confidentiality protection for data in transit.
 ====
 
-Confidentiality for data at rest can be implemented by different means, depending on the required security level. 
+Confidentiality for data at rest can be implemented by different means, depending on the REQUIRED security level. 
 
 Measures include:
 
 * Implementation of access control (<<_authorization_enforcement>>).
 * Use of protected storage systems and data bases relying on cryptographic encryption mechanisms (symmetric and asymmetric) on the actual data.
-* Providing information by-reference instead of by-value. The responsibility to protect the information is delegated to the referenced data source. Delegation is an option to be considered in case AAS is not able to meet the required protection level.
+* Providing information by-reference instead of by-value. The responsibility to protect the information is delegated to the referenced data source. Delegation is an option to be considered in case AAS is not able to meet the REQUIRED protection level.
 
 ====
 Note: Derived from IEC 62443-3-3 SR 4.1, IEC 62443-4-2 CR 4.1
@@ -285,7 +285,7 @@ Note: Derived from IEC 62443-3-3 SR 4.1, IEC 62443-4-2 CR 4.1
 
 ==== Use of cryptography
 
-If no details are mentioned on required cryptographic algorithms or strength used to implement AAS security functionality, the latest version of [ENISA Report] or [NIST SP 800-78-5] should be used as a reference.
+If no details are mentioned on REQUIRED cryptographic algorithms or strength used to implement AAS security functionality, the latest version of [ENISA Report] or [NIST SP 800-78-5] SHOULD be used as a reference.
 
 ====
 Note: Derived from IEC 62443-3-3 SR 4.3, IEC 62443-4-2 CR 4.3
@@ -295,13 +295,13 @@ Note: Derived from IEC 62443-3-3 SR 4.3, IEC 62443-4-2 CR 4.3
 
 ==== Application partitioning
 
-The definition of AAS structures should consider separation of content based on associated risk, relevant security objectives, or other criteria, operational function, required access (for example, least privilege principles) or responsible organization.
+The definition of AAS structures SHOULD consider separation of content based on associated risk, relevant security objectives, or other criteria, operational function, REQUIRED access (for example, least privilege principles) or responsible organization.
 
 Restricted data flow is an important concept of IEC 62443.
 
-Structuring of AAS information is described in IDTA 01001 xref:bibliography.adoc#bib1[[1\]]. AAS, Submodels, and SubmodelElements should be structured in a way that reflects different security levels applying to individual information offered by the respective substructure, e.g., by confining sensitive information into separate Submodels or SubmodelElements.
+Structuring of AAS information is described in IDTA 01001 xref:bibliography.adoc#bib1[[1\]]. AAS, Submodels, and SubmodelElements SHOULD be structured in a way that reflects different security levels applying to individual information offered by the respective substructure, e.g., by confining sensitive information into separate Submodels or SubmodelElements.
 
-Security attributes such as access control rules (xref:access-rule-model.adoc#_access_rule_model[Access Rule Model]) shall be assignable at the level of the entire AAS, individual Submodels, and SubmodelElements.
+Security attributes such as access control rules (xref:access-rule-model.adoc#_access_rule_model[Access Rule Model]) SHALL be assignable at the level of the entire AAS, individual Submodels, and SubmodelElements.
 
 The elements of the AAS can be distributed across different entities (e.g., local device, edge device, on-premise cloud service, public cloud) according to their sensitivity. Each entity providing a different level of protection according to its security capabilities.
 
@@ -321,21 +321,21 @@ Note: Derived from IEC 62443-3-3 SR 5.4.
 Auditable events (<<_authorization_enforcement>>) can be made available via the AAS interface, e.g., as a dedicated Submodel.
 
 ==== Continuous monitoring
-Auditable events (<<_auditable_events>>) shall be provided in a machine processable format.
+Auditable events (<<_auditable_events>>) SHALL be provided in a machine processable format.
 
 === Requirements regarding Resource Availability (FR7)
 
 ==== Denial-of-service protection
 In order to provide the capability to operate in a degraded state in case of a denial-of-service attack, the AAS interface:
 
-* Shall reject any AAS user application that is not able to meet the authentication requirement (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>).
+* SHALL reject any AAS user application that is not able to meet the authentication requirement (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>).
 
-* Should reject unauthorized requests as early as possible (cf. <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_authorization_enforcement>>), for example, by applying upfront access restriction rules which do not depend on AAS authorization mechanisms (xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]). Potential measures are network protection and restricted data flow (<<_requirements_regarding_restricted_data_flow_fr5>>), AAS user application quotas (e.g., limit the amount of  requests/data retrieved from a specific AAS user application), proof-of-work provided by the AAS user application (e.g., CAPTCHAs, cryptographic puzzles). These measures can also be used to prevent against data scraping by authorized users.
+* SHOULD reject unauthorized requests as early as possible (cf. <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_authorization_enforcement>>), for example, by applying upfront access restriction rules which do not depend on AAS authorization mechanisms (xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]). Potential measures are network protection and restricted data flow (<<_requirements_regarding_restricted_data_flow_fr5>>), AAS user application quotas (e.g., limit the amount of  requests/data retrieved from a specific AAS user application), proof-of-work provided by the AAS user application (e.g., CAPTCHAs, cryptographic puzzles). These measures can also be used to prevent against data scraping by authorized users.
 
 The AAS can provide information about the actuality (e.g., last update received) of the information to allow AAS user applications.
 
 ====
-Note: Versioning of AAS information is described in IDTA 01001 xref:bibliography.adoc#bib1[[1\]]. Versioning information can be used by the AAS user application to decide whether the data is still reliable and to detect data inconsistencies which may have occurred due to an attack (e.g., lost updates).
+Note: Versioning of AAS information is described in IDTA 01001 xref:bibliography.adoc#bib1[[1\]]. Versioning information can be used by the AAS user application to decide whether the data is still reliable and to detect data inconsistencies which MAY have occurred due to an attack (e.g., lost updates).
 ====
 
 ====
@@ -360,7 +360,7 @@ Note: Derived from IEC 62443-3-3 SR 7.4, IEC 62443-4-2 CR 7.4.
 
 ==== Least functionality
 
-The AAS interface shall provide the capability to restrict the discovery, exploration, and use of the AAS itself and Submodels contained therein.
+The AAS interface SHALL provide the capability to restrict the discovery, exploration, and use of the AAS itself and Submodels contained therein.
 
 The discovery, exploration, and use of Submodels is addressed by <<_authorization_enforcement>> and xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model].
 

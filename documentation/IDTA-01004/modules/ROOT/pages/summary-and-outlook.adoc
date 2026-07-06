@@ -7,13 +7,13 @@ The general concept of access tokens allows to combine the Access Rule Model wit
 The grammar of the Access Rule Model allows to adopt the concepts to any further technology besides AAS HTTP API.
 For AAS HTTP API a JSON schema is already defined.
 
-The grammar may also be used to create mappings to other access rule languages, e.g. XACML or ODRL.
+The grammar MAY also be used to create mappings to other access rule languages, e.g. XACML or ODRL.
 
 This document is the base for the upcoming IEC 63278-3 “Security of the Asset Administration Shell”.
 IEC 63278-3 uses the explained concepts of access token together with the grammar for access rules.
 
-Signing of Identifiables is defined in the REST API specification. This may be extended to SubmodelElements or other parts of Identifiables. Currently plain JWS (JSON Web Signature) is used for signing, which may be extended to additional formats e.g. JAdES (JSON Advanced Digital Signature).
+Signing of Identifiables is defined in the REST API specification. This MAY be extended to SubmodelElements or other parts of Identifiables. Currently plain JWS (JSON Web Signature) is used for signing, which MAY be extended to additional formats e.g. JAdES (JSON Advanced Digital Signature).
 In addition AASX packages can be signed.
 
-A next version of this document may also include an API to manage access rules.
+A next version of this document MAY also include an API to manage access rules.
 Since the grammar and the JSON schema are already used for the Query Language in AAS HTTP API 3.1, the needed elements for such additional API are already available.

@@ -30,7 +30,7 @@ include::partial$diagrams/rights-verbs-http-methods.puml[]
 
 The following requests use real path templates from the published AAS Part 2 OpenAPI descriptions.
 They are representative examples for access control decisions on ROUTE objects.
-For client-addressable routes with create-or-replace or upsert semantics, the required right depends on whether the addressed resource already exists.
+For client-addressable routes with create-or-replace or upsert semantics, the REQUIRED right depends on whether the addressed resource already exists.
 In the examples below, `PUT /api/v3/submodels/{id}` and `POST /api/v3/lookup/shells/{someencodedid}` therefore appear under both CREATE and UPDATE with different preconditions.
 
 === CREATE
@@ -67,7 +67,7 @@ POST /api/v3/lookup/shells/someencodedid
 
 === READ
 
-Here are endpoints that can need READ rights to access existing resources or entries in the repository or registry. VIEW right can be used as an alternative for GetAll endpointsif only existence information, references, identifiers, or descriptor entries shall be accessible.
+Here are endpoints that can need READ rights to access existing resources or entries in the repository or registry. VIEW right can be used as an alternative for GetAll endpointsif only existence information, references, identifiers, or descriptor entries SHALL be accessible.
 
 Example 1: read all AAS objects.
 
@@ -230,5 +230,5 @@ GET /api/v3/shell-descriptors
 
 == Notes for access rule authors
 
-* ROUTE literals should be defined against stable path families such as `/shells/*`, `/submodels/*`, `/shell-descriptors/*` or `/lookup/*` if authorization is intended for complete interfaces.
+* ROUTE literals SHOULD be defined against stable path families such as `/shells/*`, `/submodels/*`, `/shell-descriptors/*` or `/lookup/*` if authorization is intended for complete interfaces.
 * Exact ROUTE literals such as `/submodel/submodel-elements/Reset/invoke` are useful for single sensitive operations.
