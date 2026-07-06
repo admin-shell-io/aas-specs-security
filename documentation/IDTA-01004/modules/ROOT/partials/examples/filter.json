@@ -15,7 +15,7 @@
         },
         "OBJECTS": [
           {
-            "DESCRIPTOR": "$aasDesc(\"*\")"
+            "DESCRIPTOR": "$aasdesc(\"*\")"
           }
         ],
         "FORMULA": {

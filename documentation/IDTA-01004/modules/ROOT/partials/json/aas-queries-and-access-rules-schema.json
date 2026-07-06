@@ -2,19 +2,46 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Common JSON Schema for AAS Queries and Access Rules",
   "description": "This schema contains the AAS Access Rule Language.",
-  "$ref": "#/definitions/AllAccessPermissionRules",
+  "type": "object",
+  "properties": {
+    "AllAccessPermissionRules": {
+      "$ref": "#/definitions/AllAccessPermissionRules"
+    }
+  },
+  "required": [
+    "AllAccessPermissionRules"
+  ],
   "definitions": {
     "standardString": {
       "type": "string",
       "pattern": "^[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+$"
     },
+    "ReferenceIdentifier": {
+      "type": "string",
+      "pattern": "^(?:\\$aas\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)#(?:idShort|id|assetInformation\\.assetKind|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.specificAssetIds\\[(?:0|[1-9][0-9]*)?\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?)|submodels\\[(?:0|[1-9][0-9]*)?\\](?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?)|\\$sm\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)#(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|id)|\\$cd\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)#(?:idShort|id)|\\$sme\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*)*#(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|value|valueType|language))$"
+    },
+    "IdentifiableIdentifier": {
+      "type": "string",
+      "pattern": "^\\$(?:aas|sm|cd)\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)$"
+    },
+    "ReferableIdentifier": {
+      "type": "string",
+      "pattern": "^\\$sme\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*)*$"
+    },
+    "FragmentIdentifier": {
+      "$ref": "#/definitions/FragmentFieldIdentifier"
+    },
+    "DescriptorIdentifier": {
+      "type": "string",
+      "pattern": "^\\$(?:aasdesc|smdesc)\\(\"[A-Za-z0-9/\\*\\[\\]\\(\\) _@#\\\\+\\-\\.,:\\$\\^]+\"\\)$"
+    },
     "FieldIdentifier": {
       "type": "string",
-      "pattern": "^(?:\\$aas#(?:idShort|id|assetInformation\\.assetKind|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.specificAssetIds\\[[0-9]*\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?)|submodels\\[[0-9]*\\]\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))|\\$sm#(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|id)|\\$sme(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[[0-9]*\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[[0-9]*\\])*)*)?#(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|value|valueType|language)|\\$cd#(?:idShort|id)|\\$aasdesc#(?:idShort|id|assetKind|assetType|globalAssetId|specificAssetIds\\[[0-9]*\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?)|endpoints\\[[0-9]*\\]\\.(?:interface|protocolinformation\\.href)|submodelDescriptors\\[[0-9]*\\]\\.(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|id|endpoints\\[[0-9]*\\]\\.(?:interface|protocolinformation\\.href)))|\\$smdesc#(?:semanticId(?:\\.(?:type|keys\\[[0-9]*\\]\\.(?:type|value)))?|idShort|id|endpoints\\[[0-9]*\\]\\.(?:interface|protocolinformation\\.href)))$"
+      "pattern": "^(?:\\$aas#(?:idShort|id|assetInformation\\.assetKind|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.specificAssetIds\\[(?:0|[1-9][0-9]*)?\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?)|submodels\\[(?:0|[1-9][0-9]*)?\\](?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?)|\\$sm#(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|id)|\\$sme(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*)*)?#(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|value|valueType|language)|\\$cd#(?:idShort|id)|\\$aasdesc#(?:idShort|id|assetKind|assetType|globalAssetId|specificAssetIds\\[(?:0|[1-9][0-9]*)?\\]\\.(?:name|value|externalSubjectId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?)|endpoints\\[(?:0|[1-9][0-9]*)?\\]\\.(?:interface|protocolinformation\\.href)|submodelDescriptors\\[(?:0|[1-9][0-9]*)?\\]\\.(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|id|endpoints\\[(?:0|[1-9][0-9]*)?\\]\\.(?:interface|protocolinformation\\.href)))|\\$smdesc#(?:semanticId(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\])?(?:\\.(?:type|keys\\[(?:0|[1-9][0-9]*)?\\]\\.(?:type|value)))?|idShort|id|endpoints\\[(?:0|[1-9][0-9]*)?\\]\\.(?:interface|protocolinformation\\.href)))$"
     },
     "FragmentFieldIdentifier": {
       "type": "string",
-      "pattern": "^(?:\\$aas#(?:idShort|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.specificAssetIds\\[[0-9]*\\](?:\\.externalSubjectId(?:\\.keys\\[[0-9]*\\])?)?|submodels\\[[0-9]*\\](?:\\.keys\\[[0-9]*\\])?)|\\$sm#(?:semanticId(?:\\.keys\\[[0-9]*\\])?|idShort|id)|\\$sme(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[[0-9]*\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[[0-9]*\\])*)*)?(?:#(?:semanticId(?:\\.keys\\[[0-9]*\\])?|idShort|value|valueType|language))?|\\$cd#idShort|\\$aasdesc#(?:idShort|description|displayName|extension|administration|assetKind|assetType|globalAssetId|specificAssetIds\\[[0-9]*\\](?:\\.externalSubjectId(?:\\.keys\\[[0-9]*\\])?)?|endpoints\\[[0-9]*\\]|submodelDescriptors\\[[0-9]*\\](?:\\.(?:semanticId(?:\\.keys\\[[0-9]*\\])?|idShort|endpoints\\[[0-9]*\\]))?)|\\$smdesc#(?:semanticId(?:\\.keys\\[[0-9]*\\])?|idShort|endpoints\\[[0-9]*\\]))$"
+      "pattern": "^(?:\\$aas#(?:idShort|assetInformation\\.assetType|assetInformation\\.globalAssetId|assetInformation\\.specificAssetIds(?:\\[(?:0|[1-9][0-9]*)?\\](?:\\.externalSubjectId(?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?)?)?|submodels(?:\\[(?:0|[1-9][0-9]*)?\\](?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?)?)|\\$sm#(?:semanticId(?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\](?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?)?|idShort)|\\$sme(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*(?:\\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\\[(?:0|[1-9][0-9]*)?\\])*)*)?(?:#(?:semanticId(?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\](?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?)?|idShort|value|valueType|language))?|\\$cd#idShort|\\$aasdesc#(?:idShort|description|displayName|extension|administration|assetKind|assetType|globalAssetId|specificAssetIds(?:\\[(?:0|[1-9][0-9]*)?\\](?:\\.externalSubjectId(?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?)?)?|endpoints(?:\\[(?:0|[1-9][0-9]*)?\\])?|submodelDescriptors(?:\\[(?:0|[1-9][0-9]*)?\\](?:\\.(?:semanticId(?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\](?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?)?|idShort|endpoints(?:\\[(?:0|[1-9][0-9]*)?\\])?))?)?)|\\$smdesc#(?:semanticId(?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?|supplementalSemanticIds(?:\\[(?:0|[1-9][0-9]*)?\\](?:\\.keys(?:\\[(?:0|[1-9][0-9]*)?\\])?)?)?|idShort|endpoints(?:\\[(?:0|[1-9][0-9]*)?\\])?))$"
     },
     "hexLiteralPattern": {
       "type": "string",
@@ -26,7 +53,7 @@
     },
     "timeLiteralPattern": {
       "type": "string",
-      "pattern": "^[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?$"
+      "pattern": "^[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?(\\.[0-9]+)?(Z|[+-][0-9][0-9]:[0-9][0-9])?$"
     },
     "Value": {
       "type": "object",
@@ -74,16 +101,44 @@
           "$ref": "#/definitions/Value"
         },
         "$dayOfWeek": {
-          "$ref": "#/definitions/dateTimeLiteralPattern"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/dateTimeLiteralPattern"
+            },
+            {
+              "$ref": "#/definitions/attributeItem"
+            }
+          ]
         },
         "$dayOfMonth": {
-          "$ref": "#/definitions/dateTimeLiteralPattern"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/dateTimeLiteralPattern"
+            },
+            {
+              "$ref": "#/definitions/attributeItem"
+            }
+          ]
         },
         "$month": {
-          "$ref": "#/definitions/dateTimeLiteralPattern"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/dateTimeLiteralPattern"
+            },
+            {
+              "$ref": "#/definitions/attributeItem"
+            }
+          ]
         },
         "$year": {
-          "$ref": "#/definitions/dateTimeLiteralPattern"
+          "oneOf": [
+            {
+              "$ref": "#/definitions/dateTimeLiteralPattern"
+            },
+            {
+              "$ref": "#/definitions/attributeItem"
+            }
+          ]
         }
       },
       "oneOf": [
@@ -611,7 +666,7 @@
         "RIGHTS",
         "ACCESS"
       ],
-      "oneOf": [
+      "anyOf": [
         {
           "required": [
             "ATTRIBUTES"
@@ -681,7 +736,7 @@
           ]
         },
         {
-          "oneOf": [
+          "anyOf": [
             {
               "required": [
                 "OBJECTS"

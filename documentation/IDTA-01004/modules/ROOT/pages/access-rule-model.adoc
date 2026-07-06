@@ -131,7 +131,7 @@ One access rule may directly define a Formula or may reuse a Formula definition.
 An access rule may optionally include a FILTER, which can be used to further restrict the returned objects.
 A FILTER is an additional FORMULA, which enables by its boolean expression, which part(s) of the given object(s) can be accessed, i.e. without a FILTER the complete objects are accessed.
 The FILTER contains a FragmentObject, which defines which part of the accessed object has to be filtered.
-The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filtered, e.g. "$aasdesc#assetInformation.specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
+The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filtered, e.g. "$aasdesc#specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
 
 ==== ACL
 
@@ -158,6 +158,8 @@ ALL is an abbreviation to define all rights.
 The RIGHTS values are technology-neutral permissions. For HTTP/REST APIs these permissions are typically enforced on interface operations and their mapped HTTP methods.
 The mapping in <<table-rights-to-verbs>> is intended to improve interoperability when ROUTE objects are used for authorization decisions.
 Concrete informative examples for RIGHTS, ROUTEs and HTTP requests are given in xref:annex/route-examples.adoc[].
+
+The normative operation-level mapping for the AAS HTTP/REST API (per-operation RIGHT and ROUTE) is defined in IDTA-01002 § "Operation to RIGHT Mapping" (annex). Implementations of this specification MUST follow that mapping when evaluating access rules against concrete HTTP operations.
 
 [[table-rights-to-verbs]]
 .Indicative mapping of RIGHTS to AAS operation verbs and HTTP methods
