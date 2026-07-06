@@ -18,6 +18,8 @@ SPDX-License-Identifier: CC-BY-4.0
 
 * xref:introduction.adoc[Introduction]
 
+* xref:protection-goals.adoc[Protection Goals]
+
 * xref:access-rule-model.adoc[Access Rule Model (normative)]
 
 * xref:summary-and-outlook.adoc[Summary and Outlook]
@@ -39,4 +41,3 @@ SPDX-License-Identifier: CC-BY-4.0
 * xref:changelog.adoc[Change Log]
 
 * xref:bibliography.adoc[Bibliography]
-

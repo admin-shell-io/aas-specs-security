@@ -1,0 +1,41 @@
+= Protection Goals
+
+== Confidentiality protection
+
+*Data leakage protection:* Access to information considered sensible by an AAS responsible is controlled by well-defined rules.
+Only authorized parties are able to access sensitive information managed by the AAS.
+This applies to both,
+
+* actual values (Properties) as well as the
+* structure and meta-data represented by the AAS (topology described by Submodels, SubmodelElements, SubmodelElementCollections, …)
+
+== Integrity protection
+
+*Consistent data exposure:* AAS supports consistent data exposure.
+Data exposure depends on well-defined attributes.
+Attributes to be considered are, subject attributes (who is requesting the data), which action is to be performed (e.g., read, write, execute), object attributes (which data is accessed), and environmental attributes (contextual information like time, system state). The ABAC approach is explained in xref:access-rule-model.adoc[Access Rule Model].
+
+*Integrity and accountability of data:* AAS users expect the data provided by the AAS to be correct and reliable.
+AAS considers the following:
+
+* Protection against the entry of data by unauthorized parties.
+Entry and modification of data are limited to authorized parties.
+* It should be possible to detect unintentional change of data and to trace the originator of data.
+* Protection against manipulation of stored data.
+AAS should allow protection of asset data against unauthorized manipulation including the attribution of origin/authorship.
+This is especially important in case the AAS is operated by a 3^rd^ party.
+* Protection against the manipulation of the AAS structure.
+Moving Properties or SubmodelElements between different SubmodelElementCollections can result in incorrect interpretation of the provided data.
+* Protection against the manipulation of AAS management data.
+Management data especially includes the data relevant for the control of data exposure (e.g., access control).
+
+*Integrity of relation between data and asset:* AAS should protect against incorrect relations between an asset and its related data stored in the AAS.
+It is important to know that AAS data belongs to the asset as identified by the asset identifier recorded in the AAS.
+
+*Integrity of relation between services and asset:* AAS should protect against incorrect relations between an asset and services provided by the AAS.
+It is essential that services announced by the AAS affect the intended asset and that the behavior of the service is described correctly.
+
+== Protecting the Availability of Data
+
+*Availability of asset data:* AAS supports protection against malicious hiding of current data.
+It is necessary to determine whether data is sufficiently recent (e.g. lost updates) or data has been intentionally removed (e.g. malicious rollbacks).
