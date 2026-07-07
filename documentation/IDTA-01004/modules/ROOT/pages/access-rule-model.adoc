@@ -378,6 +378,8 @@ For type safety and automatic code generation, each possible type is available a
 
 Casts convert values to the given type if possible.
 DateTime casts use string operands; Time casts use string or DateTime operands.
+Direct comparisons between two FieldIdentifier operands are not valid because the type of both fields would be implicit.
+To compare two fields, at least one operand shall use an explicit cast, e.g. compare _$field_ to $__strCast__, $__numCast__, $__dateTimeCast__, or $__timeCast__.
 
 Parts of DateTime values can be extracted as numbers:
 

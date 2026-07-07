@@ -398,16 +398,70 @@
       ],
       "additionalProperties": false
     },
+    "stringNonFieldValue": {
+      "type": "object",
+      "properties": {
+        "$strVal": {
+          "$ref": "#/definitions/standardString"
+        },
+        "$strCast": {
+          "$ref": "#/definitions/Value"
+        },
+        "$attribute": {
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/attributeItem"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "$strVal"
+          ]
+        },
+        {
+          "required": [
+            "$strCast"
+          ]
+        },
+        {
+          "required": [
+            "$attribute"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
     "comparisonItems": {
       "$ref": "#/definitions/equalityComparisonItems"
     },
     "stringItems": {
-      "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
-      "items": {
-        "$ref": "#/definitions/stringValue"
-      }
+      "anyOf": [
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/stringValue"
+            },
+            {
+              "$ref": "#/definitions/stringNonFieldValue"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/stringNonFieldValue"
+            },
+            {
+              "$ref": "#/definitions/stringValue"
+            }
+          ]
+        }
+      ]
     },
     "numericalComparisonItems": {
       "oneOf": [
