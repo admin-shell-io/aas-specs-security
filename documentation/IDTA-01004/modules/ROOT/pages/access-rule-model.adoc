@@ -363,18 +363,72 @@ For type safety and automatic code generation, each possible type is available a
 * Time values can be given by $__timeVal__ or $__timeCast__.
 
 Casts allow any of the values as input and convert this to the given type if possible.
+If a cast is applied to several values, all values that can be converted are used and values that cannot be converted are ignored.
+If no value can be converted, the containing comparison evaluates to FALSE.
 
 Parts of DateTime values can be extracted as numbers:
 
 * _$dayOfWeek_ extracts the day of week as number, starting with 0 for Sunday.
 * _$dayOfMonth_, _$month_, _$year_ extract the related part as number.
 
-If a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
-An error message shall be generated and the result of the complete expression becomes FALSE, so that the access is not allowed and/or the filter is empty.
+If a conversion or any other operation is invalid for all available values, the result of the containing comparison becomes FALSE, so that the access is not allowed and/or the filter is empty.
 
 To allow the use of different types in operations, arrays are used for parameters. _comparisonItems_ is used for comparisons and _stringItems_ is used for specific string operations.
 
 _logicalExpressions_ and _match_ can be recursively nested.
+
+[[evaluation-semantics]]
+== Evaluation Semantics (normative)
+
+This clause defines how an access rule set MUST be evaluated. It fixes the behaviour for rule combination, error cases and filter combination so that implementations behave deterministically across products.
+
+=== Rule Combination
+
+* Access rules follow a *permit-overrides* combination: a request is allowed if at least one *applicable* rule evaluates to `ACCESS: ALLOW`. Rules that evaluate to `DISABLED` are ignored for enforcement.
+* Deny rules are out of scope for this version of the specification. An absent allow is treated as denial at the enforcement point.
+* A rule is *applicable* for a request if
+  * the request matches one of its `OBJECTS`,
+  * the requested right is contained in `RIGHTS`,
+  * the rule is not classified as inapplicable by the error handling rules below, and
+  * the rule's `FORMULA` evaluates to `true`.
+* If no applicable ALLOW rule exists for a given request, access MUST be denied.
+
+=== Error Handling
+
+The following situations MUST NOT cause evaluation to fail; instead the referencing rule is classified as *inapplicable* and does not contribute to the ALLOW set:
+
+* a required CLAIM is not present in the access token;
+* a Descriptor-based FieldIdentifier is used in a non-Registry profile where descriptors are not available.
+
+The following situations MUST produce a *comparison result of `false`*, so the containing formula continues to evaluate normally:
+
+* a FieldIdentifier does not resolve to any value on the current target object (the field does not exist);
+* a cast cannot produce any valid value for the containing comparison, e.g. all values of a FieldIdentifier fail `dateTime(...)` conversion;
+* a list-valued FieldIdentifier is evaluated against a comparison operator whose right-hand side is a scalar and no element matches.
+
+The following situations MUST cause the access rule set to be *rejected at load time*; evaluation MUST NOT begin:
+
+* `USEACL`, `USEOBJECTS`, `USEFORMULA`, `USEATTRIBUTES` references a name that is not defined in the document;
+* the document does not validate against the normative JSON Schema.
+
+=== Filter Combination
+
+* Within a single access rule, all filters defined by `FILTER` and `FILTERLIST` are combined with logical AND: a fragment is exposed only if all filter `CONDITION`s for that fragment evaluate to `true`.
+* If an implementation supports combined access rule handling and several applicable ALLOW rules define filters on the same `FRAGMENT`, the filter results from different rules are combined with logical OR: the union of matching fragments is exposed.
+* `FILTER`s on different `FRAGMENT`s are applied independently to the corresponding parts of the response.
+* A `FILTERLIST` with zero entries is equivalent to the absence of a filter for that rule.
+* Absence of any `FILTER`/`FILTERLIST` in an applicable ALLOW rule means the full matched object is exposed by that rule.
+
+=== Interaction with the Query Language
+
+When access rules restrict the result set of a query (see IDTA-01002 `query-language.adoc`), the following order MUST be observed:
+
+1. The query is parsed and validated.
+2. The candidate result set is produced from the repository / registry.
+3. Each candidate object is checked against the applicable access rules; non-allowed objects are removed.
+4. Any applicable `FILTER`/`FILTERLIST` reduces the surviving candidates to the allowed fragments.
+
+Implementations MAY optimise this pipeline as long as the observable outcome is equivalent.
 
 == Exchange of Access Rules
 
