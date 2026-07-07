@@ -358,6 +358,13 @@ The provided JSON schema includes a _modelStringPattern_ starting with a $, so t
 
 String, number and boolean are supported by JSON itself.
 Specific JSON Schema definitions are provided for datatypes Hex, DateTime and Time: _hexLiteralPattern_, _dateTimeLiteralPattern_ and _timeLiteralPattern_.
+The DateTime and Time definitions use explicit regular expressions based on the AAS core meta verification functions `MatchesXsDateTime` and `MatchesXsTime`.
+These verification functions are based on the XML Schema `xs:dateTime` lexical representation defined in https://www.w3.org/TR/xmlschema-2/#dateTime[] and the ISO 8601 formats referenced by XML Schema in https://www.w3.org/TR/xmlschema-2/#isoformats[].
+Accordingly, DateTime and Time literals include seconds, may include fractional seconds, and may include a timezone (`Z` or an offset from `-14:00` to `+14:00`).
+The end-of-day notation `24:00:00` is allowed, with only zero fractional seconds.
+
+If an incoming value is provided in an incomplete ISO-like form, it shall be completed before it is serialized as a DateTime or Time literal.
+For example, the Time value `12:00:00` shall be interpreted and serialized as `12:00:00Z`.
 
 _Value_ is used for comparisons and _StringValue_ is used for the specific string operations.
 For type safety and automatic code generation, each possible type is available as an own object:

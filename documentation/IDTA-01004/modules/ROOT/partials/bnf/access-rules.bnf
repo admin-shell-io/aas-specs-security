@@ -185,17 +185,19 @@
     "time" <ws> "(" <ws> ( <stringOperand> | <dateTimeOperand> ) <ws> ")" <ws>
 
 <DateTimeLiteral> ::= <datetime> <ws>
-<TimeLiteral> ::= <time> <timezone> <ws>
-<datetime> ::= <date> "T" <time> <timezone>
+<TimeLiteral> ::= <time> ( <timezone> )? <ws>
+<datetime> ::= <date> "T" <time> ( <timezone> )?
 <date> ::= <year> "-" <month> "-" <day>
-<year> ::= <digit> <digit> <digit> <digit>
-<month> ::= <digit> <digit>
-<day> ::= <digit> <digit>
-<time> ::= <hour> ":" <minute> ":" <second> ( "." <fraction> )?
-<timezone> ::= ( "Z" | ( "+" | "-" ) <hour> ":" <minute> )
-<hour> ::= <digit> <digit>
-<minute> ::= <digit> <digit>
-<second> ::= <digit> <digit>
+<year> ::= ( "-" )? ( ( [1-9] <digit> <digit> <digit> <digit>+ ) | ( "0" <digit> <digit> <digit> ) )
+<month> ::= ( "0" [1-9] ) | ( "1" [0-2] )
+<day> ::= ( "0" [1-9] ) | ( ( "1" | "2" ) <digit> ) | ( "3" ( "0" | "1" ) )
+<time> ::= <normalTime> | <endOfDayTime>
+<normalTime> ::= <hour> ":" <minute> ":" <second> ( "." <fraction> )?
+<endOfDayTime> ::= "24:00:00" ( "." "0"+ )?
+<timezone> ::= ( "Z" | ( "+" | "-" ) ( ( ( "0" <digit> | "1" [0-3] ) ":" <minute> ) | "14:00" ) )
+<hour> ::= ( "0" | "1" ) <digit> | "2" [0-3]
+<minute> ::= [0-5] <digit>
+<second> ::= [0-5] <digit>
 <fraction> ::= <digit>+
  
 <digit> ::= [0-9]

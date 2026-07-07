@@ -17,7 +17,7 @@ Major Changes:
 
 * changed: <ReferenceAttribute> with more detailed definition in BNF Grammar and JSON Schema
 * changed: <IdentifiableObject>, <ReferableObject>, <FragmentObject>, <DescriptorObject> with more detailed definition in BNF Grammar and JSON Schema
-* changed: Time literals in access rules now follow JSON Schema `format: "time"` / RFC 3339 full-time semantics. Time values require seconds and a timezone offset, e.g. `09:00:00Z`; shorthand values such as `09:00` are no longer valid. [#63](https://github.com/admin-shell-io/aas-specs-security/issues/63)
+* changed: DateTime and Time literals in access rules now use explicit patterns based on AAS core meta `MatchesXsDateTime` and `MatchesXsTime`, which are based on XML Schema `xs:dateTime`/ISO 8601 lexical forms. Values require seconds, may include fractional seconds and timezone offsets, and incomplete values such as `09:00` need to be completed before serialization, e.g. `09:00:00Z`. [#63](https://github.com/admin-shell-io/aas-specs-security/issues/63)
 * added: Query Filter and FragmentFieldIdentifiers (https://github.com/admin-shell-io/aas-specs-api/issues/517)
 * added: new section in the annex on access control management and data authentification for implementing the digital product passport (DPP)
 
