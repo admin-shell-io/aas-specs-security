@@ -135,9 +135,9 @@ include::partial$bnf/access-rule-model.bnf[]
 ----
 
 An Access Rule Model defines a list of Access PermissionRules. 
-<AccessPermissionRule> (@todo) defines a single access control rule granting permissions on the designated AAS objects (@todo). Table 4Table 4 describes the details of <AccessPermissionRule>. 
+<AccessPermissionRule> defines a single access control rule granting permissions on the designated AAS objects. Table 4 describes the details of <AccessPermissionRule>. 
 
-For reuse in multiple Access Rules it also contains lists of Attribute Groups (DEFATTRIBUTES), Object Groups (DEFOBJECTS), ACLs (DEFACLS) and Formulas (DEFFORMULAS).
+For reuse in multiple Access Rules it also contains lists of Attribute Groups <DEFATTRIBUTES>, Object Groups <DEFOBJECTS>, ACLs <DEFACLS> and Formulas <DEFFORMULAS>.
 Such elements defined for reuse get a name.
 
 One Access Rule must either directly define an ACL or reuse an existing ACL definition.
@@ -146,10 +146,17 @@ One access rule may directly list Single Objects or may reuse defined Object Gro
 
 One access rule may directly define a Formula or may reuse a Formula definition.
 
-An access rule may optionally include a FILTER, which can be used to further restrict the returned objects.
-A FILTER is an additional FORMULA, which enables by its boolean expression, which part(s) of the given object(s) can be accessed, i.e. without a FILTER the complete objects are accessed.
-The FILTER contains a FragmentObject, which defines which part of the accessed object has to be filtered.
-The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filtered, e.g. "$aasdesc#specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
+An access rule may optionally include <FILTER> or <FILTERLIST> to further restrict the returned objects.
+Without a filter, access is granted to the complete object covered by the access rule.
+
+A filter is represented by <SecurityQueryFilter>.
+It combines a <FRAGMENT> with either a <CONDITION> or a reference to a pre-defined formula using <UseFormula>.
+The <CONDITION> is a Boolean <logicalExpression> that defines whether the referenced fragment of the given object can be accessed.
+<FILTER> contains one <SecurityQueryFilter>.
+<FILTERLIST> contains a list of <SecurityQueryFilter> elements and can therefore define multiple fragment-level restrictions.
+
+The <FRAGMENT> identifies which part of the accessed object has to be filtered.
+The related <FragmentLiteral> defines the prefix of a <FieldIdentifier> to be filtered, e.g. "$aasdesc#specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
 
 ==== ACL
 
@@ -158,9 +165,9 @@ The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filter
 include::partial$bnf/acl.bnf[]
 ----
 
-An ACL (Access Control List) defines which access rights are given for a certain combination of attributes.
+An ACL (Access Control List) defines which access rights apply depending on a required set of attributes.
 
-Attributes can be provided as a list of single attributes and/or as a list of names of other attribute groups.
+Attributes can be provided as a list of <SingleAttribute> elements and/or as references to pre-defined attribute groups using <UseAttributeGroup>.
 
 The rights in ACLs essentially use the CRUDX pattern, i.e. rights for CREATE, READ, UPDATE, DELETE and EXECUTE can be defined.
 Without an ALLOW rule any access is forbidden by default.
