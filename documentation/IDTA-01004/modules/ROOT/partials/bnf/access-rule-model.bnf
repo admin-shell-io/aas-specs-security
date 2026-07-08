@@ -1,9 +1,24 @@
 <AllAccessPermissionRules> ::=
-    ( "DEFATTRIBUTES" <ws> <StringLiteral> <ws> <AttributeGroup> <ws> )*
-    ( "DEFACLS" <ws> <StringLiteral> <ws> <ACL> <ws> )*
-    ( "DEFOBJECTS" <ws> <StringLiteral> <ws> <ObjectGroup> <ws> )*
-    ( "DEFFORMULAS" <ws> <StringLiteral> <ws> <logicalExpression> <ws> )*
+    <AllAccessPermissionDefs>
     ( <AccessPermissionRule> <ws> )*
+
+<AllAccessPermissionDefs> ::=
+    <AllAccessDefAttributes>
+    <AllAccessDefAcls>
+    <AllAccessDefObjects>
+    <AllAccessDefFormulas>
+
+<AllAccessDefAttributes> ::=
+    ( "DEFATTRIBUTES" <ws> <StringLiteral> <ws> <AttributeGroup> <ws> )*
+
+<AllAccessDefAcls> ::=
+    ( "DEFACLS" <ws> <StringLiteral> <ws> <ACL> <ws> )*
+
+<AllAccessDefObjects> ::=
+    ( "DEFOBJECTS" <ws> <StringLiteral> <ws> <ObjectGroup> <ws> )*
+
+<AllAccessDefFormulas> ::=
+    ( "DEFFORMULAS" <ws> <StringLiteral> <ws> <logicalExpression> <ws> )*
 
 <AccessPermissionRule> ::=
     "ACCESSRULE:" <ws>
