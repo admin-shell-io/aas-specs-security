@@ -112,28 +112,20 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 
 The AAS Access Rule Model allows to define modular parts which can be reused in different access rules.
 
-Resuable parts are defined at the beginning of <AllAccessPermissionRules> as DEFATTRIBUTES, DEFOBJECTS, DEFACLS and DEFFORMULAS. (@todo do we want to add <AllAccessPermissionDefs> to the BNF grammar?).
+Reusable parts are defined in <AllAccessPermissionDefs> as DEFATTRIBUTES, DEFOBJECTS, DEFACLS and DEFFORMULAS.
 
-.Pre-defined reusable elements
-[cols="1,3",options="header"]
-|===
-|Pre-define
-|Description
-
-|DEFATTRIBUTES
-|Pre-defined <AttributeGroup>. This <AttributeGroup> can be referenced using <UseAttributeGroup>.
-
-|DEFACLS
-|Pre-defined <ACL>. This ACL can be referenced using <UseACL>.
-
-|DEFOBJECTS
-|Pre-defined <ObjectGroup>. This <ObjectGroup> can be referenced using <UseObjectGroup>.
-
-|DEFFORMULAS
-|Pre-defined formula. This <Formula> can be referenced using <UseFormula>. Formulas define a Boolean result to decide whether an access rule is (@todo)applicable.
-|===
-
-
+* The first concept of reuse is groups.
+Both attributes <DEFATTRIBUTES> and objects <DEFOBJECTS> can be combined into related groups, which may also be used in other groups.
+A pre-defined <AttributeGroup> can be referenced using <UseAttributeGroup>.
+A pre-defined <ObjectGroup> can be referenced using <UseObjectGroup>.
+* The second concept of reuse is Access Control Lists <DEFACLS>. +
+An ACL defines which access rights are given for a certain combination of attributes.
+A pre-defined <ACL> can be referenced using <UseACL>.
+* The third concept of reuse are FORMULAs <DEFFORMULAS>, which define a Boolean result when an Access Rule is enabled/disabled.
+FORMULAs define a Boolean result to decide whether an access rule is applicable.
+A pre-defined <Formula> can be referenced using <UseFormula>.
+FORMULAs allow to express only expressions with Boolean results, e.g. comparisons.
+Arithmetic in FORMULAS is currently not supported.
 
 ==== Access Rule Model
 
