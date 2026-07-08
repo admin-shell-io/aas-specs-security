@@ -359,11 +359,16 @@ The provided JSON schema includes a _modelStringPattern_ starting with a $, so t
 String, number and boolean are supported by JSON itself.
 Specific JSON Schema definitions are provided for datatypes Hex, DateTime and Time: _hexLiteralPattern_, _dateTimeLiteralPattern_ and _timeLiteralPattern_.
 The DateTime and Time definitions use explicit regular expressions based on the AAS core meta verification functions `MatchesXsDateTime` and `MatchesXsTime`.
-These verification functions are based on the XML Schema `xs:dateTime` lexical representation defined in https://www.w3.org/TR/xmlschema-2/#dateTime[] and the ISO 8601 formats referenced by XML Schema in https://www.w3.org/TR/xmlschema-2/#isoformats[].
+These verification functions correspond to the XSD-based DateTime and Time data types defined by the IDTA 01001 Part 1 Metamodel xref:bibliography.adoc#bib1[[1\]], especially https://industrialdigitaltwin.io/aas-specifications/IDTA-01001/v3.1/spec-metamodel/datatypes.html[Primitive and Simple Data Types].
+For the generated AAS core meta verification definitions, see https://aas-core-works.github.io/aas-core-meta/v3/MatchesXsDateTime.html[MatchesXsDateTime] and https://aas-core-works.github.io/aas-core-meta/v3/MatchesXsTime.html[MatchesXsTime].
+They are based on the XML Schema `xs:dateTime` and `xs:time` lexical representations defined in https://www.w3.org/TR/xmlschema-2/#dateTime[] and https://www.w3.org/TR/xmlschema-2/#time[], and the ISO 8601 formats referenced by XML Schema in https://www.w3.org/TR/xmlschema-2/#isoformats[].
 Accordingly, DateTime and Time literals include seconds, may include fractional seconds, and may include a timezone (`Z` or an offset from `-14:00` to `+14:00`).
 The end-of-day notation `24:00:00` is allowed, with only zero fractional seconds.
+The day, month and year ranges in the BNF and JSON Schema are lexical constraints only.
+Special calendar cases, such as February 29 in non-leap years or the 31st day of a month with only 30 days, shall still be rejected.
 
 If an incoming value is provided in an incomplete ISO-like form, it shall be completed before it is serialized as a DateTime or Time literal.
+If a Time value has no timezone information, it shall be interpreted as UTC and serialized with `Z`.
 For example, the Time value `12:00:00` shall be interpreted and serialized as `12:00:00Z`.
 
 _Value_ is used for comparisons and _StringValue_ is used for the specific string operations.
