@@ -31,7 +31,7 @@ EXAMPLES_DIR = PARTIALS / "examples"
 RULE_RE = re.compile(r"^\s*<([^<>]+)>\s*::=\s*(.*)$")
 REF_RE = re.compile(r"<([^<>]+)>")
 OBJECT_LINE_RE = re.compile(r"^\s*(IDENTIFIABLE|REFERABLE|DESCRIPTOR)\s+(.+?)\s*$")
-FRAGMENT_LINE_RE = re.compile(r'^\s*FRAGMENT\s+"([^"]+)"\s*$')
+FRAGMENT_LINE_RE = re.compile(r"^\s*FRAGMENT:\s+(.+?)\s*$")
 FIELD_TOKEN_RE = re.compile(
     r"\$(?:aasdesc|smdesc|aas|sm|sme|cd)"
     r"(?:\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\[(?:0|[1-9][0-9]*)?\])*)*"
@@ -503,7 +503,10 @@ def validate_bnf_example_identifiers(
     for value in extract_function_calls(text, "REFERENCE"):
         validate_string_with_definition(path, value, "ReferenceIdentifier", validators, validation)
 
-    text_without_strings, _ = without_quoted_literals(text)
+    text_without_fragment_lines = "\n".join(
+        line for line in text.splitlines() if not FRAGMENT_LINE_RE.match(line)
+    )
+    text_without_strings, _ = without_quoted_literals(text_without_fragment_lines)
     for match in FIELD_TOKEN_RE.finditer(text_without_strings):
         value = match.group(0)
         if "(" in value:

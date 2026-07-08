@@ -27,7 +27,7 @@ ACCESSRULE:
   OBJECTS:
     USEOBJECTS "MaintenanceDocuments"
   USEFORMULA "maintenanceWhenRunning"
-  FILTER:
+  FILTERLIST:
     FRAGMENT: $sme.maintenanceDocuments[]
     USEFORMULA "matchingMaintenanceDocuments"
 
