@@ -71,10 +71,12 @@ Examples can be found in xref:annex/text-access-rule-examples.adoc[].
 
 Further informative examples for RIGHTS, ROUTEs and HTTP requests can be found in xref:annex/route-examples.adoc[].
 
-*The grammar has been tested with BNF playground (https://bnfplayground.pauliankline.com/*).
-BNF playground allows to check and test the grammar itself and if expressions are correct according to the grammar.*
+The BNF grammar artifacts are tested in the GitHub Actions CI/CD workflow "Validate spec artifacts".
+This workflow runs the repository validation script `tools/validate_spec_artifacts.py`.
+The script checks all BNF files for balanced delimiters, valid rule definitions and references to defined rules.
+It also checks the BNF examples in the specification for balanced delimiters and validates model identifiers used in these examples against the related JSON Schema definitions.
 
-*The tested BNF is:*
+The tested BNF is:
 
 [source,bnf,linenums]
 ----
@@ -319,6 +321,9 @@ The use of "oneof" is limited and type information for objects must be available
 It shall also be possible to check a JSON with the JSON schema.
 
 Examples can be found in xref:annex/json-access-rule-examples.adoc[].
+The JSON Schema artifacts and all JSON examples included in the specification are tested in the GitHub Actions CI/CD workflow "Validate spec artifacts".
+This workflow runs `tools/validate_spec_artifacts.py` with the Python `jsonschema` package.
+The script checks the JSON Schema files as JSON Schema Draft 7, resolves their `$ref` references, runs schema smoke tests for selected definitions, and validates every JSON example from the specification against the common access-rule JSON Schema and the access-rule-model JSON Schema.
 
 The following schema meets such constraints:
 
