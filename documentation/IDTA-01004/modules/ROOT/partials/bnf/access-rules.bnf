@@ -39,10 +39,13 @@
     ( <UseFormula> <Ws> )
 
 <Filter> ::=
-    ( "FILTERLIST:" <Ws> ( <SecurityQueryFilter> <Ws> )+ )?
+    (
+        ( "FILTER:" <Ws> <SecurityQueryFilter> <Ws> )? |
+        ( "FILTERLIST:" <Ws> ( <SecurityQueryFilter> <Ws> )* )?
+    )
 
 <SecurityQueryFilter> ::=
-    ( "FRAGMENT:" <FieldIdentifierFragment> <Ws> )
+    ( "FRAGMENT:" <Ws> <FieldIdentifierFragment> <Ws> )
     (
         ( "CONDITION:" <Ws> <LogicalExpression> <Ws> ) |
         ( <UseFormula> <Ws> )
@@ -238,7 +241,7 @@
 <Date> ::= <Year> "-" <Month> "-" <Day>
 <Year> ::=
     ( "-" )?
-    ( ( [1-9] <Digit> <Digit> <Digit> <Digit>+ ) | ( "0" <Digit> <Digit> <Digit> ) )
+    ( ( [1-9] <Digit> <Digit> <Digit> <Digit>* ) | ( "0" <Digit> <Digit> <Digit> ) )
 <Month> ::= ( "0" [1-9] ) | ( "1" [0-2] )
 <Day> ::= ( "0" [1-9] ) | ( ( "1" | "2" ) <Digit> ) | ( "3" ( "0" | "1" ) )
 <Time> ::= <NormalTime> | <EndOfDayTime>
@@ -271,7 +274,7 @@
 <NumericalLiteral> ::=
     ( "+" | "-" )?
     ( [0-9]+ ( "." [0-9]* )? | "." [0-9]+ )
-    ( ( "e" | "E" )? [0-9]+ )
+    ( ( "e" | "E" ) ( "+" | "-" )? [0-9]+ )?
 <HexLiteral> ::= "16#" ( [0-9] | [A-F] )+
 <BoolLiteral> ::= "true" | "false"
 

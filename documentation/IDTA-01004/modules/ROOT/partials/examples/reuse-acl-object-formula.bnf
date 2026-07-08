@@ -1,7 +1,6 @@
 DEFACLS "acl1"
   ATTRIBUTES:
     CLAIM("email")
-    GLOBAL(UTCNOW)
   RIGHTS: READ UPDATE
   ACCESS: ALLOW
 
@@ -11,7 +10,7 @@ DEFOBJECTS "Properties"
 
 DEFFORMULAS "allowSubjectGroup1"
   $and(
-    time(GLOBAL(UTCNOW)) $gt 15:00:00Z,
+    time(GLOBAL(UTCNOW)) $eq 15:00:00Z,
     $or(
       CLAIM("email") $eq "user1@company1.com",
       CLAIM("email") $eq "user2@company2.com"

@@ -7,6 +7,9 @@
 <GlobalAttribute> ::=
     "GLOBAL" <Ws> "(" <Ws> ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" | "ANONYMOUS" ) <Ws> ")"
 
+<DateTimeGlobalAttribute> ::=
+    "GLOBAL" <Ws> "(" <Ws> ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" ) <Ws> ")"
+
 <ReferenceAttribute> ::=
     "REFERENCE(" (
     ("$aas" <IdentifierInstance> "#" <FieldsAAS> ) |

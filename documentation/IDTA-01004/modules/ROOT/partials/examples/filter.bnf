@@ -18,7 +18,7 @@ ACCESSRULE:
         $aasdesc#specificAssetIds[].value $eq "ACME001"
       )
     )
-  FILTERLIST:
+  FILTER:
     FRAGMENT: $aasdesc#specificAssetIds[]
     CONDITION:
     $or(
