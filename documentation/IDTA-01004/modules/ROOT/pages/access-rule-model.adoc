@@ -76,6 +76,8 @@ This workflow runs the repository validation script `tools/validate_spec_artifac
 The script checks all BNF files for balanced delimiters, valid rule definitions and references to defined rules.
 It also checks the BNF examples in the specification for balanced delimiters and validates model identifiers used in these examples against the related JSON Schema definitions.
 
+link:https://bnfplayground.pauliankline.com/[BNF Playground] can be used for manual testing of the BNF grammar and examples.
+
 The tested BNF is:
 
 [source,bnf,linenums]
