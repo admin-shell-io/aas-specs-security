@@ -67,7 +67,7 @@ POST /api/v3/lookup/shells/someencodedid
 
 === READ
 
-Here are endpoints that can need READ rights to access existing resources or entries in the repository or registry. VIEW right can be used as an alternative for GetAll endpointsif only existence information, references, identifiers, or descriptor entries SHALL be accessible.
+Here are endpoints that can need READ rights to access existing resources or entries in the repository or registry. VIEW right can be used as an alternative for GetAll endpoints if only existence information, references, identifiers, or descriptor entries SHALL be accessible.
 
 Example 1: read all AAS objects.
 
@@ -87,7 +87,7 @@ Example 3: read one submodel element by path.
 
 [source,http]
 ----
-GET /api/v3/submodel/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXMvMTIzNA/submodel-elements/Identification/ManufacturerName
+GET /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU/submodel-elements/Identification/ManufacturerName
 ----
 
 Example 4: read all shell descriptors from the registry.
@@ -135,7 +135,7 @@ Example 4: update the value-only representation of a submodel element.
 
 [source,http]
 ----
-PATCH /api/v3/submodel/submodel-elements/Identification/ManufacturerName/$value 
+PATCH /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU/submodel-elements/Identification/ManufacturerName/$value 
 ----
 
 Example 5: update an AAS descriptor in the registry.
@@ -160,14 +160,14 @@ Example 1: delete a submodel from the repository.
 
 [source,http]
 ----
-DELETE /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXMvMTIzNA 
+DELETE /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU 
 ----
 
 Example 2: delete a submodel element by path.
 
 [source,http]
 ----
-DELETE /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9hYXMvMTIzNA/submodel-elements/Identification/ManufacturerName 
+DELETE /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9uYW1lcGxhdGU/submodel-elements/Identification/ManufacturerName 
 ----
 
 Example 3: delete a shell descriptor from the registry.
@@ -185,7 +185,7 @@ Example 1: synchronously invoke an Operation.
 
 [source,http]
 ----
-POST /api/v3/submodel/submodel-elements/Reset/invoke 
+POST /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9tYWludGVuYW5jZQ/submodel-elements/Reset/invoke 
 ----
 
 Example 2: asynchronously invoke an Operation.
@@ -199,7 +199,7 @@ Example 3: retrieve the status of an asynchronous invocation.
 
 [source,http]
 ----
-GET /api/v3/submodel/submodel-elements/Reset/operation-status/4a2a7aaf-6f44-4f88-bba2-0b0d2d3e7a10 
+GET /api/v3/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9tYWludGVuYW5jZQ/submodel-elements/Reset/operation-status/4a2a7aaf-6f44-4f88-bba2-0b0d2d3e7a10 
 ----
 
 === VIEW
@@ -231,4 +231,4 @@ GET /api/v3/shell-descriptors
 == Notes for access rule authors
 
 * ROUTE literals SHOULD be defined against stable path families such as `/shells/*`, `/submodels/*`, `/shell-descriptors/*` or `/lookup/*` if authorization is intended for complete interfaces.
-* Exact ROUTE literals such as `/submodel/submodel-elements/Reset/invoke` are useful for single sensitive operations.
+* Exact ROUTE literals such as `/submodels/aHR0cHM6Ly9leGFtcGxlLmNvbS9zbS9tYWludGVuYW5jZQ/submodel-elements/Reset/invoke` are useful for single sensitive operations.
