@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 try:
-    from jsonschema import Draft7Validator, FormatChecker
+    from jsonschema import Draft7Validator
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", DeprecationWarning)
@@ -31,7 +31,7 @@ EXAMPLES_DIR = PARTIALS / "examples"
 RULE_RE = re.compile(r"^\s*<([^<>]+)>\s*::=\s*(.*)$")
 REF_RE = re.compile(r"<([^<>]+)>")
 OBJECT_LINE_RE = re.compile(r"^\s*(IDENTIFIABLE|REFERABLE|DESCRIPTOR)\s+(.+?)\s*$")
-FRAGMENT_LINE_RE = re.compile(r'^\s*FRAGMENT\s+"([^"]+)"\s*$')
+FRAGMENT_LINE_RE = re.compile(r"^\s*FRAGMENT:\s+(.+?)\s*$")
 FIELD_TOKEN_RE = re.compile(
     r"\$(?:aasdesc|smdesc|aas|sm|sme|cd)"
     r"(?:\.[A-Za-z](?:[A-Za-z0-9_-]*[A-Za-z0-9_])?(?:\[(?:0|[1-9][0-9]*)?\])*)*"
@@ -128,7 +128,7 @@ def resolve_pointer(document: Any, pointer: str) -> Any:
 
 def schema_validator(schema_path: Path, schema: dict[str, Any], ref: str) -> Draft7Validator:
     resolver = RefResolver(base_uri=schema_path.resolve().as_uri(), referrer=schema)
-    return Draft7Validator({"$ref": ref}, resolver=resolver, format_checker=FormatChecker())
+    return Draft7Validator({"$ref": ref}, resolver=resolver, format_checker=Draft7Validator.FORMAT_CHECKER)
 
 
 def definition_validator(
@@ -230,6 +230,57 @@ def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], valid
         ("ReferenceIdentifier", "$sme(\"SubmodelID\").machineState#value", True),
         ("ReferenceIdentifier", "$sm#id", False),
         ("ReferenceIdentifier", "$sm(\"SubmodelID\")#martinwarhier", False),
+        ("timeLiteralPattern", "09:00:00Z", True),
+        ("timeLiteralPattern", "09:00:30Z", True),
+        ("timeLiteralPattern", "09:00:30.123Z", True),
+        ("timeLiteralPattern", "09:00:30+01:00", True),
+        ("timeLiteralPattern", "09:00:30", True),
+        ("timeLiteralPattern", "24:00:00", True),
+        ("timeLiteralPattern", "09:00:30+14:00", True),
+        ("timeLiteralPattern", "09:00", False),
+        ("timeLiteralPattern", "09:00.123", False),
+        ("timeLiteralPattern", "09:00:30+14:01", False),
+        ("dateTimeLiteralPattern", "2026-06-30T09:00:00Z", True),
+        ("dateTimeLiteralPattern", "2026-06-30T09:00:00", True),
+        ("dateTimeLiteralPattern", "-2026-06-30T09:00:00+01:00", True),
+        ("dateTimeLiteralPattern", "2026-06-30T24:00:00", True),
+        ("dateTimeLiteralPattern", "2026-06-30T09:00Z", False),
+        ("dateTimeLiteralPattern", "2026-06-30T09:00:00+14:01", False),
+        ("Value", {"$dayOfWeek": {"$dateTimeVal": "2026-06-30T09:00:00Z"}}, True),
+        ("Value", {"$dayOfWeek": {"$dateTimeCast": {"$strVal": "2026-06-30T09:00:00Z"}}}, True),
+        ("Value", {"$dayOfWeek": {"$attribute": {"GLOBAL": "UTCNOW"}}}, True),
+        ("Value", {"$dayOfWeek": "2026-06-30T09:00:00Z"}, False),
+        ("Value", {"$dayOfWeek": {"$attribute": {"GLOBAL": "ANONYMOUS"}}}, False),
+        ("Value", {"$dayOfWeek": {"$attribute": {"CLAIM": "iat"}}}, False),
+        ("logicalExpression", {"$eq": [{"$boolean": True}, {"$boolean": False}]}, True),
+        ("logicalExpression", {"$gt": [{"$boolean": True}, {"$boolean": False}]}, False),
+        ("logicalExpression", {"$boolCast": {"$strVal": "true"}}, True),
+        (
+            "logicalExpression",
+            {"$eq": [{"$dateTimeCast": {"$strVal": "2026-06-30T09:00:00Z"}}, {"$dateTimeVal": "2026-06-30T09:00:00Z"}]},
+            True,
+        ),
+        (
+            "logicalExpression",
+            {"$eq": [{"$dateTimeCast": {"$numVal": 1}}, {"$dateTimeVal": "2026-06-30T09:00:00Z"}]},
+            False,
+        ),
+        ("logicalExpression", {"$eq": [{"$timeCast": {"$dateTimeVal": "2026-06-30T09:00:00Z"}}, {"$timeVal": "09:00:00Z"}]}, True),
+        ("logicalExpression", {"$eq": [{"$timeCast": {"$numVal": 1}}, {"$timeVal": "09:00:00Z"}]}, False),
+        ("logicalExpression", {"$eq": [{"$field": "$sme#value"}, {"$field": "$sme#idShort"}]}, False),
+        ("logicalExpression", {"$eq": [{"$field": "$sme#value"}, {"$strCast": {"$field": "$sme#idShort"}}]}, True),
+        ("logicalExpression", {"$eq": [{"$strCast": {"$field": "$sme#value"}}, {"$field": "$sme#idShort"}]}, True),
+        ("logicalExpression", {"$eq": [{"$field": "$sme#value"}, {"$hexVal": "16#ABCD"}]}, True),
+        ("logicalExpression", {"$eq": [{"$hexVal": "16#ABCD"}, {"$field": "$sme#value"}]}, True),
+        ("logicalExpression", {"$eq": [{"$field": "$sme#value"}, {"$boolean": True}]}, True),
+        ("logicalExpression", {"$eq": [{"$boolean": False}, {"$field": "$sme#value"}]}, True),
+        (
+            "logicalExpression",
+            {"$ge": [{"$field": "$sme#value"}, {"$dateTimeVal": "2026-06-30T09:00:00Z"}]},
+            True,
+        ),
+        ("logicalExpression", {"$le": [{"$timeVal": "09:00:00Z"}, {"$field": "$sme#value"}]}, True),
+        ("matchExpression", {"$boolean": True}, False),
     ]
 
     validators: dict[str, Draft7Validator] = {}
@@ -452,7 +503,10 @@ def validate_bnf_example_identifiers(
     for value in extract_function_calls(text, "REFERENCE"):
         validate_string_with_definition(path, value, "ReferenceIdentifier", validators, validation)
 
-    text_without_strings, _ = without_quoted_literals(text)
+    text_without_fragment_lines = "\n".join(
+        line for line in text.splitlines() if not FRAGMENT_LINE_RE.match(line)
+    )
+    text_without_strings, _ = without_quoted_literals(text_without_fragment_lines)
     for match in FIELD_TOKEN_RE.finditer(text_without_strings):
         value = match.group(0)
         if "(" in value:
