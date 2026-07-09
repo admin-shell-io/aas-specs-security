@@ -339,6 +339,7 @@ Table <<table-attribute-types>> describes the available ABAC attribute types.
 
 |`"CLAIM"`
 |ABAC attribute of the subject/requestor provided as a claim in the access token to the AAS interface (@todo 6.2.3).
+
 EXAMPLE See @todo C.3, @todo C.6
 
 |`"GLOBAL"`
