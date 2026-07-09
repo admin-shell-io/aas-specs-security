@@ -17,20 +17,25 @@ Major Changes:
 
 * changed: <ReferenceAttribute> with more detailed definition in BNF Grammar and JSON Schema
 * changed: <IdentifiableObject>, <ReferableObject>, <FragmentObject>, <DescriptorObject> with more detailed definition in BNF Grammar and JSON Schema
+* changed: DateTime and Time literals in access rules now use explicit patterns based on AAS core meta `MatchesXsDateTime` and `MatchesXsTime`, which correspond to the XSD-based data types defined by the IDTA 01001 Part 1 Metamodel and are based on XML Schema `xs:dateTime`/`xs:time`/ISO 8601 lexical forms. Values require seconds, may include fractional seconds and timezone offsets, Time values without timezone information are interpreted as UTC, and incomplete values such as `09:00` need to be completed before serialization, e.g. `09:00:00Z`. Calendar-specific invalid dates still need semantic validation beyond the lexical day, month and year ranges. [#63](https://github.com/admin-shell-io/aas-specs-security/issues/63)
 * added: Query Filter and FragmentFieldIdentifiers (https://github.com/admin-shell-io/aas-specs-api/issues/517)
 * added: new section in the annex on access control management and data authentification for implementing the digital product passport (DPP)
 
 Minor Changes:
 
-* update: Revised description text to replace 'MAY include signing' / 'will be' with 'is signed' / 'be signed' for clarity and consistency.
+* update: Revised description text to replace 'may include signing' / 'will be' with 'is signed' / 'be signed' for clarity and consistency.
 * added: Support for supplementalSemanticIds in Access Rule FieldIdentifiers and FragmentFieldIdentifiers, including BNF, JSON Schema, and examples [#77](https://github.com/admin-shell-io/aas-specs-security/pull/77)
 * added: Access control examples for REFERENCE & along with rules for creating only specific models, defined using BNF and JSON.
+* added: Clarified <ReferenceAttribute> semantics and added a state-dependent filtering example where maintenance documents are filtered using machine state read via REFERENCE from another Submodel.
 * added: Clarified ROUTE semantics for AAS HTTP/REST path matching and added informative ROUTE and request examples [#58](https://github.com/admin-shell-io/aas-specs-security/issues/58)
 * added: Expanded the explanation of RIGHTS with a mapping to operation verbs and HTTP methods, including an illustrative table and diagram [#56](https://github.com/admin-shell-io/aas-specs-security/issues/56)
 
 Bugfixes:
 
-* fix: Aligned date/time extraction functions (`$dayOfWeek`, `$dayOfMonth`, `$month`, `$year`) in JSON Schema to accept all `dateTimeOperand` types per BNF grammar, and widened `timeLiteralPattern` to support fractional seconds.
+* fix: Fixed direct FieldIdentifier operands in typed hex, bool, DateTime and time comparisons in BNF and JSON Schema, including implicit conversion semantics.
+* fix: Disallowed direct FieldIdentifier-to-FieldIdentifier comparisons in BNF and JSON Schema. Comparing two fields requires an explicit cast around at least one operand.
+* fix: Aligned date/time extraction functions (`$dayOfWeek`, `$dayOfMonth`, `$month`, `$year`) in JSON Schema to accept all `dateTimeOperand` types per BNF grammar.
+* fix: Aligned comparison and cast operands in JSON Schema with BNF semantics, including boolean equality-only comparisons, ordered comparisons without boolean operands, restricted `$dateTimeCast`/`$timeCast` inputs, and no raw `$boolean` inside `$match`.
 * changed: Fixed incorrect Fragment Field Identifiers in examples [#44 of Security Spec](https://github.com/admin-shell-io/aas-specs-security/issues/44)
 
 == Changes w.r.t. V3.0.2 vs. V3.0.1
@@ -50,7 +55,7 @@ Bugfixes:
 
 Bugfixes:
 
-* changed: Removed incorrect but REQUIRED whitespaces from grammar and examples [#477 of API](https://github.com/admin-shell-io/aas-specs-api/issues/477)
+* changed: Removed incorrect but required whitespaces from grammar and examples [#477 of API](https://github.com/admin-shell-io/aas-specs-api/issues/477)
 * changed: fixed idShortPath definition in the BNF Grammar for the Query Language [#34](https://github.com/admin-shell-io/aas-specs-security/issues/34)
 * changed:  xref:access-rule-model.adoc#text-serialization-of-values-of-type-reference[text serialization of Reference]  does not follow text serialization of Part 1 of References, the updated grammar will be added in the V3.1 [#33](https://github.com/admin-shell-io/aas-specs-security/issues/33)
 

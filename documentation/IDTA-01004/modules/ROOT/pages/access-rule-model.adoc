@@ -37,8 +37,8 @@ Only if the overall result of the Formula is valid and true, the Access Rule bec
 A formula can include nested boolean expressions, comparisons and string operations.
 A special operation match allows to work with tuples in lists, e.g. specificAssetId.
 
-Access SHALL only be granted if there is (at least) one access rule which allows the requested action on the designated AAS object (Route/Identifiable/Referable/Fragment/Descriptor).
-If there is no access rule, the default behavior SHALL be to deny access.
+Access shall only be granted if there is (at least) one access rule which allows the requested action on the designated AAS object (Route/Identifiable/Referable/Fragment/Descriptor).
+If there is no access rule, the default behavior shall be to deny access.
 
 
 This grammar handles both respositories and registries. 
@@ -71,10 +71,14 @@ Examples can be found in xref:annex/text-access-rule-examples.adoc[].
 
 Further informative examples for RIGHTS, ROUTEs and HTTP requests can be found in xref:annex/route-examples.adoc[].
 
-*The grammar has been tested with BNF playground (https://bnfplayground.pauliankline.com/*).
-BNF playground allows to check and test the grammar itself and if expressions are correct according to the grammar.*
+The BNF grammar artifacts are tested in the GitHub Actions CI/CD workflow "Validate spec artifacts".
+This workflow runs the repository validation script `tools/validate_spec_artifacts.py`.
+The script checks all BNF files for balanced delimiters, valid rule definitions and references to defined rules.
+It also checks the BNF examples in the specification for balanced delimiters and validates model identifiers used in these examples against the related JSON Schema definitions.
 
-*The tested BNF is:*
+link:https://bnfplayground.pauliankline.com/[BNF Playground] can be used for manual testing of the BNF grammar and examples.
+
+The tested BNF is:
 
 [source,bnf,linenums]
 ----
@@ -92,7 +96,7 @@ The parties involved are supposed to agree on governance and policies.
 
 The AAS Access Rule Model uses Attribute Based Access Control (ABAC), i.e. Attributes are used in access rules.
 By ABAC also Role Based Access Control (RBAC) can be implemented by defining role attributes.
-Subject Attributes and Roles MAY be provided as claims in Access Tokens.
+Subject Attributes and Roles may be provided as claims in Access Tokens.
 
 Attributes in access rules are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or from a Submodel like a property for a machine state.
 
@@ -103,7 +107,7 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 The AAS Access Rule Model allows to define modular parts which can be reused in different access rules.
 
 * The first concept of reuse is groups.
-Both attributes (DEFATTRIBUTES) and objects (DEFOBJECTS) can be combined into related groups, which MAY also be used in other groups.
+Both attributes (DEFATTRIBUTES) and objects (DEFOBJECTS) can be combined into related groups, which may also be used in other groups.
 * The second concept of reuse is Access Control Lists (DEFACLS). +
 An ACL defines which access rights are given for a certain combination of attributes.
 * The third concept of reuse are FORMULAs (DEFFORMULAS), which define a Boolean result when an Access Rule is enabled/disabled.
@@ -122,16 +126,16 @@ An Access Rule Model defines a list of Access Rules.
 For reuse in multiple Access Rules it also contains lists of Attribute Groups (DEFATTRIBUTES), Object Groups (DEFOBJECTS), ACLs (DEFACLS) and Formulas (DEFFORMULAS).
 Such elements defined for reuse get a name.
 
-One Access Rule MUST either directly define an ACL or reuse an existing ACL definition.
+One Access Rule must either directly define an ACL or reuse an existing ACL definition.
 
-One access rule MAY directly list Single Objects or MAY reuse defined Object Groups.
+One access rule may directly list Single Objects or may reuse defined Object Groups.
 
-One access rule MAY directly define a Formula or MAY reuse a Formula definition.
+One access rule may directly define a Formula or may reuse a Formula definition.
 
-An access rule MAY optionally include a FILTER, which can be used to further restrict the returned objects.
+An access rule may optionally include a FILTER, which can be used to further restrict the returned objects.
 A FILTER is an additional FORMULA, which enables by its boolean expression, which part(s) of the given object(s) can be accessed, i.e. without a FILTER the complete objects are accessed.
 The FILTER contains a FragmentObject, which defines which part of the accessed object has to be filtered.
-The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filtered, e.g. "$aasdesc#specificAssetIds[]" defines that the specificAssetIds part SHALL be filtered.
+The related FragmentLiteral defines the Prefix of a FieldIdentifier to be filtered, e.g. "$aasdesc#specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
 
 ==== ACL
 
@@ -146,7 +150,7 @@ Attributes can be provided as a list of single attributes and/or as a list of na
 
 The rights in ACLs essentially use the CRUDX pattern, i.e. rights for CREATE, READ, UPDATE, DELETE and EXECUTE can be defined.
 Without an ALLOW rule any access is forbidden by default.
-For testing and alternative configuration purposes, an access rule MAY be DISABLED.
+For testing and alternative configuration purposes, an access rule may be DISABLED.
 To avoid complex conflicting situations, deny rules are not supported.
 
 In addition, VIEW allows to see the existence of an element as Id or idShort, but not to read its values and its further attributes.
@@ -219,9 +223,9 @@ The normative operation-level mapping for the AAS HTTP/REST API (per-operation R
 The mapping is not intended to redefine AAS Part 2 operations.
 It clarifies how the abstract RIGHT values are typically applied when an authorization decision is made for a concrete HTTP route.
 The same HTTP method can therefore be used for different rights depending on the targeted interface operation and the representation that is returned.
-For example, GET MAY correspond to READ for full content access or VIEW for reference-only or existence-only access.
-Search-style read operations MAY also use POST in specific interfaces.
-For endpoints with create-or-replace or upsert semantics, the REQUIRED right depends on whether the addressed resource already exists.
+For example, GET may correspond to READ for full content access or VIEW for reference-only or existence-only access.
+Search-style read operations may also use POST in specific interfaces.
+For endpoints with create-or-replace or upsert semantics, the required right depends on whether the addressed resource already exists.
 For example, `PUT /api/v3/submodels/{submodelIdentifier}` requires CREATE if the addressed submodel does not yet exist and UPDATE if it already exists.
 The same principle applies to endpoint-specific POST operations such as `POST /api/v3/lookup/shells/{aasIdentifier}` if the endpoint creates the addressed resource when absent and updates it when present.
 
@@ -233,7 +237,9 @@ The same principle applies to endpoint-specific POST operations such as `POST /a
 include::partial$bnf/attributes.bnf[]
 ----
 
-Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a SubmodelElement e.g. to a property for a machine state.
+Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a model field, e.g. to a SubmodelElement property for a machine state.
+A REFERENCE attribute addresses a field by identifier, independently of the object currently evaluated.
+This is useful when a rule for one object needs state data from another model context, for example checking a machine state from an OperationalData Submodel while filtering maintenance documents in a different Submodel.
 
 An Attribute Group defines a list of single attributes and/or a list of names of other attribute groups.
 
@@ -260,7 +266,7 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 ROUTE defines the endpoint address of an interface operation.
 This allows access control to be defined for single interface operations, groups of interface operations, or complete interfaces.
 
-For AAS HTTP/REST APIs, a ROUTE literal SHALL use the URL path part only, i.e. the part of the endpoint address starting with "/".
+For AAS HTTP/REST APIs, a ROUTE literal shall use the URL path part only, i.e. the part of the endpoint address starting with "/".
 The scheme, authority, query part and fragment identifier are not part of ROUTE matching.
 The deployment-specific server base URL is therefore handled separately from the ROUTE literal.
 
@@ -294,24 +300,32 @@ Numerical Comparison Operations compare the first given argument (left argument)
 Since AAS also supports XS Datatypes Hex, Bool, DateTime and Time, related comparisons are available accordingly.
 
 For specific comparisons datatypes can be casted to the other datatypes.
+If a FieldIdentifier is used directly in a typed comparison, it is implicitly interpreted as the comparison type.
+This implicit conversion is tried for all values addressed by the FieldIdentifier.
+Values that cannot be converted are ignored for this FieldIdentifier evaluation.
+If no addressed value can be converted, the comparison evaluates to FALSE.
 
 Specific operations exist to extract parts from DateTime, i.e. $dayOfWeek, $dayOfMonth, $month, $year.
 This enables access rules related to week days or specific times in the year.
 
 An important special operation is $match, which can be used with any element containing a list of elements, e.g. semanticId[], specificAssetId[], SubmodelElementList or SubmodelElementCollection.
-The list element is written with [] to express, that $match SHALL check if a certain expression is true for at least one element in the list.
+The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
+FILTER defines one fragment restriction for a returned object, while FILTERLIST defines several fragment restrictions with independent conditions.
 
 
 [[json-serialization]]
 == JSON Serialization of Access Rule Model
 
 The AAS Access Rule model can also be defined as a JSON schema.
-Since the related JSON schema SHALL also allow automatic code generation, specific constraints MUST be fulfilled by such JSON schema.
-The use of "oneof" is limited and type information for objects MUST be available.
+Since the related JSON schema shall also allow automatic code generation, specific constraints must be fulfilled by such JSON schema.
+The use of "oneof" is limited and type information for objects must be available.
 
-It SHALL also be possible to check a JSON with the JSON schema.
+It shall also be possible to check a JSON with the JSON schema.
 
 Examples can be found in xref:annex/json-access-rule-examples.adoc[].
+The JSON Schema artifacts and all JSON examples included in the specification are tested in the GitHub Actions CI/CD workflow "Validate spec artifacts".
+This workflow runs `tools/validate_spec_artifacts.py` with the Python `jsonschema` package.
+The script checks the JSON Schema files as JSON Schema Draft 7, resolves their `$ref` references, runs schema smoke tests for selected definitions, and validates every JSON example from the specification against the common access-rule JSON Schema and the access-rule-model JSON Schema.
 
 The following schema meets such constraints:
 
@@ -350,7 +364,19 @@ include::partial$json/formulas-and-logical-expressions.json[]
 The provided JSON schema includes a _modelStringPattern_ starting with a $, so that the syntax of model elements can be checked by the schema, e.g. $sm.idShort.
 
 String, number and boolean are supported by JSON itself.
-Specific patterns with regular expressions are provided for datatypes Hex, DateTime and Time: _hexLiteralPattern_, _dateTimeLiteralPattern_ and _timeLiteralPattern_.
+Specific JSON Schema definitions are provided for datatypes Hex, DateTime and Time: _hexLiteralPattern_, _dateTimeLiteralPattern_ and _timeLiteralPattern_.
+The DateTime and Time definitions use explicit regular expressions based on the AAS core meta verification functions `MatchesXsDateTime` and `MatchesXsTime`.
+These verification functions correspond to the XSD-based DateTime and Time data types defined by the IDTA 01001 Part 1 Metamodel xref:bibliography.adoc#bib1[[1\]], especially https://industrialdigitaltwin.io/aas-specifications/IDTA-01001/v3.1/spec-metamodel/datatypes.html[Primitive and Simple Data Types].
+For the generated AAS core meta verification definitions, see https://aas-core-works.github.io/aas-core-meta/v3/MatchesXsDateTime.html[MatchesXsDateTime] and https://aas-core-works.github.io/aas-core-meta/v3/MatchesXsTime.html[MatchesXsTime].
+They are based on the XML Schema `xs:dateTime` and `xs:time` lexical representations defined in https://www.w3.org/TR/xmlschema-2/#dateTime[] and https://www.w3.org/TR/xmlschema-2/#time[], and the ISO 8601 formats referenced by XML Schema in https://www.w3.org/TR/xmlschema-2/#isoformats[].
+Accordingly, DateTime and Time literals include seconds, may include fractional seconds, and may include a timezone (`Z` or an offset from `-14:00` to `+14:00`).
+The end-of-day notation `24:00:00` is allowed, with only zero fractional seconds.
+The day, month and year ranges in the BNF and JSON Schema are lexical constraints only.
+Special calendar cases, such as February 29 in non-leap years or the 31st day of a month with only 30 days, shall still be rejected.
+
+If an incoming value is provided in an incomplete ISO-like form, it shall be completed before it is serialized as a DateTime or Time literal.
+If a Time value has no timezone information, it shall be interpreted as UTC and serialized with `Z`.
+For example, the Time value `12:00:00` shall be interpreted and serialized as `12:00:00Z`.
 
 _Value_ is used for comparisons and _StringValue_ is used for the specific string operations.
 For type safety and automatic code generation, each possible type is available as an own object:
@@ -362,15 +388,18 @@ For type safety and automatic code generation, each possible type is available a
 * DateTime values can be given by $__dateTimeVal__ or $__dateTimeCast__.
 * Time values can be given by $__timeVal__ or $__timeCast__.
 
-Casts allow any of the values as input and convert this to the given type if possible.
+Casts convert values to the given type if possible.
+DateTime casts use string operands; Time casts use string or DateTime operands.
+Direct comparisons between two FieldIdentifier operands are not valid because the type of both fields would be implicit.
+To compare two fields, at least one operand shall use an explicit cast, e.g. compare _$field_ to $__strCast__, $__numCast__, $__dateTimeCast__, or $__timeCast__.
 
 Parts of DateTime values can be extracted as numbers:
 
 * _$dayOfWeek_ extracts the day of week as number, starting with 0 for Sunday.
 * _$dayOfMonth_, _$month_, _$year_ extract the related part as number.
 
-If a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
-An error message SHALL be generated and the result of the complete expression becomes FALSE, so that the access is not allowed and/or the filter is empty.
+Except for direct FieldIdentifier operands in typed comparisons, if a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
+An error message shall be generated and the result of the complete expression becomes FALSE, so that the access is not allowed and/or the filter is empty.
 
 To allow the use of different types in operations, arrays are used for parameters. _comparisonItems_ is used for comparisons and _stringItems_ is used for specific string operations.
 
@@ -378,9 +407,9 @@ _logicalExpressions_ and _match_ can be recursively nested.
 
 == Exchange of Access Rules
 
-Business Partners MAY be interested to exchange Access Rules.
+Business Partners may be interested to exchange Access Rules.
 
-As explained as an example above, a robot manufacturer suggests that for the robot the following roles SHALL be defined: machine setter, operator and a maintenance role.
+As explained as an example above, a robot manufacturer suggests that for the robot the following roles shall be defined: machine setter, operator and a maintenance role.
 He also suggests permissions for these roles, e.g. an installer (integrator) does have write-access to the program of the robot, but an operator does not.
 
 Providing such suggested access rules, makes the integration of the operator much easier.
@@ -389,12 +418,12 @@ The operator can copy and paste the access rules into his AAS implementation and
 The enforcement of Access Rules is implementation specific.
 
 This specification defines the text serialization of access rules and the JSON schema serialization of access rules.
-The support of both is OPTIONAL and not mandatory.
+The support of both is optional and not mandatory.
 
-The JSON schema serialization is RECOMMENDED.
+The JSON schema serialization is recommended.
 
 Such serialization provides the possibility to exchange access rules.
-An implementation MAY even store such serialized access rules in submodel elements BLOB or FILE, so that these can be accessed by the API and can be protected by access rules itself.
+An implementation may even store such serialized access rules in submodel elements BLOB or FILE, so that these can be accessed by the API and can be protected by access rules itself.
 
 == API Queries and Access Rules
 
@@ -403,4 +432,4 @@ The JSON schema serialization is used in the related API operations.
 
 In addition, using the same concepts will be needed for large amounts of AAS data.
 Querying such large amounts of data and protecting such data with Access Rules requires optimized access of data.
-Database queries MAY combine the filter expression provided by the client query with the FOMULAs of the Access Rules on the server.
+Database queries may combine the filter expression provided by the client query with the FOMULAs of the Access Rules on the server.
