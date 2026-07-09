@@ -1,0 +1,18 @@
+=	Accountability for AAS Content and Digital Signatures
+
+This document does not specify a native way to protect AAS elements with data-bound protection mechanisms such as digital signatures.
+
+@todo The AAS interface includes a basic way to protect the integrity and authenticity of information exchanged between the AAS user application and the AAS beyond the protection provided by the transport layer using the `$sign` endpoint (@todo reference).
+
+Apart from this accountability of information conveyed via AAS depends on the combination of several security measures:
+
+* Access control (cf. 6.2) to ensure that only authorized parties are allowed to provide and modify information or perform actions resulting in the change of information.
+* Auditing (cf. 5.2.3.2, 5.2.3.3, 5.2.3.4) to allow tracking of identities providing information into the AAS or performing actions resulting in the change of information.
+* Data in transit protection (cf. 5.2.4.1, 5.2.4.4) to ensure that integrity and authenticity of information is maintained during exchange of information between the AAS user application and the AAS. This applies to both, provisioning of information towards the AAS and requesting information from the AAS.
+
+An AAS user application depending on a high assurance level regarding accountability and non-repudiation for individual elements of the AAS can digitally sign information stored as AAS payload, e.g., using a Property of type Blob.
+
+Digital signatures provide a proven way to ensure the authenticity of digital information. The source of the data uses a (private) cryptographic key to create a digital signature on the digital information. The recipient uses a (public) cryptographic key to verify the signature. If the verification succeeds and the recipient knows the relation between the source and the public key, the recipient can conclude that the information has not been modified or tampered with since the creation of the signature.
+Digitally signing AAS payloads applies especially if information originating from a 3rd party (i.e., not the AAS Responsible) is relayed via AAS. Digital signing AAS payload information should also be considered if proof of authenticity is required outside the scope of the AAS context, e.g., when information is forwarded to a 3rd party which is not related to the AAS providing the information.
+
+For example, it is possible to store a signed PDF or XML file as SubmodelElement value. The AAS Responsible shall define the syntax and semantic of such elements. It is also possible to store detached digital signatures of SubmodelElements in the value of a Property.
