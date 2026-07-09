@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg
+  xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'
+
+  width='1000' height='1390' viewBox='0 0 1000 1390'>
+
+  <style>
+    rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
+    rect, line, path { stroke-linecap: square; stroke-linejoin: rounded; }
+    path { fill: transparent; }
+    text.literal { font-family: monospace; }
+    line.ellipsis { stroke-dasharray: 1 3.5; }
+    tspan.hex { font-family: monospace; font-size: 90%; }
+    path.arrow { fill: black; }
+  </style>
+
+  <g transform='translate(40 50)'>
+    <text x='-30' y='-10'>SingleObject:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M260.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='80' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='135' y='25' text-anchor='middle' class='rule'>RouteObject</text>
+    <rect x='60' y='40' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='135' y='55' text-anchor='middle' class='rule'>IdentifiableObject</text>
+    <rect x='70' y='70' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='135' y='85' text-anchor='middle' class='rule'>ReferableObject</text>
+    <rect x='70' y='100' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='135' y='115' text-anchor='middle' class='rule'>FragmentObject</text>
+    <rect x='60' y='130' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='135' y='145' text-anchor='middle' class='rule'>DescriptorObject</text>
+    <path d='M230 30 v100'/>
+    <path d='M210 140 h10 q10 0 10 -10'/>
+    <path d='M40 130 q0 10 10 10 h10'/>
+    <path d='M200 110 h20 q10 0 10 -10'/>
+    <path d='M40 100 q0 10 10 10 h20'/>
+    <path d='M200 80 h20 q10 0 10 -10'/>
+    <path d='M40 70 q0 10 10 10 h20'/>
+    <path d='M210 50 h10 q10 0 10 -10'/>
+    <path d='M40 40 q0 10 10 10 h10'/>
+    <path d='M230 30 q0 -10 10 -10'/>
+    <path d='M190 20 h70'/>
+    <path d='M30 20 q10 0 10 10 v100'/>
+    <path d='M10 20 h70'/>
+  </g>
+
+  <g transform='translate(40 250)'>
+    <text x='-30' y='-10'>RouteObject:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M380.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='60' rx='8' ry='8' class='literal'/>
+    <text x='60' y='25' text-anchor='middle' class='literal'>ROUTE</text>
+    <rect x='110' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='135' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='180' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='235' y='25' text-anchor='middle' class='rule'>RouteLiteral</text>
+    <rect x='310' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='335' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M290 20 h20'/>
+    <path d='M160 20 h20'/>
+    <path d='M90 20 h20'/>
+    <path d='M360 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 330)'>
+    <text x='-30' y='-10'>IdentifierInstance:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M240.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='40' y='25' text-anchor='middle' class='literal'>(</text>
+    <rect x='70' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='125' y='25' text-anchor='middle' class='rule'>StringLiteral</text>
+    <rect x='200' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='210' y='25' text-anchor='middle' class='literal'>)</text>
+    <path d='M180 20 h20'/>
+    <path d='M50 20 h20'/>
+    <path d='M220 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 410)'>
+    <text x='-30' y='-10'>IdentifierInstanceOrAll:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M260.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='60' y='10' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='135' y='25' text-anchor='middle' class='rule'>IdentifierInstance</text>
+    <rect x='105' y='40' height='20' width='60' rx='8' ry='8' class='literal'/>
+    <text x='135' y='55' text-anchor='middle' class='literal'>("*")</text>
+    <path d='M230 30 v10'/>
+    <path d='M165 50 h55 q10 0 10 -10'/>
+    <path d='M40 40 q0 10 10 10 h55'/>
+    <path d='M230 30 q0 -10 10 -10'/>
+    <path d='M210 20 h50'/>
+    <path d='M30 20 q10 0 10 10 v10'/>
+    <path d='M10 20 h50'/>
+  </g>
+
+  <g transform='translate(40 520)'>
+    <text x='-30' y='-10'>IdentifiableObject:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M590.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='130' rx='8' ry='8' class='literal'/>
+    <text x='95' y='25' text-anchor='middle' class='literal'>IDENTIFIABLE</text>
+    <rect x='180' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='205' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='280' y='10' height='20' width='50' rx='8' ry='8' class='literal'/>
+    <text x='305' y='25' text-anchor='middle' class='literal'>$aas</text>
+    <rect x='285' y='40' height='20' width='40' rx='8' ry='8' class='literal'/>
+    <text x='305' y='55' text-anchor='middle' class='literal'>$sm</text>
+    <rect x='285' y='70' height='20' width='40' rx='8' ry='8' class='literal'/>
+    <text x='305' y='85' text-anchor='middle' class='literal'>$cd</text>
+    <rect x='380' y='10' height='20' width='190' rx='0' ry='0' class='rule'/>
+    <text x='475' y='25' text-anchor='middle' class='rule'>IdentifierInstanceOrAll</text>
+    <path d='M350 30 v40'/>
+    <path d='M325 80 h15 q10 0 10 -10'/>
+    <path d='M260 70 q0 10 10 10 h15'/>
+    <path d='M325 50 h15 q10 0 10 -10'/>
+    <path d='M260 40 q0 10 10 10 h15'/>
+    <path d='M350 30 q0 -10 10 -10'/>
+    <path d='M330 20 h50'/>
+    <path d='M250 20 q10 0 10 10 v40'/>
+    <path d='M230 20 h50'/>
+    <path d='M160 20 h20'/>
+    <path d='M570 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 660)'>
+    <text x='-30' y='-10'>ReferableObject:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M670.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='100' rx='8' ry='8' class='literal'/>
+    <text x='80' y='25' text-anchor='middle' class='literal'>REFERABLE</text>
+    <rect x='150' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='175' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='220' y='10' height='20' width='50' rx='8' ry='8' class='literal'/>
+    <text x='245' y='25' text-anchor='middle' class='literal'>$sme</text>
+    <rect x='290' y='10' height='20' width='190' rx='0' ry='0' class='rule'/>
+    <text x='385' y='25' text-anchor='middle' class='rule'>IdentifierInstanceOrAll</text>
+    <rect x='500' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='510' y='25' text-anchor='middle' class='literal'>.</text>
+    <rect x='540' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='595' y='25' text-anchor='middle' class='rule'>IdShortPath</text>
+    <path d='M520 20 h20'/>
+    <path d='M480 20 h20'/>
+    <path d='M270 20 h20'/>
+    <path d='M200 20 h20'/>
+    <path d='M130 20 h20'/>
+    <path d='M650 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 740)'>
+    <text x='-30' y='-10'>FragmentObject:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M430.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='90' rx='8' ry='8' class='literal'/>
+    <text x='75' y='25' text-anchor='middle' class='literal'>FRAGMENT</text>
+    <rect x='140' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='165' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='210' y='10' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='275' y='25' text-anchor='middle' class='rule'>FragmentLiteral</text>
+    <rect x='360' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='385' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M340 20 h20'/>
+    <path d='M190 20 h20'/>
+    <path d='M120 20 h20'/>
+    <path d='M410 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 820)'>
+    <text x='-30' y='-10'>DescriptorObject:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M610.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='110' rx='8' ry='8' class='literal'/>
+    <text x='85' y='25' text-anchor='middle' class='literal'>DESCRIPTOR</text>
+    <rect x='160' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='185' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='260' y='10' height='20' width='90' rx='8' ry='8' class='literal'/>
+    <text x='305' y='25' text-anchor='middle' class='literal'>$aasdesc</text>
+    <rect x='265' y='40' height='20' width='80' rx='8' ry='8' class='literal'/>
+    <text x='305' y='55' text-anchor='middle' class='literal'>$smdesc</text>
+    <rect x='400' y='10' height='20' width='190' rx='0' ry='0' class='rule'/>
+    <text x='495' y='25' text-anchor='middle' class='rule'>IdentifierInstanceOrAll</text>
+    <path d='M370 30 v10'/>
+    <path d='M345 50 h15 q10 0 10 -10'/>
+    <path d='M240 40 q0 10 10 10 h15'/>
+    <path d='M370 30 q0 -10 10 -10'/>
+    <path d='M350 20 h50'/>
+    <path d='M230 20 q10 0 10 10 v10'/>
+    <path d='M210 20 h50'/>
+    <path d='M140 20 h20'/>
+    <path d='M590 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 930)'>
+    <text x='-30' y='-10'>ObjectGroup:</text>
+    <path d='M5.5 4 v12 m 4 0 v-12' class='station'/>
+    <path d='M430.5 4 v12 m 4 0 v-12' class='station'/>
+    <rect x='130' y='30' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='185' y='45' text-anchor='middle' class='rule'>SingleObject</text>
+    <rect x='260' y='30' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='285' y='45' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M218 60 l4 3 v-6 z' class='arrow'/>
+    <rect x='120' y='100' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='185' y='115' text-anchor='middle' class='rule'>UseObjectGroup</text>
+    <rect x='270' y='100' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='295' y='115' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M218 130 l4 3 v-6 z' class='arrow'/>
+    <path d='M400 20 v50'/>
+    <path d='M370 90 v10'/>
+    <path d='M100 120 v0 q0 10 10 10 h220 q10 0 10 -10 v0'/>
+    <path d='M330 110 q10 0 10 10'/>
+    <path d='M320 110 h40 q10 0 10 -10'/>
+    <path d='M250 110 h20'/>
+    <path d='M100 120 q0 -10 10 -10'/>
+    <path d='M70 100 q0 10 10 10 h40'/>
+    <path d='M370 90 q0 -10 10 -10'/>
+    <path d='M60 80 q10 0 10 10 v10'/>
+    <path d='M40 70 q0 10 10 10 h340 q10 0 10 -10'/>
+    <path d='M400 20 q0 -10 10 -10'/>
+    <path d='M360 20 v10'/>
+    <path d='M110 50 v0 q0 10 10 10 h200 q10 0 10 -10 v0'/>
+    <path d='M320 40 q10 0 10 10'/>
+    <path d='M310 40 h40 q10 0 10 -10'/>
+    <path d='M240 40 h20'/>
+    <path d='M110 50 q0 -10 10 -10'/>
+    <path d='M80 30 q0 10 10 10 h40'/>
+    <path d='M360 20 q0 -10 10 -10'/>
+    <path d='M70 10 q10 0 10 10 v10'/>
+    <path d='M30 10 q10 0 10 10 v50'/>
+    <path d='M10 10 h420'/>
+  </g>
+
+  <g transform='translate(40 1120)'>
+    <text x='-30' y='-10'>UseObjectGroup:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M430.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='110' rx='8' ry='8' class='literal'/>
+    <text x='85' y='25' text-anchor='middle' class='literal'>USEOBJECTS</text>
+    <rect x='160' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='185' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='230' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='285' y='25' text-anchor='middle' class='rule'>StringLiteral</text>
+    <rect x='360' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='385' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M340 20 h20'/>
+    <path d='M210 20 h20'/>
+    <path d='M140 20 h20'/>
+    <path d='M410 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 1200)'>
+    <text x='-30' y='-10'>RouteLiteral:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M160.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='85' y='25' text-anchor='middle' class='rule'>StringLiteral</text>
+    <path d='M140 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 1280)'>
+    <text x='-30' y='-10'>FragmentLiteral:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M160.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='85' y='25' text-anchor='middle' class='rule'>StringLiteral</text>
+    <path d='M140 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+</svg>

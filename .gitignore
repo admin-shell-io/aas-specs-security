@@ -8,3 +8,12 @@
 __pycache__/
 *.py[cod]
 documentation/IDTA-01004/modules/ROOT/pages/access-rule-model.adoc:Zone.Identifier
+
+# Local documentation preview
+node_modules/
+build/
+.antora-cache/
+.npm-cache/
+antora-playbook-local.yml
+package.json
+package-lock.json

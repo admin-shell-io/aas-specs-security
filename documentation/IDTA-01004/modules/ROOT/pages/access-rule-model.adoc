@@ -62,7 +62,7 @@ Parts of the grammar for access control are reused from the query language descr
 
 .Access Rule Model
 [[image-access-rule-model]]
-[plantuml,mage-access-rule-model,svg]
+[plantuml,image-access-rule-model,svg]
 ....
 include::partial$diagrams/access-rule-model.puml[]
 ....
@@ -115,26 +115,25 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 
 ==== Access Rule Model
 
-[source,bnf,linenums]
-----
-include::partial$bnf/access-rule-model.bnf[]
-----
-
 An Access Rule Model <AllAccessPermissionRules> defines a list of <<access-permission-rules>>.
 
 The access rule model <AllAccessPermissionRules> also contains lists of Attribute Groups <DEFATTRIBUTES>, Object Groups <DEFOBJECTS>, ACLs <DEFACLS> and Formulas <DEFFORMULAS>.
 These pre-defines can be referred to from other parts of the access control rules by the assigned <StringLiteral>. This allows to reuse commonly used definitions instead of having multiple copies spread over the access control rules. See <<reusable-definitions>>.
 
-@todo all access permission rules svg
+.Railroad diagram for <AllAccessPermissionRules>
+[[image-access-control-rules-model]]
+image::access-control-rules-model.svg[width=642]
 
 [[reusable-definitions]]
 ==== Reusable Definitions
 
 The AAS Access Rule Model allows to define modular parts which can be reused in different access rules.
 
-Table <<table-all-access-permission-rules>> summarizes the details for pre-definitions used in <AllAccessPermissionRules>.
+.Railroad diagram for reusable definitions
+[[image-access-control-rules-definitions]]
+image::access-control-rules-definitions.svg[width=642]
 
-@todo defs svg
+Table <<table-all-access-permission-rules>> summarizes the details for pre-definitions used in <AllAccessPermissionRules>.
 
 [[table-all-access-permission-rules]]
 .<AllAccessPermissionRules> pre-defines
@@ -156,10 +155,18 @@ Table <<table-all-access-permission-rules>> summarizes the details for pre-defin
 |Pre-defined formula. Formulas can be referenced using <UseFormula>. 
 |===
 
+EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-reuse-acl-object-formula[Reuse of ACL, OBJECT and FORMULA].
+
 [[access-permission-rules]]
 ==== Access Permission Rules
 
-<AccessPermissionRule> defines a single access control rule granting permissions on the designated AAS objects. Table <<table-access-permission-rule>> describes the details of <AccessPermissionRule>. 
+<AccessPermissionRule> defines a single access control rule granting permissions on the designated AAS objects.
+
+.Railroad diagram for <AccessPermissionRule>
+[[image-access-control-rules-access-permission-rule]]
+image::access-control-rules-access-permission-rule.svg[width=642]
+
+Table <<table-access-permission-rule>> describes the details of <AccessPermissionRule>.
 
 [[table-access-permission-rule]]
 .<AccessPermissionRule>
@@ -169,18 +176,18 @@ Table <<table-all-access-permission-rules>> summarizes the details for pre-defin
 |Description
 
 |ACCESSRULE:
-|Either specifies the access control list (<ACL>) or contains a reference to an access control list (<UseACL>) pre-defined using DEFACLS (@todo 6.2.4.1, Table <<table-all-access-permission-rules>>). Refer to @todo 6.2.4.3 for further information on access control lists.
+|Either specifies the access control list (<ACL>) or contains a reference to an access control list (<UseACL>) pre-defined using DEFACLS. Access control lists are described in <<_acl,ACL>>.
 
 |OBJECTS:
-|Defines the set of AAS objects to which the access permission applies. The list contains individual objects and/or refers to object groups pre-defined using DEFOBJECTS (@todo 6.2.4.1, Table <<table-all-access-permission-rules>>). Refer to @todo 6.2.4.5 for further information on objects.
+|Defines the set of AAS objects to which the access permission applies. The list contains individual objects and/or refers to object groups pre-defined using DEFOBJECTS. Objects are described in <<objects>>.
 
 |FORMULA:
-|Defines the formula to be evaluated to determine whether the access permission is in effect. Predefined formulas can be referenced using <UseFormula>. Formulas allow only expressions with Boolean results, e.g., comparisons; arithmetic is currently not supported. If the formula evaluates to true the access permission shall be enforced. Refer to @todo 6.2.4.7 for further information on formulas. 
+|Defines the formula to be evaluated to determine whether the access permission is in effect. Predefined formulas can be referenced using <UseFormula>. Formulas allow only expressions with Boolean results, e.g., comparisons; arithmetic is currently not supported. If the formula evaluates to true the access permission shall be enforced. Formulas are described in <<_formulas,Formulas>>.
 
 |FILTER: +
 FILTERLIST:
-|Filters can be used to restrict the exposure of an AAS object (@todo 6.2.4.5) depending on the object values. Only values passing through the filter are returned to the AAS user application. Any AAS object with values that do not match the filter expression shall be removed from the list of returned objects.
-EXAMPLE See @todo C.9.
+|Filters can be used to restrict the exposure of an AAS object depending on the object values. Only values passing through the filter are returned to the AAS user application. Any AAS object with values that do not match the filter expression shall be removed from the list of returned objects.
+EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-filter-statement[Example with FILTER statement].
 
 |===
 
@@ -198,12 +205,11 @@ The related <FragmentLiteral> defines the prefix of a <FieldIdentifier> to be fi
 
 ==== ACL
 
-[source,bnf,linenums]
-----
-include::partial$bnf/acl.bnf[]
-----
-
 An ACL (Access Control List) defines which access rights apply depending on a required set of attributes.
+
+.Railroad diagram for <ACL>
+[[image-access-control-rules-acl]]
+image::access-control-rules-acl.svg[width=642]
 
 Table <<table-acl>> describes the details of <ACL>.
 
@@ -215,11 +221,10 @@ Table <<table-acl>> describes the details of <ACL>.
 |Description
 
 |ATTRIBUTES:
-| List of ABAC attributes that the access control list depends on. The list contains definitions for individual attributes or pre-defined attribute groups introduced with DEFATTRIBUTES (@todo 6.2.4.1, Table <<table-all-access-permission-rules>>). Refer to @todo 6.2.4.4 for further information on ABAC attributes.
+| List of ABAC attributes that the access control list depends on. The list contains definitions for individual attributes or pre-defined attribute groups introduced with DEFATTRIBUTES. Attributes are described in <<_attributes,Attributes>>.
 
 |RIGHTS:
-| Enumeration of access rights subject to this access control list. See 
-<<table-rights-to-verbs>> for the description of the possible access rights. Table <<table-rights-to-verbs>> defines how the rights apply to the interface operations defined in IEC 63278-5 and describes the semantics of the individual rights.
+| Enumeration of access rights subject to this access control list. <<table-rights-to-verbs>> describes the possible access rights, their semantics, and how they apply to the interface operations defined by the AAS API xref:bibliography.adoc#bib2[[2\]].
 
 |ACCESS:
 |Type of access managed by this access control list. See Table <<table-access>> for the description of possible access types.
@@ -234,7 +239,7 @@ Table <<table-acl>> describes the details of <ACL>.
 |Description
 
 |`"ALLOW"`
-| The respective permission is granted if the associated formula evaluates to true (@todo 6.2.4.7). Without an ALLOW rule any access is forbidden by default.
+| The respective permission is granted if the associated formula evaluates to true (see <<_formulas,Formulas>>). Without an ALLOW rule any access is forbidden by default.
 
 |`"DISABLED"`
 | This access control list shall not be evaluated and is ignored. This can be used for test purposes.
@@ -317,10 +322,12 @@ The same principle applies to endpoint-specific POST operations such as `POST /a
 
 ==== Attributes
 
-[source,bnf,linenums]
-----
-include::partial$bnf/attributes.bnf[]
-----
+Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a model field, e.g. to a SubmodelElement property for a machine state.
+An Attribute Group defines a list of single attributes and/or a list of names of other attribute groups.
+
+.Railroad diagram for attributes
+[[image-access-control-rules-attributes]]
+image::access-control-rules-attributes.svg[width=642]
 
 Table <<table-attribute-types>> describes the available ABAC attribute types.
 
@@ -332,23 +339,21 @@ Table <<table-attribute-types>> describes the available ABAC attribute types.
 |Description
 
 |`"CLAIM"`
-|ABAC attribute of the subject/requestor provided as a claim in the access token to the AAS interface (@todo 6.2.3).
+|ABAC attribute of the subject/requestor provided as a claim in the access token to the AAS interface (see xref:introduction.adoc#_access_token[Access token]).
 
-EXAMPLE See @todo C.3, @todo C.6
+EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-authenticated-users[authenticated users] and xref:annex/text-access-rule-examples.adoc#example-business-partner-number[BusinessPartnerNumber].
 
 |`"GLOBAL"`
 |Global/environment condition available to the AAS interface, e.g., time. 
 
 |`"REFERENCE"`
-|Reference to an attribute of any Referable @todo [IEC 63278-2] within the scope of the AAS accessed via the AAS interface.
+|Reference to an attribute of any Referable as defined by the AAS metamodel xref:bibliography.adoc#bib1[[1\]] within the scope of the AAS accessed via the AAS interface.
 
 |===
 
-Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a model field, e.g. to a SubmodelElement property for a machine state.
 A REFERENCE attribute addresses a field by identifier, independently of the object currently evaluated.
 This is useful when a rule for one object needs state data from another model context, for example checking a machine state from an OperationalData Submodel while filtering maintenance documents in a different Submodel.
-
-An Attribute Group defines a list of single attributes and/or a list of names of other attribute groups.
+EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-reference-machine-state-filter[Reference Attribute and state-dependent filtering].
 
 Table <<table-global-attributes>> gives the details for global attributes.
 
@@ -373,29 +378,28 @@ EXAMPLE An AAS Responsible for a company located in central Europe may set LOCAL
 UTCNOW shall include the information required to map to a valid <TimeLiteral>.
 
 |`"CLIENTNOW"`
-|Time as perceived by the AAS user application. A trustworthy value for CLIENTNOW can be established as result of the authentication process (@todo 5.2.2.1, @todo 5.2.2.2) if sufficient information on the location of the subject is available. The actual value may then be provided as authenticated attribute of the access token (@todo 6.2.3).
+|Time as perceived by the AAS user application. A trustworthy value for CLIENTNOW can be established as result of the authentication process (see xref:introduction.adoc#authentication-flows[Authentication Flows]) if sufficient information on the location of the subject is available. The actual value may then be provided as authenticated attribute of the access token (see xref:introduction.adoc#_access_token[Access token]).
 CLIENTNOW shall include the information required to map to a valid <TimeLiteral>.
 
 |`"ANONYMOUS"`
 |Anonymous access, i.e., the request does not contain an access token. ANONYMOUS is intended to be used for access control rules permitting access to public information provided by the AAS.
 
-EXAMPLE See @todo C.1 and @todo C.2.
+EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-anonymous-complete-api[complete API] and xref:annex/text-access-rule-examples.adoc#example-anonymous-semanticids[list of semanticIDs].
 
 |===
 
 [[objects]]
 ==== Objects
 
-[source,bnf,linenums]
-----
-include::partial$bnf/objects.bnf[]
-----
-
 AAS objects are objects constituting the data represented by the AAS or an endpoint for an AAS operation (<RouteObject>).
 
-<SingleObject> (@todo Figure 9) describes the AAS element to which an access control rule applies (Table <<table-access-permission-rules>>). 
+<SingleObject> describes the AAS element to which an access control rule applies (Table <<table-access-permission-rule>>).
 
 Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submodel), Referables (e.g. SubmodelElements), Descriptors or Fragments of those (e.g. AssetId, SemanticId, SpecificAssetId). Table <<table-single-object>> explains the different options to refer to an AAS element.
+
+.Railroad diagram for objects
+[[image-access-control-rules-objects]]
+image::access-control-rules-objects.svg[width=642]
 
 [[table-single-object]]
 .<SingleObject>
@@ -405,23 +409,23 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 |Description
 
 |"ROUTE"
-|A route defines the endpoint address of an interface operation (@todo IEC 63278-5). This allows to define access control for requested interface operations, interface operation groups, or complete interfaces.
+|A route defines the endpoint address of an interface operation as defined by the AAS API xref:bibliography.adoc#bib2[[2\]]. This allows to define access control for requested interface operations, interface operation groups, or complete interfaces.
 
 An URL path (IETF RFC 1738, 3.1) preceded by “/” can be used with AAS to specify routes. An asterisk (“*”) can be used at the end of a <RouteLiteral> to refer to interface operation groups or complete interfaces.
 
-EXAMPLE See @todo C.10
+EXAMPLE See xref:annex/route-examples.adoc#example-requests-by-right[example requests by right].
 
 |`"IDENTIFIABLE"`
-|Reference to an Identifiable; text string as defined by @todo [IEC 63278-5]
+|Reference to an Identifiable; text string as defined by the AAS API xref:bibliography.adoc#bib2[[2\]].
 
 |`"REFERABLE"`
-|Reference to a Referable; text string as defined by @todo [IEC 63278-5]
+|Reference to a Referable; text string as defined by the AAS API xref:bibliography.adoc#bib2[[2\]].
 
 |`"FRAGMENT"`
-|Reference to a fragment; text string as defined by @todo[IEC 63278-5]
+|Reference to a fragment; text string as defined by the AAS API xref:bibliography.adoc#bib2[[2\]].
 
 |`"DESCRIPTOR"`
-|A descriptor object, e.g. an AssetAdministrationShellDescriptor or a Submodel Descriptor as defined by @todo [IEC 63278-5]
+|A descriptor object, e.g. an AssetAdministrationShellDescriptor or a Submodel Descriptor as defined by the AAS API xref:bibliography.adoc#bib2[[2\]].
 
 |===
 
@@ -448,9 +452,10 @@ An Object Group defines a list of single objects and/or a list of names of other
 [[identifiers]]
 ==== Identifiers
 
-References to attribute values (@todo 6.2.4.4) and objects (@todo 6.2.4.5) use instance and field identifiers.
+References to attribute values (see <<_attributes,Attributes>>) and objects (see <<objects>>) use instance and field identifiers.
 
-Instances can be referred to by a specific identifier or a wildcard “*” to apply to all objects of the specified type. The syntax of the <StringLiteral> used to identify a specific instance shall be defined by the AAS responsible. IEC 61406 provides a specification for instance identifiers that can be used with AAS.
+Instances can be referred to by a specific identifier or a wildcard “*” to apply to all objects of the specified type.
+The syntax of the <StringLiteral> used to identify a specific instance shall be defined by the AAS responsible according to the identifier policy described in xref:requirements.adoc#_identifier_management[Identifier management].
 
 Table <<table-field-identifiers>> enumerates the available identifiers.
 
@@ -483,14 +488,13 @@ Table <<table-field-identifiers>> enumerates the available identifiers.
 
 ==== Formulas
 
-[source,bnf,linenums]
-----
-include::partial$bnf/formulas.bnf[]
-----
-
 FORMULAs define a logical expression with a Boolean result when an Access Rule is enabled/disabled.
 FORMULAs allow to express only expressions with Boolean results.
 Arithmetic in FORMULAS is currently not supported.
+
+.Railroad diagram for <UseFormula>
+[[image-access-control-rules-formula-reference]]
+image::access-control-rules-formula-reference.svg[width=642]
 
 Nested logical expressions create combinations of several logical expressions, where any, all or none of the expressions needs to be enabled: *<logicalNestedExpression>, <logicalOrExpression>, <logicalAndExpression>, <logicalNotExpression>*.
 
@@ -507,6 +511,7 @@ If no addressed value can be converted, the comparison evaluates to FALSE.
 
 Specific operations exist to extract parts from DateTime, i.e. $dayOfWeek, $dayOfMonth, $month, $year.
 This enables access rules related to week days or specific times in the year.
+EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-time-based-submodel-id-pattern[weekday and time-based access].
 
 An important special operation is $match, which can be used with any element containing a list of elements, e.g. semanticId[], specificAssetId[], SubmodelElementList or SubmodelElementCollection.
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
