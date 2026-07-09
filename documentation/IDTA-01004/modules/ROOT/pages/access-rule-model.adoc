@@ -615,11 +615,29 @@ _logicalExpressions_ and _match_ can be recursively nested.
 
 Business Partners may be interested to exchange Access Rules.
 
+As the AAS is a central point for data access, there is the need to support fine-grained access control that supports multiple roles as well as separate access control policies for individual elements or submodels in the AAS.
+Access Control is based on Identity Management and can only be successfully implemented in a secure environment.
+For this document, the focus lies on the supported access control model.
+
+When AAS content is passed from one partner to another, this is typically related to a change in the access control domain of the partners involved (supplier, integrator, operator), i.e. the scope of the validity of access control policies.
+
+In addition to the AAS content itself, also the defined access permissions have to be transferred between the partners due to the following two reasons:
+
+[arabic]
+. Access permissions to information elements of an AAS MUST be established in each access control domain.
+. One partner MUST be able to pass a suggestion which access permissions SHOULD be established for the asset that is described in the AAS.
+
+ABAC is a very flexible approach, that also encompasses role-based access as a role can be considered as one attribute in this context.
+Other attributes might be the time-of-day, the location of the asset, the originating address and others.
+
 As explained as an example above, a robot manufacturer suggests that for the robot the following roles shall be defined: machine setter, operator and a maintenance role.
+Note that the roles have to be expressed by means of attributes of the AAS representing the robot.
 He also suggests permissions for these roles, e.g. an installer (integrator) does have write-access to the program of the robot, but an operator does not.
 
 Providing such suggested access rules, makes the integration of the operator much easier.
 The operator can copy and paste the access rules into his AAS implementation and only needs to make adjustments.
+
+The above example motivates that the access permission rules need to be passed from one access control domain to the other.
 
 The enforcement of Access Rules is implementation specific.
 
