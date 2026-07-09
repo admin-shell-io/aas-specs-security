@@ -18,6 +18,10 @@ SPDX-License-Identifier: CC-BY-4.0
 
 * xref:introduction.adoc[Introduction]
 
+* xref:security-objectives.adoc[Security objectives]
+
+* xref:requirements.adoc[AAS Security requirements]
+
 * xref:access-rule-model.adoc[Access Rule Model (normative)]
 
 * xref:summary-and-outlook.adoc[Summary and Outlook]
@@ -26,6 +30,8 @@ SPDX-License-Identifier: CC-BY-4.0
 * Annex
 
 ** xref:annex/dpp.adoc[Digital Product Passport]
+
+** xref:./annex/requirements_mapping.adoc[Assessment of IEC 62443 requirements for AAS structure]
 
 ** xref:./annex/backus-naur-form.adoc[Backus-Naur-Form]
 
@@ -39,4 +45,3 @@ SPDX-License-Identifier: CC-BY-4.0
 * xref:changelog.adoc[Change Log]
 
 * xref:bibliography.adoc[Bibliography]
-

@@ -83,12 +83,10 @@
 
 <ReferenceAttribute> ::=
     "REFERENCE("
-    (
         "$aas" <IdentifierInstance> "#" <FieldsAAS> |
         "$sm" <IdentifierInstance> "#" <FieldsSM> |
         "$cd" <IdentifierInstance> "#" <FieldsCD> |
         "$sme" <IdentifierInstance> "." <IdShortPath> "#" <FieldsSME>
-    )
     ")"
 
 <AttributeGroup> ::=

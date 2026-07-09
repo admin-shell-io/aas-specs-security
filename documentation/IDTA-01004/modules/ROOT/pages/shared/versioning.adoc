@@ -13,6 +13,8 @@ Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, d
 
 === Versioning
 
-This specification is versioned using link:https://semver.org/spec/v2.0.0.html[Semantic Versioning 2.0.0] (semver) and follows the semver specification xref:bibliography.adoc#bib5[[5\]].
+This specification is versioned using link:https://semver.org/spec/v2.0.0.html[Semantic Versioning 2.0.0] (semver) and follows the semver specification xref:bibliography.adoc#bib5[[5\]] with the following deviations:
+
+* Bugfix versions are not necessarily backward compatible.
 
 
