@@ -43,65 +43,6 @@ Further attributes as DATETIME or machine state can also be included in the auth
 
 Access rules can be defined for routes in the AAS API xref:bibliography.adoc#bib2[[2\]] (part 2), for Identifiables and Referables by reference or semanticId, or for certain assets.
 
-== Security objectives
-
-=== Overview
-
-Information security has traditionally focused on achieving three objectives, confidentiality, integrity, and availability, which are often abbreviated by the acronym CIA. IEC TS 62443-1-1:2009 observes that these priorities are sometimes completely inverted, e.g., availability, integrity, confidentiality (AIC) in case of some industrial automation scenarios. In AAS context, AAS is used in a variety of different use cases. While some domains suggest a specific ordering or priority of security objectives, the order of the following subsections on integrity, confidentiality, and availability is deliberate. The AAS responsible SHOULD consider the three objectives without predefining their priority and use a risk-based approach to determine and balance the priority of the individual security objectives for their intended use cases and applications.
-
-=== Integrity
-
-*Integrity of AAS interface behaviour:* AAS SHALL ensure the logical correctness and reliability of data represented by the AAS as well as structure and occurrence of the data represented by the AAS. AAS SHALL ensure that data is provided in a consistent and reproducible way. The AAS interface SHALL ensure the authenticity, reliability, and security of API interactions, preventing unauthorized access and abuse. Execution of operations and access to data SHALL behave in a predictable manner.
-
-====
-Note: The amount of data represented by the AAS being visible and the AAS services being available are subject to access control (xref:requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]). That means, the user experience depends on the privilege level of the AAS user application user. For example, it is possible that specific Submodels are only visible for privileged repair personnel. Refer to IEC 63278-4 4.7.5 for additional explanation. Using ABAC, the amount of information can also depend on additional criteria, like the operation status of a manufacturing system.
-====
-
-*Integrity and accountability of data:* The AAS user application user expects the data of the AAS provided via the AAS interface to be correct and reliable. Protection of integrity and accountability of AAS data SHALL consider the following:
-
-* Protection against the entry of data by an unauthorized AAS user application user. Entry/modification of data SHALL only be possible for an authorized user.
-* It SHOULD be possible to detect unintentional change of data represented by the AAS and allow to trace the originator of data.
-* Protection against manipulation of data represented by the AAS. Data represented by the AAS SHOULD be protected against unauthorized manipulation including the manipulation of origin/authorship. This is especially important if data represented by the AAS is handled (e.g., storage, retrieval, aggregation) by 3rd parties who are not the original source of that data.
-* Protection against the manipulation of the AAS structure. It is possible that moving Properties or SubmodelElements between different SubmodelElementCollections results in incorrect interpretation of the provided data.
-* Protection against the manipulation of AAS management information and auxiliary information used by systems realizing an AAS. Auxiliary information includes all information relevant for the correctness of data represented by the AAS and the correct functionality of the AAS interface. This especially includes the information relevant for AAS access control.
-
-*Integrity of relation between data and asset:* The relation between an asset and the data stored in the AAS SHALL be protected. It is important to know that AAS data belongs to the asset as identified by the asset identifier recorded in the AAS management information.
-
-*Integrity of relation between services and asset:* There SHALL be no incorrect relations between an asset and asset related services provided by the AAS. It is essential that services referenced by AAS Submodels affect the intended asset and that the behaviour of the service is described correctly.
-
-=== Confidentiality
-
-*Data exposure and data leakage protection:* AAS SHALL provide assurance that data represented by the AAS is not disclosed to unauthorized entities. Access to information considered sensitive by the AAS responsible SHALL be controllable by well-defined rules determining the visibility of data represented by the AAS. Access to  sensitive information represented by the AAS SHALL only be granted after authentication of the requestor (xref:requirements.adoc#_identification_and_authentication_of_aas_user_application_users[Identification and authentication of AAS user application users], xref:requirements.adoc#_identification_and_authentication_of_aas_user_applications_and_aas_interface[Identification and authentication of AAS user applications and AAS interface]). This applies to both,
-
-* actual values,
-
-as well as the
-
-* structure and meta-data represented by the AAS (topology described Submodels, SubmodelElements, SubmodelElementCollections, …).
-
-====
-Note: Refer to IEC 63278-4 4.7 for additional explanation.
-====
-
-=== Availability
-
-*Availability of asset data:* The AAS interface SHALL be able to process requests in a reasonable time interval. The AAS responsible SHALL define the quality of service provided.
-
-Data represented by the AAS returned via the AAS interface SHALL be current. It SHALL NOT be possible to maliciously hide data stored in an AAS. It SHALL be possible to determine whether data is sufficiently recent (lost updates) or data has been intentionally removed (malicious rollbacks).
-
-====
-Note: This requirement does not affect the situation where data represented by the AAS is intentionally configured to be visible or invisible for AAS user application users depending on their privilege level (xref:requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]).
-====
-
-== IEC 63278
-
-<<image-iec63278-1-overview>> shows a detailed overview of AAS as defined in IEC 62378-1. The yellow comments have been added and describe the scope of this document in relation to the defined entities in the standard.
-Signatures are defined in the REST API specification.
-
-.Detailed overview of Asset Administration Shell and related entities. Based on Figure 4 of IEC 63278-1 (Reproduced by permission of DKE, German Member of IEC (https://www.dke.de/de[www.dke.de]). For the valid edition see the latest publication of IEC or DIN EN IEC and https://www.dke.de/de[www.dke.de] and https://www.vde-verlag.de/[www.vde-verlag.de])
-[[image-iec63278-1-overview]]
-image::iec63278-1-overview.png[width=642,height=374]
-
 == Types of AAS
 
 As introduced in AAS Part 2 API, <<image-aas-info-exchange-types>> shows 3 different types of information via the Asset Administration Shell.
@@ -216,12 +157,6 @@ Signing is defined in REST API specification.
 [[image-tracking-of-changes-via-events]]
 image::tracking-of-changes-via-events.png[width=642,height=494]
 
-<<image-tracking-of-changes-via-events>> also explains the need to pass access permissions to business partners.
-
-As the AAS is a central point for data access, there is the need to support fine-grained access control that supports multiple roles as well as separate access control policies for individual elements or submodels in the AAS.
-Access Control is based on Identity Management and can only be successfully implemented in a secure environment.
-For this document, the focus lies on the supported access control model.
-
 When having a look at the Use Case File Exchange in <<image-tracking-of-changes-via-events>> also security aspects have to be considered when transferring information from one value chain partner to the next.
 
 When AAS content is passed from one partner to another, this is typically related to a change in the access control domain of the partners involved (supplier, integrator, operator), i.e. the scope of the validity of access control policies.
@@ -234,23 +169,7 @@ With API this step is only needed, if the supplier pushes (POST, PUT) the AAS da
 * Step A3-A4: The integrator receives the AAS by the API or receives the package and imports the content into his security domain.
 During this step, the integrator has to establish access rights according to the requirements in his own security domain.
 
-ABAC is a very flexible approach, that also encompasses role-based access as a role can be considered as one attribute in this context.
-Other attributes might be the time-of-day, the location of the asset, the originating address and others.
-
-In addition to the AAS content itself, also the defined access permissions have to be transferred between the partners due to the following two reasons:
-
-[arabic]
-. Access permissions to information elements of an AAS MUST be established in each access control domain.
-. One partner MUST be able to pass a suggestion which access permissions SHOULD be established for the asset that is described in the AAS.
-
-An example for the requirement (2):
-
-A robot manufacturer suggests that for the robot the following roles SHALL be defined: machine setter, operator and a maintenance role.
-Note that the roles have to be expressed by means of attributes of the AAS representing the robot.
-He also suggests permissions for these roles, e.g. an integrator does have write-access to the program of the robot, but an operator does not.
-
-The above example motivates that the access permission rules need to be passed from one access control domain to the other.
-
+The exchange of access permission rules is described in xref:access-rule-model.adoc#_exchange_of_access_rules[Exchange of Access Rules].
 == Use Case AAS Servers with API
 
 <<image-access-aas-servers>> shows an example of a User Application accessing 3 AAS Servers and a Registry.
@@ -730,3 +649,12 @@ Further definitions can be made by dataspaces.
 A specific dataspace MAY define the technology how to get an access token and MAY also define the attributes which can be used in the ABAC access rules.
 
 This both assures interoperability and makes it possible to integrate new dataspaces in the future.
+
+== IEC 63278
+
+<<image-iec63278-1-overview>> shows a detailed overview of AAS as defined in IEC 62378-1. The yellow comments have been added and describe the scope of this document in relation to the defined entities in the standard.
+Signatures are defined in the REST API specification.
+
+.Detailed overview of Asset Administration Shell and related entities. Based on Figure 4 of IEC 63278-1 (Reproduced by permission of DKE, German Member of IEC (https://www.dke.de/de[www.dke.de]). For the valid edition see the latest publication of IEC or DIN EN IEC and https://www.dke.de/de[www.dke.de] and https://www.vde-verlag.de/[www.vde-verlag.de])
+[[image-iec63278-1-overview]]
+image::iec63278-1-overview.png[width=642,height=374]

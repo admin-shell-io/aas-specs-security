@@ -23,7 +23,7 @@ Following subclauses are based on the seven foundational requirements defined in
 ==== Identification and authentication of AAS user application users
 
 Before granting access to protected data represented by the AAS or restricted services, the AAS interface SHALL ensure the identification and authentication of the AAS user application user.
-Authentication of the AAS user application user SHALL be based on the authentication of information provided by the AAS user application on behalf of a user. The subject attributes conveyed to authenticate the AAS user application user SHALL uniquely determine the subject credentials used for subject authentication. The identity vetting process used to issue subject credentials SHOULD be sufficient to hold the identified AAS user application user accountable (see xref:introduction.adoc#_integrity[Integrity], <<_public_key_infrastructure>>).
+Authentication of the AAS user application user SHALL be based on the authentication of information provided by the AAS user application on behalf of a user. The subject attributes conveyed to authenticate the AAS user application user SHALL uniquely determine the subject credentials used for subject authentication. The identity vetting process used to issue subject credentials SHOULD be sufficient to hold the identified AAS user application user accountable (see xref:security-objectives.adoc#_integrity[Integrity], <<_public_key_infrastructure>>).
 
 If the AAS user application user is a NPE the AAS user application MAY be considered as the user. This especially accounts for AAS user applications with unattended operation. If there is no distinction between AAS user application user and AAS user application the identification and authentication of the AAS user application user MAY be replaced by the identification and authentication of the AAS user application (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>). 
 
@@ -37,7 +37,7 @@ Note: Derived from IEC 62443-3-3 SR 1.1, IEC 62443-4-2 CR 1.1.
 
 ==== Identification and authentication of AAS user applications and AAS interface
 
-Identification and authentication of AAS user applications and AAS interface provides a basis for integrity protection (xref:introduction.adoc#_integrity[Integrity]) and confidentiality protection (xref:introduction.adoc#_confidentiality[Confidentiality]) for data represented by the AAS exchanged via the AAS interface.
+Identification and authentication of AAS user applications and AAS interface provides a basis for integrity protection (xref:security-objectives.adoc#_integrity[Integrity]) and confidentiality protection (xref:security-objectives.adoc#_confidentiality[Confidentiality]) for data represented by the AAS exchanged via the AAS interface.
 
 * Before granting access to protected data represented by the AAS or restricted services, the AAS interface SHALL ensure the identification and authentication of the AAS user application. Authentication of the AAS user application SHALL include the authentication of ABAC attributes provided by the AAS user application. The content of the ABAC attributes can affect the behaviour of the AAS interface. All ABAC attributes provided by the AAS user application can be used for authorization decisions.
 * If requested by the AAS user application the AAS interface SHOULD be able to prove its identity towards the AAS user application.
@@ -197,7 +197,7 @@ The integrity of the structure of the AAS itself and information represented by 
 This requirement is relevant for two aspects of the AAS security model:
 
 * Data at rest protection, i.e., storage of information represented by an AAS SHALL be protected against tampering.
-* Data in transit protection, i.e., ensure authenticity of source and recipient (xref:introduction.adoc#_integrity[Integrity], <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>) and protect integrity of information delivered via the AAS interface while in transit to the AAS user application.
+* Data in transit protection, i.e., ensure authenticity of source and recipient (xref:security-objectives.adoc#_integrity[Integrity], <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>) and protect integrity of information delivered via the AAS interface while in transit to the AAS user application.
 
 ====
 Note: In case of TCP/IP based communication TLS can be used to ensure information integrity for data in transit.
@@ -265,7 +265,7 @@ The confidentiality of information represented by an AAS SHALL be protected. Thi
 This requirement is relevant for two aspects of the AAS security model:
 
 * Data at rest protection, i.e., storage of information represented by an AAS SHALL provide protection against unintended data disclosure.
-* Data in transit protection, i.e., ensure authenticity of source and recipient (xref:introduction.adoc#_integrity[Integrity], <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>) to avoid exposure of data to unintended recipients and protect confidentiality of information delivered via the AAS interface while in transit to the AAS user application (xref:introduction.adoc#_confidentiality[Confidentiality]).
+* Data in transit protection, i.e., ensure authenticity of source and recipient (xref:security-objectives.adoc#_integrity[Integrity], <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>) to avoid exposure of data to unintended recipients and protect confidentiality of information delivered via the AAS interface while in transit to the AAS user application (xref:security-objectives.adoc#_confidentiality[Confidentiality]).
 
 ====
 Note: In case of TCP/IP based communication TLS can be used to ensure confidentiality protection for data in transit.
