@@ -96,7 +96,7 @@ include::partial$bnf/access-rules.bnf[]
 ----
 
 [[explanation-access-rule-model]]
-=== Explanation of the Access Rule Model BNF
+=== Explanation of the Access Rule Model
 
 ==== General
 
@@ -112,11 +112,29 @@ Attributes in access rules are either claims from an Access Token provided by an
 
 Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submodel), Referables (e.g. SubmodelElements), Descriptors or Fragments of all those (e.g. AssetId, SemanticId, SpecificAssetId).
 
-==== Reuse
+
+==== Access Rule Model
+
+[source,bnf,linenums]
+----
+include::partial$bnf/access-rule-model.bnf[]
+----
+
+An Access Rule Model <AllAccessPermissionRules> defines a list of <<access-permission-rules>>.
+
+The access rule model <AllAccessPermissionRules> also contains lists of Attribute Groups <DEFATTRIBUTES>, Object Groups <DEFOBJECTS>, ACLs <DEFACLS> and Formulas <DEFFORMULAS>.
+These pre-defines can be referred to from other parts of the access control rules by the assigned <StringLiteral>. This allows to reuse commonly used definitions instead of having multiple copies spread over the access control rules. See <<reusable-definitions>>.
+
+@todo all access permission rules svg
+
+[[reusable-definitions]]
+==== Reusable Definitions
 
 The AAS Access Rule Model allows to define modular parts which can be reused in different access rules.
 
-These pre-defines can be referred to from other parts of the access control rules by the assigned <StringLiteral>. This allows to reuse commonly used definitions instead of having multiple copies spread over the access control rules. Table <<table-all-access-permission-rules>> summarizes the details for pre-definitions used in <AllAccessPermissionRules>.
+Table <<table-all-access-permission-rules>> summarizes the details for pre-definitions used in <AllAccessPermissionRules>.
+
+@todo defs svg
 
 [[table-all-access-permission-rules]]
 .<AllAccessPermissionRules> pre-defines
@@ -135,17 +153,12 @@ These pre-defines can be referred to from other parts of the access control rule
 |Pre-defined <ACL>. An ACL defines which access rights are given for a certain combination of attributes. The ACL can be referenced using <UseACL>.
 
 |DEFFORMULAS
-|Pre-defined <Formula>. FORMULAs define a Boolean result to decide whether an access rule is applicable and can be referenced using <UseFormula>. FORMULAs allow only expressions with Boolean results, e.g. comparisons; arithmetic is currently not supported.
+|Pre-defined formula. Formulas can be referenced using <UseFormula>. 
 |===
 
-==== Access Rule Model
+[[access-permission-rules]]
+==== Access Permission Rules
 
-[source,bnf,linenums]
-----
-include::partial$bnf/access-rule-model.bnf[]
-----
-
-An Access Rule Model defines a list of Access PermissionRules. 
 <AccessPermissionRule> defines a single access control rule granting permissions on the designated AAS objects. Table <<table-access-permission-rule>> describes the details of <AccessPermissionRule>. 
 
 [[table-access-permission-rule]]
@@ -162,22 +175,14 @@ An Access Rule Model defines a list of Access PermissionRules.
 |Defines the set of AAS objects to which the access permission applies. The list contains individual objects and/or refers to object groups pre-defined using DEFOBJECTS (@todo 6.2.4.1, Table <<table-all-access-permission-rules>>). Refer to @todo 6.2.4.5 for further information on objects.
 
 |FORMULA:
-|Defines the formula to be evaluated to determine whether the access permission is in effect. If the formula evaluates to true the access permission shall be enforced. Refer to @todo 6.2.4.7 for further information on formulas.
+|Defines the formula to be evaluated to determine whether the access permission is in effect. Predefined formulas can be referenced using <UseFormula>. Formulas allow only expressions with Boolean results, e.g., comparisons; arithmetic is currently not supported. If the formula evaluates to true the access permission shall be enforced. Refer to @todo 6.2.4.7 for further information on formulas. 
 
-|FILTER:
+|FILTER: +
+FILTERLIST:
 |Filters can be used to restrict the exposure of an AAS object (@todo 6.2.4.5) depending on the object values. Only values passing through the filter are returned to the AAS user application. Any AAS object with values that do not match the filter expression shall be removed from the list of returned objects.
 EXAMPLE See @todo C.9.
 
 |===
-
-For reuse in multiple Access Rules it also contains lists of Attribute Groups <DEFATTRIBUTES>, Object Groups <DEFOBJECTS>, ACLs <DEFACLS> and Formulas <DEFFORMULAS>.
-Such elements defined for reuse get a name.
-
-One Access Rule must either directly define an ACL or reuse an existing ACL definition.
-
-One access rule may directly list Single Objects or may reuse defined Object Groups.
-
-One access rule may directly define a Formula or may reuse a Formula definition.
 
 An access rule may optionally include <FILTER> or <FILTERLIST> to further restrict the returned objects.
 Without a filter, access is granted to the complete object covered by the access rule.
@@ -229,24 +234,12 @@ Table <<table-acl>> describes the details of <ACL>.
 |Description
 
 |`"ALLOW"`
-| The respective permission is granted if the associated formula evaluates to true (@todo 6.2.4.7)
+| The respective permission is granted if the associated formula evaluates to true (@todo 6.2.4.7). Without an ALLOW rule any access is forbidden by default.
 
 |`"DISABLED"`
 | This access control list shall not be evaluated and is ignored. This can be used for test purposes.
 
 |===
-
-Attributes can be provided as a list of <SingleAttribute> elements and/or as references to pre-defined attribute groups using <UseAttributeGroup>.
-
-The rights in ACLs essentially use the CRUDX pattern, i.e. rights for CREATE, READ, UPDATE, DELETE and EXECUTE can be defined.
-
-Without an ALLOW rule any access is forbidden by default.
-For testing and alternative configuration purposes, an access rule may be DISABLED.
-To avoid complex conflicting situations, deny rules are not supported.
-
-In addition, VIEW allows to see the existence of an element as Id or idShort, but not to read its values and its further attributes.
-
-ALL is an abbreviation to define all rights.
 
 ===== Rights and operation verbs
 
@@ -303,7 +296,8 @@ The normative operation-level mapping for the AAS HTTP/REST API (per-operation R
 |VIEW
 |GetAll
 |GET
-|Permission to see that a resource exists, typically as identifiers, references, idShort values, or descriptor entries without access to the full resource value.
+|Permission to see that a resource exists, typically as identifiers, references, idShort values, or descriptor entries without access to the full resource value. 
+In addition, VIEW allows to see the existence of an element as Id or idShort, but not to read its values and its further attributes.
 
 |ALL
 |n/a
