@@ -1,0 +1,38 @@
+DEFACLS "maintenanceRead"
+  ATTRIBUTES:
+    CLAIM("role")
+  RIGHTS: READ
+  ACCESS: ALLOW
+
+DEFOBJECTS "MaintenanceDocuments"
+  REFERABLE $sme("SubmodelID-Maintenance").maintenanceDocuments
+
+DEFFORMULAS "maintenanceWhenRunning"
+  $and(
+    CLAIM("role") $eq "maintenance",
+    REFERENCE($sme("SubmodelID-OperationalData").machineState#value) $eq "running"
+  )
+
+DEFFORMULAS "maintenanceWhenNotRunning"
+  $and(
+    CLAIM("role") $eq "maintenance",
+    REFERENCE($sme("SubmodelID-OperationalData").machineState#value) $eq "not-running"
+  )
+
+DEFFORMULAS "matchingMaintenanceDocuments"
+  $sme.maintenanceDocuments[].requiredMachineState#value $eq REFERENCE($sme("SubmodelID-OperationalData").machineState#value)
+
+ACCESSRULE:
+  USEACL "maintenanceRead"
+  OBJECTS:
+    USEOBJECTS "MaintenanceDocuments"
+  USEFORMULA "maintenanceWhenRunning"
+  FILTER:
+    FRAGMENT: $sme.maintenanceDocuments[]
+    USEFORMULA "matchingMaintenanceDocuments"
+
+ACCESSRULE:
+  USEACL "maintenanceRead"
+  OBJECTS:
+    USEOBJECTS "MaintenanceDocuments"
+  USEFORMULA "maintenanceWhenNotRunning"

@@ -68,7 +68,7 @@ include::partial$examples/bpn.json[]
 include::partial$examples/allow-read-all-users-of-company-for-submodel.json[]
 ----
 
-== Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData from 9:00-17:00
+== Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData on weekdays from 09:00:00Z-17:00:00Z
 
 [source,json,linenums]
 ----
@@ -80,6 +80,13 @@ include::partial$examples/allow-read-submodels-id-pattern.json[]
 [source,json,linenums]
 ----
 include::partial$examples/filter.json[]
+----
+
+== Example with Reference Attribute and state-dependent filtering
+
+[source,json,linenums]
+----
+include::partial$examples/reference-machine-state-filter.json[]
 ----
 
 == Allow only to add elements to the CertificateSet in any Submodel

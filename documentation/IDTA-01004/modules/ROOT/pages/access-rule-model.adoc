@@ -81,10 +81,14 @@ Examples can be found in xref:annex/text-access-rule-examples.adoc[].
 
 Further informative examples for RIGHTS, ROUTEs and HTTP requests can be found in xref:annex/route-examples.adoc[].
 
-*The grammar has been tested with BNF playground (https://bnfplayground.pauliankline.com/*).
-BNF playground allows to check and test the grammar itself and if expressions are correct according to the grammar.*
+The BNF grammar artifacts are tested in the GitHub Actions CI/CD workflow "Validate spec artifacts".
+This workflow runs the repository validation script `tools/validate_spec_artifacts.py`.
+The script checks all BNF files for balanced delimiters, valid rule definitions and references to defined rules.
+It also checks the BNF examples in the specification for balanced delimiters and validates model identifiers used in these examples against the related JSON Schema definitions.
 
-*The tested BNF is:*
+link:https://bnfplayground.pauliankline.com/[BNF Playground] can be used for manual testing of the BNF grammar and examples.
+
+The tested BNF is:
 
 [source,bnf,linenums]
 ----
@@ -258,7 +262,9 @@ The same principle applies to endpoint-specific POST operations such as `POST /a
 include::partial$bnf/attributes.bnf[]
 ----
 
-Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a SubmodelElement e.g. to a property for a machine state.
+Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a model field, e.g. to a SubmodelElement property for a machine state.
+A REFERENCE attribute addresses a field by identifier, independently of the object currently evaluated.
+This is useful when a rule for one object needs state data from another model context, for example checking a machine state from an OperationalData Submodel while filtering maintenance documents in a different Submodel.
 
 An Attribute Group defines a list of single attributes and/or a list of names of other attribute groups.
 
@@ -318,15 +324,19 @@ String Comparison Operations compare or match the first given argument (left arg
 
 Numerical Comparison Operations compare the first given argument (left argument) with the second given argument (right argument).
 Since AAS also supports XS Datatypes Hex, Bool, DateTime and Time, related comparisons are available accordingly.
-For AASQL and the Security part of this specification, DateTime and Time values are interpreted according to RFC 3339. This is more specific and more detailed than the generic XSD matching concepts MatchesXsTime and MatchesXsDateTime, which are less explicit about the lexical form of the values.
 
 For specific comparisons datatypes can be casted to the other datatypes.
+If a FieldIdentifier is used directly in a typed comparison, it is implicitly interpreted as the comparison type.
+This implicit conversion is tried for all values addressed by the FieldIdentifier.
+Values that cannot be converted are ignored for this FieldIdentifier evaluation.
+If no addressed value can be converted, the comparison evaluates to FALSE.
 
 Specific operations exist to extract parts from DateTime, i.e. $dayOfWeek, $dayOfMonth, $month, $year.
 This enables access rules related to week days or specific times in the year.
 
 An important special operation is $match, which can be used with any element containing a list of elements, e.g. semanticId[], specificAssetId[], SubmodelElementList or SubmodelElementCollection.
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
+FILTER defines one fragment restriction for a returned object, while FILTERLIST defines several fragment restrictions with independent conditions.
 
 
 [[json-serialization]]
@@ -339,6 +349,9 @@ The use of "oneof" is limited and type information for objects must be available
 It shall also be possible to check a JSON with the JSON schema.
 
 Examples can be found in xref:annex/json-access-rule-examples.adoc[].
+The JSON Schema artifacts and all JSON examples included in the specification are tested in the GitHub Actions CI/CD workflow "Validate spec artifacts".
+This workflow runs `tools/validate_spec_artifacts.py` with the Python `jsonschema` package.
+The script checks the JSON Schema files as JSON Schema Draft 7, resolves their `$ref` references, runs schema smoke tests for selected definitions, and validates every JSON example from the specification against the common access-rule JSON Schema and the access-rule-model JSON Schema.
 
 The following schema meets such constraints:
 
@@ -377,8 +390,19 @@ include::partial$json/formulas-and-logical-expressions.json[]
 The provided JSON schema includes a _modelStringPattern_ starting with a $, so that the syntax of model elements can be checked by the schema, e.g. $sm.idShort.
 
 String, number and boolean are supported by JSON itself.
-Specific patterns with regular expressions are provided for datatypes Hex, DateTime and Time: _hexLiteralPattern_, _dateTimeLiteralPattern_ and _timeLiteralPattern_.
-These literal patterns are aligned with the RFC 3339-based interpretation used for AASQL and the Security part of this specification.
+Specific JSON Schema definitions are provided for datatypes Hex, DateTime and Time: _hexLiteralPattern_, _dateTimeLiteralPattern_ and _timeLiteralPattern_.
+The DateTime and Time definitions use explicit regular expressions based on the AAS core meta verification functions `MatchesXsDateTime` and `MatchesXsTime`.
+These verification functions correspond to the XSD-based DateTime and Time data types defined by the IDTA 01001 Part 1 Metamodel xref:bibliography.adoc#bib1[[1\]], especially https://industrialdigitaltwin.io/aas-specifications/IDTA-01001/v3.1/spec-metamodel/datatypes.html[Primitive and Simple Data Types].
+For the generated AAS core meta verification definitions, see https://aas-core-works.github.io/aas-core-meta/v3/MatchesXsDateTime.html[MatchesXsDateTime] and https://aas-core-works.github.io/aas-core-meta/v3/MatchesXsTime.html[MatchesXsTime].
+They are based on the XML Schema `xs:dateTime` and `xs:time` lexical representations defined in https://www.w3.org/TR/xmlschema-2/#dateTime[] and https://www.w3.org/TR/xmlschema-2/#time[], and the ISO 8601 formats referenced by XML Schema in https://www.w3.org/TR/xmlschema-2/#isoformats[].
+Accordingly, DateTime and Time literals include seconds, may include fractional seconds, and may include a timezone (`Z` or an offset from `-14:00` to `+14:00`).
+The end-of-day notation `24:00:00` is allowed, with only zero fractional seconds.
+The day, month and year ranges in the BNF and JSON Schema are lexical constraints only.
+Special calendar cases, such as February 29 in non-leap years or the 31st day of a month with only 30 days, shall still be rejected.
+
+If an incoming value is provided in an incomplete ISO-like form, it shall be completed before it is serialized as a DateTime or Time literal.
+If a Time value has no timezone information, it shall be interpreted as UTC and serialized with `Z`.
+For example, the Time value `12:00:00` shall be interpreted and serialized as `12:00:00Z`.
 
 _Value_ is used for comparisons and _StringValue_ is used for the specific string operations.
 For type safety and automatic code generation, each possible type is available as an own object:
@@ -390,14 +414,17 @@ For type safety and automatic code generation, each possible type is available a
 * DateTime values can be given by $__dateTimeVal__ or $__dateTimeCast__.
 * Time values can be given by $__timeVal__ or $__timeCast__.
 
-Casts allow any of the values as input and convert this to the given type if possible.
+Casts convert values to the given type if possible.
+DateTime casts use string operands; Time casts use string or DateTime operands.
+Direct comparisons between two FieldIdentifier operands are not valid because the type of both fields would be implicit.
+To compare two fields, at least one operand shall use an explicit cast, e.g. compare _$field_ to $__strCast__, $__numCast__, $__dateTimeCast__, or $__timeCast__.
 
 Parts of DateTime values can be extracted as numbers:
 
 * _$dayOfWeek_ extracts the day of week as number, starting with 0 for Sunday.
 * _$dayOfMonth_, _$month_, _$year_ extract the related part as number.
 
-If a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
+Except for direct FieldIdentifier operands in typed comparisons, if a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
 An error message shall be generated and the result of the complete expression becomes FALSE, so that the access is not allowed and/or the filter is empty.
 
 To allow the use of different types in operations, arrays are used for parameters. _comparisonItems_ is used for comparisons and _stringItems_ is used for specific string operations.

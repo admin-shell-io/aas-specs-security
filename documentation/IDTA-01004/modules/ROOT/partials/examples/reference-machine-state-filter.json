@@ -1,0 +1,129 @@
+{
+  "AllAccessPermissionRules": {
+    "DEFACLS": [
+      {
+        "name": "maintenanceRead",
+        "acl": {
+          "ATTRIBUTES": [
+            {
+              "CLAIM": "role"
+            }
+          ],
+          "RIGHTS": [
+            "READ"
+          ],
+          "ACCESS": "ALLOW"
+        }
+      }
+    ],
+    "DEFOBJECTS": [
+      {
+        "name": "MaintenanceDocuments",
+        "objects": [
+          {
+            "REFERABLE": "$sme(\"SubmodelID-Maintenance\").maintenanceDocuments"
+          }
+        ]
+      }
+    ],
+    "DEFFORMULAS": [
+      {
+        "name": "maintenanceWhenRunning",
+        "formula": {
+          "$and": [
+            {
+              "$eq": [
+                {
+                  "$attribute": {
+                    "CLAIM": "role"
+                  }
+                },
+                {
+                  "$strVal": "maintenance"
+                }
+              ]
+            },
+            {
+              "$eq": [
+                {
+                  "$attribute": {
+                    "REFERENCE": "$sme(\"SubmodelID-OperationalData\").machineState#value"
+                  }
+                },
+                {
+                  "$strVal": "running"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "maintenanceWhenNotRunning",
+        "formula": {
+          "$and": [
+            {
+              "$eq": [
+                {
+                  "$attribute": {
+                    "CLAIM": "role"
+                  }
+                },
+                {
+                  "$strVal": "maintenance"
+                }
+              ]
+            },
+            {
+              "$eq": [
+                {
+                  "$attribute": {
+                    "REFERENCE": "$sme(\"SubmodelID-OperationalData\").machineState#value"
+                  }
+                },
+                {
+                  "$strVal": "not-running"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "matchingMaintenanceDocuments",
+        "formula": {
+          "$eq": [
+            {
+              "$field": "$sme.maintenanceDocuments[].requiredMachineState#value"
+            },
+            {
+              "$attribute": {
+                "REFERENCE": "$sme(\"SubmodelID-OperationalData\").machineState#value"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "rules": [
+      {
+        "USEACL": "maintenanceRead",
+        "USEOBJECTS": [
+          "MaintenanceDocuments"
+        ],
+        "USEFORMULA": "maintenanceWhenRunning",
+        "FILTER": {
+          "FRAGMENT": "$sme.maintenanceDocuments[]",
+          "USEFORMULA": "matchingMaintenanceDocuments"
+        }
+      },
+      {
+        "USEACL": "maintenanceRead",
+        "USEOBJECTS": [
+          "MaintenanceDocuments"
+        ],
+        "USEFORMULA": "maintenanceWhenNotRunning"
+      }
+    ]
+  }
+}
