@@ -25,7 +25,7 @@ In case of switching between AAS implementations, an exchange of access rules is
 
 AAS implementations (of non test systems) are supposed to consider relevant security standards and regulations, e.g. IEC 62443, ISO 27001, EU CRA or EU NIS2. This includes rules for the development process and for the written code.
 
-Section @todo requirements.adoc defines security requirements for AAS systems following the IEC 63443 series. Implementation specific security requirements are not part of this document. Annex @todo provides an overview on which requirements are addressed by this document and which are not.
+Section xref:requirements.adoc[Requirements] defines security requirements for AAS systems following the IEC 63443 series. Implementation specific security requirements are not part of this document. The Annex xref:annex/requirements_mapping.adoc[Requirements Mapping] provides an overview on which requirements are addressed by this document and which are not.
 
 Typical scenarious for AAS include multiple stakeholders along the industrial value chain. This comes with the need for authentication and authorization of subjects, i.e., users and systems, accross different security domains. This is addressed by identity and access management (IAM). This document dicusses several patterns and examples for IAM in the context of AAS (<<integration-patterns>>,<<identity-providers>>, <<authentication-flows>>). However, this document does not mandate a specific solution for IAM. As a result of the subject identification and authentication process there is an Access Token that is evaluated by the AAS to authorize access to data and services represented by the AAS.
 
@@ -39,12 +39,12 @@ Access rules are defined for routes in the AAS API xref:bibliography.adoc#bib2[[
 As introduced in AAS Part 2 API, <<image-aas-info-exchange-types>> shows 3 different types of information via the Asset Administration Shell.
 
 * Type 1 is the exchange as an AASX file xref:bibliography.adoc#bib3[[3\]] (part 5).
-Such AASX file CAN include a Security Model to be passed to a business partner.
+Such AASX file can include a Security Model to be passed to a business partner.
 * Type 2 is the access to AAS by the API xref:bibliography.adoc#bib2[[2\]] (part 2) to a server.
-Such server CAN use and enforce the ABAC rules of the Security Model.
-The Security Model MAY be hosted as submodel by the server. The submodel for the Security Model is then itself subject to access control.
+Such server can use and enforce the ABAC rules of the Security Model.
+The Security Model may be hosted as submodel by the server. The submodel for the Security Model is then itself subject to access control.
 * Type 3 is the so called “Industrie 4.0 Language” with active AAS, which is similar to agents.
-Basically Type 3 is out of scope for this document, but the definitions of this document CAN also be used in the context of Type 3.
+Basically Type 3 is out of scope for this document, but the definitions of this document can also be used in the context of Type 3.
 
 .Types of Information Exchange via Asset Administration Shells
 [[image-aas-info-exchange-types]]
@@ -67,7 +67,7 @@ The technology-neutral level comprises the following concepts:
 
 * *Service*: a service describes a demarcated scope of functionality (including its informational and non-functional aspects), which is offered by an entity or organization via interfaces.
 * *Interface*: this is the most important concept as it is understood to be the unit of reusability across services and the unit of standardization when mapped to application programming interfaces (API) in the technology-specific level.
-One interface MAY be mapped to several APIs depending on the technology and architectural style used, e.g. HTTP/REST or OPC UA, whereby these API mappings also need to be standardized for the sake of interoperability.
+One interface may be mapped to several APIs depending on the technology and architectural style used, e.g. HTTP/REST or OPC UA, whereby these API mappings also need to be standardized for the sake of interoperability.
 * *Interface-Operation*: interface operations define interaction patterns via the specified interface.
 
 The technology-specific level comprises the following concepts:
@@ -77,16 +77,16 @@ Among others, it comprises and refers to the list of APIs that forms this servic
 The service specification includes I4.0-defined standard APIs but also other, proprietary APIs.
 
 ====
-Note: such a technology-specific service specification MAY be but does not have to be derived from the “service” described in the technology-neutral form.
+Note: such a technology-specific service specification may be but does not have to be derived from the “service” described in the technology-neutral form.
 It is up to the system architect and service engineer to tailor the technology-specific service according to the needs of the use cases.
 ====
 
 * *API*: specification of the set of operations and events that forms an API in a selected technology.
 It is derived from the interface description on the technology-neutral level.
-Hence, if there are several selected technologies, one interface MAY be mapped to several APIs.
+Hence, if there are several selected technologies, one interface may be mapped to several APIs.
 * *API-Operation*: specification of the operations (procedures) that are accessible through an API.
 It is derived from the interface operation description on the technology-neutral level.
-When selecting technologies, one interface operation MAY be mapped to several API-operations; several interface operations MAY also be mapped to the same API-operation.
+When selecting technologies, one interface operation may be mapped to several API-operations; several interface operations may also be mapped to the same API-operation.
 
 The implementation level comprises the following concepts:
 
@@ -142,7 +142,7 @@ It is up to the integrator to forward only selected submodels from the supplier'
 
 This use case is an example for the necessity of Signing, since it is desireable to check the integrity of the AAS originally provided by the supplier.
 
-<<@todo accountability>> discusses means of ensuring accountability of AAS data. Basic signing functionality for data retrieval from an AAS is defined in REST API specification.
+Chapter xref:../accountability.adoc#_accountability[Accountability for AAS Content and Digital Signatures] discusses means of ensuring accountability of AAS data. Basic signing functionality for data retrieval from an AAS is defined in the REST API specification link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.2[IDTA-01002].
 
 .Use Case File Exchange between Value Chain Partners
 [[image-tracking-of-changes-via-events]]

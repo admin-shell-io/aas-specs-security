@@ -72,7 +72,7 @@ The policy of a dataspace SHALL define which access tokens are trusted by the AA
 
 The policy of a dataspaces SHALL define the set of subject ABAC attributes that are used as claims to determine authorization.
 
-Access tokens used for operations resulting in modification of information or disclosure of non-public information provided by the AAS shall use a state-of-the-art, cryptographically strong asymmetric signature scheme to authenticate the access token <<@todo use-of-cryptography>>.
+Access tokens used for operations resulting in modification of information or disclosure of non-public information provided by the AAS shall use a state-of-the-art, cryptographically strong asymmetric signature scheme to authenticate the access token xref:requirements.adoc#use-of-cryptography[Use of Cryptography].
 
 AAS Security uses signed JWT (JSON Web Token) bearer tokens as Access Tokens, as they are defined in RFC 7519.
 
@@ -697,8 +697,8 @@ When AAS content is passed from one partner to another, this is typically relate
 In addition to the AAS content itself, also the defined access permissions have to be transferred between the partners due to the following two reasons:
 
 [arabic]
-. Access permissions to information elements of an AAS MUST be established in each access control domain.
-. One partner MUST be able to pass a suggestion which access permissions SHOULD be established for the asset that is described in the AAS.
+. Access permissions to information elements of an AAS must be established in each access control domain.
+. One partner must be able to pass a suggestion which access permissions should be established for the asset that is described in the AAS.
 
 ABAC is a very flexible approach, that also encompasses role-based access as a role can be considered as one attribute in this context.
 Other attributes might be the time-of-day, the location of the asset, the originating address and others.

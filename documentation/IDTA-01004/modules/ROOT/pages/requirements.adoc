@@ -42,7 +42,7 @@ Identification and authentication of AAS user applications and AAS interface pro
 * Before granting access to protected data represented by the AAS or restricted services, the AAS interface SHALL ensure the identification and authentication of the AAS user application. Authentication of the AAS user application SHALL include the authentication of ABAC attributes provided by the AAS user application. The content of the ABAC attributes can affect the behaviour of the AAS interface. All ABAC attributes provided by the AAS user application can be used for authorization decisions.
 * If requested by the AAS user application the AAS interface SHOULD be able to prove its identity towards the AAS user application.
 
-Identification and authentication of the AAS user application and the AAS interface can be achieved by different means, depending on the underlying communication technology and REQUIRED security level (<<_public_key_infrastructure>>).
+Identification and authentication of the AAS user application and the AAS interface can be achieved by different means, depending on the underlying communication technology and required security level (<<_public_key_infrastructure>>).
 
 ====
 Note: In case of TCP/IP based communication (mutual) TLS can be used to provide secure identification between the communication partners.
@@ -280,21 +280,22 @@ This requirement is relevant for two aspects of the AAS security model:
 Note: In case of TCP/IP based communication TLS can be used to ensure confidentiality protection for data in transit.
 ====
 
-Confidentiality for data at rest can be implemented by different means, depending on the REQUIRED security level. 
+Confidentiality for data at rest can be implemented by different means, depending on the required security level. 
 
 Measures include:
 
 * Implementation of access control (<<_authorization_enforcement>>).
 * Use of protected storage systems and data bases relying on cryptographic encryption mechanisms (symmetric and asymmetric) on the actual data.
-* Providing information by-reference instead of by-value. The responsibility to protect the information is delegated to the referenced data source. Delegation is an option to be considered in case AAS is not able to meet the REQUIRED protection level.
+* Providing information by-reference instead of by-value. The responsibility to protect the information is delegated to the referenced data source. Delegation is an option to be considered in case AAS is not able to meet the required protection level.
 
 ====
 Note: Derived from IEC 62443-3-3 SR 4.1, IEC 62443-4-2 CR 4.1
 ====
 
+[[use-of-cryptography]]
 ==== Use of cryptography
 
-If no details are mentioned on REQUIRED cryptographic algorithms or strength used to implement AAS security functionality, the latest version of [ENISA Report] or [NIST SP 800-78-5] SHOULD be used as a reference.
+If no details are mentioned on required cryptographic algorithms or strength used to implement AAS security functionality, the latest version of [ENISA Report] or [NIST SP 800-78-5] SHOULD be used as a reference.
 
 ====
 Note: Derived from IEC 62443-3-3 SR 4.3, IEC 62443-4-2 CR 4.3
@@ -304,7 +305,7 @@ Note: Derived from IEC 62443-3-3 SR 4.3, IEC 62443-4-2 CR 4.3
 
 ==== Application partitioning
 
-The definition of AAS structures SHOULD consider separation of content based on associated risk, relevant security objectives, or other criteria, operational function, REQUIRED access (for example, least privilege principles) or responsible organization.
+The definition of AAS structures SHOULD consider separation of content based on associated risk, relevant security objectives, or other criteria, operational function, required access (for example, least privilege principles) or responsible organization.
 
 Restricted data flow is an important concept of IEC 62443.
 
