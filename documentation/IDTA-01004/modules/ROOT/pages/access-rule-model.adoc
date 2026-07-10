@@ -196,6 +196,10 @@ The <CONDITION> is a Boolean <logicalExpression> that defines whether the refere
 The <FRAGMENT> identifies which part of the accessed object has to be filtered.
 The related <FragmentLiteral> defines the prefix of a <FieldIdentifier> to be filtered, e.g. "$aasdesc#specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
 
+For a filter addressing SubmodelElements (Fragment `$sme`), the filter condition SHALL be evaluated separately for each SubmodelElement identified by its ID. 
+
+Visibility is applied recursively to the element hierarchy: a SubmodelElement SHALL be returned only if it and all its parent elements are visible.
+
 [[acl]]
 ==== ACL
 
