@@ -3,7 +3,7 @@
   xmlns='http://www.w3.org/2000/svg'
   xmlns:xlink='http://www.w3.org/1999/xlink'
 
-  width='1000' height='1060' viewBox='0 0 1000 1060'>
+  width='1000' height='700' viewBox='0 0 1000 700'>
 
   <style>
     rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
@@ -108,45 +108,6 @@
   </g>
 
   <g transform='translate(40 440)'>
-    <text x='-30' y='-10'>DateTimeGlobalAttribute:</text>
-    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
-    <path d='M590.5 14 v12 m 4 0 v-12' class='station'/>
-    <rect x='30' y='10' height='20' width='70' rx='8' ry='8' class='literal'/>
-    <text x='65' y='25' text-anchor='middle' class='literal'>GLOBAL</text>
-    <rect x='120' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='145' y='25' text-anchor='middle' class='rule'>Ws</text>
-    <rect x='190' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
-    <text x='200' y='25' text-anchor='middle' class='literal'>(</text>
-    <rect x='230' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='255' y='25' text-anchor='middle' class='rule'>Ws</text>
-    <rect x='335' y='10' height='20' width='90' rx='8' ry='8' class='literal'/>
-    <text x='380' y='25' text-anchor='middle' class='literal'>LOCALNOW</text>
-    <rect x='345' y='40' height='20' width='70' rx='8' ry='8' class='literal'/>
-    <text x='380' y='55' text-anchor='middle' class='literal'>UTCNOW</text>
-    <rect x='330' y='70' height='20' width='100' rx='8' ry='8' class='literal'/>
-    <text x='380' y='85' text-anchor='middle' class='literal'>CLIENTNOW</text>
-    <rect x='480' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='505' y='25' text-anchor='middle' class='rule'>Ws</text>
-    <rect x='550' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
-    <text x='560' y='25' text-anchor='middle' class='literal'>)</text>
-    <path d='M530 20 h20'/>
-    <path d='M450 30 v40'/>
-    <path d='M430 80 h10 q10 0 10 -10'/>
-    <path d='M310 70 q0 10 10 10 h10'/>
-    <path d='M415 50 h25 q10 0 10 -10'/>
-    <path d='M310 40 q0 10 10 10 h25'/>
-    <path d='M450 30 q0 -10 10 -10'/>
-    <path d='M425 20 h55'/>
-    <path d='M300 20 q10 0 10 10 v40'/>
-    <path d='M280 20 h55'/>
-    <path d='M210 20 h20'/>
-    <path d='M170 20 h20'/>
-    <path d='M100 20 h20'/>
-    <path d='M570 20 h20'/>
-    <path d='M10 20 h20'/>
-  </g>
-
-  <g transform='translate(40 580)'>
     <text x='-30' y='-10'>ReferenceAttribute:</text>
     <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
     <path d='M690.5 14 v12 m 4 0 v-12' class='station'/>
@@ -219,61 +180,7 @@
     <path d='M10 20 h90'/>
   </g>
 
-  <g transform='translate(40 750)'>
-    <text x='-30' y='-10'>AttributeGroup:</text>
-    <path d='M5.5 4 v12 m 4 0 v-12' class='station'/>
-    <path d='M730.5 4 v12 m 4 0 v-12' class='station'/>
-    <rect x='90' y='30' height='20' width='130' rx='0' ry='0' class='rule'/>
-    <text x='155' y='45' text-anchor='middle' class='rule'>SingleAttribute</text>
-    <rect x='240' y='30' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='265' y='45' text-anchor='middle' class='rule'>Ws</text>
-    <path d='M188 60 l4 3 v-6 z' class='arrow'/>
-    <rect x='430' y='30' height='20' width='150' rx='0' ry='0' class='rule'/>
-    <text x='505' y='45' text-anchor='middle' class='rule'>UseAttributeGroup</text>
-    <rect x='600' y='30' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='625' y='45' text-anchor='middle' class='rule'>Ws</text>
-    <path d='M538 60 l4 3 v-6 z' class='arrow'/>
-    <path d='M700 20 v10'/>
-    <path d='M410 50 v0 q0 10 10 10 h240 q10 0 10 -10 v0'/>
-    <path d='M660 40 q10 0 10 10'/>
-    <path d='M650 40 h40 q10 0 10 -10'/>
-    <path d='M580 40 h20'/>
-    <path d='M410 50 q0 -10 10 -10'/>
-    <path d='M380 30 q0 10 10 10 h40'/>
-    <path d='M700 20 q0 -10 10 -10'/>
-    <path d='M370 10 q10 0 10 10 v10'/>
-    <path d='M340 20 v10'/>
-    <path d='M70 50 v0 q0 10 10 10 h220 q10 0 10 -10 v0'/>
-    <path d='M300 40 q10 0 10 10'/>
-    <path d='M290 40 h40 q10 0 10 -10'/>
-    <path d='M220 40 h20'/>
-    <path d='M70 50 q0 -10 10 -10'/>
-    <path d='M40 30 q0 10 10 10 h40'/>
-    <path d='M340 20 q0 -10 10 -10'/>
-    <path d='M30 10 q10 0 10 10 v10'/>
-    <path d='M10 10 h720'/>
-  </g>
-
-  <g transform='translate(40 870)'>
-    <text x='-30' y='-10'>UseAttributeGroup:</text>
-    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
-    <path d='M460.5 14 v12 m 4 0 v-12' class='station'/>
-    <rect x='30' y='10' height='20' width='140' rx='8' ry='8' class='literal'/>
-    <text x='100' y='25' text-anchor='middle' class='literal'>USEATTRIBUTES</text>
-    <rect x='190' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='215' y='25' text-anchor='middle' class='rule'>Ws</text>
-    <rect x='260' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
-    <text x='315' y='25' text-anchor='middle' class='rule'>StringLiteral</text>
-    <rect x='390' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='415' y='25' text-anchor='middle' class='rule'>Ws</text>
-    <path d='M370 20 h20'/>
-    <path d='M240 20 h20'/>
-    <path d='M170 20 h20'/>
-    <path d='M440 20 h20'/>
-    <path d='M10 20 h20'/>
-  </g>
-
-  <g transform='translate(40 950)'>
+  <g transform='translate(40 610)'>
     <text x='-30' y='-10'>ClaimLiteral:</text>
     <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
     <path d='M160.5 14 v12 m 4 0 v-12' class='station'/>

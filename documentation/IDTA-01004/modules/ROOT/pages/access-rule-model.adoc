@@ -8,27 +8,20 @@ SPDX-License-Identifier: CC-BY-4.0
 
 ////
 
-////
-TODO tc65:
-- caluse 6.2.1
-- clause 6.2.2
-- clause 6.2.3
-- explanation-access-rule-model chapter add infomration
-////
 
 = Access Rule Model (normative)
 
 == General
 
-The introduction in Chapter xref:introduction.adoc[] has explained in detail the background for AAS Security. 
+The introduction in xref:introduction.adoc[Introduction] has explained in detail the background for AAS Security.
 The use of Identity Providers and Authentication Flows have been shown, which provide an access token to the client user application.
 Such access token contains claims as subject attributes which can be used in the Access Rule Model as defined below.
 
 In addition, the Access Rule Model contains further ABAC attributes like global attributes (also called environmental attributes) or object attributes.
 
-<<image-access-rule-model>> gives an overview of the Access Rule Model.
-Section <<bnf-grammar>> defines the text serialization of the Access Rule Model.
-Section <<json-serialization>> defines the JSON schema of the Access Rule Model.
+<<image-access-rule-model,Access Rule Model>> gives an overview of the Access Rule Model.
+Section <<bnf-grammar,BNF grammar of Access Rules>> defines the text serialization of the Access Rule Model.
+Section <<json-serialization,JSON Serialization of Access Rule Model>> defines the JSON schema of the Access Rule Model.
 
 The Access Rule Model allows to define Access Rules in a modular way, so that parts can be reused.
 
@@ -45,7 +38,7 @@ Only if the overall result of the Formula is valid and true, the Access Rule bec
 A formula can include nested boolean expressions, comparisons and string operations.
 A special operation match allows to work with tuples in lists, e.g. specificAssetId.
 
-If access control is enabled for an AAS interface, access shall only be granted if there is (at least) one access control rule which permits the requested operation on the designated AAS object (<<objects>>).
+If access control is enabled for an AAS interface, access shall only be granted if there is (at least) one access control rule which permits the requested operation on the designated <<objects,AAS object>>.
 If there is no rule the default behaviour is to deny access.
 
 
@@ -75,7 +68,7 @@ include::partial$diagrams/access-rule-model.puml[]
 The following BNF (Backus-Naur-Form) grammar defines the AAS Access Rule Model in a technology neutral form.
 The grammar includes whitespaces, so that the examples in xref:annex/text-access-rule-examples.adoc[] can be validated.
 
-The Security Model is explained step by step in the following Chapter <<explanation-access-rule-model>>.
+The Security Model is explained step by step in <<explanation-access-rule-model,Explanation of the Access Rule Model>>.
 
 Examples can be found in xref:annex/text-access-rule-examples.adoc[].
 
@@ -115,10 +108,10 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 
 ==== Access Rule Model
 
-An Access Rule Model <AllAccessPermissionRules> defines a list of <<access-permission-rules>>.
+An Access Rule Model <AllAccessPermissionRules> defines a list of <<access-permission-rules,Access Permission Rules>>.
 
 The access rule model <AllAccessPermissionRules> also contains lists of Attribute Groups <DEFATTRIBUTES>, Object Groups <DEFOBJECTS>, ACLs <DEFACLS> and Formulas <DEFFORMULAS>.
-These pre-defines can be referred to from other parts of the access control rules by the assigned <StringLiteral>. This allows to reuse commonly used definitions instead of having multiple copies spread over the access control rules. See <<reusable-definitions>>.
+These pre-defines can be referred to from other parts of the access control rules by the assigned <StringLiteral>. This allows to reuse commonly used definitions instead of having multiple copies spread over the access control rules. See <<reusable-definitions,Reusable Definitions>>.
 
 .Railroad diagram for <AllAccessPermissionRules>
 [[image-access-control-rules-model]]
@@ -176,17 +169,17 @@ Table <<table-access-permission-rule>> describes the details of <AccessPermissio
 |Description
 
 |ACCESSRULE:
-|Either specifies the access control list (<ACL>) or contains a reference to an access control list (<UseACL>) pre-defined using DEFACLS. Access control lists are described in <<_acl,ACL>>.
+|Either specifies the access control list (<ACL>) or contains a reference to an access control list (<UseACL>) pre-defined using DEFACLS. Access control lists are described in <<acl,ACL>>.
 
 |OBJECTS:
-|Defines the set of AAS objects to which the access permission applies. The list contains individual objects and/or refers to object groups pre-defined using DEFOBJECTS. Objects are described in <<objects>>.
+|Defines the set of AAS objects to which the access permission applies. The list contains individual objects and/or refers to object groups pre-defined using DEFOBJECTS. Objects are described in <<objects,AAS Objects>>.
 
 |FORMULA:
-|Defines the formula to be evaluated to determine whether the access permission is in effect. Predefined formulas can be referenced using <UseFormula>. Formulas allow only expressions with Boolean results, e.g., comparisons; arithmetic is currently not supported. If the formula evaluates to true the access permission shall be enforced. Formulas are described in <<_formulas,Formulas>>.
+|Defines the formula to be evaluated to determine whether the access permission is in effect. Predefined formulas can be referenced using <UseFormula>. Formulas allow only expressions with Boolean results, e.g., comparisons; arithmetic is currently not supported. If the formula evaluates to true the access permission shall be enforced. Formulas are described in <<formulas,Conditions and Formulas>>.
 
 |FILTER: +
 FILTERLIST:
-|Filters can be used to restrict the exposure of an AAS object depending on the object values. Only values passing through the filter are returned to the AAS user application. Any AAS object with values that do not match the filter expression shall be removed from the list of returned objects.
+|Filters can be used to restrict the exposure of an AAS object depending on the object values. Only values passing through the filter are returned to the AAS user application. Any AAS object with values that do not match the filter expression shall be removed from the list of returned objects. +
 EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-filter-statement[Example with FILTER statement].
 
 |===
@@ -203,6 +196,7 @@ The <CONDITION> is a Boolean <logicalExpression> that defines whether the refere
 The <FRAGMENT> identifies which part of the accessed object has to be filtered.
 The related <FragmentLiteral> defines the prefix of a <FieldIdentifier> to be filtered, e.g. "$aasdesc#specificAssetIds[]" defines that the specificAssetIds part shall be filtered.
 
+[[acl]]
 ==== ACL
 
 An ACL (Access Control List) defines which access rights apply depending on a required set of attributes.
@@ -221,10 +215,10 @@ Table <<table-acl>> describes the details of <ACL>.
 |Description
 
 |ATTRIBUTES:
-| List of ABAC attributes that the access control list depends on. The list contains definitions for individual attributes or pre-defined attribute groups introduced with DEFATTRIBUTES. Attributes are described in <<_attributes,Attributes>>.
+| List of ABAC attributes that the access control list depends on. The list contains definitions for individual attributes or pre-defined attribute groups introduced with DEFATTRIBUTES. Attributes are described in <<attributes,Attributes>>.
 
 |RIGHTS:
-| Enumeration of access rights subject to this access control list. <<table-rights-to-verbs>> describes the possible access rights, their semantics, and how they apply to the interface operations defined by the AAS API xref:bibliography.adoc#bib2[[2\]].
+| Enumeration of access rights subject to this access control list. Table <<table-rights-to-verbs>> describes the possible access rights, their semantics, and how they apply to the interface operations defined by the AAS API xref:bibliography.adoc#bib2[[2\]].
 
 |ACCESS:
 |Type of access managed by this access control list. See Table <<table-access>> for the description of possible access types.
@@ -239,17 +233,23 @@ Table <<table-acl>> describes the details of <ACL>.
 |Description
 
 |`"ALLOW"`
-| The respective permission is granted if the associated formula evaluates to true (see <<_formulas,Formulas>>). Without an ALLOW rule any access is forbidden by default.
+| The respective permission is granted if the associated formula evaluates to true (see <<formulas,Conditions and Formulas>>). Without an ALLOW rule any access is forbidden by default.
 
 |`"DISABLED"`
 | This access control list shall not be evaluated and is ignored. This can be used for test purposes.
 
 |===
 
-===== Rights and operation verbs
+USEACL can be used to refer to a predefined ACL (see <<reusable-definitions,Reusable Definitions>>).
+
+.Railroad diagram for <UseACL>
+[[image-access-control-rules-acl-reference]]
+image::access-control-rules-acl-reference.svg[width=642]
+
+==== Rights and operation verbs
 
 The RIGHTS values are technology-neutral permissions. For HTTP/REST APIs these permissions are typically enforced on interface operations and their mapped HTTP methods.
-The mapping in <<table-rights-to-verbs>> is intended to improve interoperability when ROUTE objects are used for authorization decisions.
+The mapping in Table <<table-rights-to-verbs>> is intended to improve interoperability when ROUTE objects are used for authorization decisions.
 Concrete informative examples for RIGHTS, ROUTEs and HTTP requests are given in xref:annex/route-examples.adoc[].
 
 The normative operation-level mapping for the AAS HTTP/REST API (per-operation RIGHT and ROUTE) is defined in IDTA-01002 § "Operation to RIGHT Mapping" (annex). Implementations of this specification MUST follow that mapping when evaluating access rules against concrete HTTP operations.
@@ -266,64 +266,71 @@ The normative operation-level mapping for the AAS HTTP/REST API (per-operation R
 |CREATE
 |Post
 |POST
-|Permission to create a new resource at a collection or factory-style endpoint.
+|Permission to create new <<objects,AAS objects>> where the parent object is the AAS object designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
 
 |CREATE
 |Put
 |PUT
-|Permission to create a new resource at a client-addressable resource endpoint if the addressed resource does not yet exist.
+|Permission to create new <<objects,AAS objects>> where the parent object is the AAS object designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
 
 |READ
 |Get, GetAll
 |GET
-|Permission to read resource content.
+|Permission to perform read operations on the <<objects,AAS objects>> designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
+
+FILTER: can be used to filter the result data on a sub-object granularity from the object data returned by the Get/GetAll operation. 
+
+EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-filter-statement[Example with FILTER statement].
 
 |UPDATE
 |Patch
 |PATCH
-|Permission to partially update an existing resource.
+|Permission to perform update operations on existing the <<objects,AAS objects>> designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
 
 |UPDATE
 |Put
 |PUT
-|Permission to replace an existing resource at a client-addressable resource endpoint.
+|Permission to replace an existing <<objects,AAS object>> designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
 
 |DELETE
 |Delete
 |DELETE
-|Permission to delete an existing resource.
+|Permission to perform delete operations on the <<objects,AAS objects>> designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
 
 |EXECUTE
 |Invoke
 |POST
-|Permission to invoke an operation.
+|Permission to invoke an operation. 
+// Permission to execute a SubmodelElement of type Operation. 
 
 |VIEW
 |GetAll
 |GET
-|Permission to see that a resource exists, typically as identifiers, references, idShort values, or descriptor entries without access to the full resource value. 
-In addition, VIEW allows to see the existence of an element as Id or idShort, but not to read its values and its further attributes.
+|View the existence of an <<objects,AAS object>> as ID or idShort. This does not include access to the value and any other attributes of the AAS element.
+
+EXAMPLE It is allowed to see, that a specific Submodel is present, but this does not imply, that access to any information stored within the Submodel is granted. 
 
 |ALL
 |n/a
 |n/a
-|Abbreviation for all eligible rights.
+|Permission for full access on the designated <<objects,AAS objects>>, i.e., shorthand for a combination of all eligible permissions.
 |===
 
 The mapping is not intended to redefine AAS Part 2 operations.
+
 It clarifies how the abstract RIGHT values are typically applied when an authorization decision is made for a concrete HTTP route.
 The same HTTP method can therefore be used for different rights depending on the targeted interface operation and the representation that is returned.
 For example, GET may correspond to READ for full content access or VIEW for reference-only or existence-only access.
-Search-style read operations may also use POST in specific interfaces.
-For endpoints with create-or-replace or upsert semantics, the required right depends on whether the addressed resource already exists.
-For example, `PUT /api/v3/submodels/{submodelIdentifier}` requires CREATE if the addressed submodel does not yet exist and UPDATE if it already exists.
-The same principle applies to endpoint-specific POST operations such as `POST /api/v3/lookup/shells/{aasIdentifier}` if the endpoint creates the addressed resource when absent and updates it when present.
+Search-style read operations may also use POST in specific interfaces. For endpoints with create-or-replace or upsert semantics, the required right depends on whether the addressed resource already exists.
+
+For example, `PUT /api/v3/submodels/\{submodelIdentifier\}` requires CREATE if the addressed submodel does not yet exist and UPDATE if it already exists.
+The same principle applies to endpoint-specific POST operations such as `POST /api/v3/lookup/shells/\{aasIdentifier\}` if the endpoint creates the addressed resource when absent and updates it when present.
 
 
+[[attributes]]
 ==== Attributes
 
-Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a model field, e.g. to a SubmodelElement property for a machine state.
-An Attribute Group defines a list of single attributes and/or a list of names of other attribute groups.
+<SingleAttribute> describes an ABAC attribute which is to be used in an <<acl,ACL>> (Table <<table-acl>>).
 
 .Railroad diagram for attributes
 [[image-access-control-rules-attributes]]
@@ -350,6 +357,9 @@ EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-authenticated-user
 |Reference to an attribute of any Referable as defined by the AAS metamodel xref:bibliography.adoc#bib1[[1\]] within the scope of the AAS accessed via the AAS interface.
 
 |===
+
+Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a model field, e.g. to a SubmodelElement property for a machine state.
+An Attribute Group defines a list of single attributes and/or a list of names of other attribute groups.
 
 A REFERENCE attribute addresses a field by identifier, independently of the object currently evaluated.
 This is useful when a rule for one object needs state data from another model context, for example checking a machine state from an OperationalData Submodel while filtering maintenance documents in a different Submodel.
@@ -388,14 +398,28 @@ EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-anonymous-complete
 
 |===
 
+<AttributeGroup> allows to define a set of attributes in a pre-defined group (see <<reusable-definitions,Reusable Definitions>>) that can be referenced by USEATTRIBUTES. Attribute groups may be recursive, i.e., an attribute group can be composed of attribute groups.
+
+.Railroad diagram for <AttributeGroup> and <UseAttributeGroup>
+[[image-access-control-rules-attribute-reference]]
+image::access-control-rules-attribute-reference.svg[width=642]
+
+In order to use attributes as operands the query language defined in link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.2/query-language.html[IDTA-01002, Query Language] is extended.
+
+The capability to use attributes as operands in the evaluation of access control rules is an important concept of ABAC. At the time of evaluation, the operand will be substituted with the actual value of the attributed, e.g., as provided within a claim of the access token.
+
+The required additions for <StringOperand> and <StringNonFieldOperand> are shown in the BNF grammar.
+
 [[objects]]
-==== Objects
+==== AAS Objects
 
 AAS objects are objects constituting the data represented by the AAS or an endpoint for an AAS operation (<RouteObject>).
 
-<SingleObject> describes the AAS element to which an access control rule applies (Table <<table-access-permission-rule>>).
+<SingleObject> describes the AAS element to which an access control rule applies (see Table <<table-access-permission-rule>>).
 
 Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submodel), Referables (e.g. SubmodelElements), Descriptors or Fragments of those (e.g. AssetId, SemanticId, SpecificAssetId). Table <<table-single-object>> explains the different options to refer to an AAS element.
+
+Details on identifiers used by <IdentifiableObject>, <ReferableObject>, <FragmentObject>, and <DescriptorObject> are described in <<identifiers,Identifiers>>.
 
 .Railroad diagram for objects
 [[image-access-control-rules-objects]]
@@ -429,7 +453,7 @@ EXAMPLE See xref:annex/route-examples.adoc#example-requests-by-right[example req
 
 |===
 
-Details on identifiers used by <IdentifiableObject>, <ReferableObject>, <FragmentObject>, and <DescriptorObject> are described in subclause <<identifiers>>. 
+Details on identifiers used by <IdentifiableObject>, <ReferableObject>, <FragmentObject>, and <DescriptorObject> are described in <<identifiers,Identifiers>>.
 
 ROUTE defines the endpoint address of an interface operation.
 This allows access control to be defined for single interface operations, groups of interface operations, or complete interfaces.
@@ -447,15 +471,19 @@ ROUTE matching uses the following rules:
 Examples are "/shells", "/shells/*" and "*".
 For HTTP/REST APIs the examples in xref:annex/route-examples.adoc[] show how ROUTE literals can be combined with RIGHTS and concrete request examples from AAS Part 2.
 
-An Object Group defines a list of single objects and/or a list of names of other object groups.
+<ObjectGroup> allows to combine a set of objects in pre-defined group (see <<reusable-definitions,Reusable Definitions>>) that can be referenced by USEOBJECTS. Object groups may be recursive, i.e., an object group can be composed of other object groups.
+
+.Railroad diagram for <ObjectGroup> and <UseObjectGroup>
+[[image-access-control-rules-object-reference]]
+image::access-control-rules-object-reference.svg[width=642]
 
 [[identifiers]]
 ==== Identifiers
 
-References to attribute values (see <<_attributes,Attributes>>) and objects (see <<objects>>) use instance and field identifiers.
+References to attribute values (see <<attributes,Attributes>>) and objects (see <<objects,AAS Objects>>) use instance and field identifiers.
 
 Instances can be referred to by a specific identifier or a wildcard “*” to apply to all objects of the specified type.
-The syntax of the <StringLiteral> used to identify a specific instance shall be defined by the AAS responsible according to the identifier policy described in xref:requirements.adoc#_identifier_management[Identifier management].
+The syntax of the <StringLiteral> used to identify a specific instance shall be defined by the AAS Responsible according to the identifier policy described in xref:requirements.adoc#_identifier_management[Identifier management].
 
 Table <<table-field-identifiers>> enumerates the available identifiers.
 
@@ -486,15 +514,14 @@ Table <<table-field-identifiers>> enumerates the available identifiers.
 
 |===
 
-==== Formulas
+[[formulas]]
+==== Conditions and Formulas
 
-FORMULAs define a logical expression with a Boolean result when an Access Rule is enabled/disabled.
-FORMULAs allow to express only expressions with Boolean results.
-Arithmetic in FORMULAS is currently not supported.
+Any <LogicalExpression> described using the AAS query language defined by link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.2/query-language.html[IDTA-01002, Query Language] may be used in a formula for access control.
 
-.Railroad diagram for <UseFormula>
-[[image-access-control-rules-formula-reference]]
-image::access-control-rules-formula-reference.svg[width=642]
+The logical expression used as condition shall evaluate to either true or false. If the expression evaluates to true the respective <<access-permission-rules,Access Permission Rule>> shall be enforced, otherwise the rule is ignored.
+
+Arithmetic in Formulas is currently not supported.
 
 Nested logical expressions create combinations of several logical expressions, where any, all or none of the expressions needs to be enabled: *<logicalNestedExpression>, <logicalOrExpression>, <logicalAndExpression>, <logicalNotExpression>*.
 
@@ -517,6 +544,13 @@ An important special operation is $match, which can be used with any element con
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
 FILTER defines one fragment restriction for a returned object, while FILTERLIST defines several fragment restrictions with independent conditions.
 
+A formula can use all ABAC attributes defined in the ATTRIBUTES: section of the <<acl,ACL>>. A formula referring to undefined attributes shall result in false. Any type of error during the evaluation of a formula shall be treated as if the formula resulted in false.
+
+USEFORMULAS can be used to refer to a predefined formula (see <<reusable-definitions,Reusable Definitions>>).
+
+.Railroad diagram for <UseFormula>
+[[image-access-control-rules-formula-reference]]
+image::access-control-rules-formula-reference.svg[width=642]
 
 [[json-serialization]]
 == JSON Serialization of Access Rule Model

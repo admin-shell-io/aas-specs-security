@@ -40,6 +40,13 @@
 
 <Filter> ::=
     (
-        ( "FILTER:" <Ws> <SecurityQueryFilter> <Ws> )? |
+        ( "FILTER:" <Ws> <SecurityQueryFilter> <Ws> )?
         ( "FILTERLIST:" <Ws> ( <SecurityQueryFilter> <Ws> )* )?
+    )
+
+<SecurityQueryFilter> ::=
+    ( "FRAGMENT:" <Ws> <FieldIdentifierFragment> <Ws> )
+    (
+        ( "CONDITION:" <Ws> <LogicalExpression> <Ws> ) |
+        ( <UseFormula> <Ws> )
     )

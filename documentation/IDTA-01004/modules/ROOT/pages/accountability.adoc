@@ -1,4 +1,5 @@
 =	Accountability for AAS Content and Digital Signatures
+@todo nach kapitel access rule normative
 
 This document does not specify a native way to protect AAS elements with data-bound protection mechanisms such as digital signatures.
 
@@ -7,8 +8,8 @@ This document does not specify a native way to protect AAS elements with data-bo
 Apart from this accountability of information conveyed via AAS depends on the combination of several security measures:
 
 * Access control (cf. 6.2) to ensure that only authorized parties are allowed to provide and modify information or perform actions resulting in the change of information.
-* Auditing (cf. 5.2.3.2, 5.2.3.3, 5.2.3.4) to allow tracking of identities providing information into the AAS or performing actions resulting in the change of information.
-* Data in transit protection (cf. 5.2.4.1, 5.2.4.4) to ensure that integrity and authenticity of information is maintained during exchange of information between the AAS user application and the AAS. This applies to both, provisioning of information towards the AAS and requesting information from the AAS.
+* Auditing (@todo cf. 5.2.3.2, 5.2.3.3, 5.2.3.4) to allow tracking of identities providing information into the AAS or performing actions resulting in the change of information.
+* Data in transit protection (@todocf. 5.2.4.1, 5.2.4.4) to ensure that integrity and authenticity of information is maintained during exchange of information between the AAS user application and the AAS. This applies to both, provisioning of information towards the AAS and requesting information from the AAS.
 
 An AAS user application depending on a high assurance level regarding accountability and non-repudiation for individual elements of the AAS can digitally sign information stored as AAS payload, e.g., using a Property of type Blob.
 

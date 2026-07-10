@@ -3,7 +3,7 @@
   xmlns='http://www.w3.org/2000/svg'
   xmlns:xlink='http://www.w3.org/1999/xlink'
 
-  width='1000' height='1390' viewBox='0 0 1000 1390'>
+  width='1000' height='1120' viewBox='0 0 1000 1120'>
 
   <style>
     rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
@@ -197,64 +197,6 @@
   </g>
 
   <g transform='translate(40 930)'>
-    <text x='-30' y='-10'>ObjectGroup:</text>
-    <path d='M5.5 4 v12 m 4 0 v-12' class='station'/>
-    <path d='M430.5 4 v12 m 4 0 v-12' class='station'/>
-    <rect x='130' y='30' height='20' width='110' rx='0' ry='0' class='rule'/>
-    <text x='185' y='45' text-anchor='middle' class='rule'>SingleObject</text>
-    <rect x='260' y='30' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='285' y='45' text-anchor='middle' class='rule'>Ws</text>
-    <path d='M218 60 l4 3 v-6 z' class='arrow'/>
-    <rect x='120' y='100' height='20' width='130' rx='0' ry='0' class='rule'/>
-    <text x='185' y='115' text-anchor='middle' class='rule'>UseObjectGroup</text>
-    <rect x='270' y='100' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='295' y='115' text-anchor='middle' class='rule'>Ws</text>
-    <path d='M218 130 l4 3 v-6 z' class='arrow'/>
-    <path d='M400 20 v50'/>
-    <path d='M370 90 v10'/>
-    <path d='M100 120 v0 q0 10 10 10 h220 q10 0 10 -10 v0'/>
-    <path d='M330 110 q10 0 10 10'/>
-    <path d='M320 110 h40 q10 0 10 -10'/>
-    <path d='M250 110 h20'/>
-    <path d='M100 120 q0 -10 10 -10'/>
-    <path d='M70 100 q0 10 10 10 h40'/>
-    <path d='M370 90 q0 -10 10 -10'/>
-    <path d='M60 80 q10 0 10 10 v10'/>
-    <path d='M40 70 q0 10 10 10 h340 q10 0 10 -10'/>
-    <path d='M400 20 q0 -10 10 -10'/>
-    <path d='M360 20 v10'/>
-    <path d='M110 50 v0 q0 10 10 10 h200 q10 0 10 -10 v0'/>
-    <path d='M320 40 q10 0 10 10'/>
-    <path d='M310 40 h40 q10 0 10 -10'/>
-    <path d='M240 40 h20'/>
-    <path d='M110 50 q0 -10 10 -10'/>
-    <path d='M80 30 q0 10 10 10 h40'/>
-    <path d='M360 20 q0 -10 10 -10'/>
-    <path d='M70 10 q10 0 10 10 v10'/>
-    <path d='M30 10 q10 0 10 10 v50'/>
-    <path d='M10 10 h420'/>
-  </g>
-
-  <g transform='translate(40 1120)'>
-    <text x='-30' y='-10'>UseObjectGroup:</text>
-    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
-    <path d='M430.5 14 v12 m 4 0 v-12' class='station'/>
-    <rect x='30' y='10' height='20' width='110' rx='8' ry='8' class='literal'/>
-    <text x='85' y='25' text-anchor='middle' class='literal'>USEOBJECTS</text>
-    <rect x='160' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='185' y='25' text-anchor='middle' class='rule'>Ws</text>
-    <rect x='230' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
-    <text x='285' y='25' text-anchor='middle' class='rule'>StringLiteral</text>
-    <rect x='360' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='385' y='25' text-anchor='middle' class='rule'>Ws</text>
-    <path d='M340 20 h20'/>
-    <path d='M210 20 h20'/>
-    <path d='M140 20 h20'/>
-    <path d='M410 20 h20'/>
-    <path d='M10 20 h20'/>
-  </g>
-
-  <g transform='translate(40 1200)'>
     <text x='-30' y='-10'>RouteLiteral:</text>
     <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
     <path d='M160.5 14 v12 m 4 0 v-12' class='station'/>
@@ -264,7 +206,7 @@
     <path d='M10 20 h20'/>
   </g>
 
-  <g transform='translate(40 1280)'>
+  <g transform='translate(40 1010)'>
     <text x='-30' y='-10'>FragmentLiteral:</text>
     <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
     <path d='M160.5 14 v12 m 4 0 v-12' class='station'/>
