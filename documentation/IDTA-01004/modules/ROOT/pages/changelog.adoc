@@ -11,7 +11,7 @@ SPDX-License-Identifier: CC-BY-4.0
 [[change-notes]]
 = Change Notes
 
-== Changes w.r.t. V3.1 vs. V3.0.1
+== Changes w.r.t. V3.1 vs. V3.0.2
 
 Major Changes:
 
@@ -20,6 +20,8 @@ Major Changes:
 * changed: DateTime and Time literals in access rules now use explicit patterns based on AAS core meta `MatchesXsDateTime` and `MatchesXsTime`, which correspond to the XSD-based data types defined by the IDTA 01001 Part 1 Metamodel and are based on XML Schema `xs:dateTime`/`xs:time`/ISO 8601 lexical forms. Values require seconds, may include fractional seconds and timezone offsets, Time values without timezone information are interpreted as UTC, and incomplete values such as `09:00` need to be completed before serialization, e.g. `09:00:00Z`. Calendar-specific invalid dates still need semantic validation beyond the lexical day, month and year ranges. [#63](https://github.com/admin-shell-io/aas-specs-security/issues/63)
 * added: Query Filter and FragmentFieldIdentifiers (https://github.com/admin-shell-io/aas-specs-api/issues/517)
 * added: new section in the annex on access control management and data authentification for implementing the digital product passport (DPP)
+* added: Added chapter requirements.adoc and annex/requirements_mapping.adoc
+* changed: Avoided provisional verbs in introduction.adoc, essential provision text has been moved to acccess-rule-model.adoc
 
 Minor Changes:
 
@@ -29,6 +31,10 @@ Minor Changes:
 * added: Clarified <ReferenceAttribute> semantics and added a state-dependent filtering example where maintenance documents are filtered using machine state read via REFERENCE from another Submodel.
 * added: Clarified ROUTE semantics for AAS HTTP/REST path matching and added informative ROUTE and request examples [#58](https://github.com/admin-shell-io/aas-specs-security/issues/58)
 * added: Expanded the explanation of RIGHTS with a mapping to operation verbs and HTTP methods, including an illustrative table and diagram [#56](https://github.com/admin-shell-io/aas-specs-security/issues/56)
+* moved: Moved and revised protection goals from introduction to own chapter
+* updated: Editorial changes to the explanation of the access rule BNF
+* added: Clarification of semver usage
+
 
 Bugfixes:
 
@@ -37,6 +43,7 @@ Bugfixes:
 * fix: Aligned date/time extraction functions (`$dayOfWeek`, `$dayOfMonth`, `$month`, `$year`) in JSON Schema to accept all `dateTimeOperand` types per BNF grammar.
 * fix: Aligned comparison and cast operands in JSON Schema with BNF semantics, including boolean equality-only comparisons, ordered comparisons without boolean operands, restricted `$dateTimeCast`/`$timeCast` inputs, and no raw `$boolean` inside `$match`.
 * changed: Fixed incorrect Fragment Field Identifiers in examples [#44 of Security Spec](https://github.com/admin-shell-io/aas-specs-security/issues/44)
+* fix: access rule BNF
 
 == Changes w.r.t. V3.0.2 vs. V3.0.1
 
