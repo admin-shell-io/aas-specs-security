@@ -190,7 +190,7 @@ xref:../access-rule-model.adoc#_attributes[Attributes]
 |&#x25cf;
 |&#x25cf;
 |N
-|AAS does not audit storage.
+|AAS does not define audit storage.
 
 |2.11
 |Timestamps
@@ -204,7 +204,8 @@ xref:../access-rule-model.adoc#_attributes[Attributes]
 |&#x25cf;
 |&#x25cf;
 |Y
-|xref:../requirements.adoc#_auditable_events[Auditable events]
+|xref:../requirements.adoc#__non_repudiation[Non-repudiation], 
+xref:../accountability.adoc#_accountability[Accountability for AAS Content and Digital Signatures]
 
 |2.13
 |Use of physical diagnostic and test interfaces

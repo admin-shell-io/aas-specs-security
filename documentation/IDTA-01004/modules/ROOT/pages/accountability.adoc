@@ -1,15 +1,15 @@
+[[accountability]]
 =	Accountability for AAS Content and Digital Signatures
-@todo nach kapitel access rule normative
 
 This document does not specify a native way to protect AAS elements with data-bound protection mechanisms such as digital signatures.
 
-@todo The AAS interface includes a basic way to protect the integrity and authenticity of information exchanged between the AAS user application and the AAS beyond the protection provided by the transport layer using the `$sign` endpoint (@todo reference).
+The AAS interface includes a basic way to protect the integrity and authenticity of information exchanged between the AAS user application and the AAS beyond the protection provided by the transport layer using the `/$signed` endpoint (IDTA 01002 xref:bibliography.adoc#bib2[[2\]]).
 
 Apart from this accountability of information conveyed via AAS depends on the combination of several security measures:
 
-* Access control (cf. 6.2) to ensure that only authorized parties are allowed to provide and modify information or perform actions resulting in the change of information.
-* Auditing (@todo cf. 5.2.3.2, 5.2.3.3, 5.2.3.4) to allow tracking of identities providing information into the AAS or performing actions resulting in the change of information.
-* Data in transit protection (@todocf. 5.2.4.1, 5.2.4.4) to ensure that integrity and authenticity of information is maintained during exchange of information between the AAS user application and the AAS. This applies to both, provisioning of information towards the AAS and requesting information from the AAS.
+* Access control (xref:access-rule-model.adoc#access-rule-model[Access Rule Model]) to ensure that only authorized parties are allowed to provide and modify information or perform actions resulting in the change of information.
+* Auditing (xref:requirements.adoc#_auditable_events[Auditable events], xref:requirements.adoc#_timestamps[Timestamps], and xref:requirements.adoc#_non_repudiation[Non-repudiation]) to allow tracking of identities providing information into the AAS or performing actions resulting in the change of information.
+* Data in transit protection (xref:requirements.adoc#_information_integrity[Information integrity] and xref:requirements.adoc#_session_integrity[Session integrity]) to ensure that integrity and authenticity of information is maintained during exchange of information between the AAS user application and the AAS. This applies to both, provisioning of information towards the AAS and requesting information from the AAS.
 
 An AAS user application depending on a high assurance level regarding accountability and non-repudiation for individual elements of the AAS can digitally sign information stored as AAS payload, e.g., using a Property of type Blob.
 
