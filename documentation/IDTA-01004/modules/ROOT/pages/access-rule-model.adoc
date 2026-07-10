@@ -9,7 +9,7 @@ SPDX-License-Identifier: CC-BY-4.0
 ////
 
 
-= Access Rule Model (normative)
+= Access Rule Model
 
 == General
 
