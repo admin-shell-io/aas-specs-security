@@ -29,7 +29,7 @@ If the AAS user application user is a NPE the AAS user application MAY be consid
 
 Additional information provided by the AAS user application can be used to provide extended information on the usage context. All information provided by the AAS user application can be used for authorization decisions.
 
-xref:access-rule-model.adoc#_attributes[Attributes] describes an approach to provide information for authorization via ABAC attributes in an authenticated way.
+xref:access-rule-model.adoc#attributes[Attributes] describes an approach to provide information for authorization via ABAC attributes in an authenticated way.
 
 ====
 Note: Derived from IEC 62443-3-3 SR 1.1, IEC 62443-4-2 CR 1.1.
@@ -74,7 +74,7 @@ All entities within the AAS or interacting with the AAS SHALL be well defined an
 * AAS instances and AAS interfaces
 * Semantic identifiers and concept repositories
 * Assets
-* AAS objects (xref:access-rule-model.adoc#_objects[Objects])
+* AAS objects (xref:access-rule-model.adoc#objects[Objects])
 * AAS user applications
 * AAS user application users
 
@@ -115,7 +115,7 @@ Note: IEC 62443-4-2 CR 1.10.
 
 Authorization enforcement happens at the AAS interface. The authorization of AAS user application users accessing the AAS interface SHALL be based on a defined set of rules. Authorization rules MAY be based on ABAC attributes provided by the AAS user application during authentication.
 
-Details on how this requirement is to be met by the information model are outlined in xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model].
+Details on how this requirement is to be met by the information model are outlined in xref:access-rule-model.adoc#access-rule-model[Access Rule Model].
 
 ====
 Note: Derived from IEC 62443-3-3 SR 2.1, IEC 62443-4-2 CR 2.1.
@@ -133,7 +133,7 @@ The AAS interface SHALL create audit events. As a minimum the events listed in T
 
 | S1
 | SecurityUnauthorizedAccessEvent
-a| Any attempt of unauthorized access or modifiy the AAS (<<_authorization_enforcement>>). The event SHALL contain information on the origin of the unauthorized access (e.g., network source, subject name) and on the target AAS object (xref:access-rule-model.adoc#_objects[Objects]).
+a| Any attempt of unauthorized access or modifiy the AAS (<<_authorization_enforcement>>). The event SHALL contain information on the origin of the unauthorized access (e.g., network source, subject name) and on the target AAS object (xref:access-rule-model.adoc#objects[Objects]).
 
 |S2
 | SecurityIdentityConfigChange
@@ -154,7 +154,7 @@ a| Modification of access control rules.
 
 If accountability is a concern, the events listed in Table <<table_accountablility_events>> SHALL be reported. Each accountability related event SHALL provide:
 
-* Which AAS object (xref:access-rule-model.adoc#_objects[Objects]) is affected
+* Which AAS object (xref:access-rule-model.adoc#objects[Objects]) is affected
 * Whether the operation could be completed successful
 
 .Accountability Events
@@ -169,7 +169,7 @@ If accountability is a concern, the events listed in Table <<table_accountablili
 
 | A2
 | AASInformationUpdate
-| Update of information of an existing AAS object (xref:access-rule-model.adoc#_objects[Objects]).
+| Update of information of an existing AAS object (xref:access-rule-model.adoc#objects[Objects]).
 
 | A3
 | AASInformationDelete
@@ -259,7 +259,7 @@ Note: Derived from IEC 62443-4-2 CR 3.12.
 AAS Responsible SHALL define roots of trust for:
 
 * Protection and authentication of communication (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_information_integrity>>).
-* Authentication and authorization services used for the realization of an AAS (<<_identification_and_authentication_of_aas_user_application_users>>, <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, xref:access-rule-model.adoc#_attributes[Attributes]).
+* Authentication and authorization services used for the realization of an AAS (<<_identification_and_authentication_of_aas_user_application_users>>, <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, xref:access-rule-model.adoc#attributes[Attributes]).
 
 ====
 Note: Derived from IEC 62443-4-2 CR 3.13.
@@ -340,7 +340,7 @@ In order to provide the capability to operate in a degraded state in case of a d
 
 * SHALL reject any AAS user application that is not able to meet the authentication requirement (<<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>).
 
-* SHOULD reject unauthorized requests as early as possible (cf. <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_authorization_enforcement>>), for example, by applying upfront access restriction rules which do not depend on AAS authorization mechanisms (xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]). Potential measures are network protection and restricted data flow (<<_requirements_regarding_restricted_data_flow_fr5>>), AAS user application quotas (e.g., limit the amount of  requests/data retrieved from a specific AAS user application), proof-of-work provided by the AAS user application (e.g., CAPTCHAs, cryptographic puzzles). These measures can also be used to prevent against data scraping by authorized users.
+* SHOULD reject unauthorized requests as early as possible (cf. <<_identification_and_authentication_of_aas_user_applications_and_aas_interface>>, <<_authorization_enforcement>>), for example, by applying upfront access restriction rules which do not depend on AAS authorization mechanisms (xref:access-rule-model.adoc#access-rule-model[Access Rule Model]). Potential measures are network protection and restricted data flow (<<_requirements_regarding_restricted_data_flow_fr5>>), AAS user application quotas (e.g., limit the amount of  requests/data retrieved from a specific AAS user application), proof-of-work provided by the AAS user application (e.g., CAPTCHAs, cryptographic puzzles). These measures can also be used to prevent against data scraping by authorized users.
 
 The AAS can provide information about the actuality (e.g., last update received) of the information to allow AAS user applications.
 
@@ -372,7 +372,7 @@ Note: Derived from IEC 62443-3-3 SR 7.4, IEC 62443-4-2 CR 7.4.
 
 The AAS interface SHALL provide the capability to restrict the discovery, exploration, and use of the AAS itself and Submodels contained therein.
 
-The discovery, exploration, and use of Submodels is addressed by <<_authorization_enforcement>> and xref:access-rule-model.adoc#_access_rule_model_normative[Access Rule Model].
+The discovery, exploration, and use of Submodels is addressed by <<_authorization_enforcement>> and xref:access-rule-model.adoc#access-rule-model[Access Rule Model].
 
 ====
 Derived from IEC 62443-3-3 SR 7.7, IEC 62443-4-2 CR 7.7.

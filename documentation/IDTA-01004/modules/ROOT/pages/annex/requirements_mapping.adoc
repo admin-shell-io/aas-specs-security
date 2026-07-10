@@ -45,7 +45,7 @@ The full set of IEC 62443 requirements needs to be reconsidered for additional s
 |&#x25cf;
 |&#x25cf;
 |P
-|AAS authorization solely relies on short-term authentication tokens (xref:../access-rule-model.adoc#_attributes[Attributes]). Measures for management and protection of access tokens are left to the implementation.
+|AAS authorization solely relies on short-term authentication tokens (xref:../access-rule-model.adoc#attributes[Attributes]). Measures for management and protection of access tokens are left to the implementation.
 
 |1.6
 |Wireless access management
@@ -69,7 +69,7 @@ The full set of IEC 62443 requirements needs to be reconsidered for additional s
 |P
 |xref:../requirements.adoc#_public_key_infrastructure[Public key infrastructure]
 
-It is possible to use public key certificates to meet authentication requirements for AAS regarding, e.g., acquisition of an access tokens (xref:../access-rule-model.adoc#_attributes[Attributes]), for TLS channel protection (xref:../requirements.adoc#_identification_and_authentication_of_aas_user_application_users[Identification and authentication of AAS user application users], xref:../requirements.adoc#_identification_and_authentication_of_aas_user_applications_and_aas_interface[Identification and authentication of AAS user applications and AAS interface], xref:../requirements.adoc#_information_integrity[Information integrity], xref:../requirements.adoc#_information_confidentiality[Information confidentiality]).
+It is possible to use public key certificates to meet authentication requirements for AAS regarding, e.g., acquisition of an access tokens (xref:../access-rule-model.adoc#attributes[Attributes]), for TLS channel protection (xref:../requirements.adoc#_identification_and_authentication_of_aas_user_application_users[Identification and authentication of AAS user application users], xref:../requirements.adoc#_identification_and_authentication_of_aas_user_applications_and_aas_interface[Identification and authentication of AAS user applications and AAS interface], xref:../requirements.adoc#_information_integrity[Information integrity], xref:../requirements.adoc#_information_confidentiality[Information confidentiality]).
 
 |1.9
 |Strength of public key authentication
@@ -126,7 +126,7 @@ It is possible to use public key certificates to meet authentication requirement
 |&#x25cf;
 |&#x25cf;
 |Y
-|xref:../requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:../access-rule-model.adoc#_access_rule_model_normative[Access Rule Model]
+|xref:../requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:../access-rule-model.adoc#access-rule-model[Access Rule Model]
 
 |2.2
 |Wireless use control
@@ -162,7 +162,7 @@ It is possible to use public key certificates to meet authentication requirement
 |&#x25cf;
 |Y
 |Limited life-time of access tokens.
-xref:../access-rule-model.adoc#_attributes[Attributes]
+xref:../access-rule-model.adoc#attributes[Attributes]
 
 |2.7
 |Concurrent session control
