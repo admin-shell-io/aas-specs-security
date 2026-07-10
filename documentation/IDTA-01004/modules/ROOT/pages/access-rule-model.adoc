@@ -386,7 +386,7 @@ Table <<table-attribute-types>> describes the available ABAC attribute types.
 |Description
 
 |`"CLAIM"`
-|ABAC attribute of the subject/requestor provided as a claim in the access token to the AAS interface (see xref:introduction.adoc#_access_token[Access token]).
+|ABAC attribute of the subject/requestor provided as a claim in the access token to the AAS interface (see xref:access-rule-model.adoc#access-tokens[Access token]).
 
 EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-authenticated-users[authenticated users] and xref:annex/text-access-rule-examples.adoc#example-business-partner-number[BusinessPartnerNumber].
 
@@ -428,7 +428,7 @@ EXAMPLE An AAS Responsible for a company located in central Europe may set LOCAL
 UTCNOW shall include the information required to map to a valid <TimeLiteral>.
 
 |`"CLIENTNOW"`
-|Time as perceived by the AAS user application. A trustworthy value for CLIENTNOW can be established as result of the authentication process (see xref:introduction.adoc#authentication-flows[Authentication Flows]) if sufficient information on the location of the subject is available. The actual value may then be provided as authenticated attribute of the access token (see xref:introduction.adoc#_access_token[Access token]).
+|Time as perceived by the AAS user application. A trustworthy value for CLIENTNOW can be established as result of the authentication process (see xref:introduction.adoc#authentication-flows[Authentication Flows]) if sufficient information on the location of the subject is available. The actual value may then be provided as authenticated attribute of the access token (see xref:access-rule-model.adoc#access-tokens[Access token]).
 CLIENTNOW shall include the information required to map to a valid <TimeLiteral>.
 
 |`"ANONYMOUS"`
