@@ -13,45 +13,41 @@ SPDX-License-Identifier: CC-BY-4.0
 
 == General
 
-The introduction in xref:introduction.adoc[Introduction] has explained in detail the background for AAS Security.
-The use of Identity Providers and Authentication Flows have been shown, which provide an access token to the client user application.
-Such access token contains claims as subject attributes which can be used in the Access Rule Model as defined below.
+The introduction in Chapter xref:introduction.adoc[Introduction] has explained in detail the background for AAS Security.
+The use of Identity Providers and Authentication Flows have been shown, which provide an access token to the client user application. Such access token contains claims as subject attributes which can be used in the Access Rule Model as defined below. In addition, the Access Rule Model contains further ABAC attributes like global attributes (also called environmental attributes) or object attributes.
 
-In addition, the Access Rule Model contains further ABAC attributes like global attributes (also called environmental attributes) or object attributes.
+ABAC attributes assessed by the AAS interface shall originate from a trustworthy source.
+
+Attributes derived from data represented by the AAS (e.g., value of a SubmodelElement) are assumed to be implicitly trusted by the AAS interface.
+
+Global attributes shall originate from a trustworthy source and their authenticity shall be protected (e.g., using a trusted local clock, relying on a trusted time service).
+
+Subject attributes need to be mapped to the subject in an authenticated way. This functionality must be provided by the PIP. The AAS interface relies on access tokens to convey subject attributes <<access-tokens>>.
 
 <<image-access-rule-model,Access Rule Model>> gives an overview of the Access Rule Model.
 Section <<bnf-grammar,BNF grammar of Access Rules>> defines the text serialization of the Access Rule Model.
 Section <<json-serialization,JSON Serialization of Access Rule Model>> defines the JSON schema of the Access Rule Model.
 
-The Access Rule Model allows to define Access Rules in a modular way, so that parts can be reused.
+The Access Rule Model allows to define Access Rules in a modular way, so that parts can be reused (see <<reusable-definitions>>).
 
-* Attribute Groups can be defined to reuse combinations of attributes.
-* Object Groups can be defined to reuse combinations of objects.
-* Access Control Lists (ACLs) can be defined to reuse combinations of attributes and access rights.
+Whether an Access Rule becomes active or not is decided by Formulas  <<formulas>>. Only if the overall result of the Formula is valid and true, the Access Rule becomes active. A formula can include nested boolean expressions, comparisons and string operations. A dedicated match operation allows to work with tuples in lists, e.g. specificAssetId.
 
-Each Access Rule can define an own ACL or reuse an existing one.
-Each Access Rule can provide access to single objects or object groups.
-Each Access Rule can define an own Formula or reuse an existing one.
+Access SHALL only be granted if there is (at least) one access rule which allows the requested action on the designated AAS object (Route/Identifiable/Referable/Fragment/Descriptor; see <<objects>>). If there is no access rule, the default behavior shall be to deny access.
 
-The formula decides, if an Access Rule becomes active or not.
-Only if the overall result of the Formula is valid and true, the Access Rule becomes active.
-A formula can include nested boolean expressions, comparisons and string operations.
-A special operation match allows to work with tuples in lists, e.g. specificAssetId.
-
-If access control is enabled for an AAS interface, access shall only be granted if there is (at least) one access control rule which permits the requested operation on the designated <<objects,AAS object>>.
-If there is no rule the default behaviour is to deny access.
-
-
-This grammar handles both respositories and registries. 
-The symbol FieldIdentifier allows to use attributes of
-AAS, Submodel, SubmodelElement, ConceptDescription, AAS-Descriptor and Submodel-Descriptor. 
-Depending on the type of repository or registry such attributes are allowed or not.
-
+This grammar applies to both, respositories and registries.
+The symbol FieldIdentifier allows to use attributes of AAS, Submodel, SubmodelElement, ConceptDescription, AAS-Descriptor and Submodel-Descriptor.  Depending on the type of repository or registry such attributes are allowed or not.
 
 The AAS Query Language and the AAS Access Rules share the same BNF grammar for formula expressions.
 In addition to the text below, the further details of the formula expressions are explained in  link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.1/query-language.html[IDTA-01002, Query Language] .
 
-Parts of the grammar for access control are reused from the query language described in link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.2[IDTA-01002]. Having a common grammar for access control rules and query language can be used by implementations to optimize queries on access restricted information. The grammar for AAS access control rules includes Conditions from the AAS query language as defined by link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.2/query-language.html[IDTA-01002, Query Language]. 
+AAS implementations MAY decide, to which extent the access rule model is used.
+The access rule model can be used as a guideline which shows, what a client application will expect.
+
+If an AAS implementation allows the exchange of access rules, it SHOULD follow the specification of the access rule model.
+
+AAS implementations MAY decide to support only a subset of the access rules. If an AAS implementation, e.g., only provides a READ profile, only such access rules for defining READ access are required. Access control MAY also be limited to specific subsystems, e.g., AAS repository, submodel repository, concept description repository, AAS registry or submodel registry.
+
+AAS systems are supposed to deal with a large amount of AAS and AAS Submodels. To reach the needed performance and meet memory and storage constraints an AAS implementation MAY translated the access rules into a representation that meets the needs of the respective implementation as long as the behavior complies to the stated rules.
 
 .Access Rule Model
 [[image-access-rule-model]]
@@ -59,6 +55,46 @@ Parts of the grammar for access control are reused from the query language descr
 ....
 include::partial$diagrams/access-rule-model.puml[]
 ....
+
+[[access-tokens]]
+== Access Tokens
+
+The evaluation of access rules to determine access to the AAS relies on access tokens to convey subject attributes.
+An access token is an authenticated set of claims about ABAC attributes that were mapped to the subject accessing the AAS. The access token is typically obtained using an Identity Provider. The access token is presented to the AAS along with the API request.
+
+An AAS Data Server trusts one or several Identity Providers.
+An Identity Provider MAY also give the possibility to federate identities to/from other Identity Providers.
+
+Trust means, that for such Identity Provider(s) an AAS Data Server can verify the public key of the Identity Provider.
+Such public key MAY be available directly as a key, by a public certificate or by a verifiable credential.
+
+The policy of a dataspace SHALL define which access tokens are trusted by the AAS.
+
+The policy of a dataspaces SHALL define the set of subject ABAC attributes that are used as claims to determine authorization.
+
+Access tokens used for operations resulting in modification of information or disclosure of non-public information provided by the AAS shall use a state-of-the-art, cryptographically strong asymmetric signature scheme to authenticate the access token xref:requirements.adoc#use-of-cryptography[Use of Cryptography].
+
+AAS Security uses signed JWT (JSON Web Token) bearer tokens as Access Tokens, as they are defined in RFC 7519.
+
+The JWT is digitally signed according to RFC 7519 with the private key of the Identity Provider.
+The public key used as trust anchor needs to be accessible by the AAS server, such that the JWT can be verified.
+
+Other properties like the lifetime of the token or Proof-of-Possession (RFC 7800) properties SHOULD be determined based on the use case.
+//@todo IEC has a more strict requirement here: The life-time of an access token shall be limited.
+
+AAS Security only requires the standard claims of the RFC 9068 Chapter 2.2 Data Structure for the JWT, i.e “iss” (Issuer), “exp” (Expiration time), “aud” (Audience), “sub” (Subject), “client_id” (Client identifier), “iat” (Issued at), “jti” (JWT ID).
+
+The  specific requirements on “iss”, “sub” and “aud” SHOULD be defined by the dataspace policy.
+//@todo I'd rather put a SHALL there. Messing up subject semantics breaks the whole access control model.
+
+All claims in an Access Token can be used in ABAC access rules as attributes and as described in the Access Rule Model below.
+
+Access rules can also be defined for anonymous access, i.e. no Access Token exists. +
+This is especially important for the Digital Product Passport to be able to scan the QRCODE according to IEC 61406 with a normal mobile phone camera.
+
+Further definitions can be made by dataspaces. A specific dataspace MAY define the technology how to get an access token and MAY also define the attributes which can be used in the ABAC access rules. Examples are discussed in xref:introduction.adoc#identity-providers[Identity Providers], xref:introduction.adoc#authentication-flows[Authentication Flows].
+
+This both assures interoperability and makes it possible to integrate new dataspaces in the future.
 
 == Grammar for Access Rule Model
 
@@ -111,7 +147,7 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 An Access Rule Model <AllAccessPermissionRules> defines a list of <<access-permission-rules,Access Permission Rules>>.
 
 The access rule model <AllAccessPermissionRules> also contains lists of Attribute Groups <DEFATTRIBUTES>, Object Groups <DEFOBJECTS>, ACLs <DEFACLS> and Formulas <DEFFORMULAS>.
-These pre-defines can be referred to from other parts of the access control rules by the assigned <StringLiteral>. This allows to reuse commonly used definitions instead of having multiple copies spread over the access control rules. See <<reusable-definitions,Reusable Definitions>>.
+These pre-defines can be referred to from other parts of the access control rules by the assigned <StringLiteral>. This allows to reuse commonly used definitions instead of having multiple copies spread over the access control rules. See <<reusable-definitions>>.
 
 .Railroad diagram for <AllAccessPermissionRules>
 [[image-access-control-rules-model]]
@@ -661,8 +697,8 @@ When AAS content is passed from one partner to another, this is typically relate
 In addition to the AAS content itself, also the defined access permissions have to be transferred between the partners due to the following two reasons:
 
 [arabic]
-. Access permissions to information elements of an AAS MUST be established in each access control domain.
-. One partner MUST be able to pass a suggestion which access permissions SHOULD be established for the asset that is described in the AAS.
+. Access permissions to information elements of an AAS must be established in each access control domain.
+. One partner must be able to pass a suggestion which access permissions should be established for the asset that is described in the AAS.
 
 ABAC is a very flexible approach, that also encompasses role-based access as a role can be considered as one attribute in this context.
 Other attributes might be the time-of-day, the location of the asset, the originating address and others.

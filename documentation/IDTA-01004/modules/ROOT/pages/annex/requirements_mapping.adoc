@@ -10,7 +10,7 @@ The full set of IEC 62443 requirements needs to be reconsidered for additional s
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr1]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |1.1
 |Human user, process and device identification and authentication
@@ -119,7 +119,7 @@ It is possible to use public key certificates to meet authentication requirement
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr2]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |2.1
 |Authorization enforcement
@@ -220,7 +220,7 @@ xref:../accountability.adoc#_accountability[Accountability for AAS Content and D
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr3]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |3.1
 |Communication integrity
@@ -334,7 +334,7 @@ xref:../requirements.adoc#_aas_roots_of_trust_management[AAS roots of trust mana
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr4]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |4.1
 |Information confidentiality
@@ -364,7 +364,7 @@ xref:../requirements.adoc#_aas_roots_of_trust_management[AAS roots of trust mana
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr5]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |5.1
 |Network segmentation
@@ -400,7 +400,7 @@ xref:../requirements.adoc#_aas_roots_of_trust_management[AAS roots of trust mana
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr6]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |6.1
 |Audit log accessibility
@@ -422,7 +422,7 @@ xref:../requirements.adoc#_aas_roots_of_trust_management[AAS roots of trust mana
 [cols="1,1,^1,^1,^1,1"]
 [[table_assessment_fr7]]
 |===
-|FR|Title|IEC 63278-3-3 SR|IEC 63278-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
 
 |7.1
 |Denial of service protection
