@@ -40,7 +40,7 @@
 
 <Filter> ::=
     (
-        ( "FILTER:" <Ws> <SecurityQueryFilter> <Ws> )? |
+        ( "FILTER:" <Ws> <SecurityQueryFilter> <Ws> )?
         ( "FILTERLIST:" <Ws> ( <SecurityQueryFilter> <Ws> )* )?
     )
 

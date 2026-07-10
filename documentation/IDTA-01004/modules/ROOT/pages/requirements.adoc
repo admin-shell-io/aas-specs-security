@@ -189,6 +189,15 @@ Each auditable event SHALL contain a time stamp of the event with precision at l
 Note: Derived from IEC 62443-3-3 SR 2.11, IEC 62443-4-2 CR 2.11.
 ====
 
+
+==== Non-repudiation
+
+Each auditable event shall contain information to determine which AAS user application took a particular action on the AAS. Providing detailed information on a particular event (e.g., actual user identity) may be delegated to the AAS user application. Depending on the intended use case the AAS responsible shall ensure that the available information is sufficient to resolve any emerging dispute.
+
+====
+Note: Derived from IEC 62443-4-2 CR 2.12., IEC 62443-3-3 SR 2.12.
+====
+
 === Requirements regarding AAS Integrity (FR3)
 
 ==== Information integrity

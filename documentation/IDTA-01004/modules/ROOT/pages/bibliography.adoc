@@ -61,3 +61,6 @@ Available: http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.pdf
 
 [#bib11]
 [11] Decentralized Identifiers (DIDs) v1.0, Core architecture, data model, and representations; https://www.w3.org/TR/2022/REC-did-core-20220719/; W3C; July 19, 2022
+
+[#bib12]
+[12] IEEE Standard for Local and Metropolitan Area Networks--Secure Device Identity. IEEE Std 802.1AR-2018, August 2018.

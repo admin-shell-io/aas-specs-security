@@ -24,6 +24,10 @@ SPDX-License-Identifier: CC-BY-4.0
 
 * xref:access-rule-model.adoc[Access Rule Model (normative)]
 
+* xref:accountability.adoc[Accountability for AAS Content and Digital Signatures]
+
+* xref:asset_binding.adoc[Secure Asset Binding]
+
 * xref:summary-and-outlook.adoc[Summary and Outlook]
 
 

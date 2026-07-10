@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'
+  width='1000' height='250' viewBox='0 0 1000 250'>
+  <style>
+    rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
+    rect, line, path { stroke-linecap: square; stroke-linejoin: rounded; }
+    path { fill: transparent; }
+    text.literal { font-family: monospace; }
+    path.arrow { fill: black; }
+  </style>
+  <g transform='translate(40 30)'>
+    <text x='-30' y='-10'>AttributeGroup:</text>
+    <path d='M5.5 4 v12 m 4 0 v-12' class='station'/>
+    <path d='M730.5 4 v12 m 4 0 v-12' class='station'/>
+    <rect x='90' y='30' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='155' y='45' text-anchor='middle' class='rule'>SingleAttribute</text>
+    <rect x='240' y='30' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='265' y='45' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M188 60 l4 3 v-6 z' class='arrow'/>
+    <rect x='430' y='30' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='505' y='45' text-anchor='middle' class='rule'>UseAttributeGroup</text>
+    <rect x='600' y='30' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='625' y='45' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M538 60 l4 3 v-6 z' class='arrow'/>
+    <path d='M700 20 v10'/>
+    <path d='M410 50 v0 q0 10 10 10 h240 q10 0 10 -10 v0'/>
+    <path d='M660 40 q10 0 10 10'/>
+    <path d='M650 40 h40 q10 0 10 -10'/>
+    <path d='M580 40 h20'/>
+    <path d='M410 50 q0 -10 10 -10'/>
+    <path d='M380 30 q0 10 10 10 h40'/>
+    <path d='M700 20 q0 -10 10 -10'/>
+    <path d='M370 10 q10 0 10 10 v10'/>
+    <path d='M340 20 v10'/>
+    <path d='M70 50 v0 q0 10 10 10 h220 q10 0 10 -10 v0'/>
+    <path d='M300 40 q10 0 10 10'/>
+    <path d='M290 40 h40 q10 0 10 -10'/>
+    <path d='M220 40 h20'/>
+    <path d='M70 50 q0 -10 10 -10'/>
+    <path d='M40 30 q0 10 10 10 h40'/>
+    <path d='M340 20 q0 -10 10 -10'/>
+    <path d='M30 10 q10 0 10 10 v10'/>
+    <path d='M10 10 h720'/>
+  </g>
+  <g transform='translate(40 150)'>
+    <text x='-30' y='-10'>UseAttributeGroup:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M460.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='140' rx='8' ry='8' class='literal'/>
+    <text x='100' y='25' text-anchor='middle' class='literal'>USEATTRIBUTES</text>
+    <rect x='190' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='215' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='260' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='315' y='25' text-anchor='middle' class='rule'>StringLiteral</text>
+    <rect x='390' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='415' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M370 20 h20'/>
+    <path d='M240 20 h20'/>
+    <path d='M170 20 h20'/>
+    <path d='M440 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+</svg>

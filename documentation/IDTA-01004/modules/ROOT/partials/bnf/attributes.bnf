@@ -5,18 +5,22 @@
     "CLAIM" <Ws> "(" <Ws> <ClaimLiteral> <Ws> ")"
 
 <GlobalAttribute> ::=
-    "GLOBAL" <Ws> "(" <Ws> ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" | "ANONYMOUS" ) <Ws> ")"
+    "GLOBAL" <Ws> "(" <Ws>
+    ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" | "ANONYMOUS" )
+    <Ws> ")"
 
 <DateTimeGlobalAttribute> ::=
-    "GLOBAL" <Ws> "(" <Ws> ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" ) <Ws> ")"
+    "GLOBAL" <Ws> "(" <Ws>
+    ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" )
+    <Ws> ")"
 
 <ReferenceAttribute> ::=
-    "REFERENCE(" (
-    ("$aas" <IdentifierInstance> "#" <FieldsAAS> ) |
-    ("$sm" <IdentifierInstance> "#" <FieldsSM> ) |
-    ("$cd" <IdentifierInstance> "#" <FieldsCD> ) |
-    ("$sme" <IdentifierInstance> "." <IdShortPath> "#" <FieldsSME> )
-    ) ")"
+    "REFERENCE("
+        "$aas" <IdentifierInstance> "#" <FieldsAAS> |
+        "$sm" <IdentifierInstance> "#" <FieldsSM> |
+        "$cd" <IdentifierInstance> "#" <FieldsCD> |
+        "$sme" <IdentifierInstance> "." <IdShortPath> "#" <FieldsSME>
+    ")"
 
 <AttributeGroup> ::=
     ( <SingleAttribute> <Ws> )*

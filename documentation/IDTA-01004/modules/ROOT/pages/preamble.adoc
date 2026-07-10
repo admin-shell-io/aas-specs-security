@@ -38,6 +38,10 @@ Clause xref:introduction.adoc[] gives a detailed introduction to the security to
 
 Clause xref:access-rule-model.adoc[] defines the Access Rule Model (normative)
 
+Clause xref:accountability.adoc[] describes accountability for AAS content and digital signatures
+
+Clause xref:asset_binding.adoc[] describes secure asset binding
+
 Clause xref:summary-and-outlook.adoc[] provides a summary and outlook
 
 Annex xref:annex/backus-naur-form.adoc[] defines the grammar language used in the specification
