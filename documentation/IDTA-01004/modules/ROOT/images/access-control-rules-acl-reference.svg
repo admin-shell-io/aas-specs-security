@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'
+  width='1000' height='100' viewBox='0 0 1000 100'>
+  <style>
+    rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
+    rect, line, path { stroke-linecap: square; stroke-linejoin: rounded; }
+    path { fill: transparent; }
+    text.literal { font-family: monospace; }
+  </style>
+  <g transform='translate(40 40)'>
+    <text x='-30' y='-10'>UseACL:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M390.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='70' rx='8' ry='8' class='literal'/>
+    <text x='65' y='25' text-anchor='middle' class='literal'>USEACL</text>
+    <rect x='120' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='145' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='190' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='245' y='25' text-anchor='middle' class='rule'>StringLiteral</text>
+    <rect x='320' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='345' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M300 20 h20'/>
+    <path d='M170 20 h20'/>
+    <path d='M100 20 h20'/>
+    <path d='M370 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+</svg>

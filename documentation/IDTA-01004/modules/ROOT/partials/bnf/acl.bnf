@@ -1,9 +1,12 @@
 <ACL> ::=
+    <AclAttributes>
+    "RIGHTS:" <Ws> <Right> <Ws> ( <Right> <Ws> )*
+    "ACCESS:" <Ws> <Access> <Ws>
+
+<AclAttributes> ::=
     "ATTRIBUTES:" <Ws>
     ( <SingleAttribute> <Ws> )*
     ( <UseAttributeGroup> <Ws> )*
-    "RIGHTS:" <Ws> <Right> <Ws> ( <Right> <Ws> )*
-    "ACCESS:" <Ws> <Access> <Ws>
 
 <UseACL> ::=
     "USEACL" <Ws> <StringLiteral> <Ws>

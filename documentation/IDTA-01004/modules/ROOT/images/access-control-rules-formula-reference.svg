@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg
+  xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'
+
+  width='1000' height='160' viewBox='0 0 1000 160'>
+
+  <style>
+    rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
+    rect, line, path { stroke-linecap: square; stroke-linejoin: rounded; }
+    path { fill: transparent; }
+    text.literal { font-family: monospace; }
+    line.ellipsis { stroke-dasharray: 1 3.5; }
+    tspan.hex { font-family: monospace; font-size: 90%; }
+    path.arrow { fill: black; }
+  </style>
+
+  <g transform='translate(40 50)'>
+    <text x='-30' y='-10'>UseFormula:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M430.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='110' rx='8' ry='8' class='literal'/>
+    <text x='85' y='25' text-anchor='middle' class='literal'>USEFORMULA</text>
+    <rect x='160' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='185' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='230' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='285' y='25' text-anchor='middle' class='rule'>StringLiteral</text>
+    <rect x='360' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='385' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M340 20 h20'/>
+    <path d='M210 20 h20'/>
+    <path d='M140 20 h20'/>
+    <path d='M410 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+</svg>

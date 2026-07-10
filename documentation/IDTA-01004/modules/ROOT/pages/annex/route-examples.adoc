@@ -26,6 +26,7 @@ It is an example to support the interpretation of the normative mapping in xref:
 include::partial$diagrams/rights-verbs-http-methods.puml[]
 ....
 
+[[example-requests-by-right]]
 == Example requests by right
 
 The following requests use real path templates from the published AAS Part 2 OpenAPI descriptions.

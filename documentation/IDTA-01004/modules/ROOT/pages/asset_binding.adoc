@@ -1,0 +1,7 @@
+= Secure Asset Binding
+
+The association between AAS and asset depends on the correctness of the globalAssetId (or specificAssetIds) information stored in the AAS.
+
+This association is unprotected and is subject to attack on the side of the AAS as well as on the side of the asset (e.g., tampered data carrier). IEEE 802.1AR xref:bibliography.adoc#bib12[[12\]] specifies Secure Device Identities designed to be used as interoperable secure device authentication credentials.
+
+AAS could leverage these secure device identities to support the AAS user application to do secure device identification. This can be used by an AAS user application to verify whether the information gathered from the AAS applies to the asset (e.g., an automation device) in question. This could be achieved by either adding information on the device's IDevID certificate into the AAS information model, or by defining a Submodel for IEEE 802.1AR xref:bibliography.adoc#bib12[[12\]].
