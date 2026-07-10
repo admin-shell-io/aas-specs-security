@@ -30,7 +30,7 @@ Section <<json-serialization,JSON Serialization of Access Rule Model>> defines t
 
 The Access Rule Model allows to define Access Rules in a modular way, so that parts can be reused (see <<reusable-definitions>>).
 
-Whether an Access Rule becomes active or not is decided by Formulas  <<conditions-and-formulas>>. Only if the overall result of the Formula is valid and true, the Access Rule becomes active. A formula can include nested boolean expressions, comparisons and string operations. A dedicated match operation allows to work with tuples in lists, e.g. specificAssetId.
+Whether an Access Rule becomes active or not is decided by Formulas  <<formulas>>. Only if the overall result of the Formula is valid and true, the Access Rule becomes active. A formula can include nested boolean expressions, comparisons and string operations. A dedicated match operation allows to work with tuples in lists, e.g. specificAssetId.
 
 Access SHALL only be granted if there is (at least) one access rule which allows the requested action on the designated AAS object (Route/Identifiable/Referable/Fragment/Descriptor; see <<objects>>). If there is no access rule, the default behavior shall be to deny access.
 
@@ -45,9 +45,9 @@ The access rule model can be used as a guideline which shows, what a client appl
 
 If an AAS implementation allows the exchange of access rules, it SHOULD follow the specification of the access rule model.
 
-AAS implementations MAY decide to support only a subset of the access rules. If an AAS implementation, e.g., only provides a READ profile, only such access rules for defining READ access are required. Access control MAY also be limited to specific subsystems, e.g., AAS repository, submodel respository, concept description repository, AAS registry or submodel registry.
+AAS implementations MAY decide to support only a subset of the access rules. If an AAS implementation, e.g., only provides a READ profile, only such access rules for defining READ access are required. Access control MAY also be limited to specific subsystems, e.g., AAS repository, submodel repository, concept description repository, AAS registry or submodel registry.
 
-AAS systems are supposed to deal with a large amount of AAS and AAS Submodels. To reach the needed performance and meet memory and storage constraints an AAS implemenation MAY translated the access rules into a representation that meets the needs of the respective implementation as long as the behavior complies to the stated rules.
+AAS systems are supposed to deal with a large amount of AAS and AAS Submodels. To reach the needed performance and meet memory and storage constraints an AAS implementation MAY translated the access rules into a representation that meets the needs of the respective implementation as long as the behavior complies to the stated rules.
 
 .Access Rule Model
 [[image-access-rule-model]]
@@ -68,9 +68,9 @@ An Identity Provider MAY also give the possibility to federate identities to/fro
 Trust means, that for such Identity Provider(s) an AAS Data Server can verify the public key of the Identity Provider.
 Such public key MAY be available directly as a key, by a public certificate or by a verifiable credential.
 
-The policy of a Dataspace SHALL define which access tokens are trusted by the AAS.
+The policy of a dataspace SHALL define which access tokens are trusted by the AAS.
 
-The policy of a Dataspaces SHALL define the set of subject ABAC attributes that are used as claims to determine authorization.
+The policy of a dataspaces SHALL define the set of subject ABAC attributes that are used as claims to determine authorization.
 
 Access tokens used for operations resulting in modification of information or disclosure of non-public information provided by the AAS shall use a state-of-the-art, cryptographically strong asymmetric signature scheme to authenticate the access token <<@todo use-of-cryptography>>.
 
@@ -85,14 +85,14 @@ Other properties like the lifetime of the token or Proof-of-Possession (RFC 7800
 AAS Security only requires the standard claims of the RFC 9068 Chapter 2.2 Data Structure for the JWT, i.e “iss” (Issuer), “exp” (Expiration time), “aud” (Audience), “sub” (Subject), “client_id” (Client identifier), “iat” (Issued at), “jti” (JWT ID).
 
 The  specific requirements on “iss”, “sub” and “aud” SHOULD be defined by the dataspace policy.
-//@todo I'd rather put a SHALL there. Messign up subject semantics breaks the whole access control model.
+//@todo I'd rather put a SHALL there. Messing up subject semantics breaks the whole access control model.
 
 All claims in an Access Token can be used in ABAC access rules as attributes and as described in the Access Rule Model below.
 
 Access rules can also be defined for anonymous access, i.e. no Access Token exists. +
 This is especially important for the Digital Product Passport to be able to scan the QRCODE according to IEC 61406 with a normal mobile phone camera.
 
-Further definitions can be made by dataspaces. A specific dataspace MAY define the technology how to get an access token and MAY also define the attributes which can be used in the ABAC access rules. Examples are discussed in <<identity-providers>>, <<authentication-flows>>.
+Further definitions can be made by dataspaces. A specific dataspace MAY define the technology how to get an access token and MAY also define the attributes which can be used in the ABAC access rules. Examples are discussed in xref:introduction.adoc#identity-providers[Identity Providers], xref:introduction.adoc#authentication-flows[Authentication Flows].
 
 This both assures interoperability and makes it possible to integrate new dataspaces in the future.
 
@@ -147,7 +147,7 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 An Access Rule Model <AllAccessPermissionRules> defines a list of <<access-permission-rules,Access Permission Rules>>.
 
 The access rule model <AllAccessPermissionRules> also contains lists of Attribute Groups <DEFATTRIBUTES>, Object Groups <DEFOBJECTS>, ACLs <DEFACLS> and Formulas <DEFFORMULAS>.
-These pre-defines can be referred to from other parts of the access control rules by the assigned <StringLiteral>. This allows to reuse commonly used definitions instead of having multiple copies spread over the access control rules. See <<reusable-definitions,Reusable Definitions>>.
+These pre-defines can be referred to from other parts of the access control rules by the assigned <StringLiteral>. This allows to reuse commonly used definitions instead of having multiple copies spread over the access control rules. See <<reusable-definitions>>.
 
 .Railroad diagram for <AllAccessPermissionRules>
 [[image-access-control-rules-model]]
