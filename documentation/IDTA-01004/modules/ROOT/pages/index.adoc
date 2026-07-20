@@ -18,37 +18,37 @@ This specification is part of the https://industrialdigitaltwin.org/en/content-h
 
 == Version
 
-This is version 3.0.2 of the specification IDTA-01004.
+This is version 3.1 of the specification IDTA-01004.
 
-Previous version: 3.0.1
+Previous version: 3.0.2
 
 [#metamodel-versions]
 == Metamodel Versions
 
 This document uses the following parts and versions of the “Specification of the Asset Administration Shell” series:
 
-* IDTA-01001 Part 1: Metamodel in version 3.1 xref:bibliography.adoc#bib1[[1\]]
-* IDTA-01002 Part 2: Application Programming Interfaces in version 3.1 xref:bibliography.adoc#bib2[[2\]]
+* IDTA-01001 Part 1: Metamodel in version 3.2 xref:bibliography.adoc#bib1[[1\]]
+* IDTA-01002 Part 2: Application Programming Interfaces in version 3.2 xref:bibliography.adoc#bib2[[2\]]
 * IDTA-01003-a Part 3a: Data Specification – IEC 61360 in version 3.1 xref:bibliography.adoc#bib3[[3\]]
 
-If there are bugfixes of the parts, these shall be used.
+If there are bugfixes of the parts, these SHALL be used.
 
 == Notice
 
 Copyright: Industrial Digital Twin Association e.V. (IDTA)
 
-DOI: https://doi.org/10.62628/IDTA.01004-3-0-2
+DOI: https://doi.org/10.62628/IDTA.01004-3-2
 
 IDTA Number: IDTA-01004
 
-Version: 3.0.2
+Version: 3.1
 
 This work is licensed under a
 https://creativecommons.org/licenses/by/4.0/[Creative Commons Attribution 4.0 International License].
 
 SPDX-License-Identifier: CC-BY-4.0
 
-March 2026
+July 2026
 
 == How to Get in Contact
 
@@ -68,7 +68,7 @@ Feedback:
 
 === History
 
-This document (release candidate for review) was produced from February 2025 to March 2026 by the Task Force “Security” of the working group "Open Technology" in the Industrial Digital Twin Association (IDTA).
+This document (release candidate for review) was produced from MAY 2023 to January 2025 by the Task Force “Security” of the working group "Open Technology" in the Industrial Digital Twin Association (IDTA).
 
 Earlier content of this document was developed in the Plattform Industrie 4.0 working group “Reference Architectures, Standards and Norms“, especially Clause 7 “Security” of the Part 1 specification Version 3.0RC02 and the discussion paper “Secure Download Service” xref:bibliography.adoc#bib6[[6\]].
 

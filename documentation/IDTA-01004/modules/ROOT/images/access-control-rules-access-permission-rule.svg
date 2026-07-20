@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg
+  xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'
+
+  width='1000' height='760' viewBox='0 0 1000 760'>
+
+  <style>
+    rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
+    rect, line, path { stroke-linecap: square; stroke-linejoin: rounded; }
+    path { fill: transparent; }
+    text.literal { font-family: monospace; }
+    line.ellipsis { stroke-dasharray: 1 3.5; }
+    tspan.hex { font-family: monospace; font-size: 90%; }
+    path.arrow { fill: black; }
+  </style>
+
+  <g transform='translate(40 50)'>
+    <text x='-30' y='-10'>AccessPermissionRule:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M570.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='105' y='25' text-anchor='middle' class='rule'>AccessAccessRule</text>
+    <rect x='200' y='10' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='265' y='25' text-anchor='middle' class='rule'>AccessObjects</text>
+    <rect x='350' y='10' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='415' y='25' text-anchor='middle' class='rule'>AccessFormula</text>
+    <rect x='500' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='525' y='25' text-anchor='middle' class='rule'>Filter</text>
+    <path d='M480 20 h20'/>
+    <path d='M330 20 h20'/>
+    <path d='M180 20 h20'/>
+    <path d='M550 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 130)'>
+    <text x='-30' y='-10'>AccessAccessRule:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M460.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='120' rx='8' ry='8' class='literal'/>
+    <text x='90' y='25' text-anchor='middle' class='literal'>ACCESSRULE:</text>
+    <rect x='170' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='195' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='280' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='305' y='25' text-anchor='middle' class='rule'>ACL</text>
+    <rect x='270' y='40' height='20' width='70' rx='0' ry='0' class='rule'/>
+    <text x='305' y='55' text-anchor='middle' class='rule'>UseACL</text>
+    <rect x='390' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='415' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M360 30 v10'/>
+    <path d='M340 50 h10 q10 0 10 -10'/>
+    <path d='M250 40 q0 10 10 10 h10'/>
+    <path d='M360 30 q0 -10 10 -10'/>
+    <path d='M330 20 h60'/>
+    <path d='M240 20 q10 0 10 10 v10'/>
+    <path d='M220 20 h60'/>
+    <path d='M150 20 h20'/>
+    <path d='M440 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 240)'>
+    <text x='-30' y='-10'>AccessObjects:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M670.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='90' rx='8' ry='8' class='literal'/>
+    <text x='75' y='25' text-anchor='middle' class='literal'>OBJECTS:</text>
+    <rect x='200' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='225' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='170' y='40' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='225' y='55' text-anchor='middle' class='rule'>SingleObject</text>
+    <rect x='390' y='40' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='455' y='55' text-anchor='middle' class='rule'>UseObjectGroup</text>
+    <rect x='540' y='40' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='565' y='55' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M488 70 l4 3 v-6 z' class='arrow'/>
+    <path d='M640 30 v10'/>
+    <path d='M370 60 v0 q0 10 10 10 h220 q10 0 10 -10 v0'/>
+    <path d='M600 50 q10 0 10 10'/>
+    <path d='M590 50 h40 q10 0 10 -10'/>
+    <path d='M520 50 h20'/>
+    <path d='M370 60 q0 -10 10 -10'/>
+    <path d='M340 40 q0 10 10 10 h40'/>
+    <path d='M640 30 q0 -10 10 -10'/>
+    <path d='M330 20 q10 0 10 10 v10'/>
+    <path d='M150 30 v10 q0 10 10 10 h10'/>
+    <path d='M280 50 h10 q10 0 10 -10'/>
+    <path d='M290 20 q10 0 10 10 v10'/>
+    <path d='M250 20 h420'/>
+    <path d='M150 30 q0 -10 10 -10'/>
+    <path d='M120 20 h80'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 370)'>
+    <text x='-30' y='-10'>AccessFormula:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M510.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='60' y='10' height='20' width='90' rx='8' ry='8' class='literal'/>
+    <text x='105' y='25' text-anchor='middle' class='literal'>FORMULA:</text>
+    <rect x='170' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='195' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='240' y='10' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='315' y='25' text-anchor='middle' class='rule'>LogicalExpression</text>
+    <rect x='410' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='435' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='170' y='40' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='225' y='55' text-anchor='middle' class='rule'>UseFormula</text>
+    <rect x='300' y='40' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='325' y='55' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M480 30 v10'/>
+    <path d='M350 50 h120 q10 0 10 -10'/>
+    <path d='M280 50 h20'/>
+    <path d='M40 40 q0 10 10 10 h120'/>
+    <path d='M480 30 q0 -10 10 -10'/>
+    <path d='M460 20 h50'/>
+    <path d='M390 20 h20'/>
+    <path d='M220 20 h20'/>
+    <path d='M150 20 h20'/>
+    <path d='M30 20 q10 0 10 10 v10'/>
+    <path d='M10 20 h50'/>
+  </g>
+
+  <g transform='translate(40 480)'>
+    <text x='-30' y='-10'>Filter:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M520.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='60' y='10' height='20' width='80' rx='8' ry='8' class='literal'/>
+    <text x='100' y='25' text-anchor='middle' class='literal'>FILTER:</text>
+    <rect x='160' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='185' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='230' y='10' height='20' width='170' rx='0' ry='0' class='rule'/>
+    <text x='315' y='25' text-anchor='middle' class='rule'>SecurityQueryFilter</text>
+    <rect x='420' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='445' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='80' y='40' height='20' width='120' rx='8' ry='8' class='literal'/>
+    <text x='140' y='55' text-anchor='middle' class='literal'>FILTERLIST:</text>
+    <rect x='310' y='40' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='335' y='55' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='250' y='70' height='20' width='170' rx='0' ry='0' class='rule'/>
+    <text x='335' y='85' text-anchor='middle' class='rule'>SecurityQueryFilter</text>
+    <path d='M490 30 v10'/>
+    <path d='M230 60 v10 q0 10 10 10 h10'/>
+    <path d='M420 80 h10 q10 0 10 -10'/>
+    <path d='M430 50 q10 0 10 10 v10'/>
+    <path d='M360 50 h120 q10 0 10 -10'/>
+    <path d='M230 60 q0 -10 10 -10'/>
+    <path d='M200 50 h110'/>
+    <path d='M40 40 q0 10 10 10 h30'/>
+    <path d='M490 30 q0 -10 10 -10'/>
+    <path d='M470 20 h50'/>
+    <path d='M400 20 h20'/>
+    <path d='M210 20 h20'/>
+    <path d='M140 20 h20'/>
+    <path d='M30 20 q10 0 10 10 v10'/>
+    <path d='M10 20 h50'/>
+  </g>
+
+  <g transform='translate(40 620)'>
+    <text x='-30' y='-10'>SecurityQueryFilter:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M930.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='100' rx='8' ry='8' class='literal'/>
+    <text x='80' y='25' text-anchor='middle' class='literal'>FRAGMENT:</text>
+    <rect x='150' y='10' height='20' width='190' rx='0' ry='0' class='rule'/>
+    <text x='245' y='25' text-anchor='middle' class='rule'>FieldIdentifierFragment</text>
+    <rect x='360' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='385' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='460' y='10' height='20' width='110' rx='8' ry='8' class='literal'/>
+    <text x='515' y='25' text-anchor='middle' class='literal'>CONDITION:</text>
+    <rect x='590' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='615' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='660' y='10' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='735' y='25' text-anchor='middle' class='rule'>LogicalExpression</text>
+    <rect x='830' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='855' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='580' y='40' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='635' y='55' text-anchor='middle' class='rule'>UseFormula</text>
+    <rect x='710' y='40' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='735' y='55' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M900 30 v10'/>
+    <path d='M760 50 h130 q10 0 10 -10'/>
+    <path d='M690 50 h20'/>
+    <path d='M440 40 q0 10 10 10 h130'/>
+    <path d='M900 30 q0 -10 10 -10'/>
+    <path d='M880 20 h50'/>
+    <path d='M810 20 h20'/>
+    <path d='M640 20 h20'/>
+    <path d='M570 20 h20'/>
+    <path d='M430 20 q10 0 10 10 v10'/>
+    <path d='M410 20 h50'/>
+    <path d='M340 20 h20'/>
+    <path d='M130 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+</svg>

@@ -1,0 +1,56 @@
+////
+Copyright (c) 2025 Industrial Digital Twin Association
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](
+https://creativecommons.org/licenses/by/4.0/).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+////
+
+[[security-objectives]]
+= Security objectives
+
+== Overview
+
+Information security has traditionally focused on achieving three objectives, confidentiality, integrity, and availability, which are often abbreviated by the acronym CIA. IEC TS 62443-1-1:2009 observes that these priorities are sometimes completely inverted, e.g., availability, integrity, confidentiality (AIC) in case of some industrial automation scenarios. In AAS context, AAS is used in a variety of different use cases. While some domains suggest a specific ordering or priority of security objectives, the order of the following subsections on integrity, confidentiality, and availability is deliberate. The AAS responsible SHOULD consider the three objectives without predefining their priority and use a risk-based approach to determine and balance the priority of the individual security objectives for their intended use cases and applications.
+
+== Integrity
+
+*Integrity of AAS interface behaviour:* AAS SHALL ensure the logical correctness and reliability of data represented by the AAS as well as structure and occurrence of the data represented by the AAS. AAS SHALL ensure that data is provided in a consistent and reproducible way. The AAS interface SHALL ensure the authenticity, reliability, and security of API interactions, preventing unauthorized access and abuse. Execution of operations and access to data SHALL behave in a predictable manner.
+
+====
+Note: The amount of data represented by the AAS being visible and the AAS services being available are subject to access control (xref:requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:access-rule-model.adoc#access-rule-model[Access Rule Model]). That means, the user experience depends on the privilege level of the AAS user application user. For example, it is possible that specific Submodels are only visible for privileged repair personnel. Using ABAC, the amount of information can also depend on additional criteria, like the operation status of a manufacturing system.
+====
+
+*Integrity and accountability of data:* The AAS user application user expects the data of the AAS provided via the AAS interface to be correct and reliable. Protection of integrity and accountability of AAS data SHALL consider the following:
+
+* Protection against the entry of data by an unauthorized AAS user application user. Entry/modification of data SHALL only be possible for an authorized user.
+* It SHOULD be possible to detect unintentional change of data represented by the AAS and allow to trace the originator of data.
+* Protection against manipulation of data represented by the AAS. Data represented by the AAS SHOULD be protected against unauthorized manipulation including the manipulation of origin/authorship. This is especially important if data represented by the AAS is handled (e.g., storage, retrieval, aggregation) by 3rd parties who are not the original source of that data.
+* Protection against the manipulation of the AAS structure. It is possible that moving Properties or SubmodelElements between different SubmodelElementCollections results in incorrect interpretation of the provided data.
+* Protection against the manipulation of AAS management information and auxiliary information used by systems realizing an AAS. Auxiliary information includes all information relevant for the correctness of data represented by the AAS and the correct functionality of the AAS interface. This especially includes the information relevant for AAS access control.
+
+*Integrity of relation between data and asset:* The relation between an asset and the data stored in the AAS SHALL be protected. It is important to know that AAS data belongs to the asset as identified by the asset identifier recorded in the AAS management information.
+
+*Integrity of relation between services and asset:* There SHALL be no incorrect relations between an asset and asset related services provided by the AAS. It is essential that services referenced by AAS Submodels affect the intended asset and that the behaviour of the service is described correctly.
+
+== Confidentiality
+
+*Data exposure and data leakage protection:* AAS SHALL provide assurance that data represented by the AAS is not disclosed to unauthorized entities. Access to information considered sensitive by the AAS responsible SHALL be controllable by well-defined rules determining the visibility of data represented by the AAS. Access to  sensitive information represented by the AAS SHALL only be granted after authentication of the requestor (xref:requirements.adoc#_identification_and_authentication_of_aas_user_application_users[Identification and authentication of AAS user application users], xref:requirements.adoc#_identification_and_authentication_of_aas_user_applications_and_aas_interface[Identification and authentication of AAS user applications and AAS interface]). This applies to both,
+
+* actual values,
+
+as well as the
+
+* structure and meta-data represented by the AAS (topology described Submodels, SubmodelElements, SubmodelElementCollections, ...).
+
+== Availability
+
+*Availability of asset data:* The AAS interface SHALL be able to process requests in a reasonable time interval. The AAS responsible SHALL define the quality of service provided.
+
+Data represented by the AAS returned via the AAS interface SHALL be current. It SHALL NOT be possible to maliciously hide data stored in an AAS. It SHALL be possible to determine whether data is sufficiently recent (lost updates) or data has been intentionally removed (malicious rollbacks).
+
+====
+Note: This requirement does not affect the situation where data represented by the AAS is intentionally configured to be visible or invisible for AAS user application users depending on their privilege level (xref:requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:access-rule-model.adoc#access-rule-model[Access Rule Model]).
+====

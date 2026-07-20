@@ -15,7 +15,7 @@
         },
         "OBJECTS": [
           {
-            "ROUTE": "*"
+            "IDENTIFIABLE": "$sm(\"*\")"
           }
         ],
         "FORMULA": {
@@ -59,9 +59,7 @@
             {
               "$regex": [
                 {
-                  "$attribute": {
-                    "REFERENCE": "(Submodel)*#Id"
-                  }
+                  "$field": "$sm#id"
                 },
                 {
                   "$strVal": "^https://company1.com/.*$"
@@ -71,24 +69,56 @@
             {
               "$ge": [
                 {
-                  "$attribute": {
-                    "GLOBAL": "UTCNOW"
+                  "$dayOfWeek": {
+                    "$attribute": {
+                      "GLOBAL": "UTCNOW"
+                    }
                   }
                 },
                 {
-                  "$timeVal": "09:00"
+                  "$numVal": 1
                 }
               ]
             },
             {
               "$le": [
                 {
-                  "$attribute": {
-                    "GLOBAL": "UTCNOW"
+                  "$dayOfWeek": {
+                    "$attribute": {
+                      "GLOBAL": "UTCNOW"
+                    }
                   }
                 },
                 {
-                  "$timeVal": "17:00"
+                  "$numVal": 5
+                }
+              ]
+            },
+            {
+              "$ge": [
+                {
+                  "$timeCast": {
+                    "$attribute": {
+                      "GLOBAL": "UTCNOW"
+                    }
+                  }  
+                },
+                {
+                  "$timeVal": "09:00:00Z"
+                }
+              ]
+            },
+            {
+              "$le": [
+                {
+                  "$timeCast": {
+                    "$attribute": {
+                      "GLOBAL": "UTCNOW"
+                    }
+                  }  
+                },
+                {
+                  "$timeVal": "17:00:00Z"
                 }
               ]
             }

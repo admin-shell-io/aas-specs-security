@@ -1,24 +1,31 @@
 <SingleObject> ::=
-    <RouteObject> | <IdentifiableObject> | <ReferableObject> | <FragmentObject> | <DescriptorObject>
+    <RouteObject> |
+    <IdentifiableObject> |
+    <ReferableObject> |
+    <FragmentObject> |
+    <DescriptorObject>
 
 <RouteObject> ::=
-    "ROUTE" <ws> <RouteLiteral> <ws>
+    "ROUTE" <Ws> <RouteLiteral> <Ws>
+
+<IdentifierInstance> ::= "(" <StringLiteral> ")"
+<IdentifierInstanceOrAll> ::= <IdentifierInstance> | "(\"*\")"
 
 <IdentifiableObject> ::=
-    "IDENTIFIABLE" <ws> <IdentifiableLiteral> <ws>
+    "IDENTIFIABLE" <Ws> ( "$aas" | "$sm" | "$cd" ) <IdentifierInstanceOrAll>
 
 <ReferableObject> ::=
-    "REFERABLE" <ws> <ReferableLiteral> <ws>
+    "REFERABLE" <Ws> "$sme" <IdentifierInstanceOrAll> "." <IdShortPath>
 
 <FragmentObject> ::=
-    "FRAGMENT" <ws> <FragmentLiteral> <ws>
+    "FRAGMENT" <Ws> <FragmentLiteral> <Ws>
 
 <DescriptorObject> ::=
-    "DESCRIPTOR" <ws> <DescriptorLiteral> <ws>
+    "DESCRIPTOR" <Ws> ( "$aasdesc" | "$smdesc" ) <IdentifierInstanceOrAll>
 
 <ObjectGroup> ::=
-    ( <SingleObject> <ws> )*
-    | ( <UseObjectGroup> <ws> )*
+    ( <SingleObject> <Ws> )*
+    ( <UseObjectGroup> <Ws> )*
 
 <UseObjectGroup> ::=
-    "USEOBJECTS" <ws> <StringLiteral> <ws>
+    "USEOBJECTS" <Ws> <StringLiteral> <Ws>

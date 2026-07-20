@@ -1,0 +1,36 @@
+{
+  "AllAccessPermissionRules": {
+    "rules": [
+      {
+        "ACL": {
+          "ATTRIBUTES": [
+            {
+              "GLOBAL": "ANONYMOUS"
+            }
+          ],
+          "RIGHTS": [
+            "EXECUTE"
+          ],
+          "ACCESS": "ALLOW"
+        },
+        "OBJECTS": [
+          {
+            "ROUTE": "*"
+          }
+        ],
+        "FORMULA": {
+          "$eq": [
+            {
+              "$attribute": {
+                "REFERENCE": "$sme(\"SubmodelID-OperationalData\").machineState#value"
+              }
+            },
+            {
+              "$strVal": "not-running"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

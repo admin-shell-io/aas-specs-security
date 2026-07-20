@@ -32,7 +32,7 @@
           ]
         },
         "REFERENCE": {
-          "type": "string"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/ReferenceIdentifier"
         }
       },
       "additionalProperties": false
@@ -70,16 +70,16 @@
           "type": "string"
         },
         "IDENTIFIABLE": {
-          "type": "string"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/IdentifiableIdentifier"
         },
         "REFERABLE": {
-          "type": "string"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/ReferableIdentifier"
         },
         "FRAGMENT": {
-          "type": "string"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/FragmentIdentifier"
         },
         "DESCRIPTOR": {
-          "type": "string"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/DescriptorIdentifier"
         }
       },
       "additionalProperties": false
@@ -127,7 +127,7 @@
         "RIGHTS",
         "ACCESS"
       ],
-      "oneOf": [
+      "anyOf": [
         {
           "required": [
             "ATTRIBUTES"
@@ -164,7 +164,7 @@
           }
         },
         "FORMULA": {
-          "$ref": "#/definitions/logicalExpression",
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/logicalExpression",
           "additionalProperties": false
         },
         "USEFORMULA": {
@@ -173,41 +173,55 @@
         "FILTER": {
           "$ref": "#/definitions/SecurityQueryFilter",
           "additionalProperties": false
+        },
+        "FILTERLIST": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SecurityQueryFilter"
+          }
         }
       },
-      "oneOf": [
+      "allOf": [
         {
-          "required": [
-            "ACL"
+          "oneOf": [
+            {
+              "required": [
+                "ACL"
+              ]
+            },
+            {
+              "required": [
+                "USEACL"
+              ]
+            }
           ]
         },
         {
-          "required": [
-            "USEACL"
-          ]
-        }
-      ],
-      "oneOf": [
-        {
-          "required": [
-            "OBJECTS"
-          ]
-        },
-        {
-          "required": [
-            "USEOBJECTS"
-          ]
-        }
-      ],
-      "oneOf": [
-        {
-          "required": [
-            "FORMULA"
+          "anyOf": [
+            {
+              "required": [
+                "OBJECTS"
+              ]
+            },
+            {
+              "required": [
+                "USEOBJECTS"
+              ]
+            }
           ]
         },
         {
-          "required": [
-            "USEFORMULA"
+          "oneOf": [
+            {
+              "required": [
+                "FORMULA"
+              ]
+            },
+            {
+              "required": [
+                "USEFORMULA"
+              ]
+            }
           ]
         }
       ],
@@ -217,10 +231,10 @@
       "type": "object",
       "properties": {
         "FRAGMENT": {
-          "type": "string"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/FragmentFieldIdentifier"
         },
         "CONDITION": {
-          "$ref": "#/definitions/logicalExpression"
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/logicalExpression"
         },
         "USEFORMULA": {
           "type": "string"
@@ -262,11 +276,28 @@
                 "items": {
                   "$ref": "#/definitions/attributeItem"
                 }
+              },
+              "USEATTRIBUTES": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             },
             "required": [
-              "name",
-              "attributes"
+              "name"
+            ],
+            "oneOf": [
+              {
+                "required": [
+                  "attributes"
+                ]
+              },
+              {
+                "required": [
+                  "USEATTRIBUTES"
+                ]
+              }
             ],
             "additionalProperties": false
           }
@@ -338,7 +369,7 @@
                 "type": "string"
               },
               "formula": {
-                "$ref": "#/definitions/logicalExpression"
+                "$ref": "aas-queries-and-access-rules-schema.json#/definitions/logicalExpression"
               }
             },
             "required": [

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg
+  xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'
+
+  width='1000' height='210' viewBox='0 0 1000 210'>
+
+  <style>
+    rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
+    rect, line, path { stroke-linecap: square; stroke-linejoin: rounded; }
+    path { fill: transparent; }
+    text.literal { font-family: monospace; }
+    line.ellipsis { stroke-dasharray: 1 3.5; }
+    tspan.hex { font-family: monospace; font-size: 90%; }
+    path.arrow { fill: black; }
+  </style>
+
+  <g transform='translate(40 50)'>
+    <text x='-30' y='-10'>AllAccessPermissionRules:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M660.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='210' rx='0' ry='0' class='rule'/>
+    <text x='135' y='25' text-anchor='middle' class='rule'>AllAccessPermissionDefs</text>
+    <rect x='320' y='40' height='20' width='190' rx='0' ry='0' class='rule'/>
+    <text x='415' y='55' text-anchor='middle' class='rule'>AccessPermissionRule</text>
+    <rect x='530' y='40' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='555' y='55' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M448 70 l4 3 v-6 z' class='arrow'/>
+    <path d='M630 30 v10'/>
+    <path d='M300 60 v0 q0 10 10 10 h280 q10 0 10 -10 v0'/>
+    <path d='M590 50 q10 0 10 10'/>
+    <path d='M580 50 h40 q10 0 10 -10'/>
+    <path d='M510 50 h20'/>
+    <path d='M300 60 q0 -10 10 -10'/>
+    <path d='M270 40 q0 10 10 10 h40'/>
+    <path d='M630 30 q0 -10 10 -10'/>
+    <path d='M260 20 q10 0 10 10 v10'/>
+    <path d='M240 20 h420'/>
+    <path d='M10 20 h20'/>
+  </g>
+</svg>

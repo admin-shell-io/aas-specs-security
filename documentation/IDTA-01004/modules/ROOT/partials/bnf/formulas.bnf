@@ -1,83 +1,95 @@
 <UseFormula> ::=
-    "USEFORMULA" <ws> <StringLiteral> <ws>
+    "USEFORMULA" <Ws> <StringLiteral> <Ws>
 
-<logicalExpression> ::= <logicalNestedExpression> | <logicalOrExpression> | <logicalAndExpression> |
-<logicalNotExpression> | <matchExpression> | <BoolLiteral> | <castToBool> | <singleComparison>
-<logicalNestedExpression> ::= "(" <ws> <logicalExpression> ")" <ws>
-<logicalOrExpression> ::= "$or" <ws> "(" <ws> <logicalExpression> ( "," <ws> <logicalExpression> )+ ")" <ws>
-<logicalAndExpression> ::= "$and" <ws> "(" <ws> <logicalExpression> ( "," <ws> <logicalExpression> )+ ")" <ws>
-<logicalNotExpression> ::= "$not" <ws> "(" <ws> <logicalExpression> ")" <ws>
+<LogicalExpression> ::= <LogicalNestedExpression> | <LogicalOrExpression> | <LogicalAndExpression> |
+<LogicalNotExpression> | <MatchExpression> | <BoolLiteral> | <CastToBool> | <SingleComparison>
+<LogicalNestedExpression> ::= "(" <Ws> <LogicalExpression> ")" <Ws>
+<LogicalOrExpression> ::= "$or" <Ws> "(" <Ws> <LogicalExpression> ( "," <Ws> <LogicalExpression> )+ ")" <Ws>
+<LogicalAndExpression> ::= "$and" <Ws> "(" <Ws> <LogicalExpression> ( "," <Ws> <LogicalExpression> )+ ")" <Ws>
+<LogicalNotExpression> ::= "$not" <Ws> "(" <Ws> <LogicalExpression> ")" <Ws>
 
-<matchExpression> ::= ( "$match" <ws> "(" <ws> ( <singleComparison> | <matchExpression> ) ( "," <ws> ( <singleComparison> | <matchExpression> ) )* ")" <ws> )
+<MatchExpression> ::= ( "$match" <Ws> "(" <Ws> ( <SingleComparison> | <MatchExpression> ) ( "," <Ws> ( <SingleComparison> | <MatchExpression> ) )* ")" <Ws> )
 
-<singleComparison> ::=
-    <stringComparison> |
-    <numericalComparison> |
-    <hexComparison> |
-    <boolComparison> |
-    <dateTimeComparison> |
-    <timeComparison>
+<SingleComparison> ::=
+    <StringComparison> |
+    <NumericalComparison> |
+    <HexComparison> |
+    <BoolComparison> |
+    <DateTimeComparison> |
+    <TimeComparison>
 
-<allComparisons> ::= ( "$eq" | "$ne" | "$gt" | "$lt" | "$ge" | "$le" )
+<AllComparisons> ::= ( "$eq" | "$ne" | "$gt" | "$lt" | "$ge" | "$le" )
 
-<stringComparison> ::=
-    ( ( "$starts-with" | "$ends-with" | "$contains" | "$regex") <ws> "(" <ws> <stringOperand> <ws> "," <ws> <stringOperand> <ws> ")" <ws> ) |
-    ( <stringOperand> <ws> <allComparisons> <ws> <stringOperand> <ws> )
+<StringComparison> ::=
+    ( ( "$starts-with" | "$ends-with" | "$contains" | "$regex") <Ws> "(" <Ws> <StringOperand> <Ws> "," <Ws> <StringOperand> <Ws> ")" <Ws> ) |
+    ( <StringOperand> <Ws> <AllComparisons> <Ws> <StringNonFieldOperand> <Ws> ) |
+    ( <StringNonFieldOperand> <Ws> <AllComparisons> <Ws> <StringOperand> <Ws> )
 
-<numericalComparison> ::=
-    ( <numericalOperand> <ws> <allComparisons> <ws> <numericalOperand> <ws> ) |
-    ( <numericalOperand> <ws> <allComparisons> <ws> <FieldIdentifier> <ws> ) |
-    ( <FieldIdentifier> <ws> <allComparisons> <ws> <numericalOperand> <ws> )
+<NumericalComparison> ::=
+    ( <NumericalOperand> <Ws> <AllComparisons> <Ws> <NumericalOperand> <Ws> ) |
+    ( <NumericalOperand> <Ws> <AllComparisons> <Ws> <FieldIdentifier> <Ws> ) |
+    ( <FieldIdentifier> <Ws> <AllComparisons> <Ws> <NumericalOperand> <Ws> )
 
-<hexComparison> ::=
-    <hexOperand> <ws> <allComparisons> <ws> <hexOperand> <ws>
+<HexComparison> ::=
+    ( <HexOperand> <Ws> <AllComparisons> <Ws> <HexOperand> <Ws> ) |
+    ( <HexOperand> <Ws> <AllComparisons> <Ws> <FieldIdentifier> <Ws> ) |
+    ( <FieldIdentifier> <Ws> <AllComparisons> <Ws> <HexOperand> <Ws> )
 
-<boolComparison> ::=
-    <boolOperand> <ws> ( "$eq" | "$ne" ) <ws> <boolOperand> <ws>
+<BoolComparison> ::=
+    ( <BoolOperand> <Ws> ( "$eq" | "$ne" ) <Ws> <BoolOperand> <Ws> ) |
+    ( <BoolOperand> <Ws> ( "$eq" | "$ne" ) <Ws> <FieldIdentifier> <Ws> ) |
+    ( <FieldIdentifier> <Ws> ( "$eq" | "$ne" ) <Ws> <BoolOperand> <Ws> )
 
-<dateTimeComparison> ::=
-    <dateTimeOperand> <ws> <allComparisons> <ws> <dateTimeOperand> <ws>
+<DateTimeComparison> ::=
+    ( <DateTimeOperand> <Ws> <AllComparisons> <Ws> <DateTimeOperand> <Ws> ) |
+    ( <DateTimeOperand> <Ws> <AllComparisons> <Ws> <FieldIdentifier> <Ws> ) |
+    ( <FieldIdentifier> <Ws> <AllComparisons> <Ws> <DateTimeOperand> <Ws> )
 
-<dateTimeToNum> ::=
-    ( "$dayOfWeek" | "$dayOfMonth" | "$month" | "$year" ) <ws> "(" <ws> <dateTimeOperand> <ws> ")" <ws>
+<DateTimeToNum> ::=
+    ( "$dayOfWeek" | "$dayOfMonth" | "$month" | "$year" ) <Ws> "(" <Ws> <DateTimeOperand> <Ws> ")" <Ws>
 
-<timeComparison> ::=
-    <timeOperand> <ws> <allComparisons> <ws> <timeOperand> <ws>
+<TimeComparison> ::=
+    ( <TimeOperand> <Ws> <AllComparisons> <Ws> <TimeOperand> <Ws> ) |
+    ( <TimeOperand> <Ws> <AllComparisons> <Ws> <FieldIdentifier> <Ws> ) |
+    ( <FieldIdentifier> <Ws> <AllComparisons> <Ws> <TimeOperand> <Ws> )
 
-<operand> ::= <stringOperand> | <numericalOperand> | <hexOperand> | <boolOperand> | <dateTimeOperand> | <timeOperand>
+<Operand> ::= <StringOperand> | <NumericalOperand> | <HexOperand> | <BoolOperand> | <DateTimeOperand> | <TimeOperand>
 
-<stringOperand> ::=
-    <FieldIdentifier> | <StringLiteral> | <castToString> | <SingleAttribute>
+<StringOperand> ::=
+    <FieldIdentifier> | <StringLiteral> | <CastToString> | <SingleAttribute>
 
-<numericalOperand> ::=
-    <NumericalLiteral> | <castToNumerical> | <dateTimeToNum>
+<StringNonFieldOperand> ::=
+    <StringLiteral> | <CastToString> | <SingleAttribute>
 
-<hexOperand> ::=
-    <HexLiteral> | <castToHex>
+<NumericalOperand> ::=
+    <NumericalLiteral> | <CastToNumerical> | <DateTimeToNum>
 
-<boolOperand> ::=
-    <BoolLiteral> | <castToBool>
+<HexOperand> ::=
+    <HexLiteral> | <CastToHex>
 
-<dateTimeOperand> ::=
-    <DateTimeLiteral> | <castToDateTime> | <GlobalAttribute>
+<BoolOperand> ::=
+    <BoolLiteral> | <CastToBool>
 
-<timeOperand> ::=
-    <TimeLiteral> | <castToTime>
+<DateTimeOperand> ::=
+    <DateTimeLiteral> | <CastToDateTime> | <DateTimeGlobalAttribute>
 
-<castToString> ::=
-    "str" <ws> "(" <ws> <operand> <ws> ")" <ws>
+<TimeOperand> ::=
+    <TimeLiteral> | <CastToTime>
 
-<castToNumerical> ::=
-    "num" <ws> "(" <ws> <operand> <ws> ")" <ws>
+<CastToString> ::=
+    "str" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
 
-<castToHex> ::=
-    "hex" <ws> "(" <ws> <operand> <ws> ")" <ws>
+<CastToNumerical> ::=
+    "num" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
 
-<castToBool> ::=
-    "bool" <ws> "(" <ws> <operand> <ws> ")" <ws>
+<CastToHex> ::=
+    "hex" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
 
-<castToDateTime> ::=
-    "dateTime" <ws> "(" <ws> <stringOperand> <ws> ")" <ws>
+<CastToBool> ::=
+    "bool" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
 
-<castToTime> ::=
-    "time" <ws> "(" <ws> ( <stringOperand> | <dateTimeOperand> ) <ws> ")" <ws>
+<CastToDateTime> ::=
+    "dateTime" <Ws> "(" <Ws> <StringOperand> <Ws> ")" <Ws>
+
+<CastToTime> ::=
+    "time" <Ws> "(" <Ws> ( <StringOperand> | <DateTimeOperand> ) <Ws> ")" <Ws>

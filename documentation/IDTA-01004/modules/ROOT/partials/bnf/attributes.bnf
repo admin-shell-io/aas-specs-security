@@ -2,17 +2,29 @@
     <ClaimAttribute> | <GlobalAttribute> | <ReferenceAttribute>
 
 <ClaimAttribute> ::=
-    "CLAIM" <ws> "(" <ws> <ClaimLiteral> <ws> ")"
+    "CLAIM" <Ws> "(" <Ws> <ClaimLiteral> <Ws> ")"
 
 <GlobalAttribute> ::=
-    "GLOBAL" <ws> "(" <ws> ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" | "ANONYMOUS" ) <ws> ")"
+    "GLOBAL" <Ws> "(" <Ws>
+    ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" | "ANONYMOUS" )
+    <Ws> ")"
+
+<DateTimeGlobalAttribute> ::=
+    "GLOBAL" <Ws> "(" <Ws>
+    ( "LOCALNOW" | "UTCNOW" | "CLIENTNOW" )
+    <Ws> ")"
 
 <ReferenceAttribute> ::=
-    "REFERENCE" <ws> "(" <ws> <ReferenceLiteral> <ws> ")"
+    "REFERENCE("
+        "$aas" <IdentifierInstance> "#" <FieldsAAS> |
+        "$sm" <IdentifierInstance> "#" <FieldsSM> |
+        "$cd" <IdentifierInstance> "#" <FieldsCD> |
+        "$sme" <IdentifierInstance> "." <IdShortPath> "#" <FieldsSME>
+    ")"
 
 <AttributeGroup> ::=
-    ( <SingleAttribute> <ws> )*
-    ( <UseAttributeGroup> <ws> )*
+    ( <SingleAttribute> <Ws> )*
+    ( <UseAttributeGroup> <Ws> )*
 
 <UseAttributeGroup> ::=
-    "USEATTRIBUTES" <ws> <StringLiteral> <ws>
+    "USEATTRIBUTES" <Ws> <StringLiteral> <Ws>

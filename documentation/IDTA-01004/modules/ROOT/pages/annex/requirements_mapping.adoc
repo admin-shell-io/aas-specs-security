@@ -1,0 +1,483 @@
+= Assessment of IEC 62443 requirements for AAS structure
+
+Table <<table_assessment_fr1>> ,<<table_assessment_fr2>>, <<table_assessment_fr3>>, <<table_assessment_fr4>>, <<table_assessment_fr5>>, <<table_assessment_fr6>> and <<table_assessment_fr7>> provide an assessment regarding the relevance of the foundation requirements defined by the IEC 62443 series towards the structure and interface of the AAS as defined in IEC 63278-1,-2,-5. Since AAS shares aspects of a system and a component both IEC 62443-3-3 and IEC 62443-4-2 have been considered.
+
+According to the analysis not all foundational requirements given in IEC 62443 are applicable on the level of IEC 63278-1,-2,-5. “Y” means the requirement applies and is addressed within this document, “N” means the requirement does not apply. “P” means that the requirement is partially addressed by this document, details are either defined by other applicable standards or left to the implementation.
+
+The full set of IEC 62443 requirements needs to be reconsidered for additional system components (e.g., AAS user application, infrastructure) and for subsequent realization steps (detailed design, implementation, system integration, operation).
+
+.Assessment of IEC 62443 FR1 Authentication Control requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr1]]
+|===
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+
+|1.1
+|Human user, process and device identification and authentication
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_identification_and_authentication_of_aas_user_application_users[Identification and authentication of AAS user application users]
+
+|1.2
+|Software process and device identification and authentication
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_identification_and_authentication_of_aas_user_applications_and_aas_interface[Identification and authentication of AAS user applications and AAS interface]
+
+|1.3
+|Account management
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_account_management[Account management]
+
+|1.4
+|Identifier management
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_identifier_management[Identifier management]
+
+|1.5
+|Authenticator management
+|&#x25cf;
+|&#x25cf;
+|P
+|AAS authorization solely relies on short-term authentication tokens (xref:../access-rule-model.adoc#attributes[Attributes]). Measures for management and protection of access tokens are left to the implementation.
+
+|1.6
+|Wireless access management
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not make any assumption on network physical infrastructure. This is left to the implementation.
+
+
+|1.7
+|Strength of password-based authentication
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS interface does not define password-based authentication. 
+
+|1.8
+|Public key infrastructure certificates
+|&#x25cf;
+|&#x25cf;
+|P
+|xref:../requirements.adoc#_public_key_infrastructure[Public key infrastructure]
+
+It is possible to use public key certificates to meet authentication requirements for AAS regarding, e.g., acquisition of an access tokens (xref:../access-rule-model.adoc#attributes[Attributes]), for TLS channel protection (xref:../requirements.adoc#_identification_and_authentication_of_aas_user_application_users[Identification and authentication of AAS user application users], xref:../requirements.adoc#_identification_and_authentication_of_aas_user_applications_and_aas_interface[Identification and authentication of AAS user applications and AAS interface], xref:../requirements.adoc#_information_integrity[Information integrity], xref:../requirements.adoc#_information_confidentiality[Information confidentiality]).
+
+|1.9
+|Strength of public key authentication
+|&#x25cf;
+|&#x25cf;
+|P
+|xref:../requirements.adoc#_use_of_cryptography[Use of cryptography]
+
+|1.10
+|Authenticator feedback
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_authenticator_feedback[Authenticator feedback]
+
+|1.11
+|Unsuccessful login attempts
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS interface does not provide lock-out for users. This is left to the authentication service used to acquire the access token or the AAS user application.
+
+|1.12
+|System use notification
+|&#x25cf;
+|&#x25cf;
+|N
+| This is left to the AAS user application.
+
+|1.13
+|Access via untrusted networks
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not make any assumption on network physical infrastructure. This is left to the implementation.
+
+|1.14
+|Strength of symmetric key authentication
+|
+|&#x25cf;
+|P
+|xref:../requirements.adoc#_use_of_cryptography[Use of cryptography]
+
+|===
+
+.Assessment of IEC 62443 FR2 Use Control requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr2]]
+|===
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+
+|2.1
+|Authorization enforcement
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_authorization_enforcement[Authorization enforcement], xref:../access-rule-model.adoc#access-rule-model[Access Rule Model]
+
+|2.2
+|Wireless use control
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] are hardware agnostic
+
+|2.3
+|Use control for portable and mobile devices
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not consider deployment aspects
+
+|2.4
+|Mobile code
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not consider deployment aspects
+
+|2.5
+|Session lock
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS does not define (direct) human access to the AAS interface. This is left to the AAS user application.
+
+|2.6
+|Remote session termination
+|&#x25cf;
+|&#x25cf;
+|Y
+|Limited life-time of access tokens.
+xref:../access-rule-model.adoc#attributes[Attributes]
+
+|2.7
+|Concurrent session control
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS does not impose any limits on the amount and concurrency of requests from the AAS user application. This is left to the implementation.
+
+|2.8
+|Auditable events
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_auditable_events[Auditable events]
+
+|2.9
+|Audit storage capacity
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS does not define audit storage.
+
+|2.10
+|Response to audit processing failures
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS does not define audit storage.
+
+|2.11
+|Timestamps
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_timestamps[Timestamps]
+
+|2.12
+|Non-repudiation
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#__non_repudiation[Non-repudiation], 
+xref:../accountability.adoc#_accountability[Accountability for AAS Content and Digital Signatures]
+
+|2.13
+|Use of physical diagnostic and test interfaces
+|
+|&#x25cf;
+|N
+|AAS is hardware agnostic.
+
+|===
+
+.Assessment of IEC 62443 FR3 System Integrity requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr3]]
+|===
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+
+|3.1
+|Communication integrity
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_information_integrity[Information integrity]
+
+|3.2
+|Malicious code protection
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not consider deployment and implementation specific security aspects.
+
+|3.3
+|Security functionality verification
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not consider deployment and implementation specific security aspects.
+
+|3.4
+|Software and information integrity
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_information_integrity[Information integrity]
+
+|3.5
+|Input validation
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_input_validation[Input validation]
+
+|3.6
+|Deterministic output
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS degradation behaviour is use case and implementation specific.
+
+|3.7
+|Error handling
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_error_handling[Error handling]
+
+|3.8
+|Session integrity
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_session_integrity[Session integrity]
+
+|3.9
+|Protection of audit information
+|&#x25cf;
+|&#x25cf;
+|N
+|AAS does not define audit storage.
+
+|3.10
+|Support for updates
+|
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not consider operations aspects.
+
+|3.11
+|Physical tamper resistance and detection
+|
+|&#x25cf;
+|P
+|Potential measures to protect integrity of data represented by the AAS include technologies for physical tamper resistance and detection.
+
+IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not define hardware aspects including physical tamper resistance and detection. This is left to the implementation and operation based on the assessment of the associated risks.
+
+xref:../requirements.adoc#_information_integrity[Information integrity]
+
+|3.12
+|Provisioning product supplier roots of trust
+|
+|&#x25cf;
+|P
+|Entity (product) in question is the asset managed by the AAS.
+
+xref:../requirements.adoc#_asset_roots_of_trust_management[Asset roots of trust managment]
+
+|3.13
+|Provisioning asset owner roots of trust
+|
+|&#x25cf;
+|Y
+|Entity (asset) in question is the AAS.
+
+xref:../requirements.adoc#_aas_roots_of_trust_management[AAS roots of trust management]
+
+|3.14
+|Integrity of the boot process
+|
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not define operation platform specific aspects including integrity of the boot process. This is left to the implementation and operation.
+
+|===
+
+.Assessment of IEC 62443 FR4 Data confidentiality requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr4]]
+|===
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+
+|4.1
+|Information confidentiality
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_information_confidentiality[Information confidentiality]
+
+|4.2
+|Information persistence
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not consider information persistence aspects. This is left to the operation and maintenance.
+
+|4.3
+|Use of cryptography
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_use_of_cryptography[Use of cryptography]
+
+|===
+
+
+.Assessment of IEC 62443 FR5 Restricted data flow requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr5]]
+|===
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+
+|5.1
+|Network segmentation
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not consider deployment aspects.
+
+|5.2
+|Zone boundary protection
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not define network deployment and topology aspects.
+
+|5.3
+|General purpose person-to-person communication restrictions
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not consider person-to-person communication.
+
+|5.4
+|Application partitioning
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_application_partitioning[Application partitioning]
+
+|===
+
+.Assessment of IEC 62443 FR6 Timely response to events requirements for AAS 
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr6]]
+|===
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+
+|6.1
+|Audit log accessibility
+|&#x25cf;
+|&#x25cf;
+|P
+|xref:../requirements.adoc#_audit_log_accessibility[Audit log accessibility]
+
+|6.2
+|Continuous monitoring
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_continuous_monitoring[Continuous monitoring]
+
+|===
+
+.Assessment of IEC 62443 FR7 Resource Availability requirements for AAS
+[cols="1,1,^1,^1,^1,1"]
+[[table_assessment_fr7]]
+|===
+|FR|Title|IEC 62443-3-3 SR|IEC 62443-4-2 CR|Applicable to IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]]|IDTA 01004 clause or comment
+
+|7.1
+|Denial of service protection
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_denial_of_service_protection[Denial-of-service protection]
+
+|7.2
+|Resource management
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not define resource deployment aspects.
+
+|7.3
+|Control system backup
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not define resource deployment and operations aspects.
+
+|7.4
+|Control system recovery and reconstitution
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_aas_recovery_and_reconstitution[AAS recovery and reconstitution]
+
+|7.5
+|Emergency power
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not define network deployment aspects.
+
+|7.6
+|Network and security configuration settings
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not define network deployment aspects.
+
+|7.7
+|Least functionality
+|&#x25cf;
+|&#x25cf;
+|Y
+|xref:../requirements.adoc#_least_functionality[Least functionality]
+
+|7.8
+|Control system component inventory
+|&#x25cf;
+|&#x25cf;
+|N
+|IDTA 01001 xref:../bibliography.adoc#bib1[[1\]], IDTA 01002 xref:../bibliography.adoc#bib2[[2\]], IDTA 01003-a xref:../bibliography.adoc#bib3[[3\]] do not define deployment aspects.
+
+|===

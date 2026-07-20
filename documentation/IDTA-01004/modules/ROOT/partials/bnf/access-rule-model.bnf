@@ -1,15 +1,52 @@
 <AllAccessPermissionRules> ::=
-    ( "DEFATTRIBUTES" <ws> <StringLiteral> <ws> <AttributeGroup> <ws> )*
-    ( "DEFACLS" <ws> <StringLiteral> <ws> <ACL> <ws> )*
-    ( "DEFOBJECTS" <ws> <StringLiteral> <ws> <ObjectGroup> <ws> )*
-    ( "DEFFORMULAS" <ws> <StringLiteral> <ws> <logicalExpression> <ws> )*
-    ( <AccessPermissionRule> <ws> )*
+    <AllAccessPermissionDefs>
+    ( <AccessPermissionRule> <Ws> )*
+
+<AllAccessPermissionDefs> ::=
+    <AllAccessDefAttributes>
+    <AllAccessDefAcls>
+    <AllAccessDefObjects>
+    <AllAccessDefFormulas>
+
+<AllAccessDefAttributes> ::=
+    ( "DEFATTRIBUTES" <Ws> <StringLiteral> <Ws> <AttributeGroup> <Ws> )*
+
+<AllAccessDefAcls> ::=
+    ( "DEFACLS" <Ws> <StringLiteral> <Ws> <ACL> <Ws> )*
+
+<AllAccessDefObjects> ::=
+    ( "DEFOBJECTS" <Ws> <StringLiteral> <Ws> <ObjectGroup> <Ws> )*
+
+<AllAccessDefFormulas> ::=
+    ( "DEFFORMULAS" <Ws> <StringLiteral> <Ws> <LogicalExpression> <Ws> )*
 
 <AccessPermissionRule> ::=
-    "ACCESSRULE:" <ws>
-    ( <ACL> | <UseACL> ) <ws>
-    "OBJECTS:" <ws>
-    ( <SingleObject> <ws> )*
-    ( <UseObjectGroup> <ws> )*
-    ( ( "FORMULA:" <ws> <logicalExpression> <ws> ) | ( <UseFormula> <ws> ) )
-    ( "FILTER:" <ws> <SecurityQueryFilter> )?
+    <AccessAccessRule>
+    <AccessObjects>
+    <AccessFormula>
+    <Filter>
+
+<AccessAccessRule> ::=
+    "ACCESSRULE:" <Ws> ( <ACL> | <UseACL> ) <Ws>
+
+<AccessObjects> ::=
+    "OBJECTS:" <Ws>
+    ( <SingleObject> <Ws> )*
+    ( <UseObjectGroup> <Ws> )*
+
+<AccessFormula> ::=
+    ( "FORMULA:" <Ws> <LogicalExpression> <Ws> ) |
+    ( <UseFormula> <Ws> )
+
+<Filter> ::=
+    (
+        ( "FILTER:" <Ws> <SecurityQueryFilter> <Ws> )?
+        ( "FILTERLIST:" <Ws> ( <SecurityQueryFilter> <Ws> )* )?
+    )
+
+<SecurityQueryFilter> ::=
+    ( "FRAGMENT:" <Ws> <FieldIdentifierFragment> <Ws> )
+    (
+        ( "CONDITION:" <Ws> <LogicalExpression> <Ws> ) |
+        ( <UseFormula> <Ws> )
+    )

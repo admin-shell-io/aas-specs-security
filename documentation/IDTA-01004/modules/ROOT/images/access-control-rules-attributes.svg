@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg
+  xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'
+
+  width='1000' height='700' viewBox='0 0 1000 700'>
+
+  <style>
+    rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
+    rect, line, path { stroke-linecap: square; stroke-linejoin: rounded; }
+    path { fill: transparent; }
+    text.literal { font-family: monospace; }
+    line.ellipsis { stroke-dasharray: 1 3.5; }
+    tspan.hex { font-family: monospace; font-size: 90%; }
+    path.arrow { fill: black; }
+  </style>
+
+  <g transform='translate(40 50)'>
+    <text x='-30' y='-10'>SingleAttribute:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M260.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='70' y='10' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='135' y='25' text-anchor='middle' class='rule'>ClaimAttribute</text>
+    <rect x='70' y='40' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='135' y='55' text-anchor='middle' class='rule'>GlobalAttribute</text>
+    <rect x='60' y='70' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='135' y='85' text-anchor='middle' class='rule'>ReferenceAttribute</text>
+    <path d='M230 30 v40'/>
+    <path d='M210 80 h10 q10 0 10 -10'/>
+    <path d='M40 70 q0 10 10 10 h10'/>
+    <path d='M200 50 h20 q10 0 10 -10'/>
+    <path d='M40 40 q0 10 10 10 h20'/>
+    <path d='M230 30 q0 -10 10 -10'/>
+    <path d='M200 20 h60'/>
+    <path d='M30 20 q10 0 10 10 v40'/>
+    <path d='M10 20 h60'/>
+  </g>
+
+  <g transform='translate(40 190)'>
+    <text x='-30' y='-10'>ClaimAttribute:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M530.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='60' rx='8' ry='8' class='literal'/>
+    <text x='60' y='25' text-anchor='middle' class='literal'>CLAIM</text>
+    <rect x='110' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='135' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='180' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='190' y='25' text-anchor='middle' class='literal'>(</text>
+    <rect x='220' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='245' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='290' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='345' y='25' text-anchor='middle' class='rule'>ClaimLiteral</text>
+    <rect x='420' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='445' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='490' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='500' y='25' text-anchor='middle' class='literal'>)</text>
+    <path d='M470 20 h20'/>
+    <path d='M400 20 h20'/>
+    <path d='M270 20 h20'/>
+    <path d='M200 20 h20'/>
+    <path d='M160 20 h20'/>
+    <path d='M90 20 h20'/>
+    <path d='M510 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 270)'>
+    <text x='-30' y='-10'>GlobalAttribute:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M590.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='70' rx='8' ry='8' class='literal'/>
+    <text x='65' y='25' text-anchor='middle' class='literal'>GLOBAL</text>
+    <rect x='120' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='145' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='190' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='200' y='25' text-anchor='middle' class='literal'>(</text>
+    <rect x='230' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='255' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='335' y='10' height='20' width='90' rx='8' ry='8' class='literal'/>
+    <text x='380' y='25' text-anchor='middle' class='literal'>LOCALNOW</text>
+    <rect x='345' y='40' height='20' width='70' rx='8' ry='8' class='literal'/>
+    <text x='380' y='55' text-anchor='middle' class='literal'>UTCNOW</text>
+    <rect x='330' y='70' height='20' width='100' rx='8' ry='8' class='literal'/>
+    <text x='380' y='85' text-anchor='middle' class='literal'>CLIENTNOW</text>
+    <rect x='330' y='100' height='20' width='100' rx='8' ry='8' class='literal'/>
+    <text x='380' y='115' text-anchor='middle' class='literal'>ANONYMOUS</text>
+    <rect x='480' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='505' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='550' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='560' y='25' text-anchor='middle' class='literal'>)</text>
+    <path d='M530 20 h20'/>
+    <path d='M450 30 v70'/>
+    <path d='M430 110 h10 q10 0 10 -10'/>
+    <path d='M310 100 q0 10 10 10 h10'/>
+    <path d='M430 80 h10 q10 0 10 -10'/>
+    <path d='M310 70 q0 10 10 10 h10'/>
+    <path d='M415 50 h25 q10 0 10 -10'/>
+    <path d='M310 40 q0 10 10 10 h25'/>
+    <path d='M450 30 q0 -10 10 -10'/>
+    <path d='M425 20 h55'/>
+    <path d='M300 20 q10 0 10 10 v70'/>
+    <path d='M280 20 h55'/>
+    <path d='M210 20 h20'/>
+    <path d='M170 20 h20'/>
+    <path d='M100 20 h20'/>
+    <path d='M570 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 440)'>
+    <text x='-30' y='-10'>ReferenceAttribute:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M690.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='100' y='10' height='20' width='110' rx='8' ry='8' class='literal'/>
+    <text x='155' y='25' text-anchor='middle' class='literal'>REFERENCE(</text>
+    <rect x='230' y='10' height='20' width='50' rx='8' ry='8' class='literal'/>
+    <text x='255' y='25' text-anchor='middle' class='literal'>$aas</text>
+    <rect x='300' y='10' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='375' y='25' text-anchor='middle' class='rule'>IdentifierInstance</text>
+    <rect x='470' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='480' y='25' text-anchor='middle' class='literal'>#</text>
+    <rect x='510' y='10' height='20' width='90' rx='0' ry='0' class='rule'/>
+    <text x='555' y='25' text-anchor='middle' class='rule'>FieldsAAS</text>
+    <rect x='170' y='40' height='20' width='40' rx='8' ry='8' class='literal'/>
+    <text x='190' y='55' text-anchor='middle' class='literal'>$sm</text>
+    <rect x='230' y='40' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='305' y='55' text-anchor='middle' class='rule'>IdentifierInstance</text>
+    <rect x='400' y='40' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='410' y='55' text-anchor='middle' class='literal'>#</text>
+    <rect x='440' y='40' height='20' width='90' rx='0' ry='0' class='rule'/>
+    <text x='485' y='55' text-anchor='middle' class='rule'>FieldsSM</text>
+    <rect x='170' y='70' height='20' width='40' rx='8' ry='8' class='literal'/>
+    <text x='190' y='85' text-anchor='middle' class='literal'>$cd</text>
+    <rect x='230' y='70' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='305' y='85' text-anchor='middle' class='rule'>IdentifierInstance</text>
+    <rect x='400' y='70' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='410' y='85' text-anchor='middle' class='literal'>#</text>
+    <rect x='440' y='70' height='20' width='90' rx='0' ry='0' class='rule'/>
+    <text x='485' y='85' text-anchor='middle' class='rule'>FieldsCD</text>
+    <rect x='60' y='100' height='20' width='50' rx='8' ry='8' class='literal'/>
+    <text x='85' y='115' text-anchor='middle' class='literal'>$sme</text>
+    <rect x='130' y='100' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='205' y='115' text-anchor='middle' class='rule'>IdentifierInstance</text>
+    <rect x='300' y='100' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='310' y='115' text-anchor='middle' class='literal'>.</text>
+    <rect x='340' y='100' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='395' y='115' text-anchor='middle' class='rule'>IdShortPath</text>
+    <rect x='470' y='100' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='480' y='115' text-anchor='middle' class='literal'>#</text>
+    <rect x='510' y='100' height='20' width='90' rx='0' ry='0' class='rule'/>
+    <text x='555' y='115' text-anchor='middle' class='rule'>FieldsSME</text>
+    <rect x='620' y='100' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='630' y='115' text-anchor='middle' class='literal'>)</text>
+    <path d='M660 30 v70'/>
+    <path d='M640 110 h10 q10 0 10 -10'/>
+    <path d='M600 110 h20'/>
+    <path d='M490 110 h20'/>
+    <path d='M450 110 h20'/>
+    <path d='M320 110 h20'/>
+    <path d='M280 110 h20'/>
+    <path d='M110 110 h20'/>
+    <path d='M40 100 q0 10 10 10 h10'/>
+    <path d='M530 80 h120 q10 0 10 -10'/>
+    <path d='M420 80 h20'/>
+    <path d='M380 80 h20'/>
+    <path d='M210 80 h20'/>
+    <path d='M40 70 q0 10 10 10 h120'/>
+    <path d='M530 50 h120 q10 0 10 -10'/>
+    <path d='M420 50 h20'/>
+    <path d='M380 50 h20'/>
+    <path d='M210 50 h20'/>
+    <path d='M40 40 q0 10 10 10 h120'/>
+    <path d='M660 30 q0 -10 10 -10'/>
+    <path d='M600 20 h90'/>
+    <path d='M490 20 h20'/>
+    <path d='M450 20 h20'/>
+    <path d='M280 20 h20'/>
+    <path d='M210 20 h20'/>
+    <path d='M30 20 q10 0 10 10 v70'/>
+    <path d='M10 20 h90'/>
+  </g>
+
+  <g transform='translate(40 610)'>
+    <text x='-30' y='-10'>ClaimLiteral:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M160.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='85' y='25' text-anchor='middle' class='rule'>StringLiteral</text>
+    <path d='M140 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+</svg>

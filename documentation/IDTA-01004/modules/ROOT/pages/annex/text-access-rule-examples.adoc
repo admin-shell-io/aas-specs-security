@@ -12,6 +12,7 @@ Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, d
 
 = Examples of Access Rules in text serialization
 
+[[example-anonymous-complete-api]]
 == Allow READ access for Anonymous to complete API
 
 [source,bnf,linenums]
@@ -19,6 +20,7 @@ Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, d
 include::partial$examples/allow-read-complete-api.bnf[]
 ----
 
+[[example-anonymous-semanticids]]
 == Allow READ access for Anonymous to list of semanticIDs for submodels
 
 [source,bnf,linenums]
@@ -26,6 +28,14 @@ include::partial$examples/allow-read-complete-api.bnf[]
 include::partial$examples/allow-read-list-semanticids.bnf[]
 ----
 
+== Allow EXECUTE of API operations only if machine not-running
+
+[source,bnf,linenums]
+----
+include::partial$examples/allow-read-list-semanticids-machinestate.bnf[]
+----
+
+[[example-authenticated-users]]
 == Allow READ and UPDATE for specific authenticated users
 
 [source,bnf,linenums]
@@ -40,6 +50,7 @@ include::partial$examples/allow-read-update-users.bnf[]
 include::partial$examples/allow-read-update-submodel.bnf[]
 ----
 
+[[example-reuse-acl-object-formula]]
 == Reuse of ACL, OBJECT and FORMULA
 
 [source,bnf,linenums]
@@ -47,6 +58,7 @@ include::partial$examples/allow-read-update-submodel.bnf[]
 include::partial$examples/reuse-acl-object-formula.bnf[]
 ----
 
+[[example-business-partner-number]]
 == Example with BusinessPartnerNumber
 
 [source,bnf,linenums]
@@ -62,16 +74,33 @@ include::partial$examples/allow-read-all-users-of-company-for-submodel.bnf[]
 ----
 
 [[allow-read-submodels-id-pattern]]
-== Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData from 9:00-17:00
+[[example-time-based-submodel-id-pattern]]
+== Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData on weekdays from 09:00:00Z-17:00:00Z
 
 [source,bnf,linenums]
 ----
 include::partial$examples/allow-read-submodels-id-pattern.bnf[]
 ----
 
+== Allow only to add elements to the CertificateSet in any Submodel
+
+[source,bnf,linenums]
+----
+include::partial$examples/allow-create-only-specific.bnf[]
+----
+
+[[example-filter-statement]]
 == Example with FILTER statement
 
 [source,bnf,linenums]
 ----
 include::partial$examples/filter.bnf[]
+----
+
+[[example-reference-machine-state-filter]]
+== Example with Reference Attribute and state-dependent filtering
+
+[source,bnf,linenums]
+----
+include::partial$examples/reference-machine-state-filter.bnf[]
 ----
