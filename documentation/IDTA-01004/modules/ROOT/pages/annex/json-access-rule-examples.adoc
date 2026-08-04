@@ -12,86 +12,90 @@ Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, d
 
 = Examples of Access Rules in JSON serialization
 
-== Allow READ access for Anonymous to complete API
+For explanation of examples see xref:Annex/text-access-rule-examples.adoc[Examples in text BNF].
+
+== EXAMPLE 1: Allow READ access for Anonymous 
 
 [source,json,linenums]
 ----
 include::partial$examples/allow-read-complete-api.json[]
 ----
 
-== Allow READ access for Anonymous to list of semanticIDs for submodels
+== EXAMPLE 2: Allow READ access for Anonymous to list of semanticIDs for submodels
 
 [source,json,linenums]
 ----
 include::partial$examples/allow-read-list-semanticids.json[]
 ----
 
-== Allow EXECUTE of API operations only if machine not-running
+== EXAMPLE 3: Allow EXECUTE of API operations only if machine not-running
 
 [source,json,linenums]
 ----
 include::partial$examples/allow-read-list-semanticids-machinestate.json[]
 ----
 
-== Allow READ and UPDATE for specific authenticated users
+== EXAMPLE 4: Allow READ and UPDATE for specific authenticated users
 
 [source,json,linenums]
 ----
 include::partial$examples/allow-read-update-users.json[]
 ----
 
-== Allow READ and UPDATE for specific submodel "submodel1"
+== EXAMPLE 5: Allow READ and UPDATE for specific Submodel "submodel1"
 
 [source,json,linenums]
 ----
 include::partial$examples/allow-read-update-submodel.json[]
 ----
 
-== Reuse of ACL, OBJECT and FORMULA
+== EXAMPLE 6: Reuse of ACL, OBJECT and FORMULA
 
 [source,json,linenums]
 ----
 include::partial$examples/reuse-acl-object-formula.json[]
 ----
 
-== Example with BusinessPartnerNumber
+== EXAMPLE 7:Example for authenticated users with a specific BusinessPartnerNumber
 
 [source,json,linenums]
 ----
 include::partial$examples/bpn.json[]
 ----
 
-== Allow READ for all authenticated users of a company for submodels Nameplate and TechnicalData
+== EXAMPLE 8: Example for authenticated users of a company 
 
 [source,json,linenums]
 ----
 include::partial$examples/allow-read-all-users-of-company-for-submodel.json[]
 ----
 
-== Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData on weekdays from 09:00:00Z-17:00:00Z
+== EXAMPLE 9: Example with access constraints 
 
 [source,json,linenums]
 ----
 include::partial$examples/allow-read-submodels-id-pattern.json[]
 ----
 
-== Example with FILTER statement
+== EXAMPLE 10: Example with allowing creation within Submodel
+
+[source,json,linenums]
+----
+include::partial$examples/allow-create-only-specific.json[]
+----
+
+== EXAMPLE 11: Example with FILTER statement
 
 [source,json,linenums]
 ----
 include::partial$examples/filter.json[]
 ----
 
-== Example with Reference Attribute and state-dependent filtering
+== EXAMPLE 12: Example with Reference Attribute and state-dependent filtering
 
 [source,json,linenums]
 ----
 include::partial$examples/reference-machine-state-filter.json[]
 ----
 
-== Allow only to add elements to the CertificateSet in any Submodel
 
-[source,json,linenums]
-----
-include::partial$examples/allow-create-only-specific.json[]
-----
