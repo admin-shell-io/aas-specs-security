@@ -13,7 +13,10 @@ Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, d
 = Examples of Access Rules in text serialization
 
 [[example-anonymous-complete-api]]
-== Allow READ access for Anonymous to complete API
+== EXAMPLE 1: Allow READ access for Anonymous 
+
+For public (ANONYMOUS):
+Allow READ via complete API.
 
 [source,bnf,linenums]
 ----
@@ -21,14 +24,22 @@ include::partial$examples/allow-read-complete-api.bnf[]
 ----
 
 [[example-anonymous-semanticids]]
-== Allow READ access for Anonymous to list of semanticIDs for submodels
+== EXAMPLE 2: Allow READ access for Anonymous to list of semanticIDs for submodels
+
+For public (ANONYMOUS):
+
+Allow READ access via complete API but restricted to Submodels with semanticId "SemanticID-Nameplate" or "SemanticID-TechnicalData". 
 
 [source,bnf,linenums]
 ----
 include::partial$examples/allow-read-list-semanticids.bnf[]
 ----
 
-== Allow EXECUTE of API operations only if machine not-running
+== EXAMPLE 3: Allow EXECUTE of API operations only if machine not-running
+
+For public (ANONYMOUS):
+
+Allow EXECUTE of API operations only if machine is not running (value of SubmodelElement with idShort "machineState" not equal to "not-running").
 
 [source,bnf,linenums]
 ----
@@ -36,14 +47,22 @@ include::partial$examples/allow-read-list-semanticids-machinestate.bnf[]
 ----
 
 [[example-authenticated-users]]
-== Allow READ and UPDATE for specific authenticated users
+== EXAMPLE 4: Allow READ and UPDATE for specific authenticated users
+
+For users authenticated via "email", "email" shall be "user1@company1.com" or "user2@company2.com":
+
+Allow READ and UPDATE of Submodels with semanticId "SemanticID-Nameplate" or "SemanticID-TechnicalData".
 
 [source,bnf,linenums]
 ----
 include::partial$examples/allow-read-update-users.bnf[]
 ----
 
-== Allow READ and UPDATE for specific submodel "submodel1"
+== EXAMPLE 5: Allow READ and UPDATE for specific Submodel "submodel1"
+
+For users authenticated via "email", "email" shall be "user1@company1.com":
+
+Allow READ and UPDATE for specific Submodel with "id" "https://submodel1.company1.com".
 
 [source,bnf,linenums]
 ----
@@ -51,7 +70,11 @@ include::partial$examples/allow-read-update-submodel.bnf[]
 ----
 
 [[example-reuse-acl-object-formula]]
-== Reuse of ACL, OBJECT and FORMULA
+== EXAMPLE 6: Reuse of ACL, OBJECT and FORMULA
+
+For users authenticated via "email", "email" element of "allowSubjectGroup1", i.e. "user1@company1.com" or "user2@company2.com":
+
+Allow READ and UPDATE for all Properties as defined in "Properties", i.e. for Submodel with id "https://s1.com" the SubmodelElements p1 and p2 with IdShort-Path "https://s1.com.p1" or "https://s1.com.p2" are allowed to be read and updated.
 
 [source,bnf,linenums]
 ----
@@ -59,14 +82,27 @@ include::partial$examples/reuse-acl-object-formula.bnf[]
 ----
 
 [[example-business-partner-number]]
-== Example with BusinessPartnerNumber
+== EXAMPLE 7:Example for authenticated users with a specific BusinessPartnerNumber
+
+For users authenticated via "BusinessPartnerNumber", "BusinessPartnerNumber" shall be "BPN1234":
+
+Allow READ via complete API.
+
+
+====
+Note: Business Partner Numbers are defined in link:https://catenax-ev.github.io/docs/next/standards/CX-0010-BusinessPartnerNumber[CX-0010 of Catena-X].
+====
 
 [source,bnf,linenums]
 ----
 include::partial$examples/bpn.bnf[]
 ----
 
-== Allow READ for all authenticated users of a company for submodels Nameplate and TechnicalData
+== EXAMPLE 8: Example for authenticated users of a company 
+
+For users authenticated via "email", "email" shall belong to domain "@company.com":
+
+Allow READ of Submodels with semanticId "SemanticID-Nameplate" or "SemanticID-TechnicalData".
 
 [source,bnf,linenums]
 ----
@@ -75,14 +111,25 @@ include::partial$examples/allow-read-all-users-of-company-for-submodel.bnf[]
 
 [[allow-read-submodels-id-pattern]]
 [[example-time-based-submodel-id-pattern]]
-== Allow READ to all Submodels with ID pattern for all authenticated users of a company for submodels with Nameplate and TechnicalData on weekdays from 09:00:00Z-17:00:00Z
+== EXAMPLE 9: Example with access constraints 
+
+
+For users authenticated via "companyName", "companyName" shall be "company1-name":
+
+Allow READ of Submodels with semanticId "SemanticID-Nameplate" or "SemanticID-TechnicalData" if the Submodel/id starts with "https://company1.com/" but only at working days (Monday to Friday) between 9:00 and 17:00 Utc.
+
+
 
 [source,bnf,linenums]
 ----
 include::partial$examples/allow-read-submodels-id-pattern.bnf[]
 ----
 
-== Allow only to add elements to the CertificateSet in any Submodel
+== EXAMPLE 10: Example with allowing creation within Submodel
+
+For users authenticated with role "person with legitimate interest":
+
+Allow CREATE of SubmodelElements within Submodels with semanticId "CertificateSet".
 
 [source,bnf,linenums]
 ----
@@ -90,7 +137,30 @@ include::partial$examples/allow-create-only-specific.bnf[]
 ----
 
 [[example-filter-statement]]
-== Example with FILTER statement
+== EXAMPLE 11: Example with FILTER statement
+
+For users authenticated via "BusinessPartnerNumber", "BusinessPartnerNumber" shall be "BPNL00000000000A":
+
+Allow READ of AssetAdministrationShellDescriptors containing the following specificAssetIds:
+
+* there exists a specificAssetId with name "manufacturerPartId" and  value "99991" and  externalSubjectId  "PUBLIC_READABLE"
+* there additionally exists a specificAssetId with name "customerPartId" and value "ACME001"
+
+Not all specificAssetIds of the AssetAdministrationShellDescriptors fulfilling theses constraints are returned but only 
+
+* the two specificAssetIds above used for selecting the AssetAdministrationShellDescriptors
+* and additionally all those specificAssetIds that are public, i.e. with externalSubjectId equal to "PUBLIC_READABLE"
+* and all specificAssetIds related to the autenticated user, i.e. those with externalSubjectId equal to the BusinessPartnerNumber" of the user
+* and all specificAssetIds with name "partInstanceid"
+
+
+====
+Note: the value "PUBLIC_READABLE" is not standardized in IDTA-01001.
+====
+
+====
+Note: This is a typical example for an access rule as defined in link:https://catenax-ev.github.io/docs/next/standards/CX-0127-IndustryCorePartInstance#214-digital-twins-and-specific-asset-ids[Catena-X].
+====
 
 [source,bnf,linenums]
 ----
@@ -98,7 +168,19 @@ include::partial$examples/filter.bnf[]
 ----
 
 [[example-reference-machine-state-filter]]
-== Example with Reference Attribute and state-dependent filtering
+== EXAMPLE 12: Example with Reference Attribute and state-dependent filtering
+
+For users authenticated with role "maintenance":
+
+Allow READ of maintenance documents within Submodel with id "SubmodelID-Maintenance" 
+(the SubmodelElement with idShort-path "SubmodelID-Maintenance.maintenanceDocuments") 
+but only if machine is running (value of SubmodelElement with idShort-Path "SubmodelID-OperationalData.machineState" not equal to "running" 
+within the Submodel with id "SubmodelID-OperationalData").
+
+Not all maintenance documents are returned but only the maintenance document for the required machine state "running" (i.e. maintenanceDocuments[].requiredMachineState "running")
+
+In case the machine is not running all maintenance documents are returned (no FILTER defined). 
+
 
 [source,bnf,linenums]
 ----
