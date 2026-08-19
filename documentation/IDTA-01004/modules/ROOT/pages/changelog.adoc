@@ -11,6 +11,13 @@ SPDX-License-Identifier: CC-BY-4.0
 [[change-notes]]
 = Change Notes
 
+== Changes w.r.t. V3.2 vs. V3.1
+
+Minor Changes:
+
+* Improved documentation of access rule examples
+* new access rule examples for DPP related rules, access rule 10 updated to better reflect the purpose
+
 == Changes w.r.t. V3.1 vs. V3.0.2
 
 Major Changes:
