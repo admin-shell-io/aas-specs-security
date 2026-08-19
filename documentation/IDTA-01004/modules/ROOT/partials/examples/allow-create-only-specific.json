@@ -15,7 +15,7 @@
         },
         "OBJECTS": [
           {
-            "IDENTIFIABLE": "$sm(\"*\")"
+            "ROUTE": "/submodels/*/submodel-elements"
           }
         ],
         "FORMULA": {
@@ -39,6 +39,16 @@
                 },
                 {
                   "$strVal": "CertificateSet"
+                }
+              ]
+            }
+            {
+              "$eq": [
+                {
+                  "$field": "$sm#semanticId"
+                },
+                {
+                  "$strVal": "semanticId-Ciruclarity"
                 }
               ]
             }

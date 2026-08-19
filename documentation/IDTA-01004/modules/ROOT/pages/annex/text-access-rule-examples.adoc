@@ -129,7 +129,7 @@ include::partial$examples/allow-read-submodels-id-pattern.bnf[]
 
 For users authenticated with role "person with legitimate interest":
 
-Allow CREATE of SubmodelElements within Submodels with semanticId "CertificateSet".
+Allow CREATE of SubmodelElements with semanticId "CertificateSet" within Submodels with semanticId "semanticId-Circularity".
 
 [source,bnf,linenums]
 ----
