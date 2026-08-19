@@ -150,8 +150,8 @@ Not all specificAssetIds of the AssetAdministrationShellDescriptors fulfilling t
 
 * the two specificAssetIds above used for selecting the AssetAdministrationShellDescriptors
 * and additionally all those specificAssetIds that are public, i.e. with externalSubjectId equal to "PUBLIC_READABLE"
-* and all specificAssetIds related to the autenticated user, i.e. those with externalSubjectId equal to the BusinessPartnerNumber" of the user
-* and all specificAssetIds with name "partInstanceid"
+* and all specificAssetIds related to the authenticated user, i.e. those with externalSubjectId equal to the BusinessPartnerNumber" of the user
+* and all specificAssetIds with name "partInstanceId"
 
 
 ====
