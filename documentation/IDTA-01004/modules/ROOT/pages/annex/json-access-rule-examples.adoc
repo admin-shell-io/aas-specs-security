@@ -12,7 +12,7 @@ Plattform Industrie 4.0; Anna Salari, Publik. Agentur für Kommunikation GmbH, d
 
 = Examples of Access Rules in JSON serialization
 
-For explanation of examples see xref:text-access-rule-examples.adoc[Examples in text BNF]..
+For an explanation of the examples, see xref:annex/text-access-rule-examples.adoc[Examples in text BNF].
 
 == EXAMPLE 1: Allow READ access for Anonymous 
 
@@ -97,5 +97,4 @@ include::partial$examples/filter.json[]
 ----
 include::partial$examples/reference-machine-state-filter.json[]
 ----
-
 
