@@ -29,22 +29,29 @@ ACCESSRULE:
 
 ACCESSRULE:
   ATTRIBUTES:
-    CLAIM("PersonsWithLegitimiteInterest")
+      CLAIM("Role")
   RIGHTS: READ
   ACCESS: ALLOW
   OBJECTS:
     USEOBJECTS "BatteryPassport-Nameplate-LegitimiteInterest-DataPoints"
   FORMULA:
-    $sm#semanticId $eq "semanticId-BatteryNameplate"
-
+   $and(
+      CLAIM("Role") $eq "person with legitimate interest",
+      $sm#semanticId $eq "semanticId-BatteryNameplate"  
+    )
   
 ACCESSRULE:
   ATTRIBUTES:
-    CLAIM("PersonsWithLegitimiteInterest")
+      CLAIM("Role")
   RIGHTS: READ UPDATE
   ACCESS: ALLOW
   OBJECTS:
     USEOBJECTS "BatteryPassport-Nameplate-LegitimiteInterest-DataPoints-Update"
   FORMULA:
-    $sm#semanticId $eq "semanticId-BatteryNameplate"  
+   $and(
+      CLAIM("Role") $eq "person with legitimate interest",
+      $sm#semanticId $eq "semanticId-BatteryNameplate"  
+    )
+  
+
      
