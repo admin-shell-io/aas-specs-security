@@ -131,6 +131,10 @@ For users authenticated with role "person with legitimate interest":
 
 Allow CREATE of SubmodelElements with semanticId "CertificateSet" within Submodels with semanticId "semanticId-Circularity".
 
+====
+Note: This is a typical example for an access rule for digital product passport related updates by recyclers.
+====
+
 [source,bnf,linenums]
 ----
 include::partial$examples/allow-create-only-specific.bnf[]
