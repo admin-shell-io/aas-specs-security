@@ -160,6 +160,7 @@ def validate_json_artifacts(validation: Validation) -> dict[str, Any] | None:
 
     validate_json_refs(loaded_json, validation)
     validate_json_examples(loaded_json, validation)
+    validate_object_group_smoke_tests(loaded_json, validation)
 
     common_schema = loaded_json.get(JSON_DIR / "aas-queries-and-access-rules-schema.json")
     if isinstance(common_schema, dict):
@@ -215,6 +216,43 @@ def validate_json_examples(loaded_json: dict[Path, Any], validation: Validation)
                 location = "/".join(str(part) for part in error.absolute_path) or "<root>"
                 validation.fail(path, f"{location}: {error.message}")
     print(f"OK: validated {len(example_json_files())} JSON examples against {len(validators)} schemas")
+
+
+def validate_object_group_smoke_tests(loaded_json: dict[Path, Any], validation: Validation) -> None:
+    """Ensure object groups can combine direct objects and reusable groups.
+
+    The BNF permits both <SingleObject> and <UseObjectGroup> entries in the
+    same <ObjectGroup>. Keep the standalone and consolidated schemas aligned.
+    """
+    instance = {
+        "AllAccessPermissionRules": {
+            "DEFOBJECTS": [
+                {
+                    "name": "mixed-object-group",
+                    "objects": [
+                        {"REFERABLE": '$sme("*").DateOfPuttingIntoService'},
+                    ],
+                    "USEOBJECTS": [
+                        "public-data-points",
+                        "updated-data-points",
+                    ],
+                }
+            ],
+            "rules": [],
+        }
+    }
+    schema_paths = [
+        JSON_DIR / "aas-queries-and-access-rules-schema.json",
+        JSON_DIR / "access-rule-model.json",
+    ]
+    for path in schema_paths:
+        schema = loaded_json.get(path)
+        if not isinstance(schema, dict):
+            continue
+        validator = schema_validator(path, schema, "#")
+        if not validator.is_valid(instance):
+            validation.fail(path, "DEFOBJECTS does not allow mixed objects and USEOBJECTS")
+    print(f"OK: checked mixed object groups against {len(schema_paths)} schemas")
 
 
 def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], validation: Validation) -> None:
