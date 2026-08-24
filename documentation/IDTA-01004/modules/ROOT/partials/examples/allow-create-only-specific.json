@@ -41,14 +41,14 @@
                   "$strVal": "CertificateSet"
                 }
               ]
-            }
+            },
             {
               "$eq": [
                 {
                   "$field": "$sm#semanticId"
                 },
                 {
-                  "$strVal": "semanticId-Ciruclarity"
+                  "$strVal": "semanticId-Circularity"
                 }
               ]
             }
