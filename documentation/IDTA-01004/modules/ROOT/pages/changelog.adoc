@@ -17,6 +17,11 @@ Bugfixes:
 
 * fix: Aligned the JSON Schema for `DEFOBJECTS` with the BNF grammar so object groups can combine direct `REFERABLE` objects and `USEOBJECTS` references.
 
+Minor Changes:
+
+* Improved documentation of access rule examples
+* new access rule examples for DPP related rules, access rule 10 updated to better reflect the purpose
+
 == Changes w.r.t. V3.1 vs. V3.0.2
 
 Major Changes:
