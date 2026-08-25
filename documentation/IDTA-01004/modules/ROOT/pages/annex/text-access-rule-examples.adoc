@@ -39,7 +39,7 @@ include::partial$examples/allow-read-list-semanticids.bnf[]
 
 For public (ANONYMOUS):
 
-Allow EXECUTE of API operations only if machine is not running (value of SubmodelElement with idShort "machineState" not equal to "not-running").
+Allow EXECUTE of API operations only if machine is not running (value of SubmodelElement with idShort "machineState" equal to "not-running").
 
 [source,bnf,linenums]
 ----
@@ -150,8 +150,8 @@ Not all specificAssetIds of the AssetAdministrationShellDescriptors fulfilling t
 
 * the two specificAssetIds above used for selecting the AssetAdministrationShellDescriptors
 * and additionally all those specificAssetIds that are public, i.e. with externalSubjectId equal to "PUBLIC_READABLE"
-* and all specificAssetIds related to the autenticated user, i.e. those with externalSubjectId equal to the BusinessPartnerNumber" of the user
-* and all specificAssetIds with name "partInstanceid"
+* and all specificAssetIds related to the authenticated user, i.e. those with externalSubjectId equal to the BusinessPartnerNumber" of the user
+* and all specificAssetIds with name "partInstanceId"
 
 
 ====
@@ -174,8 +174,8 @@ For users authenticated with role "maintenance":
 
 Allow READ of maintenance documents within Submodel with id "SubmodelID-Maintenance" 
 (the SubmodelElement with idShort-path "SubmodelID-Maintenance.maintenanceDocuments") 
-but only if machine is running (value of SubmodelElement with idShort-Path "SubmodelID-OperationalData.machineState" not equal to "running" 
-within the Submodel with id "SubmodelID-OperationalData").
+but only if machine is running (value of SubmodelElement with idShort-Path "SubmodelID-OperationalData.machineState" equal to "running" 
+within the Submodel with ID "SubmodelID-OperationalData").
 
 Not all maintenance documents are returned but only the maintenance document for the required machine state "running" (i.e. maintenanceDocuments[].requiredMachineState "running")
 
@@ -192,12 +192,12 @@ include::partial$examples/reference-machine-state-filter.bnf[]
 == EXAMPLE 13: Example for access of DPP data points
 
 Delegated acts for digital product passport distinguish between different access roles. 
-For the Battery Passport there are for example "public", "persons with legitimite interest", "Notified bodies, market surveillance authorities and the Commission" or "persons with a legitimate interest and the Commission" (see BatteryPassport-ready DataAttribute Longlist V1.3).
+For the Battery Passport there are for example "public", "persons with legitimate interest", "Notified bodies, market surveillance authorities and the Commission" or "persons with a legitimate interest and the Commission" (see BatteryPassport-ready DataAttribute Longlist V1.3).
 
 "public" has the same semantics as "ANONYMOUS" in AAS.
 The "battery category" or "battery mass" for example are allowed to be accessed by the public.
 
-In contrast "DateOfPuttingIntoService" is not made available to the public but only to persons with legitimite interest.
+In contrast "DateOfPuttingIntoService" is not made available to the public but only to persons with legitimate interest.
 Of course a person with legitimate interest can also access public data.
 
 The example proposes to add access rules per Submodel because it cannot be guaranteed that the idShort of properties are unique across different Submodels.
