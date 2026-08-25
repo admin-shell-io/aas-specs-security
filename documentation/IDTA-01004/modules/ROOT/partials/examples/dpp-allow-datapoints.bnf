@@ -8,10 +8,10 @@ DEFOBJECTS "BatteryPassport-TechnicalData-LegitimateInterest-DataPoints"
   USEOBJECTS "BatteryPassport-TechnicalData-Public-DataPoints"
   ...
 
-DEFOBJECTS "BatteryPassport-Nameplate-LegitimiteInterest-DataPoints-Update"
+DEFOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update"
    ...
 
-DEFOBJECTS "BatteryPassport-Nameplate-LegitimiteInterest-DataPoints"
+DEFOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints"
   USEOBJECTS "BatteryPassport-Nameplate-Public-DataPoints"
   USEOBJECTS "BatteryPassport-Nameplate-LegitimiteInterest-DataPoints-Update"
   REFERABLE $sme("*").DateOfPuttingIntoService
