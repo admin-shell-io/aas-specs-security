@@ -13,6 +13,10 @@ SPDX-License-Identifier: CC-BY-4.0
 
 == Changes w.r.t. V3.2 vs. V3.1
 
+Bugfixes:
+
+* fix: Aligned the JSON Schema for `DEFOBJECTS` with the BNF grammar so object groups can combine direct `REFERABLE` objects and `USEOBJECTS` references.
+
 Minor Changes:
 
 * Improved documentation of access rule examples
