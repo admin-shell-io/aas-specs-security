@@ -255,7 +255,7 @@ Table <<table-acl>> describes the details of <ACL>.
 |Description
 
 |ATTRIBUTES:
-| List of ABAC attributes that the access control list depends on. The list contains definitions for individual attributes or pre-defined attribute groups introduced with DEFATTRIBUTES. Attributes are described in <<attributes,Attributes>>.
+| List of ABAC attributes that the access control list depends on. The list contains definitions for individual attributes or pre-defined attribute groups introduced with DEFATTRIBUTES. Attributes are described in <<attributes,Attributes>>. The explicit list communicates which subject attributes an ACL requires, allowing the PIP or token issuer to determine the required claims without parsing the FORMULA. It is not a declaration list for every operand: server-provided GLOBAL operands and model REFERENCE operands may be used directly in the FORMULA without being repeated in ATTRIBUTES.
 
 |RIGHTS:
 | Enumeration of access rights subject to this access control list. Table <<table-rights-to-verbs>> describes the possible access rights, their semantics, and how they apply to the interface operations defined by the AAS API xref:bibliography.adoc#bib2[[2\]].

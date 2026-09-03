@@ -19,6 +19,7 @@ Bugfixes:
 
 Minor Changes:
 
+* Clarified that ATTRIBUTES communicates required subject claims to the PIP or token issuer without declaring every GLOBAL or REFERENCE operand used by a FORMULA [#97](https://github.com/admin-shell-io/aas-specs-security/issues/97).
 * Improved documentation of access rule examples
 * new access rule examples for DPP related rules, access rule 10 updated to better reflect the purpose
 
