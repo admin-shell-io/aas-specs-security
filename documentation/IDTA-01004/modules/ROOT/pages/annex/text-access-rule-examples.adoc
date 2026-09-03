@@ -190,3 +190,36 @@ In case the machine is not running all maintenance documents are returned (no FI
 ----
 include::partial$examples/reference-machine-state-filter.bnf[]
 ----
+
+[[example-nested-claim-path]]
+== EXAMPLE 13: Nested and multi-valued access-token claims
+
+For a user whose access token contains the role `admin` in the nested
+`/realm_access/roles` string array, whose department name is `engineering`,
+and whose assurance level is at least `3`:
+
+[source,json]
+----
+{
+  "realm_access": {
+    "roles": ["reader", "admin"]
+  },
+  "department": {
+    "name": "engineering"
+  },
+  "assurance": {
+    "level": 3
+  }
+}
+----
+
+Allow READ access to a `departmentData` SubmodelElement when its value equals
+the department from the access token. The role uses exact array membership,
+the department uses both literal equality and an explicitly string-cast
+FieldIdentifier comparison, and the assurance level is explicitly cast to a
+number before the ordered comparison.
+
+[source,bnf,linenums]
+----
+include::partial$examples/nested-claim-path.bnf[]
+----

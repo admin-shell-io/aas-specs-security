@@ -161,6 +161,7 @@ def validate_json_artifacts(validation: Validation) -> dict[str, Any] | None:
     validate_json_refs(loaded_json, validation)
     validate_json_examples(loaded_json, validation)
     validate_object_group_smoke_tests(loaded_json, validation)
+    validate_claim_path_schema_parity(loaded_json, validation)
 
     common_schema = loaded_json.get(JSON_DIR / "aas-queries-and-access-rules-schema.json")
     if isinstance(common_schema, dict):
@@ -255,6 +256,42 @@ def validate_object_group_smoke_tests(loaded_json: dict[Path, Any], validation: 
     print(f"OK: checked mixed object groups against {len(schema_paths)} schemas")
 
 
+def validate_claim_path_schema_parity(loaded_json: dict[Path, Any], validation: Validation) -> None:
+    """Keep RFC 6901 pointer validation aligned in both access-rule schemas."""
+    cases = [
+        ("/realm_access/roles", True),
+        ("/a~1b/m~0n", True),
+        ("/c%d/g|h", True),
+        ("/Größe/équipe", True),
+        ('/k"l/i\\j', True),
+        ("/a~01b", True),
+        ("", False),
+        ("realm_access/roles", False),
+        ("/bad~2escape", False),
+        ("/raw~escape", False),
+    ]
+    schema_paths = [
+        JSON_DIR / "aas-queries-and-access-rules-schema.json",
+        JSON_DIR / "access-rule-model.json",
+    ]
+
+    checked = 0
+    for path in schema_paths:
+        schema = loaded_json.get(path)
+        if not isinstance(schema, dict):
+            continue
+        validator = definition_validator(path, schema, "attributeItem")
+        for pointer, expected in cases:
+            checked += 1
+            actual = validator.is_valid({"CLAIMPATH": pointer})
+            if actual != expected:
+                validation.fail(
+                    path,
+                    f"CLAIMPATH parity case {pointer!r}: expected valid={expected}, got {actual}",
+                )
+    print(f"OK: ran {checked} CLAIMPATH schema parity tests")
+
+
 def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], validation: Validation) -> None:
     cases = [
         ("FieldIdentifier", "$sm#supplementalSemanticIds[]", True),
@@ -268,6 +305,17 @@ def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], valid
         ("ReferenceIdentifier", "$sme(\"SubmodelID\").machineState#value", True),
         ("ReferenceIdentifier", "$sm#id", False),
         ("ReferenceIdentifier", "$sm(\"SubmodelID\")#martinwarhier", False),
+        ("attributeItem", {"CLAIMPATH": "/realm_access/roles"}, True),
+        ("attributeItem", {"CLAIMPATH": "/a~1b/m~0n"}, True),
+        ("attributeItem", {"CLAIMPATH": "/roles/0"}, True),
+        ("attributeItem", {"CLAIMPATH": "/c%d/g|h"}, True),
+        ("attributeItem", {"CLAIMPATH": "/Größe/équipe"}, True),
+        ("attributeItem", {"CLAIMPATH": '/k"l/i\\j'}, True),
+        ("attributeItem", {"CLAIMPATH": "/a~01b"}, True),
+        ("attributeItem", {"CLAIMPATH": "realm_access/roles"}, False),
+        ("attributeItem", {"CLAIMPATH": ""}, False),
+        ("attributeItem", {"CLAIMPATH": "/bad~2escape"}, False),
+        ("attributeItem", {"CLAIMPATH": "/raw~escape"}, False),
         ("timeLiteralPattern", "09:00:00Z", True),
         ("timeLiteralPattern", "09:00:30Z", True),
         ("timeLiteralPattern", "09:00:30.123Z", True),
@@ -293,6 +341,71 @@ def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], valid
         ("logicalExpression", {"$eq": [{"$boolean": True}, {"$boolean": False}]}, True),
         ("logicalExpression", {"$gt": [{"$boolean": True}, {"$boolean": False}]}, False),
         ("logicalExpression", {"$boolCast": {"$strVal": "true"}}, True),
+        (
+            "logicalExpression",
+            {"$eq": [{"$attribute": {"CLAIMPATH": "/department/name"}}, {"$strVal": "engineering"}]},
+            True,
+        ),
+        (
+            "logicalExpression",
+            {"$eq": [{"$strVal": "engineering"}, {"$attribute": {"CLAIMPATH": "/department/name"}}]},
+            True,
+        ),
+        (
+            "logicalExpression",
+            {"$ne": [{"$attribute": {"CLAIMPATH": "/department/name"}}, {"$strVal": "engineering"}]},
+            False,
+        ),
+        (
+            "logicalExpression",
+            {"$eq": [{"$attribute": {"CLAIMPATH": "/department/name"}}, {"$field": "$sme#value"}]},
+            False,
+        ),
+        (
+            "logicalExpression",
+            {"$eq": [{"$attribute": {"CLAIMPATH": "/department/name"}}, {"$strCast": {"$field": "$sme#value"}}]},
+            True,
+        ),
+        (
+            "logicalExpression",
+            {"$contains": [{"$attribute": {"CLAIMPATH": "/realm_access/roles"}}, {"$strVal": "admin"}]},
+            True,
+        ),
+        (
+            "logicalExpression",
+            {"$contains": [{"$strVal": "admin"}, {"$attribute": {"CLAIMPATH": "/realm_access/roles"}}]},
+            False,
+        ),
+        (
+            "logicalExpression",
+            {"$contains": [{"$attribute": {"CLAIMPATH": "/realm_access/roles"}}, {"$strCast": {"$field": "$sme#value"}}]},
+            True,
+        ),
+        (
+            "logicalExpression",
+            {"$regex": [{"$attribute": {"CLAIMPATH": "/department/name"}}, {"$strVal": "eng.*"}]},
+            False,
+        ),
+        (
+            "logicalExpression",
+            {"$regex": [{"$strCast": {"$attribute": {"CLAIMPATH": "/department/name"}}}, {"$strVal": "eng.*"}]},
+            True,
+        ),
+        (
+            "logicalExpression",
+            {"$ge": [{"$numCast": {"$attribute": {"CLAIMPATH": "/assurance/level"}}}, {"$numVal": 3}]},
+            True,
+        ),
+        (
+            "logicalExpression",
+            {"$eq": [{"$attribute": {"CLAIMPATH": "/assurance/level"}}, {"$numVal": 3}]},
+            False,
+        ),
+        (
+            "logicalExpression",
+            {"$eq": [{"$dateTimeCast": {"$attribute": {"CLAIMPATH": "/validUntil"}}}, {"$dateTimeVal": "2026-06-30T09:00:00Z"}]},
+            True,
+        ),
         (
             "logicalExpression",
             {"$eq": [{"$dateTimeCast": {"$strVal": "2026-06-30T09:00:00Z"}}, {"$dateTimeVal": "2026-06-30T09:00:00Z"}]},
@@ -446,14 +559,15 @@ def validate_bnf_grammar_files(validation: Validation) -> None:
 
 def extract_function_calls(text: str, function_name: str) -> list[str]:
     calls: list[str] = []
-    needle = f"{function_name}("
+    call_pattern = re.compile(rf"\b{re.escape(function_name)}\s*\(")
     cursor = 0
     while True:
-        start = text.find(needle, cursor)
-        if start < 0:
+        match = call_pattern.search(text, cursor)
+        if match is None:
             return calls
 
-        index = start + len(needle)
+        argument_start = match.end()
+        index = argument_start
         depth = 1
         in_string = False
         while index < len(text):
@@ -465,7 +579,7 @@ def extract_function_calls(text: str, function_name: str) -> list[str]:
             elif not in_string and char == ")":
                 depth -= 1
                 if depth == 0:
-                    calls.append(text[start + len(needle) : index].strip())
+                    calls.append(text[argument_start:index].strip())
                     cursor = index + 1
                     break
             index += 1
@@ -497,6 +611,7 @@ def validate_bnf_examples(common_schema: dict[str, Any], validation: Validation)
             "ReferableIdentifier",
             "DescriptorIdentifier",
             "ReferenceIdentifier",
+            "claimPathAttributeItem",
         ]
     }
 
@@ -511,6 +626,7 @@ def validate_bnf_examples(common_schema: dict[str, Any], validation: Validation)
         text = path.read_text(encoding="utf-8")
         validate_balanced_delimiters(path, text, validation)
         validate_bnf_example_identifiers(path, text, validators, validation)
+        validate_bnf_example_claim_paths(path, text, validators["claimPathAttributeItem"], validation)
 
     print(f"OK: checked {len(example_bnf_files())} BNF examples")
 
@@ -550,6 +666,28 @@ def validate_bnf_example_identifiers(
         if "(" in value:
             continue
         validate_string_with_definition(path, value, "FieldIdentifier", validators, validation)
+
+
+def validate_bnf_example_claim_paths(
+    path: Path,
+    text: str,
+    validator: Draft7Validator,
+    validation: Validation,
+) -> None:
+    for literal in extract_function_calls(text, "CLAIMPATH"):
+        try:
+            pointer = json.loads(literal)
+        except json.JSONDecodeError as exc:
+            validation.fail(path, f"CLAIMPATH argument is not a valid JSON string: {literal!r}: {exc.msg}")
+            continue
+
+        if not isinstance(pointer, str):
+            validation.fail(path, f"CLAIMPATH argument is not a JSON string: {literal!r}")
+            continue
+
+        errors = list(validator.iter_errors({"CLAIMPATH": pointer}))
+        if errors:
+            validation.fail(path, f"invalid CLAIMPATH {pointer!r}: {errors[0].message}")
 
 
 def main() -> int:

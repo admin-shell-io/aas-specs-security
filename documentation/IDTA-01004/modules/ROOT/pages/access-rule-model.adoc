@@ -379,16 +379,21 @@ image::access-control-rules-attributes.svg[width=642]
 Table <<table-attribute-types>> describes the available ABAC attribute types.
 
 [[table-attribute-types]]
-.<ClaimAttribute>, <GlobalAttribute> and <ReferenceAttribute>
+.<ClaimAttribute>, <ClaimPathAttribute>, <GlobalAttribute> and <ReferenceAttribute>
 [cols="1,3",options="header"]
 |===
 |Attribute enumeration
 |Description
 
 |`"CLAIM"`
-|ABAC attribute of the subject/requestor provided as a claim in the access token to the AAS interface (see xref:access-rule-model.adoc#access-tokens[Access token]).
+|ABAC attribute of the subject/requestor provided as a top-level claim in the access token to the AAS interface (see xref:access-rule-model.adoc#access-tokens[Access token]). The <ClaimLiteral> identifies the top-level claim by its member name. When used without a cast as a <StringOperand>, the selected claim value shall be a JSON string.
 
 EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-authenticated-users[authenticated users] and xref:annex/text-access-rule-examples.adoc#example-business-partner-number[BusinessPartnerNumber].
+
+|`"CLAIMPATH"`
+|ABAC attribute selected from the verified JWT Claims Set with a non-empty JSON Pointer defined by https://www.rfc-editor.org/rfc/rfc6901.html[RFC 6901]. The text representation encodes the pointer as a JSON string; quotation mark, reverse solidus, and control characters use JSON escaping, while pointer separators are written as `/`. A <ClaimPathAttribute> can select any JSON value, including a nested scalar, object, or complete array; its value type is determined only after the pointer is resolved. It is not JSONPath and the URI-fragment form beginning with `#` shall not be used.
+
+EXAMPLE `CLAIMPATH("/realm_access/roles")` selects the `roles` value in the nested `realm_access` object. See xref:annex/text-access-rule-examples.adoc#example-nested-claim-path[Nested and multi-valued access-token claims].
 
 |`"GLOBAL"`
 |Global/environment condition available to the AAS interface, e.g., time. 
@@ -400,6 +405,12 @@ EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-authenticated-user
 
 Single Attributes are either claims from an Access Token provided by an Identity Provider, global attributes like actual DATETIME or references to a model field, e.g. to a SubmodelElement property for a machine state.
 An Attribute Group defines a list of single attributes and/or a list of names of other attribute groups.
+
+A <ClaimAttribute> and a <ClaimPathAttribute> are selectors, not declarations of the runtime type of the selected JSON value. <ClaimAttribute> selects one top-level member by its member name. <ClaimPathAttribute> shall be evaluated against the root of the verified JWT Claims Set. JSON Pointer reference tokens shall be decoded and evaluated as specified by RFC 6901. In particular, `~1` represents `/`, `~0` represents `~`, object member names are compared without Unicode normalization, and array indices use zero-based decimal notation without leading zeros. A pointer containing an invalid escape, a pointer that does not resolve, the `-` array token, or a leading-zero token applied to an array does not resolve to an attribute value.
+
+The ATTRIBUTES section declares the attributes that a formula may use; declaration alone does not require a claim to be present. An attribute is resolved when its occurrence is evaluated by the formula. If a <ClaimAttribute> or <ClaimPathAttribute> is absent, does not resolve, resolves to `null`, or has a JSON type that is not accepted by the consuming operation, that operation shall be indeterminate. The enclosing logical expression shall handle that result according to the three-valued logic defined in <<formulas>>.
+
+Implementations shall make claims available to attribute evaluation only after all applicable access-token validation has succeeded. This includes cryptographic validation with an explicitly allowed algorithm and validation of the issuer, audience, temporal claims, and token type or purpose according to https://www.rfc-editor.org/rfc/rfc8725.html[RFC 8725] and the applicable access-token profile, such as https://www.rfc-editor.org/rfc/rfc9068.html[RFC 9068].
 
 A REFERENCE attribute addresses a field by identifier, independently of the object currently evaluated.
 This is useful when a rule for one object needs state data from another model context, for example checking a machine state from an OperationalData Submodel while filtering maintenance documents in a different Submodel.
@@ -559,7 +570,7 @@ Table <<table-field-identifiers>> enumerates the available identifiers.
 
 Any <LogicalExpression> described using the AAS query language defined by link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.2/query-language.html[IDTA-01002, Query Language] may be used in a formula for access control.
 
-The logical expression used as condition shall evaluate to either true or false. If the expression evaluates to true the respective <<access-permission-rules,Access Permission Rule>> shall be enforced, otherwise the rule is ignored.
+The logical expression used as condition shall evaluate to true, false, or indeterminate. If the expression evaluates to true the respective <<access-permission-rules,Access Permission Rule>> shall be enforced. A false or indeterminate result shall not grant access.
 
 Arithmetic in Formulas is currently not supported.
 
@@ -567,10 +578,82 @@ Nested logical expressions create combinations of several logical expressions, w
 
 String Comparison Operations compare or match the first given argument (left argument) with the second given argument (right argument). *$eq, $ne, $gt, $lt, $ge, $le* make an alphabetic string comparison. $**starts-with, $ends-with, $contains and $regex** check, if the first given argument is part of the second argument or if the first argument matches with the given REGEX.
 
+Two operations additionally accept an uncast <ClaimPathAttribute>:
+
+* In `<ClaimPathAttribute> $eq <ClaimPathStringOperand>` (or the reverse order), the selected claim value shall be a JSON string. `$eq` is true only when the complete selected string and the other string operand are equal. Equality is case-sensitive and performs no JSON serialization or type coercion. A selected value of another JSON type makes the operation indeterminate.
+* In `$contains(<ClaimPathAttribute>, <ClaimPathStringOperand>)`, the selected claim value shall be an array containing only JSON strings. `$contains` is true only when one complete array element is equal to the other string operand. Array order and duplicate elements do not affect the result. An empty array produces false. A non-array value or an array containing a non-string element makes the operation indeterminate. This overload is exact array membership; it is not a substring search.
+
+The existing string forms of `$eq` and `$contains` are unchanged. The ClaimPath-specific `$contains` form is directional: <ClaimPathAttribute> is the first operand. An uncast <ClaimPathAttribute> is not valid with `$ne`, ordered comparisons, `$starts-with`, `$ends-with`, or `$regex`.
+
+<ClaimPathStringOperand> deliberately excludes an uncast <FieldIdentifier>. A field value shall establish its string type explicitly, for example `CLAIMPATH("/department/name") $eq str($sme#value)` or `$contains(CLAIMPATH("/realm_access/roles"), str($sme#requiredRole))`.
+
+For a verified Claims Set containing `{"realm_access":{"roles":["reader","admin"]}}`, the following results apply:
+
+[cols="2,1,3",options="header"]
+|===
+|Expression
+|Result
+|Reason
+
+|`$contains(CLAIMPATH("/realm_access/roles"), "admin")`
+|true
+|One complete string-array element is equal.
+
+|`$contains(CLAIMPATH("/realm_access/roles"), "min")`
+|false
+|Substrings within array elements do not match.
+
+|`CLAIMPATH("/realm_access/roles/1") $eq "admin"`
+|true
+|The array index selects the scalar string `admin`.
+
+|`CLAIMPATH("/realm_access/roles") $eq "admin"`
+|indeterminate
+|The selected value is an array, but this overload requires a string.
+
+|`$contains(CLAIMPATH("/realm_access/missing"), "admin")`
+|indeterminate
+|The path does not resolve.
+|===
+
 Numerical Comparison Operations compare the first given argument (left argument) with the second given argument (right argument).
 Since AAS also supports XS Datatypes Hex, Bool, DateTime and Time, related comparisons are available accordingly.
 
 For specific comparisons datatypes can be casted to the other datatypes.
+All explicit casts may take a <ClaimAttribute> or <ClaimPathAttribute> as input. For claim values, casts are strict type assertions followed, where applicable, by validation of the selected string's lexical representation. They do not coerce between JSON strings, numbers, and booleans. The following source types are accepted:
+
+[cols="1,2,3",options="header"]
+|===
+|Cast
+|Required selected JSON value
+|Result
+
+|`str(...)`
+|string
+|The unchanged string.
+
+|`num(...)`
+|number
+|The JSON number, subject to the implementation's supported numeric range and precision.
+
+|`bool(...)`
+|boolean
+|The unchanged Boolean value.
+
+|`hex(...)`
+|string conforming to <HexLiteral>
+|The corresponding hex value.
+
+|`dateTime(...)`
+|string conforming to <DateTimeLiteral>
+|The corresponding DateTime value.
+
+|`time(...)`
+|string conforming to <TimeLiteral>
+|The corresponding Time value.
+|===
+
+A JSON array, object, or `null` cannot be cast. A string containing `"3"` is therefore not accepted by `num(...)`, and a string containing `"true"` is not accepted by `bool(...)`. Consequently, `str(CLAIMPATH("/name"))`, `num(CLAIMPATH("/assurance/level"))`, `hex(CLAIMPATH("/flags"))`, `bool(CLAIMPATH("/active"))`, `dateTime(CLAIMPATH("/validUntil"))`, and `time(CLAIMPATH("/accessTime"))` can be used wherever the corresponding typed operand is allowed. Casts do not implicitly select the first array element or serialize arrays or objects to text. A selected number whose value cannot be represented without violating the implementation's documented numeric limits shall produce an indeterminate result.
 If a FieldIdentifier is used directly in a typed comparison, it is implicitly interpreted as the comparison type.
 This implicit conversion is tried for all values addressed by the FieldIdentifier.
 Values that cannot be converted are ignored for this FieldIdentifier evaluation.
@@ -584,7 +667,36 @@ An important special operation is $match, which can be used with any element con
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
 FILTER defines one fragment restriction for a returned object, while FILTERLIST defines several fragment restrictions with independent conditions.
 
-A formula can use all ABAC attributes defined in the ATTRIBUTES: section of the <<acl,ACL>>. A formula referring to undefined attributes shall result in false. Any type of error during the evaluation of a formula shall be treated as if the formula resulted in false.
+A formula can use all ABAC attributes defined in the ATTRIBUTES: section of the <<acl,ACL>>. A formula referring to an undefined attribute shall be indeterminate. Any type of error during the evaluation of an operation, including an unresolved <ClaimAttribute> or <ClaimPathAttribute>, a wrong selected JSON type, a non-string member of an array used by the ClaimPath-specific `$contains`, or an invalid cast, shall make that operation indeterminate.
+
+Indeterminate is distinct from Boolean false and shall not be converted to false before evaluating an enclosing logical expression. In particular, `$not(indeterminate)` is indeterminate and cannot activate an ALLOW rule. Logical operators shall retain a result that has already been determined independently of an indeterminate operand:
+
+[cols="2,1",options="header"]
+|===
+|Expression
+|Result
+
+|`$not(indeterminate)`
+|indeterminate
+
+|`$or(true, indeterminate)`
+|true
+
+|`$or(false, indeterminate)`
+|indeterminate
+
+|`$and(false, indeterminate)`
+|false
+
+|`$and(true, indeterminate)`
+|indeterminate
+|===
+
+For logical operators with more than two operands, `$or` is true if any operand is true and is indeterminate if no operand is true and at least one operand is indeterminate. `$and` is false if any operand is false and is indeterminate if no operand is false and at least one operand is indeterminate. Formula evaluation is declarative. Implementations may short-circuit evaluation when the result has already been determined; an operand skipped by short-circuit evaluation is not considered to have produced an error.
+
+The result of evaluating an ALLOW rule is Permit if its formula is true, NotApplicable if its formula is false, and Indeterminate if its formula is indeterminate. When multiple rules cover a request, the access rule model uses deny-unless-permit combination: access shall be granted if at least one applicable ALLOW rule evaluates to Permit; otherwise access shall be denied. An error in one rule therefore cannot by itself negate a separate rule that independently evaluates to Permit.
+
+Implementations MAY impose limits on JSON Pointer length, nesting depth, or the number of array elements inspected to protect authorization evaluation from resource exhaustion. Such limits shall be documented. Exceeding a limit shall make the affected operation indeterminate; if no independently applicable rule evaluates to Permit, the final deny-unless-permit decision is Deny. Selected claim values SHOULD NOT be written to logs unless the deployment's data-protection policy explicitly permits it.
 
 USEFORMULAS can be used to refer to a predefined formula (see <<reusable-definitions,Reusable Definitions>>).
 
@@ -660,7 +772,7 @@ For example, the Time value `12:00:00` shall be interpreted and serialized as `1
 _Value_ is used for comparisons and _StringValue_ is used for the specific string operations.
 For type safety and automatic code generation, each possible type is available as an own object:
 
-* String values can be given by _$field_, $__strVal__, $__attribute__ oder $__strCast__.
+* String values can be given by _$field_, $__strVal__, a scalar $__attribute__ or $__strCast__.
 * Numerical values can be given by $__numVal__ or $__numCast__.
 * Hex values can be given by $__hexVal__ or $__hexCast__.
 * Bool values can be given by _$boolean_ or $__boolCast__.
@@ -669,6 +781,7 @@ For type safety and automatic code generation, each possible type is available a
 
 Casts convert values to the given type if possible.
 DateTime casts use string operands; Time casts use string or DateTime operands.
+The input of any cast may also be a $__attribute__ containing CLAIM or CLAIMPATH. Claim-value casts use the strict source-type rules defined in <<formulas>>; arrays, objects and `null` are invalid cast inputs.
 Direct comparisons between two FieldIdentifier operands are not valid because the type of both fields would be implicit.
 To compare two fields, at least one operand shall use an explicit cast, e.g. compare _$field_ to $__strCast__, $__numCast__, $__dateTimeCast__, or $__timeCast__.
 
@@ -677,12 +790,14 @@ Parts of DateTime values can be extracted as numbers:
 * _$dayOfWeek_ extracts the day of week as number, starting with 0 for Sunday.
 * _$dayOfMonth_, _$month_, _$year_ extract the related part as number.
 
-Except for direct FieldIdentifier operands in typed comparisons, if a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
-An error message shall be generated and the result of the complete expression becomes FALSE, so that the access is not allowed and/or the filter is empty.
+Except for direct FieldIdentifier operands in typed comparisons, if a conversion or any other evaluated operation is invalid, that operation shall be indeterminate. An enclosing logical expression shall combine the result according to the three-valued logic defined in <<formulas>>.
+Implementations SHOULD make a diagnostic available for an evaluated error without including selected claim values unless the deployment's data-protection policy permits their disclosure. An indeterminate final result shall not allow access and shall not expose filtered data.
 
 To allow the use of different types in operations, arrays are used for parameters. _comparisonItems_ is used for comparisons and _stringItems_ is used for specific string operations.
 
 _logicalExpressions_ and _match_ can be recursively nested.
+
+For CLAIMPATH, _$eq_ additionally accepts a _claimPathValue_ paired with a _claimPathStringValue_. _$contains_ additionally accepts a _claimPathValue_ followed by a _claimPathStringValue_ and performs exact string-array membership. _claimPathStringValue_ excludes an uncast _$field_; a _$strCast_ is required for field values. Other direct typed operations exclude _claimPathValue_; an explicit cast shall be used instead.
 
 == Exchange of Access Rules
 

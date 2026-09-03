@@ -98,3 +98,9 @@ include::partial$examples/filter.json[]
 include::partial$examples/reference-machine-state-filter.json[]
 ----
 
+== EXAMPLE 13: Nested and multi-valued access-token claims
+
+[source,json,linenums]
+----
+include::partial$examples/nested-claim-path.json[]
+----
