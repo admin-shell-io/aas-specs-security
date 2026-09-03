@@ -1,8 +1,14 @@
 <SingleAttribute> ::=
+    <ClaimAttribute> | <ClaimPathAttribute> | <GlobalAttribute> | <ReferenceAttribute>
+
+<ScalarAttribute> ::=
     <ClaimAttribute> | <GlobalAttribute> | <ReferenceAttribute>
 
 <ClaimAttribute> ::=
     "CLAIM" <Ws> "(" <Ws> <ClaimLiteral> <Ws> ")"
+
+<ClaimPathAttribute> ::=
+    "CLAIMPATH" <Ws> "(" <Ws> <ClaimPathLiteral> <Ws> ")"
 
 <GlobalAttribute> ::=
     "GLOBAL" <Ws> "(" <Ws>

@@ -1,0 +1,86 @@
+{
+  "AllAccessPermissionRules": {
+    "rules": [
+      {
+        "ACL": {
+          "ATTRIBUTES": [
+            {
+              "CLAIMPATH": "/realm_access/roles"
+            },
+            {
+              "CLAIMPATH": "/department/name"
+            },
+            {
+              "CLAIMPATH": "/assurance/level"
+            }
+          ],
+          "RIGHTS": [
+            "READ"
+          ],
+          "ACCESS": "ALLOW"
+        },
+        "OBJECTS": [
+          {
+            "REFERABLE": "$sme(\"*\").departmentData"
+          }
+        ],
+        "FORMULA": {
+          "$and": [
+            {
+              "$contains": [
+                {
+                  "$attribute": {
+                    "CLAIMPATH": "/realm_access/roles"
+                  }
+                },
+                {
+                  "$strVal": "admin"
+                }
+              ]
+            },
+            {
+              "$eq": [
+                {
+                  "$attribute": {
+                    "CLAIMPATH": "/department/name"
+                  }
+                },
+                {
+                  "$strVal": "engineering"
+                }
+              ]
+            },
+            {
+              "$eq": [
+                {
+                  "$attribute": {
+                    "CLAIMPATH": "/department/name"
+                  }
+                },
+                {
+                  "$strCast": {
+                    "$field": "$sme#value"
+                  }
+                }
+              ]
+            },
+            {
+              "$ge": [
+                {
+                  "$numCast": {
+                    "$attribute": {
+                      "CLAIMPATH": "/assurance/level"
+                    }
+                  }
+                },
+                {
+                  "$numVal": 3
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -19,6 +19,7 @@ Bugfixes:
 
 Minor Changes:
 
+* added: `CLAIMPATH` selects nested JWT claim values using RFC 6901 JSON Pointer syntax. Direct `$eq` supports scalar-string equality, direct `$contains` supports exact string-array membership, and strict explicit casts make scalar claim values available to other typed operations. Missing or wrongly typed values are indeterminate and final authorization uses deny-unless-permit combination.
 * Improved documentation of access rule examples
 * new access rule examples for DPP related rules, access rule 10 updated to better reflect the purpose
 

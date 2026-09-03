@@ -3,6 +3,30 @@
     "attributeItem": {
       "oneOf": [
         {
+          "$ref": "#/definitions/scalarAttributeItem"
+        },
+        {
+          "$ref": "#/definitions/claimPathAttributeItem"
+        }
+      ]
+    },
+    "claimPathAttributeItem": {
+      "type": "object",
+      "properties": {
+        "CLAIMPATH": {
+          "type": "string",
+          "pattern": "^(?:/(?:[^~/]|~[01])*)+$"
+        }
+      },
+      "required": [
+        "CLAIMPATH"
+      ],
+      "additionalProperties": false
+    },
+    "scalarAttributeItem": {
+      "type": "object",
+      "oneOf": [
+        {
           "required": [
             "CLAIM"
           ]
