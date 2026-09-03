@@ -559,7 +559,81 @@ Table <<table-field-identifiers>> enumerates the available identifiers.
 
 Any <LogicalExpression> described using the AAS query language defined by link:https://industrialdigitaltwin.io/aas-specifications/IDTA-01002/v3.2/query-language.html[IDTA-01002, Query Language] may be used in a formula for access control.
 
-The logical expression used as condition shall evaluate to either true or false. If the expression evaluates to true the respective <<access-permission-rules,Access Permission Rule>> shall be enforced, otherwise the rule is ignored.
+The logical expression used as condition shall evaluate to true, false or indeterminate. If the expression evaluates to true the respective <<access-permission-rules,Access Permission Rule>> shall be enforced. If it evaluates to false or indeterminate, the rule is ignored and does not grant access.
+
+Indeterminate is distinct from false and shall not be converted to false before an enclosing logical expression has been evaluated. The following truth table defines all combinations for `$and` and `$or`:
+
+[cols="1,1,1,1",options="header"]
+|===
+|First operand
+|Second operand
+|`$and`
+|`$or`
+
+|true
+|true
+|true
+|true
+
+|true
+|false
+|false
+|true
+
+|true
+|indeterminate
+|indeterminate
+|true
+
+|false
+|true
+|false
+|true
+
+|false
+|false
+|false
+|false
+
+|false
+|indeterminate
+|false
+|indeterminate
+
+|indeterminate
+|true
+|indeterminate
+|true
+
+|indeterminate
+|false
+|false
+|indeterminate
+
+|indeterminate
+|indeterminate
+|indeterminate
+|indeterminate
+|===
+
+The following truth table defines `$not`:
+
+[cols="1,1",options="header"]
+|===
+|Operand
+|`$not`
+
+|true
+|false
+
+|false
+|true
+
+|indeterminate
+|indeterminate
+|===
+
+For logical operators with more than two operands, `$or` is true if any operand is true and is indeterminate if no operand is true and at least one operand is indeterminate. `$and` is false if any operand is false and is indeterminate if no operand is false and at least one operand is indeterminate. Implementations may short-circuit evaluation when the result has already been determined.
 
 Arithmetic in Formulas is currently not supported.
 
@@ -574,7 +648,7 @@ For specific comparisons datatypes can be casted to the other datatypes.
 If a FieldIdentifier is used directly in a typed comparison, it is implicitly interpreted as the comparison type.
 This implicit conversion is tried for all values addressed by the FieldIdentifier.
 Values that cannot be converted are ignored for this FieldIdentifier evaluation.
-If no addressed value can be converted, the comparison evaluates to FALSE.
+If the FieldIdentifier cannot be resolved in the evaluation context, or if no addressed value can be converted, the comparison is indeterminate.
 
 Specific operations exist to extract parts from DateTime, i.e. $dayOfWeek, $dayOfMonth, $month, $year.
 This enables access rules related to week days or specific times in the year.
@@ -584,7 +658,11 @@ An important special operation is $match, which can be used with any element con
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
 FILTER defines one fragment restriction for a returned object, while FILTERLIST defines several fragment restrictions with independent conditions.
 
-A formula can use all ABAC attributes defined in the ATTRIBUTES: section of the <<acl,ACL>>. A formula referring to undefined attributes shall result in false. Any type of error during the evaluation of a formula shall be treated as if the formula resulted in false.
+A formula can use all ABAC attributes defined in the ATTRIBUTES: section of the <<acl,ACL>>. If an evaluated operation cannot produce a Boolean result, that operation shall be indeterminate. This includes an unresolved or inapplicable <FieldIdentifier>, a missing or unusable claim, an invalid cast, or another runtime evaluation error.
+
+Only a final formula result of true activates an ALLOW rule. A final result of false or indeterminate shall not grant access. Consequently, an evaluation error cannot be turned into permission by `$not`, while another branch of `$or` can still independently make the complete formula true.
+
+An access-rule document that does not conform to the normative grammar or JSON Schema shall be rejected before formula evaluation. Such a document is invalid rather than indeterminate.
 
 USEFORMULAS can be used to refer to a predefined formula (see <<reusable-definitions,Reusable Definitions>>).
 
@@ -677,8 +755,8 @@ Parts of DateTime values can be extracted as numbers:
 * _$dayOfWeek_ extracts the day of week as number, starting with 0 for Sunday.
 * _$dayOfMonth_, _$month_, _$year_ extract the related part as number.
 
-Except for direct FieldIdentifier operands in typed comparisons, if a conversion or any other operation is invalid, the complete expression has to be treated as invalid.
-An error message shall be generated and the result of the complete expression becomes FALSE, so that the access is not allowed and/or the filter is empty.
+Except for direct FieldIdentifier operands in typed comparisons, if a conversion or another evaluated operation is invalid, that operation shall be indeterminate. An enclosing logical expression shall combine the result according to the three-valued logic defined in <<formulas>>.
+An implementation should provide an error diagnostic. A final indeterminate result shall not allow access and shall not expose filtered data.
 
 To allow the use of different types in operations, arrays are used for parameters. _comparisonItems_ is used for comparisons and _stringItems_ is used for specific string operations.
 
