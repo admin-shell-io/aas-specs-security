@@ -19,6 +19,7 @@ Bugfixes:
 
 Minor Changes:
 
+* Clarified the FORMULA evaluation context for CREATE and UPDATE operations, including evaluation of both the current and prospective state for UPDATE [#98](https://github.com/admin-shell-io/aas-specs-security/issues/98).
 * Improved documentation of access rule examples
 * new access rule examples for DPP related rules, access rule 10 updated to better reflect the purpose
 

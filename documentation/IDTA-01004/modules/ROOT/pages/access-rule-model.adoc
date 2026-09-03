@@ -561,6 +561,10 @@ Any <LogicalExpression> described using the AAS query language defined by link:h
 
 The logical expression used as condition shall evaluate to either true or false. If the expression evaluates to true the respective <<access-permission-rules,Access Permission Rule>> shall be enforced, otherwise the rule is ignored.
 
+For an operation requiring the CREATE right, the FORMULA shall be evaluated against the submitted representations of the objects that the operation will create. FieldIdentifiers may additionally resolve values from existing parent or container objects that form the context of the create operation. The operation shall not be applied before the authorization decision has been made.
+
+For an operation requiring the UPDATE right, the FORMULA shall be evaluated separately against both the current state before the update and the prospective state resulting from the update. The prospective state shall be determined without committing the update by applying the request according to the interface operation's normal semantics. For example, unchanged values from the current state remain part of the prospective state for a partial update, while a replacement operation uses the submitted replacement representation. The access rule grants UPDATE permission only if the FORMULA evaluates to true for both states.
+
 Arithmetic in Formulas is currently not supported.
 
 Nested logical expressions create combinations of several logical expressions, where any, all or none of the expressions needs to be enabled: *<logicalNestedExpression>, <logicalOrExpression>, <logicalAndExpression>, <logicalNotExpression>*.
