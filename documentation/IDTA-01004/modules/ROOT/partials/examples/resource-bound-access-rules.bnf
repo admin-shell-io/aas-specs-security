@@ -1,0 +1,19 @@
+RESOURCE:
+  IDENTIFIABLE $sm("https://example.com/submodels/technical-data")
+ACCESSRULE:
+  ATTRIBUTES:
+    CLAIM("role")
+  RIGHTS: READ
+  ACCESS: ALLOW
+  FORMULA:
+    CLAIM("role") $eq "customer"
+
+RESOURCE:
+  REFERABLE $sme("https://example.com/submodels/technical-data").smeC
+ACCESSRULE:
+  ATTRIBUTES:
+    CLAIM("role")
+  RIGHTS: READ
+  ACCESS: ALLOW
+  FORMULA:
+    CLAIM("role") $eq "manufacturer"
