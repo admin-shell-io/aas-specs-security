@@ -1,0 +1,68 @@
+{
+  "ResourceBoundAccessRuleModels": [
+    {
+      "RESOURCE": {
+        "IDENTIFIABLE": "$sm(\"https://example.com/submodels/technical-data\")"
+      },
+      "rules": [
+        {
+          "ACL": {
+            "ATTRIBUTES": [
+              {
+                "CLAIM": "role"
+              }
+            ],
+            "RIGHTS": [
+              "READ"
+            ],
+            "ACCESS": "ALLOW"
+          },
+          "FORMULA": {
+            "$eq": [
+              {
+                "$attribute": {
+                  "CLAIM": "role"
+                }
+              },
+              {
+                "$strVal": "customer"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "RESOURCE": {
+        "REFERABLE": "$sme(\"https://example.com/submodels/technical-data\").smeC"
+      },
+      "rules": [
+        {
+          "ACL": {
+            "ATTRIBUTES": [
+              {
+                "CLAIM": "role"
+              }
+            ],
+            "RIGHTS": [
+              "READ"
+            ],
+            "ACCESS": "ALLOW"
+          },
+          "FORMULA": {
+            "$eq": [
+              {
+                "$attribute": {
+                  "CLAIM": "role"
+                }
+              },
+              {
+                "$strVal": "manufacturer"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

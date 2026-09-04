@@ -144,44 +144,117 @@ Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submod
 
 ==== Access Rule Model
 
-An Access Rule Model <AllAccessPermissionRules> defines a list of <<access-permission-rules,Access Permission Rules>>.
+An <AccessRuleModel> shall use exactly one of the following representations:
 
-The access rule model <AllAccessPermissionRules> also contains lists of Attribute Groups <DEFATTRIBUTES>, Object Groups <DEFOBJECTS>, ACLs <DEFACLS> and Formulas <DEFFORMULAS>.
-These pre-defines can be referred to from other parts of the access control rules by the assigned <StringLiteral>. This allows to reuse commonly used definitions instead of having multiple copies spread over the access control rules. See <<reusable-definitions>>.
+* The _object-based view_ uses one <AllAccessPermissionRules> containing <<access-permission-rules,Access Permission Rules>> that each explicitly designate their target objects.
+* The _resource-bound view_ uses one <ResourceBoundAccessRuleModels> collection containing one or more <ResourceBoundAccessRuleModel> elements. Each model designates exactly one resource, and all its Access Permission Rules implicitly apply to that resource.
 
-.Railroad diagram for <AllAccessPermissionRules>
+The object-based view is the existing representation and remains fully supported.
+Both views express the same authorization concepts; the resource-bound view moves the object binding from every rule to the containing model.
+
+.Railroad diagram for <AccessRuleModel> and its two representations
 [[image-access-control-rules-model]]
 image::access-control-rules-model.svg[width=642]
+
+===== Object-Based Access Rule Model
+
+An <AllAccessPermissionRules> defines a list of <AccessPermissionRule> elements.
+Each <AccessPermissionRule> contains an <AccessObjects> section that identifies one or more target objects directly or by reference to an Object Group.
+
+===== Resource-Bound Access Rule Models
+
+A <ResourceBoundAccessRuleModels> shall contain at least one <ResourceBoundAccessRuleModel>.
+Each <ResourceBoundAccessRuleModel> shall contain exactly one `RESOURCE:` section followed by exactly one <SingleObject>.
+The designated <SingleObject> is the bound resource of the model.
+
+Every <ResourceBoundAccessPermissionRule> contained in the model implicitly applies to the bound resource.
+The model may additionally become the effective policy for descendants through the inheritance rules defined below.
+A <ResourceBoundAccessPermissionRule> shall not contain `OBJECTS:` or `USEOBJECTS`; to bind rules to another resource, a separate <ResourceBoundAccessRuleModel> shall be used.
+
+A resource-bound model may define Attribute Groups <DEFATTRIBUTES>, ACLs <DEFACLS> and Formulas <DEFFORMULAS> for reuse by its contained rules.
+The names of these definitions shall be resolved within the containing <ResourceBoundAccessRuleModel>.
+Object Groups <DEFOBJECTS> are not used in this view because `RESOURCE:` designates exactly one <SingleObject> directly.
+
+[[resource-bound-policy-inheritance]]
+====== Direct Binding and Policy Inheritance
+
+Resource binding and policy inheritance are separate concepts.
+Resource binding identifies the resource to which a <ResourceBoundAccessRuleModel> belongs.
+Policy inheritance determines the effective model when a resource has no directly bound model.
+
+Within an authorization scope, a resource shall have at most one directly bound <ResourceBoundAccessRuleModel>.
+A <ResourceBoundAccessRuleModels> collection containing more than one model whose `RESOURCE:` sections designate the same resource is invalid, even if the models contain different rules.
+This constraint shall be checked semantically because JSON Schema Draft 7 cannot express uniqueness projected onto the nested `RESOURCE` value of each array item.
+
+For hierarchical AAS resources, a directly bound model shall be inherited by descendants that do not have a directly bound model of their own.
+The effective model for an authorization decision shall be selected as follows:
+
+. If the requested resource has a directly bound model, that model is the effective model.
+. Otherwise, its direct parent is examined. The first directly bound model found while proceeding from the resource towards the root is the effective model.
+. If no directly bound model is found, access is denied according to the default-deny rule.
+
+This selection is called _nearest-policy wins_ arbitration.
+A directly bound model on a child resource completely overrides the model inherited from its parent for that child and its descendants.
+The child and ancestor models shall not be combined, and rules from the ancestor model shall not participate in authorization decisions governed by the child model.
+The override applies to the model as a whole, not separately for each right; therefore, a right not granted by the child model remains denied even if an ancestor model would grant it.
+
+For this resolution, the AAS resource hierarchy follows the resource context of the operation, for example AAS to associated Submodel, Submodel to top-level SubmodelElement, and SubmodelElement to nested SubmodelElement.
+An implementation shall determine one ordered ancestor chain for each authorization decision.
+If no directly bound model exists and the applicable parent context cannot be determined unambiguously, access shall be denied.
+For authorization of the creation of a resource that does not yet exist, resolution starts at the existing parent resource designated by the operation.
+
+[[resource-bound-composite-responses]]
+====== Composite Responses and Child Overrides
+
+Authorization of an operation on a parent resource does not automatically authorize disclosure of every descendant embedded in the parent's representation.
+When an operation returns a composite resource, the effective model shall be resolved and evaluated separately for the requested resource and for every descendant considered for inclusion in the response.
+
+For example, when a `GET` operation returns a Submodel, every contained SubmodelElement shall be evaluated using its own effective model.
+A SubmodelElement with no directly bound model uses the nearest model inherited from its ancestors.
+A SubmodelElement with a directly bound model uses only that model, even when the Submodel itself was readable under a different model.
+
+The response shall not disclose content of a descendant unless its effective model grants the right required for that disclosure.
+A descendant denied by its effective model, and any descendants represented through it, shall be omitted from the composite response.
+If `VIEW` but not `READ` is granted, only the reference or existence information permitted by `VIEW` may be returned where the response representation supports it.
+If the interface representation cannot omit or reduce an unauthorized descendant while remaining valid, the complete operation shall be denied rather than disclose the descendant.
+
+`FILTER` and `FILTERLIST` restrictions are applied in addition to this per-resource authorization and cannot restore a descendant excluded by its effective resource-bound model.
+
+.Railroad diagrams for the resource-bound representation
+[[image-access-control-rules-resource-bound-model]]
+image::access-control-rules-resource-bound-model.svg[width=642]
+
+EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-resource-bound-access-rules[Resource-bound Access Rule Models].
 
 [[reusable-definitions]]
 ==== Reusable Definitions
 
-The AAS Access Rule Model allows to define modular parts which can be reused in different access rules.
+The AAS Access Rule Model allows modular parts to be defined once and reused in different access rules.
 
 .Railroad diagram for reusable definitions
 [[image-access-control-rules-definitions]]
 image::access-control-rules-definitions.svg[width=642]
 
-Table <<table-all-access-permission-rules>> summarizes the details for pre-definitions used in <AllAccessPermissionRules>.
+Table <<table-all-access-permission-rules>> summarizes the reusable definitions and the representations in which they are available.
 
 [[table-all-access-permission-rules]]
-.<AllAccessPermissionRules> pre-defines
+.<AccessRuleModel> reusable definitions
 [cols="1,3",options="header"]
 |===
 |Definition
 |Description
 
 |DEFATTRIBUTES
-|Pre-defined <AttributeGroup>. Attributes can be combined into related groups, which may also be used in other groups. The group can be referenced using <UseAttributeGroup>.
+|Pre-defined <AttributeGroup>. Attributes can be combined into related groups, which may also be used in other groups. The group can be referenced using <UseAttributeGroup> in either representation.
 
 |DEFOBJECTS
-|Pre-defined <ObjectGroup>. Objects can be combined into related groups, which may also be used in other groups. The group can be referenced using <UseObjectGroup>.
+|Pre-defined <ObjectGroup>. Objects can be combined into related groups, which may also be used in other groups. The group can be referenced using <UseObjectGroup> in the object-based representation. It is not used in the resource-bound representation.
 
 |DEFACLS
-|Pre-defined <ACL>. An ACL defines which access rights are given for a certain combination of attributes. The ACL can be referenced using <UseACL>.
+|Pre-defined <ACL>. An ACL defines which access rights are given for a certain combination of attributes. The ACL can be referenced using <UseACL> in either representation.
 
 |DEFFORMULAS
-|Pre-defined formula. Formulas can be referenced using <UseFormula>. 
+|Pre-defined formula. Formulas can be referenced using <UseFormula> in either representation.
 |===
 
 EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-reuse-acl-object-formula[Reuse of ACL, OBJECT and FORMULA].
@@ -189,39 +262,48 @@ EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-reuse-acl-object-f
 [[access-permission-rules]]
 ==== Access Permission Rules
 
-<AccessPermissionRule> defines a single access control rule granting permissions on the designated AAS objects.
+An <AccessPermissionRule> defines a single rule in the object-based representation and explicitly designates its target objects through <AccessObjects>.
+A <ResourceBoundAccessPermissionRule> defines a single rule in the resource-bound representation and inherits its target from the `RESOURCE:` section of the containing <ResourceBoundAccessRuleModel>.
 
 .Railroad diagram for <AccessPermissionRule>
 [[image-access-control-rules-access-permission-rule]]
 image::access-control-rules-access-permission-rule.svg[width=642]
 
-Table <<table-access-permission-rule>> describes the details of <AccessPermissionRule>.
+Table <<table-access-permission-rule>> describes the sections of both rule types.
 
 [[table-access-permission-rule]]
-.<AccessPermissionRule>
-[cols="1,3",options="header"]
+.<AccessPermissionRule> and <ResourceBoundAccessPermissionRule>
+[cols="1,1,3",options="header"]
 |===
 |Section
+|Representation
 |Description
 
 |ACCESSRULE:
+|Both
 |Either specifies the access control list (<ACL>) or contains a reference to an access control list (<UseACL>) pre-defined using DEFACLS. Access control lists are described in <<acl,ACL>>.
 
 |OBJECTS:
+|Object-based only
 |Defines the set of AAS objects to which the access permission applies. The list contains individual objects and/or refers to object groups pre-defined using DEFOBJECTS. Objects are described in <<objects,AAS Objects>>.
 
 |FORMULA:
+|Both
 |Defines the formula to be evaluated to determine whether the access permission is in effect. Predefined formulas can be referenced using <UseFormula>. Formulas allow only expressions with Boolean results, e.g., comparisons; arithmetic is currently not supported. If the formula evaluates to true the access permission shall be enforced. Formulas are described in <<formulas,Conditions and Formulas>>.
 
 |FILTER: +
 FILTERLIST:
+|Both
 |Filters can be used to restrict the exposure of an AAS object depending on the object values. Only values passing through the filter are returned to the AAS user application. Any AAS object with values that do not match the filter expression shall be removed from the list of returned objects. +
 EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-filter-statement[Example with FILTER statement].
 
 |===
 
 An access rule may optionally include <FILTER> or <FILTERLIST> to further restrict the returned objects.
-Without a filter, access is granted to the complete object covered by the access rule.
+Without a filter, access is granted to the complete object covered by the access rule, subject to the separate authorization of descendants required by <<resource-bound-composite-responses,Composite Responses and Child Overrides>>.
+
+[[access-rule-object-binding]]
+The target of an access permission is determined by its applicable object binding: <AccessObjects> in the object-based representation or `RESOURCE:` in the resource-bound representation.
 
 A filter is represented by <SecurityQueryFilter>.
 It combines a <FRAGMENT> with either a <CONDITION> or a reference to a pre-defined formula using <UseFormula>.
@@ -306,17 +388,17 @@ The normative operation-level mapping for the AAS HTTP/REST API (per-operation R
 |CREATE
 |Post
 |POST
-|Permission to create new <<objects,AAS objects>> where the parent object is the AAS object designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
+|Permission to create new <<objects,AAS objects>> where the parent object is the AAS object designated by the applicable <<access-rule-object-binding,object binding>>.
 
 |CREATE
 |Put
 |PUT
-|Permission to create new <<objects,AAS objects>> where the parent object is the AAS object designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
+|Permission to create new <<objects,AAS objects>> where the parent object is the AAS object designated by the applicable <<access-rule-object-binding,object binding>>.
 
 |READ
 |Get, GetAll
 |GET
-|Permission to perform read operations on the <<objects,AAS objects>> designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
+|Permission to perform read operations on the <<objects,AAS objects>> designated by the applicable <<access-rule-object-binding,object binding>>.
 
 FILTER: can be used to filter the result data on a sub-object granularity from the object data returned by the Get/GetAll operation. 
 
@@ -325,17 +407,17 @@ EXAMPLE See xref:annex/text-access-rule-examples.adoc#example-filter-statement[E
 |UPDATE
 |Patch
 |PATCH
-|Permission to perform update operations on existing the <<objects,AAS objects>> designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
+|Permission to perform update operations on existing <<objects,AAS objects>> designated by the applicable <<access-rule-object-binding,object binding>>.
 
 |UPDATE
 |Put
 |PUT
-|Permission to replace an existing <<objects,AAS object>> designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
+|Permission to replace an existing <<objects,AAS object>> designated by the applicable <<access-rule-object-binding,object binding>>.
 
 |DELETE
 |Delete
 |DELETE
-|Permission to perform delete operations on the <<objects,AAS objects>> designated in the OBJECTS: section of the <<access-permission-rules,Access Permission Rule>> (Table <<table-access-permission-rule>>).
+|Permission to perform delete operations on the <<objects,AAS objects>> designated by the applicable <<access-rule-object-binding,object binding>>.
 
 |EXECUTE
 |Invoke
@@ -455,7 +537,8 @@ The required additions for <StringOperand> and <StringNonFieldOperand> are shown
 
 AAS objects are objects constituting the data represented by the AAS or an endpoint for an AAS operation (<RouteObject>).
 
-<SingleObject> describes the AAS element to which an access control rule applies (see Table <<table-access-permission-rule>>).
+<SingleObject> describes an AAS element to which an access control rule applies.
+It may occur in the `OBJECTS:` section of an object-based rule or directly after `RESOURCE:` as the single target of a resource-bound model (see Table <<table-access-permission-rule>>).
 
 Objects to be protected are either API Routes, Identifiables (e.g. AAS or Submodel), Referables (e.g. SubmodelElements), Descriptors or Fragments of those (e.g. AssetId, SemanticId, SpecificAssetId). Table <<table-single-object>> explains the different options to refer to an AAS element.
 
@@ -624,6 +707,9 @@ The parties involved are supposed to agree on governance and policies.
 ==== Access Rule Model
 
 The Access Rules BNF grammar is expressed in JSON schema syntax.
+At the top level, a JSON document shall contain exactly one of `AllAccessPermissionRules` for the object-based representation or `ResourceBoundAccessRuleModels` for the resource-bound representation.
+`ResourceBoundAccessRuleModels` is a non-empty array whose entries each contain exactly one `RESOURCE` object and a `rules` array.
+Rules in this array use the `ResourceBoundAccessPermissionRule` definition, which does not permit `OBJECTS` or `USEOBJECTS` properties.
 Please refer to the detailed step by step explanation of the grammar.
 
 [source,json,linenums]

@@ -161,6 +161,7 @@ def validate_json_artifacts(validation: Validation) -> dict[str, Any] | None:
     validate_json_refs(loaded_json, validation)
     validate_json_examples(loaded_json, validation)
     validate_object_group_smoke_tests(loaded_json, validation)
+    validate_resource_bound_access_rule_smoke_tests(loaded_json, validation)
 
     common_schema = loaded_json.get(JSON_DIR / "aas-queries-and-access-rules-schema.json")
     if isinstance(common_schema, dict):
@@ -215,7 +216,40 @@ def validate_json_examples(loaded_json: dict[Path, Any], validation: Validation)
             for error in errors:
                 location = "/".join(str(part) for part in error.absolute_path) or "<root>"
                 validation.fail(path, f"{location}: {error.message}")
+        validate_resource_binding_uniqueness(path, data, validation)
     print(f"OK: validated {len(example_json_files())} JSON examples against {len(validators)} schemas")
+
+
+def duplicate_resource_bindings(instance: Any) -> list[tuple[int, int, Any]]:
+    """Return duplicate direct RESOURCE bindings that Draft 7 cannot express."""
+    if not isinstance(instance, dict):
+        return []
+    models = instance.get("ResourceBoundAccessRuleModels")
+    if not isinstance(models, list):
+        return []
+
+    first_index_by_resource: dict[str, int] = {}
+    duplicates: list[tuple[int, int, Any]] = []
+    for index, model in enumerate(models):
+        if not isinstance(model, dict) or "RESOURCE" not in model:
+            continue
+        resource = model["RESOURCE"]
+        key = json.dumps(resource, sort_keys=True, separators=(",", ":"))
+        first_index = first_index_by_resource.get(key)
+        if first_index is None:
+            first_index_by_resource[key] = index
+        else:
+            duplicates.append((first_index, index, resource))
+    return duplicates
+
+
+def validate_resource_binding_uniqueness(path: Path, instance: Any, validation: Validation) -> None:
+    for first_index, duplicate_index, resource in duplicate_resource_bindings(instance):
+        validation.fail(
+            path,
+            "ResourceBoundAccessRuleModels contains duplicate RESOURCE bindings "
+            f"at indexes {first_index} and {duplicate_index}: {resource}",
+        )
 
 
 def validate_object_group_smoke_tests(loaded_json: dict[Path, Any], validation: Validation) -> None:
@@ -253,6 +287,173 @@ def validate_object_group_smoke_tests(loaded_json: dict[Path, Any], validation: 
         if not validator.is_valid(instance):
             validation.fail(path, "DEFOBJECTS does not allow mixed objects and USEOBJECTS")
     print(f"OK: checked mixed object groups against {len(schema_paths)} schemas")
+
+
+def validate_resource_bound_access_rule_smoke_tests(
+    loaded_json: dict[Path, Any],
+    validation: Validation,
+) -> None:
+    """Check the alternate model view and its resource-binding constraints."""
+    valid_model = {
+        "ResourceBoundAccessRuleModels": [
+            {
+                "RESOURCE": {"IDENTIFIABLE": '$sm("TechnicalData")'},
+                "DEFATTRIBUTES": [
+                    {
+                        "name": "readers",
+                        "attributes": [{"CLAIM": "role"}],
+                    }
+                ],
+                "DEFACLS": [
+                    {
+                        "name": "readers-can-read",
+                        "acl": {
+                            "USEATTRIBUTES": "readers",
+                            "RIGHTS": ["READ"],
+                            "ACCESS": "ALLOW",
+                        },
+                    }
+                ],
+                "DEFFORMULAS": [
+                    {
+                        "name": "is-reader",
+                        "formula": {
+                            "$eq": [
+                                {"$attribute": {"CLAIM": "role"}},
+                                {"$strVal": "reader"},
+                            ]
+                        },
+                    }
+                ],
+                "rules": [
+                    {
+                        "USEACL": "readers-can-read",
+                        "USEFORMULA": "is-reader",
+                    }
+                ],
+            }
+        ]
+    }
+    bound_rule_with_objects = {
+        "ResourceBoundAccessRuleModels": [
+            {
+                "RESOURCE": {"IDENTIFIABLE": '$sm("TechnicalData")'},
+                "rules": [
+                    {
+                        "ACL": {
+                            "ATTRIBUTES": [{"GLOBAL": "ANONYMOUS"}],
+                            "RIGHTS": ["READ"],
+                            "ACCESS": "ALLOW",
+                        },
+                        "OBJECTS": [{"IDENTIFIABLE": '$sm("Other")'}],
+                        "FORMULA": {"$boolean": True},
+                    }
+                ],
+            }
+        ]
+    }
+    cases = [
+        ("valid resource-bound model", valid_model, True),
+        ("empty resource-bound model collection", {"ResourceBoundAccessRuleModels": []}, False),
+        (
+            "resource-bound model without RESOURCE",
+            {"ResourceBoundAccessRuleModels": [{"rules": []}]},
+            False,
+        ),
+        ("resource-bound rule with OBJECTS", bound_rule_with_objects, False),
+        (
+            "resource-bound rule with USEOBJECTS",
+            {
+                "ResourceBoundAccessRuleModels": [
+                    {
+                        "RESOURCE": {"IDENTIFIABLE": '$sm("TechnicalData")'},
+                        "rules": [
+                            {
+                                "USEACL": "readers-can-read",
+                                "USEOBJECTS": ["other-resource"],
+                                "USEFORMULA": "is-reader",
+                            }
+                        ],
+                    }
+                ]
+            },
+            False,
+        ),
+        (
+            "resource-bound model with DEFOBJECTS",
+            {
+                "ResourceBoundAccessRuleModels": [
+                    {
+                        "RESOURCE": {"IDENTIFIABLE": '$sm("TechnicalData")'},
+                        "DEFOBJECTS": [],
+                        "rules": [],
+                    }
+                ]
+            },
+            False,
+        ),
+        (
+            "model with both representations",
+            {
+                **valid_model,
+                "AllAccessPermissionRules": {"rules": []},
+            },
+            False,
+        ),
+        (
+            "resource with multiple object types",
+            {
+                "ResourceBoundAccessRuleModels": [
+                    {
+                        "RESOURCE": {
+                            "IDENTIFIABLE": '$sm("TechnicalData")',
+                            "ROUTE": "/submodels/*",
+                        },
+                        "rules": [],
+                    }
+                ]
+            },
+            False,
+        ),
+    ]
+
+    schema_paths = [
+        JSON_DIR / "aas-queries-and-access-rules-schema.json",
+        JSON_DIR / "access-rule-model.json",
+    ]
+    for path in schema_paths:
+        schema = loaded_json.get(path)
+        if not isinstance(schema, dict):
+            continue
+        validator = schema_validator(path, schema, "#")
+        for label, instance, should_pass in cases:
+            is_valid = validator.is_valid(instance)
+            if is_valid != should_pass:
+                expected = "valid" if should_pass else "invalid"
+                validation.fail(path, f"{label} smoke test expected {expected}")
+
+    duplicate_model = {
+        "ResourceBoundAccessRuleModels": [
+            {
+                "RESOURCE": {"IDENTIFIABLE": '$sm("TechnicalData")'},
+                "rules": [],
+            },
+            {
+                "RESOURCE": {"IDENTIFIABLE": '$sm("TechnicalData")'},
+                "rules": [
+                    {
+                        "USEACL": "different-acl",
+                        "USEFORMULA": "different-formula",
+                    }
+                ],
+            },
+        ]
+    }
+    if duplicate_resource_bindings(valid_model):
+        validation.fail("resource-bound semantic smoke test", "valid model has duplicate RESOURCE bindings")
+    if not duplicate_resource_bindings(duplicate_model):
+        validation.fail("resource-bound semantic smoke test", "duplicate RESOURCE binding was not detected")
+    print(f"OK: ran {len(cases)} resource-bound access-rule smoke tests against {len(schema_paths)} schemas")
 
 
 def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], validation: Validation) -> None:

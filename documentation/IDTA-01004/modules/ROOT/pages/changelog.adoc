@@ -19,6 +19,7 @@ Bugfixes:
 
 Minor Changes:
 
+* added: Added resource-bound Access Rule Models as an alternative to the existing object-based representation. Each resource has at most one directly bound model; descendants without a model inherit the nearest ancestor model, while a directly bound child model completely overrides inheritance without combining policies. Composite responses are filtered per descendant so child overrides cannot leak through an authorized parent. The BNF, JSON Schemas, diagrams and serialization examples support both representations [#107](https://github.com/admin-shell-io/aas-specs-security/issues/107).
 * Improved documentation of access rule examples
 * new access rule examples for DPP related rules, access rule 10 updated to better reflect the purpose
 

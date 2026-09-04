@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg
+  xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'
+  width='1200' height='380' viewBox='0 0 1200 380'>
+
+  <style>
+    rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
+    rect, line, path { stroke-linecap: square; stroke-linejoin: rounded; }
+    path { fill: transparent; }
+    text.literal { font-family: monospace; }
+    path.arrow { fill: black; }
+  </style>
+
+  <g transform='translate(40 50)'>
+    <text x='-30' y='-10'>ResourceBoundAccessRuleModel:</text>
+    <path d='M5.5 14 v12 m4 0 v-12' class='station'/>
+    <path d='M1130.5 14 v12 m4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='100' rx='8' ry='8' class='literal'/>
+    <text x='80' y='25' text-anchor='middle' class='literal'>RESOURCE:</text>
+    <rect x='150' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='175' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='220' y='10' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='275' y='25' text-anchor='middle' class='rule'>SingleObject</text>
+    <rect x='350' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='375' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='420' y='10' height='20' width='260' rx='0' ry='0' class='rule'/>
+    <text x='550' y='25' text-anchor='middle' class='rule'>ResourceBoundAccessPermissionDefs</text>
+    <rect x='760' y='40' height='20' width='250' rx='0' ry='0' class='rule'/>
+    <text x='885' y='55' text-anchor='middle' class='rule'>ResourceBoundAccessPermissionRule</text>
+    <rect x='1030' y='40' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='1055' y='55' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M918 70 l4 3 v-6 z' class='arrow'/>
+    <path d='M1100 30 v10'/>
+    <path d='M740 60 q0 10 10 10 h340 q10 0 10 -10'/>
+    <path d='M1090 50 q10 0 10 10'/>
+    <path d='M1080 50 h10 q10 0 10 -10'/>
+    <path d='M1010 50 h20'/>
+    <path d='M740 60 q0 -10 10 -10'/>
+    <path d='M710 40 q0 10 10 10 h40'/>
+    <path d='M1100 30 q0 -10 10 -10'/>
+    <path d='M700 20 q10 0 10 10 v10'/>
+    <path d='M680 20 h450'/>
+    <path d='M400 20 h20'/>
+    <path d='M330 20 h20'/>
+    <path d='M200 20 h20'/>
+    <path d='M130 20 h20'/>
+    <path d='M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 190)'>
+    <text x='-30' y='-10'>ResourceBoundAccessPermissionDefs:</text>
+    <path d='M5.5 14 v12 m4 0 v-12' class='station'/>
+    <path d='M590.5 14 v12 m4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='180' rx='0' ry='0' class='rule'/>
+    <text x='120' y='25' text-anchor='middle' class='rule'>AllAccessDefAttributes</text>
+    <rect x='230' y='10' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='305' y='25' text-anchor='middle' class='rule'>AllAccessDefAcls</text>
+    <rect x='400' y='10' height='20' width='170' rx='0' ry='0' class='rule'/>
+    <text x='485' y='25' text-anchor='middle' class='rule'>AllAccessDefFormulas</text>
+    <path d='M10 20 h20'/>
+    <path d='M210 20 h20'/>
+    <path d='M380 20 h20'/>
+    <path d='M570 20 h20'/>
+  </g>
+
+  <g transform='translate(40 300)'>
+    <text x='-30' y='-10'>ResourceBoundAccessPermissionRule:</text>
+    <path d='M5.5 14 v12 m4 0 v-12' class='station'/>
+    <path d='M440.5 14 v12 m4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='105' y='25' text-anchor='middle' class='rule'>AccessAccessRule</text>
+    <rect x='200' y='10' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='265' y='25' text-anchor='middle' class='rule'>AccessFormula</text>
+    <rect x='350' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='375' y='25' text-anchor='middle' class='rule'>Filter</text>
+    <path d='M10 20 h20'/>
+    <path d='M180 20 h20'/>
+    <path d='M330 20 h20'/>
+    <path d='M400 20 h40'/>
+  </g>
+</svg>

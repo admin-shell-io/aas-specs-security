@@ -98,3 +98,9 @@ include::partial$examples/filter.json[]
 include::partial$examples/reference-machine-state-filter.json[]
 ----
 
+== EXAMPLE 13: Resource-bound Access Rule Models
+
+[source,json,linenums]
+----
+include::partial$examples/resource-bound-access-rules.json[]
+----

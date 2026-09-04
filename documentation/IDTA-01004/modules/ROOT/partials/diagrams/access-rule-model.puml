@@ -1,34 +1,80 @@
 @startuml
+abstract class AccessRuleModel
+
 class AllAccessPermissionRules {
    +defAttributeGroups: AttributeGroup[0..*]
    +defObjectGroups:ObjectGroup[0..*]
    +defAcls: Acl[0..*]
-   +defConditions: Condition[0..*]
+   +defFormulas: Condition[0..*]
    +accessRules: AccessPermissionRule[0..*]
 }
+AccessRuleModel <|-- AllAccessPermissionRules
 AllAccessPermissionRules ..> AttributeGroup
 AllAccessPermissionRules ..> ObjectGroup
 AllAccessPermissionRules ..> Acl
 AllAccessPermissionRules ..> Condition
 AllAccessPermissionRules ..> AccessPermissionRule
 
+class ResourceBoundAccessRuleModels {
+   +models: ResourceBoundAccessRuleModel[1..*]
+}
+AccessRuleModel <|-- ResourceBoundAccessRuleModels
+ResourceBoundAccessRuleModels *-- ResourceBoundAccessRuleModel
+note right of ResourceBoundAccessRuleModels
+  at most one directly bound model per resource
+end note
+
+class ResourceBoundAccessRuleModel {
+   +resource: SingleObject[1]
+   +defAttributeGroups: AttributeGroup[0..*]
+   +defAcls: Acl[0..*]
+   +defFormulas: Condition[0..*]
+   +accessRules: ResourceBoundAccessPermissionRule[0..*]
+}
+ResourceBoundAccessRuleModel --> SingleObject: direct binding
+ResourceBoundAccessRuleModel ..> AttributeGroup
+ResourceBoundAccessRuleModel ..> Acl
+ResourceBoundAccessRuleModel ..> Condition
+ResourceBoundAccessRuleModel *-- ResourceBoundAccessPermissionRule
+note right of ResourceBoundAccessRuleModel
+  effective for descendants without a nearer model
+  nearest directly bound model wins
+  models are not combined
+end note
+
 class AccessPermissionRule {
 	+acl: Acl[0..1]
 	+useAcl: AclName[0..1]
 	+singleObject: SingleObject[0..*]
 	+useObjectGroup: ObjectGroupName[0..*]
-	+Condition: Condition[0..1]
-	+useCondition: ConditionName[0..1]
+	+formula: Condition[0..1]
+	+useFormula: ConditionName[0..1]
 }
 AccessPermissionRule ..> Acl
 AccessPermissionRule::useAcl ..> Acl: > by name
 AccessPermissionRule ..> Condition
 AccessPermissionRule ..> SingleObject
 AccessPermissionRule::useObjectGroup .. ObjectGroup: > by name
-AccessPermissionRule::useCondition .. Condition : > by name
+AccessPermissionRule::useFormula .. Condition : > by name
 note top of AccessPermissionRule
 	either acl or useAcl
-	either Condition or useCondition
+	either formula or useFormula
+end note
+
+class ResourceBoundAccessPermissionRule {
+	+acl: Acl[0..1]
+	+useAcl: AclName[0..1]
+	+formula: Condition[0..1]
+	+useFormula: ConditionName[0..1]
+}
+ResourceBoundAccessPermissionRule ..> Acl
+ResourceBoundAccessPermissionRule::useAcl ..> Acl: > by name
+ResourceBoundAccessPermissionRule ..> Condition
+ResourceBoundAccessPermissionRule::useFormula .. Condition : > by name
+note top of ResourceBoundAccessPermissionRule
+	target inherited from containing model
+	either acl or useAcl
+	either formula or useFormula
 end note
 
 together {

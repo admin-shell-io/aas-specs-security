@@ -1,6 +1,24 @@
+<AccessRuleModel> ::=
+    <AllAccessPermissionRules> |
+    <ResourceBoundAccessRuleModels>
+
 <AllAccessPermissionRules> ::=
     <AllAccessPermissionDefs>
     ( <AccessPermissionRule> <Ws> )*
+
+<ResourceBoundAccessRuleModels> ::=
+    <ResourceBoundAccessRuleModel> <Ws>
+    ( <ResourceBoundAccessRuleModel> <Ws> )*
+
+<ResourceBoundAccessRuleModel> ::=
+    "RESOURCE:" <Ws> <SingleObject> <Ws>
+    <ResourceBoundAccessPermissionDefs>
+    ( <ResourceBoundAccessPermissionRule> <Ws> )*
+
+<ResourceBoundAccessPermissionDefs> ::=
+    <AllAccessDefAttributes>
+    <AllAccessDefAcls>
+    <AllAccessDefFormulas>
 
 <AllAccessPermissionDefs> ::=
     <AllAccessDefAttributes>
@@ -23,6 +41,11 @@
 <AccessPermissionRule> ::=
     <AccessAccessRule>
     <AccessObjects>
+    <AccessFormula>
+    <Filter>
+
+<ResourceBoundAccessPermissionRule> ::=
+    <AccessAccessRule>
     <AccessFormula>
     <Filter>
 

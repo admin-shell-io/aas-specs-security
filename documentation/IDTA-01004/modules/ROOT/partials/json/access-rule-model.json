@@ -227,6 +227,66 @@
       ],
       "additionalProperties": false
     },
+    "ResourceBoundAccessPermissionRule": {
+      "description": "An Access Permission Rule that takes its target from the RESOURCE of its containing ResourceBoundAccessRuleModel and therefore does not define OBJECTS or USEOBJECTS.",
+      "type": "object",
+      "properties": {
+        "ACL": {
+          "$ref": "#/definitions/ACL"
+        },
+        "USEACL": {
+          "type": "string"
+        },
+        "FORMULA": {
+          "$ref": "aas-queries-and-access-rules-schema.json#/definitions/logicalExpression",
+          "additionalProperties": false
+        },
+        "USEFORMULA": {
+          "type": "string"
+        },
+        "FILTER": {
+          "$ref": "#/definitions/SecurityQueryFilter",
+          "additionalProperties": false
+        },
+        "FILTERLIST": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SecurityQueryFilter"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "required": [
+                "ACL"
+              ]
+            },
+            {
+              "required": [
+                "USEACL"
+              ]
+            }
+          ]
+        },
+        {
+          "oneOf": [
+            {
+              "required": [
+                "FORMULA"
+              ]
+            },
+            {
+              "required": [
+                "USEFORMULA"
+              ]
+            }
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
     "SecurityQueryFilter": {
       "type": "object",
       "properties": {
@@ -254,6 +314,103 @@
             "USEFORMULA"
           ]
         }
+      ],
+      "additionalProperties": false
+    },
+    "ResourceBoundAccessRuleModel": {
+      "description": "An Access Rule Model directly bound to one RESOURCE. It is the effective model for that resource and for descendants without a nearer directly bound model.",
+      "type": "object",
+      "properties": {
+        "RESOURCE": {
+          "$ref": "#/definitions/objectItem"
+        },
+        "DEFATTRIBUTES": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "attributes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/attributeItem"
+                }
+              },
+              "USEATTRIBUTES": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "oneOf": [
+              {
+                "required": [
+                  "attributes"
+                ]
+              },
+              {
+                "required": [
+                  "USEATTRIBUTES"
+                ]
+              }
+            ],
+            "additionalProperties": false
+          }
+        },
+        "DEFACLS": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "acl": {
+                "$ref": "#/definitions/ACL"
+              }
+            },
+            "required": [
+              "name",
+              "acl"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "DEFFORMULAS": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "formula": {
+                "$ref": "aas-queries-and-access-rules-schema.json#/definitions/logicalExpression"
+              }
+            },
+            "required": [
+              "name",
+              "formula"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceBoundAccessPermissionRule"
+          }
+        }
+      },
+      "required": [
+        "RESOURCE",
+        "rules"
       ],
       "additionalProperties": false
     }
@@ -390,10 +547,27 @@
         "rules"
       ],
       "additionalProperties": false
+    },
+    "ResourceBoundAccessRuleModels": {
+      "description": "A non-empty collection of resource-bound Access Rule Models. A resource may be directly bound by at most one item; this uniqueness constraint requires semantic validation of RESOURCE values.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/ResourceBoundAccessRuleModel"
+      }
     }
   },
-  "required": [
-    "AllAccessPermissionRules"
+  "oneOf": [
+    {
+      "required": [
+        "AllAccessPermissionRules"
+      ]
+    },
+    {
+      "required": [
+        "ResourceBoundAccessRuleModels"
+      ]
+    }
   ],
   "additionalProperties": false
 }

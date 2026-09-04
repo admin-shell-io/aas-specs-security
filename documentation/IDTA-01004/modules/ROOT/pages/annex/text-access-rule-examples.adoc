@@ -190,3 +190,20 @@ In case the machine is not running all maintenance documents are returned (no FI
 ----
 include::partial$examples/reference-machine-state-filter.bnf[]
 ----
+
+[[example-resource-bound-access-rules]]
+== EXAMPLE 13: Resource-bound Access Rule Models
+
+The Technical Data Submodel contains the SubmodelElements `smeA`, `smeB` and `smeC`.
+The first Resource-Bound Access Rule Model grants customers READ access to the Technical Data Submodel.
+Because `smeA` and `smeB` have no directly bound models, they inherit this model and customers may read them.
+
+The second model is bound directly to `smeC` and grants READ access to manufacturers.
+It overrides the inherited Submodel model for `smeC`; the two models are not combined.
+Consequently, a customer reading the Technical Data Submodel receives a representation that omits `smeC`, while a manufacturer may request `smeC` directly.
+The `RESOURCE:` section supplies each binding, so the contained rules do not repeat an `OBJECTS:` section.
+
+[source,bnf,linenums]
+----
+include::partial$examples/resource-bound-access-rules.bnf[]
+----
