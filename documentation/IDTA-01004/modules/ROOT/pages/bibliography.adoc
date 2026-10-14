@@ -64,3 +64,52 @@ Available: http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.pdf
 
 [#bib12]
 [12] IEEE Standard for Local and Metropolitan Area Networks--Secure Device Identity. IEEE Std 802.1AR-2018, August 2018.
+
+[#bib13]
+[13] CEN-CENELEC. EN 18239:2026, Digital Product Passport - Access rights management, information system security, and business confidentiality.
+
+[#bib14]
+[14] CEN-CENELEC. EN 18246:2026, Digital product passport - Data authentication, reliability and integrity.
+
+[#bib15]
+[15] CEN-CENELEC. EN 18221:2026, Digital product passport - Data storage, archiving, and data persistence. European Standard.
+
+[#bib16]
+[16] CEN-CENELEC. EN 18222:2026, Digital Product Passport - Application Programming Interfaces (APIs) for the product passport lifecycle management and searchability.
+
+[#bib17]
+[17] European Parliament and Council. Regulation (EU) 2024/1781 of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, amending Directive (EU) 2020/1828 and Regulation (EU) 2023/1542 and repealing Directive 2009/125/EC. Official Journal of the European Union, 2024. Online.
+Available: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+
+[#bib18]
+[18] European Commission. Commission Implementing Regulation (EU) 2026/1778 of 16 July 2026 laying down the implementation arrangements for the digital product passport registry set up under Regulation (EU) 2024/1781 of the European Parliament and of the Council. Official Journal of the European Union, 2026. Online.
+Available: https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj
+
+[#bib19]
+[19] European Parliament and Council. Regulation (EU) No 910/2014 of 23 July 2014 on electronic identification and trust services for electronic transactions in the internal market and repealing Directive 1999/93/EC. Official Journal of the European Union, 2014. Online.
+Available: https://eur-lex.europa.eu/eli/reg/2014/910/oj
+
+[#bib20]
+[20] European Parliament and Council. Regulation (EU) 2024/1183 of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework. Official Journal of the European Union, 2024. Online.
+Available: https://eur-lex.europa.eu/eli/reg/2024/1183/oj
+
+[#bib21]
+[21] CEN-CENELEC. EN 18219:2026, Digital product passport - Unique identifiers.
+
+[#bib22]
+[22] CEN-CENELEC. EN 18220:2026, Digital product passport - Data carriers.
+
+[#bib23]
+[23] CEN-CENELEC. EN 18223:2026, Digital Product Passport - System interoperability.
+
+[#bib24]
+[24] European Parliament and Council. Regulation (EU) 2024/2847 of 23 October 2024 on horizontal cybersecurity requirements for products with digital elements and amending Regulations (EU) No 168/2013 and (EU) 2019/1020 and Directive (EU) 2020/1828 (Cyber Resilience Act). Official Journal of the European Union, 2024. Online.
+Available: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+
+[#bib25]
+[25] A. Backman, J. Richer, and M. Sporny. HTTP Message Signatures. RFC 9421. Internet Engineering Task Force, February 2024. Online.
+Available: https://www.rfc-editor.org/rfc/rfc9421.html
+
+[#bib26]
+[26] R. Polli and L. Pardue. Digest Fields. RFC 9530. Internet Engineering Task Force, February 2024. Online.
+Available: https://www.rfc-editor.org/rfc/rfc9530.html

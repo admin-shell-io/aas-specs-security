@@ -1,0 +1,33 @@
+@startuml
+' Copyright (c) 2026 Industrial Digital Twin Association
+' SPDX-License-Identifier: CC-BY-4.0
+
+skinparam shadowing false
+skinparam ArrowColor #444444
+hide footbox
+
+actor "Customer" as User
+participant "Diagnostics service" as Service #FFF2CC
+participant "Service IAM" as IAM #FFF2CC
+participant "Entitlement service" as Entitlements #FFF2CC
+participant "AAS service" as AAS #D9EAF7
+
+User -> Service : Read diagnostics for battery
+Service -> IAM : Authenticate customer; request token\nfor the diagnostics Submodel
+IAM -> Entitlements : Check customer's current entitlement\nfor this Submodel
+Entitlements --> IAM : Basic or paid access
+IAM --> Service : Token with customer role, Submodel scope,\nand DiagnosticsAccess
+Service -> AAS : Read the same diagnostics Submodel with token
+AAS -> AAS : Validate token\nExample 9: check customer and Submodel scope\nFilter elements by semanticId and entitlement
+alt Basic access
+  AAS --> Service : Summary only
+else Paid access for this Submodel
+  AAS --> Service : Summary, DetailedDiagnosis,\nand MaintenanceRecommendation
+end
+Service --> User : Authorized diagnostics data
+
+legend bottom
+  Optional commercial service; required DPP information is separate.
+  Successful reads only; purchase and payment processing are not shown.
+endlegend
+@enduml
