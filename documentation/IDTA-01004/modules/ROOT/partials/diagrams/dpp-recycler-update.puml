@@ -1,0 +1,25 @@
+@startuml
+' Copyright (c) 2026 Industrial Digital Twin Association
+' SPDX-License-Identifier: CC-BY-4.0
+
+skinparam shadowing false
+skinparam ArrowColor #444444
+hide footbox
+
+actor "Recycler" as User
+participant "DPP service" as DPP #FFF2CC
+participant "DPP IAM" as IAM #FFF2CC
+participant "AAS service" as AAS #D9EAF7
+
+User -> DPP : Record remaining capacity and timestamp\nfor the authorized battery
+DPP -> IAM : Authenticate requester
+IAM --> DPP : Token with recycler role\nand update permission
+loop Each of the two permitted elements
+  DPP -> AAS : Update RemainingCapacityValue or LastUpdate\nunder RemainingCapacity with token
+  AAS -> AAS : Validate token and update permission\nExample 3: authorize the exact REFERABLE\nCheck Submodel and element semanticIds
+  AAS -> AAS : Validate and update the element value
+  AAS --> DPP : Element update result
+end
+DPP -> DPP : Record the authorized changes
+DPP --> User : Capacity and timestamp update results
+@enduml
