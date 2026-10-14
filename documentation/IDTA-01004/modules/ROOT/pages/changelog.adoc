@@ -16,10 +16,11 @@ SPDX-License-Identifier: CC-BY-4.0
 Bugfixes:
 
 * fix: Aligned the JSON Schema for `DEFOBJECTS` with the BNF grammar so object groups can combine direct `REFERABLE` objects and `USEOBJECTS` references.
+* fix: Clarified fail-closed formula evaluation and three-valued handling of runtime evaluation errors [#96](https://github.com/admin-shell-io/aas-specs-security/issues/96).
 
 Minor Changes:
 
-* Clarified that all CLAIM and GLOBAL attributes used by a FORMULA or filter CONDITION must be listed in the applicable ACL's ATTRIBUTES, directly or through USEATTRIBUTES, including when formulas are reused. Missing entries cause the expression to evaluate to false; REFERENCE operands can be used directly. Updated the time-based BNF and JSON examples accordingly [#97](https://github.com/admin-shell-io/aas-specs-security/issues/97).
+* Clarified that all CLAIM and GLOBAL attributes used by a FORMULA or filter CONDITION must be listed in the applicable ACL's ATTRIBUTES, directly or through USEATTRIBUTES, including when formulas are reused. Undeclared operands cause the complete expression to be treated as false before logical evaluation; REFERENCE operands can be used directly. Updated the time-based BNF and JSON examples accordingly [#97](https://github.com/admin-shell-io/aas-specs-security/issues/97).
 * added: Expanded the informative DPP annex with AAS security mappings and Battery Passport access examples covering claim conventions, paid diagnostics, and delegated element updates. Added linked workflows and a proposed HTTP response-signing approach.
 * Clarified the FORMULA evaluation context for CREATE and UPDATE operations, including evaluation of both the current and prospective state for UPDATE [#98](https://github.com/admin-shell-io/aas-specs-security/issues/98).
 * Improved documentation of access rule examples
