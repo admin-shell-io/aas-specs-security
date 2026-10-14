@@ -255,7 +255,7 @@ Table <<table-acl>> describes the details of <ACL>.
 |Description
 
 |ATTRIBUTES:
-| List of ABAC attributes that the access control list depends on. The list contains definitions for individual attributes or pre-defined attribute groups introduced with DEFATTRIBUTES. Attributes are described in <<attributes,Attributes>>.
+| List of ABAC attributes that the access control list depends on. The list contains individual attributes or references using USEATTRIBUTES to attribute groups pre-defined with DEFATTRIBUTES. Every CLAIM and GLOBAL attribute used by the rule's FORMULA or filter CONDITION SHALL be included in this list, either directly or through a referenced attribute group. Attributes are described in <<attributes,Attributes>>.
 
 |RIGHTS:
 | Enumeration of access rights subject to this access control list. Table <<table-rights-to-verbs>> describes the possible access rights, their semantics, and how they apply to the interface operations defined by the AAS API xref:bibliography.adoc#bib2[[2\]].
@@ -264,6 +264,8 @@ Table <<table-acl>> describes the details of <ACL>.
 |Type of access managed by this access control list. See Table <<table-access>> for the description of possible access types.
 
 |===
+
+Listing CLAIM attributes allows the PIP or token issuer to determine the required subject claims without parsing the FORMULA or filter conditions. Listing GLOBAL attributes identifies the required environmental inputs supplied by the AAS interface.
 
 [[table-access]]
 .<Access>
@@ -662,13 +664,19 @@ An important special operation is $match, which can be used with any element con
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
 FILTER defines one fragment restriction for a returned object, while FILTERLIST defines several fragment restrictions with independent conditions.
 
-A formula can use all ABAC attributes defined in the ATTRIBUTES: section of the <<acl,ACL>>. If an evaluated operation cannot produce a Boolean result, that operation shall be indeterminate. This includes an unresolved or inapplicable <FieldIdentifier>, a missing or unusable claim, an invalid cast, or another runtime evaluation error.
+A CLAIM or GLOBAL operand is available for evaluation only if it is listed in the applicable <<acl,ACL>>'s ATTRIBUTES. Attributes included through USEATTRIBUTES count as listed. This requirement also applies to pre-defined formulas referenced using USEFORMULA.
+
+An evaluated operation using an unlisted CLAIM or GLOBAL operand SHALL be indeterminate, even if the attribute value is otherwise available. This result SHALL be combined with other subexpressions of the FORMULA or filter CONDITION according to the truth tables above.
+
+REFERENCE operands resolve values from the addressed model fields and MAY be used directly without being included in ATTRIBUTES.
+
+If an evaluated operation cannot produce a Boolean result, that operation shall be indeterminate. This includes an unresolved or inapplicable <FieldIdentifier>, a missing or unusable claim, an unavailable GLOBAL value, an invalid cast, or another runtime evaluation error.
 
 Only a final formula result of true activates an ALLOW rule. A final result of false or indeterminate shall not grant access. Consequently, an evaluation error cannot be turned into permission by `$not`, while another branch of `$or` can still independently make the complete formula true.
 
 An access-rule document that does not conform to the normative grammar or JSON Schema shall be rejected before formula evaluation. Such a document is invalid rather than indeterminate.
 
-USEFORMULAS can be used to refer to a predefined formula (see <<reusable-definitions,Reusable Definitions>>).
+USEFORMULA can be used to refer to a predefined formula (see <<reusable-definitions,Reusable Definitions>>).
 
 .Railroad diagram for <UseFormula>
 [[image-access-control-rules-formula-reference]]
