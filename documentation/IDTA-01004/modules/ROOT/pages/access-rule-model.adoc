@@ -664,9 +664,9 @@ An important special operation is $match, which can be used with any element con
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
 FILTER defines one fragment restriction for a returned object, while FILTERLIST defines several fragment restrictions with independent conditions.
 
-Before evaluating a FORMULA or filter CONDITION, all CLAIM and GLOBAL operands SHALL be checked against the applicable <<acl,ACL>>'s ATTRIBUTES. Attributes included through USEATTRIBUTES count as listed. This requirement also applies to pre-defined formulas referenced using USEFORMULA.
+A CLAIM or GLOBAL operand is available for evaluation only if it is listed in the applicable <<acl,ACL>>'s ATTRIBUTES. Attributes included through USEATTRIBUTES count as listed. This requirement also applies to pre-defined formulas referenced using USEFORMULA.
 
-If any CLAIM or GLOBAL operand is not listed, the complete FORMULA or filter CONDITION SHALL be treated as false without evaluating its logical operators, even if the attribute value is otherwise available.
+An evaluated operation using an unlisted CLAIM or GLOBAL operand SHALL be indeterminate, even if the attribute value is otherwise available. This result SHALL be combined with other subexpressions of the FORMULA or filter CONDITION according to the truth tables above.
 
 REFERENCE operands resolve values from the addressed model fields and MAY be used directly without being included in ATTRIBUTES.
 
