@@ -7,6 +7,9 @@
           "ATTRIBUTES": [
             {
               "CLAIM": "email"
+            },
+            {
+              "GLOBAL": "UTCNOW"
             }
           ],
           "RIGHTS": [

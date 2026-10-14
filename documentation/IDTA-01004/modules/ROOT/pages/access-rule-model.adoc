@@ -255,7 +255,7 @@ Table <<table-acl>> describes the details of <ACL>.
 |Description
 
 |ATTRIBUTES:
-| List of ABAC attributes that the access control list depends on. The list contains definitions for individual attributes or pre-defined attribute groups introduced with DEFATTRIBUTES. Attributes are described in <<attributes,Attributes>>. The explicit list communicates which subject attributes an ACL requires, allowing the PIP or token issuer to determine the required claims without parsing the FORMULA. It is not a declaration list for every operand: server-provided GLOBAL operands and model REFERENCE operands may be used directly in the FORMULA without being repeated in ATTRIBUTES.
+| List of ABAC attributes that the access control list depends on. The list contains individual attributes or references using USEATTRIBUTES to attribute groups pre-defined with DEFATTRIBUTES. Every CLAIM and GLOBAL attribute used by the rule's FORMULA or filter CONDITION SHALL be included in this list, either directly or through a referenced attribute group. Attributes are described in <<attributes,Attributes>>.
 
 |RIGHTS:
 | Enumeration of access rights subject to this access control list. Table <<table-rights-to-verbs>> describes the possible access rights, their semantics, and how they apply to the interface operations defined by the AAS API xref:bibliography.adoc#bib2[[2\]].
@@ -264,6 +264,8 @@ Table <<table-acl>> describes the details of <ACL>.
 |Type of access managed by this access control list. See Table <<table-access>> for the description of possible access types.
 
 |===
+
+Listing CLAIM attributes allows the PIP or token issuer to determine the required subject claims without parsing the FORMULA or filter conditions. Listing GLOBAL attributes identifies the required environmental inputs supplied by the AAS interface.
 
 [[table-access]]
 .<Access>
@@ -588,9 +590,11 @@ An important special operation is $match, which can be used with any element con
 The list element is written with [] to express, that $match shall check if a certain expression is true for at least one element in the list.
 FILTER defines one fragment restriction for a returned object, while FILTERLIST defines several fragment restrictions with independent conditions.
 
-A formula can use all ABAC attributes defined in the ATTRIBUTES: section of the <<acl,ACL>>. A formula referring to undefined attributes shall result in false. Any type of error during the evaluation of a formula shall be treated as if the formula resulted in false.
+A FORMULA or filter CONDITION referring to a CLAIM or GLOBAL attribute that is absent from the applicable <<acl,ACL>>'s ATTRIBUTES SHALL evaluate to false, even if the attribute value is otherwise available. Attributes included through USEATTRIBUTES count as listed. This requirement also applies to pre-defined formulas referenced using USEFORMULA.
 
-USEFORMULAS can be used to refer to a predefined formula (see <<reusable-definitions,Reusable Definitions>>).
+REFERENCE operands resolve values from the addressed model fields and MAY be used directly without being included in ATTRIBUTES. A formula referring to an unavailable attribute value shall result in false. Any type of error during the evaluation of a formula shall be treated as if the formula resulted in false.
+
+USEFORMULA can be used to refer to a predefined formula (see <<reusable-definitions,Reusable Definitions>>).
 
 .Railroad diagram for <UseFormula>
 [[image-access-control-rules-formula-reference]]
