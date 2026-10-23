@@ -10,41 +10,24 @@
   </style>
   <g transform='translate(40 30)'>
     <text x='-30' y='-10'>ObjectGroup:</text>
-    <path d='M5.5 4 v12 m 4 0 v-12' class='station'/>
-    <path d='M430.5 4 v12 m 4 0 v-12' class='station'/>
-    <rect x='130' y='30' height='20' width='110' rx='0' ry='0' class='rule'/>
-    <text x='185' y='45' text-anchor='middle' class='rule'>SingleObject</text>
-    <rect x='260' y='30' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='285' y='45' text-anchor='middle' class='rule'>Ws</text>
-    <path d='M218 60 l4 3 v-6 z' class='arrow'/>
-    <rect x='120' y='100' height='20' width='130' rx='0' ry='0' class='rule'/>
-    <text x='185' y='115' text-anchor='middle' class='rule'>UseObjectGroup</text>
-    <rect x='270' y='100' height='20' width='50' rx='0' ry='0' class='rule'/>
-    <text x='295' y='115' text-anchor='middle' class='rule'>Ws</text>
-    <path d='M218 130 l4 3 v-6 z' class='arrow'/>
-    <path d='M400 20 v50'/>
-    <path d='M370 90 v10'/>
-    <path d='M100 120 v0 q0 10 10 10 h220 q10 0 10 -10 v0'/>
-    <path d='M330 110 q10 0 10 10'/>
-    <path d='M320 110 h40 q10 0 10 -10'/>
-    <path d='M250 110 h20'/>
-    <path d='M100 120 q0 -10 10 -10'/>
-    <path d='M70 100 q0 10 10 10 h40'/>
-    <path d='M370 90 q0 -10 10 -10'/>
-    <path d='M60 80 q10 0 10 10 v10'/>
-    <path d='M40 70 q0 10 10 10 h340 q10 0 10 -10'/>
-    <path d='M400 20 q0 -10 10 -10'/>
-    <path d='M360 20 v10'/>
-    <path d='M110 50 v0 q0 10 10 10 h200 q10 0 10 -10 v0'/>
-    <path d='M320 40 q10 0 10 10'/>
-    <path d='M310 40 h40 q10 0 10 -10'/>
-    <path d='M240 40 h20'/>
-    <path d='M110 50 q0 -10 10 -10'/>
-    <path d='M80 30 q0 10 10 10 h40'/>
-    <path d='M360 20 q0 -10 10 -10'/>
-    <path d='M70 10 q10 0 10 10 v10'/>
-    <path d='M30 10 q10 0 10 10 v50'/>
-    <path d='M10 10 h420'/>
+    <path d='M5.5 44 v12 m 4 0 v-12' class='station'/>
+    <path d='M890.5 44 v12 m 4 0 v-12' class='station'/>
+    <rect x='70' y='40' height='20' width='110' rx='0' ry='0' class='rule'/>
+    <text x='125' y='55' text-anchor='middle' class='rule'>SingleObject</text>
+    <rect x='200' y='40' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='225' y='55' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M10 50 h60 M180 50 h20 M250 50 h240'/>
+    <path d='M40 50 q10 0 10 -10 v-20 q0 -10 10 -10 h210 q10 0 10 10 v20 q0 10 10 10'/>
+    <path d='M260 50 q10 0 10 10 v20 q0 10 -10 10 h-200 q-10 0 -10 -10 v-20 q0 -10 10 -10'/>
+    <path d='M145 90 l6 -4 v8 z' class='arrow'/>
+    <rect x='490' y='40' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='555' y='55' text-anchor='middle' class='rule'>UseObjectGroup</text>
+    <rect x='650' y='40' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='675' y='55' text-anchor='middle' class='rule'>Ws</text>
+    <path d='M620 50 h30 M700 50 h190'/>
+    <path d='M450 50 q10 0 10 -10 v-20 q0 -10 10 -10 h250 q10 0 10 10 v20 q0 10 10 10'/>
+    <path d='M710 50 q10 0 10 10 v20 q0 10 -10 10 h-240 q-10 0 -10 -10 v-20 q0 -10 10 -10'/>
+    <path d='M590 90 l6 -4 v8 z' class='arrow'/>
   </g>
   <g transform='translate(40 190)'>
     <text x='-30' y='-10'>UseObjectGroup:</text>

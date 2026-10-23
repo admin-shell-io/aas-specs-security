@@ -219,28 +219,17 @@ def validate_json_examples(loaded_json: dict[Path, Any], validation: Validation)
 
 
 def validate_object_group_smoke_tests(loaded_json: dict[Path, Any], validation: Validation) -> None:
-    """Ensure object groups can combine direct objects and reusable groups.
-
-    The BNF permits both <SingleObject> and <UseObjectGroup> entries in the
-    same <ObjectGroup>. Keep the standalone and consolidated schemas aligned.
-    """
-    instance = {
-        "AllAccessPermissionRules": {
-            "DEFOBJECTS": [
-                {
-                    "name": "mixed-object-group",
-                    "objects": [
-                        {"REFERABLE": '$sme("*").DateOfPuttingIntoService'},
-                    ],
-                    "USEOBJECTS": [
-                        "public-data-points",
-                        "updated-data-points",
-                    ],
-                }
-            ],
-            "rules": [],
-        }
+    """Allow either or both object fields, but reject groups missing both."""
+    direct_objects = {
+        "objects": [{"REFERABLE": '$sme("*").DateOfPuttingIntoService'}],
     }
+    group_references = {"USEOBJECTS": ["public-data-points", "updated-data-points"]}
+    cases = [
+        ("direct objects only", direct_objects, True),
+        ("group references only", group_references, True),
+        ("mixed objects and references", {**direct_objects, **group_references}, True),
+        ("neither objects nor references", {}, False),
+    ]
     schema_paths = [
         JSON_DIR / "aas-queries-and-access-rules-schema.json",
         JSON_DIR / "access-rule-model.json",
@@ -250,9 +239,16 @@ def validate_object_group_smoke_tests(loaded_json: dict[Path, Any], validation: 
         if not isinstance(schema, dict):
             continue
         validator = schema_validator(path, schema, "#")
-        if not validator.is_valid(instance):
-            validation.fail(path, "DEFOBJECTS does not allow mixed objects and USEOBJECTS")
-    print(f"OK: checked mixed object groups against {len(schema_paths)} schemas")
+        for label, fields, expected in cases:
+            instance = {
+                "AllAccessPermissionRules": {
+                    "DEFOBJECTS": [{"name": "object-group-smoke-test", **fields}],
+                    "rules": [],
+                }
+            }
+            if validator.is_valid(instance) != expected:
+                validation.fail(path, f"DEFOBJECTS: {label} must be {'valid' if expected else 'invalid'}")
+    print(f"OK: checked {len(cases)} object group cases against {len(schema_paths)} schemas")
 
 
 def validate_schema_smoke_tests(schema_path: Path, schema: dict[str, Any], validation: Validation) -> None:
@@ -441,6 +437,14 @@ def validate_bnf_grammar_files(validation: Validation) -> None:
                     rule.path,
                     f"line {rule.line}: <{rule.name}> references undefined <{referenced_rule}>",
                 )
+
+    # The published consolidated grammar and the object partial must agree.
+    object_groups = [rule for rule in all_rules if rule.name == "ObjectGroup"]
+    productions = {re.sub(r"\s+", "", rule.rhs) for rule in object_groups}
+    if len(productions) > 1:
+        sources = ", ".join(display_path(rule.path) for rule in object_groups)
+        validation.fail(BNF_DIR, f"inconsistent <ObjectGroup> productions in {sources}")
+
     print(f"OK: checked {len(bnf_files())} BNF grammar files with {len(all_rules)} rule definitions")
 
 
