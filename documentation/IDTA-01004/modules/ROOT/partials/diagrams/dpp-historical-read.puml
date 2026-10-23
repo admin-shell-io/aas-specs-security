@@ -1,0 +1,32 @@
+@startuml
+' Copyright (c) 2026 Industrial Digital Twin Association
+' SPDX-License-Identifier: CC-BY-4.0
+
+skinparam shadowing false
+skinparam ArrowColor #444444
+hide footbox
+
+legend bottom
+  Informative response-signing proposal; successful requests only.
+  The response signature alone does not prove an unchanged history.
+endlegend
+
+actor "Requester" as User
+participant "DPP service" as DPP #FFF2CC
+participant "DPP IAM" as IAM #FFF2CC
+participant "AAS service" as AAS #D9EAF7
+
+User -> DPP : Read DPP by product ID and date\nAccept-Signature (optional)
+alt Authenticated access
+  DPP -> IAM : Authenticate requester
+  IAM --> DPP : AAS access token for role
+  DPP -> AAS : Read historic DPP data with token
+  AAS -> AAS : Validate access token and trusted claims
+else Public access
+  DPP -> AAS : Read public historic DPP data\nwithout access token
+end
+AAS -> AAS : Authorize read: example 1 (public),\n2 (recycler), or 4 (authority)\nRetrieve selected version
+AAS --> DPP : Historic DPP data
+DPP -> DPP : Sign response only when requested
+DPP --> User : Historic DPP data\nContent-Digest + Signature-Input + Signature (when requested)
+@enduml

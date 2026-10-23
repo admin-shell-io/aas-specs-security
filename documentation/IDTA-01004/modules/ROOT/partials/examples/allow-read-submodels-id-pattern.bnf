@@ -1,6 +1,7 @@
 ACCESSRULE:
   ATTRIBUTES:
-  CLAIM("companyName")
+    CLAIM("companyName")
+    GLOBAL(UTCNOW)
   RIGHTS: READ
   ACCESS: ALLOW
   OBJECTS:

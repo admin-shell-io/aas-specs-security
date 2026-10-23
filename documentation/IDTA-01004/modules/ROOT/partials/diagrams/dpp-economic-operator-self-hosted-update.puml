@@ -1,0 +1,21 @@
+@startuml
+' Copyright (c) 2026 Industrial Digital Twin Association
+' SPDX-License-Identifier: CC-BY-4.0
+
+skinparam shadowing false
+skinparam ArrowColor #444444
+hide footbox
+
+actor "Economic operator" as User
+participant "Economic-operator IAM" as IAM #FFF2CC
+participant "Economic-operator\nDPP service" as DPP #FFF2CC
+participant "Economic-operator\nAAS service" as AAS #D9EAF7
+
+User -> DPP : Create, read, or update DPP data
+DPP -> IAM : Authenticate economic operator
+IAM --> DPP : AAS token for self-hosted operator role
+DPP -> AAS : Create, read, or update AAS data\nwith trusted token
+AAS -> AAS : Example 8: check operator role;\nauthorize CREATE, READ, or UPDATE
+AAS --> DPP : Requested or changed AAS data
+DPP --> User : DPP result
+@enduml

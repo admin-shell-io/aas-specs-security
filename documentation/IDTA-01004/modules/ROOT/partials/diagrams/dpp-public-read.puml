@@ -1,0 +1,23 @@
+@startuml
+' Copyright (c) 2026 Industrial Digital Twin Association
+' SPDX-License-Identifier: CC-BY-4.0
+
+skinparam shadowing false
+skinparam ArrowColor #444444
+hide footbox
+
+legend bottom
+  Informative response-signing proposal; successful requests only.
+endlegend
+
+actor "Public user" as User
+participant "DPP service" as DPP #FFF2CC
+participant "AAS service" as AAS #D9EAF7
+
+User -> DPP : Read DPP by product ID\nAccept-Signature (optional)
+DPP -> AAS : Read public DPP data without access token
+AAS -> AAS : Example 1: apply GLOBAL(ANONYMOUS)\nRead Technical Data and Carbon Footprint
+AAS --> DPP : Permitted Submodel data
+DPP -> DPP : Sign response only when requested
+DPP --> User : DPP data\nContent-Digest + Signature-Input + Signature (when requested)
+@enduml
