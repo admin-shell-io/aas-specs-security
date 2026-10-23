@@ -50,6 +50,12 @@ together {
 	further defined in Text
   end note
 
+  class ClaimPath {
+  }
+  note bottom of ClaimPath
+    RFC 6901 JSON Pointer
+  end note
+
   class GlobalAttribute {
   }
   note bottom of GlobalAttribute
@@ -63,6 +69,7 @@ together {
   end note
 
   SingleAttribute <|-- Claim
+  SingleAttribute <|-- ClaimPath
   SingleAttribute <|-- GlobalAttribute
   SingleAttribute <|-- Reference
 }

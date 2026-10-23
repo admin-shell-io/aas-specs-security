@@ -79,7 +79,7 @@
           "$ref": "#/definitions/dateTimeLiteralPattern"
         },
         "$dateTimeCast": {
-          "$ref": "#/definitions/stringValue"
+          "$ref": "#/definitions/stringCastValue"
         },
         "$attribute": {
           "$ref": "#/definitions/dateTimeAttributeItem"
@@ -229,7 +229,7 @@
         "$timeCast": {
           "anyOf": [
             {
-              "$ref": "#/definitions/stringValue"
+              "$ref": "#/definitions/stringCastValue"
             },
             {
               "$ref": "#/definitions/dateTimeOperand"
@@ -291,12 +291,12 @@
           "$ref": "#/definitions/Value"
         },
         "$dateTimeCast": {
-          "$ref": "#/definitions/stringValue"
+          "$ref": "#/definitions/stringCastValue"
         },
         "$timeCast": {
           "anyOf": [
             {
-              "$ref": "#/definitions/stringValue"
+              "$ref": "#/definitions/stringCastValue"
             },
             {
               "$ref": "#/definitions/dateTimeOperand"
@@ -423,7 +423,7 @@
           "$ref": "#/definitions/Value"
         },
         "$attribute": {
-          "$ref": "#/definitions/attributeItem"
+          "$ref": "#/definitions/scalarAttributeItem"
         }
       },
       "oneOf": [
@@ -460,7 +460,7 @@
           "$ref": "#/definitions/Value"
         },
         "$attribute": {
-          "$ref": "#/definitions/attributeItem"
+          "$ref": "#/definitions/scalarAttributeItem"
         }
       },
       "oneOf": [
@@ -481,6 +481,31 @@
         }
       ],
       "additionalProperties": false
+    },
+    "claimPathValue": {
+      "type": "object",
+      "properties": {
+        "$attribute": {
+          "$ref": "#/definitions/claimPathAttributeItem"
+        }
+      },
+      "required": [
+        "$attribute"
+      ],
+      "additionalProperties": false
+    },
+    "claimPathStringValue": {
+      "$ref": "#/definitions/stringNonFieldValue"
+    },
+    "stringCastValue": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/stringValue"
+        },
+        {
+          "$ref": "#/definitions/claimPathValue"
+        }
+      ]
     },
     "comparisonItems": {
       "$ref": "#/definitions/equalityComparisonItems"
@@ -512,6 +537,59 @@
               "$ref": "#/definitions/stringValue"
             }
           ]
+        }
+      ]
+    },
+    "claimPathEqualityItems": {
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/claimPathValue"
+            },
+            {
+              "$ref": "#/definitions/claimPathStringValue"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "$ref": "#/definitions/claimPathStringValue"
+            },
+            {
+              "$ref": "#/definitions/claimPathValue"
+            }
+          ]
+        }
+      ]
+    },
+    "claimPathContainsItems": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": [
+        {
+          "$ref": "#/definitions/claimPathValue"
+        },
+        {
+          "$ref": "#/definitions/claimPathStringValue"
+        }
+      ]
+    },
+    "containsItems": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/stringItems"
+        },
+        {
+          "$ref": "#/definitions/claimPathContainsItems"
         }
       ]
     },
@@ -734,6 +812,16 @@
         }
       ]
     },
+    "eqComparisonItems": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/equalityComparisonItems"
+        },
+        {
+          "$ref": "#/definitions/claimPathEqualityItems"
+        }
+      ]
+    },
     "matchExpression": {
       "type": "object",
       "properties": {
@@ -745,7 +833,7 @@
           }
         },
         "$eq": {
-          "$ref": "#/definitions/equalityComparisonItems"
+          "$ref": "#/definitions/eqComparisonItems"
         },
         "$ne": {
           "$ref": "#/definitions/equalityComparisonItems"
@@ -763,7 +851,7 @@
           "$ref": "#/definitions/orderedComparisonItems"
         },
         "$contains": {
-          "$ref": "#/definitions/stringItems"
+          "$ref": "#/definitions/containsItems"
         },
         "$starts-with": {
           "$ref": "#/definitions/stringItems"
@@ -862,7 +950,7 @@
           "$ref": "#/definitions/logicalExpression"
         },
         "$eq": {
-          "$ref": "#/definitions/equalityComparisonItems"
+          "$ref": "#/definitions/eqComparisonItems"
         },
         "$ne": {
           "$ref": "#/definitions/equalityComparisonItems"
@@ -880,7 +968,7 @@
           "$ref": "#/definitions/orderedComparisonItems"
         },
         "$contains": {
-          "$ref": "#/definitions/stringItems"
+          "$ref": "#/definitions/containsItems"
         },
         "$starts-with": {
           "$ref": "#/definitions/stringItems"
@@ -983,6 +1071,30 @@
       "additionalProperties": false
     },
     "attributeItem": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/scalarAttributeItem"
+        },
+        {
+          "$ref": "#/definitions/claimPathAttributeItem"
+        }
+      ]
+    },
+    "claimPathAttributeItem": {
+      "type": "object",
+      "properties": {
+        "CLAIMPATH": {
+          "type": "string",
+          "pattern": "^(?:/(?:[^~/]|~[01])*)+$"
+        }
+      },
+      "required": [
+        "CLAIMPATH"
+      ],
+      "additionalProperties": false
+    },
+    "scalarAttributeItem": {
+      "type": "object",
       "oneOf": [
         {
           "required": [

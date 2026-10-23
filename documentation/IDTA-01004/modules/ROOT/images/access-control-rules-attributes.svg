@@ -3,7 +3,7 @@
   xmlns='http://www.w3.org/2000/svg'
   xmlns:xlink='http://www.w3.org/1999/xlink'
 
-  width='1000' height='700' viewBox='0 0 1000 700'>
+  width='1000' height='800' viewBox='0 0 1000 800'>
 
   <style>
     rect, line, path { stroke-width: 1.5px; stroke: black; fill: transparent; }
@@ -21,22 +21,26 @@
     <path d='M260.5 14 v12 m 4 0 v-12' class='station'/>
     <rect x='70' y='10' height='20' width='130' rx='0' ry='0' class='rule'/>
     <text x='135' y='25' text-anchor='middle' class='rule'>ClaimAttribute</text>
-    <rect x='70' y='40' height='20' width='130' rx='0' ry='0' class='rule'/>
-    <text x='135' y='55' text-anchor='middle' class='rule'>GlobalAttribute</text>
-    <rect x='60' y='70' height='20' width='150' rx='0' ry='0' class='rule'/>
-    <text x='135' y='85' text-anchor='middle' class='rule'>ReferenceAttribute</text>
-    <path d='M230 30 v40'/>
-    <path d='M210 80 h10 q10 0 10 -10'/>
-    <path d='M40 70 q0 10 10 10 h10'/>
-    <path d='M200 50 h20 q10 0 10 -10'/>
-    <path d='M40 40 q0 10 10 10 h20'/>
+    <rect x='60' y='40' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='135' y='55' text-anchor='middle' class='rule'>ClaimPathAttribute</text>
+    <rect x='70' y='70' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='135' y='85' text-anchor='middle' class='rule'>GlobalAttribute</text>
+    <rect x='60' y='100' height='20' width='150' rx='0' ry='0' class='rule'/>
+    <text x='135' y='115' text-anchor='middle' class='rule'>ReferenceAttribute</text>
+    <path d='M230 30 v70'/>
+    <path d='M210 110 h10 q10 0 10 -10'/>
+    <path d='M40 100 q0 10 10 10 h10'/>
+    <path d='M200 80 h20 q10 0 10 -10'/>
+    <path d='M40 70 q0 10 10 10 h20'/>
+    <path d='M210 50 h10 q10 0 10 -10'/>
+    <path d='M40 40 q0 10 10 10 h10'/>
     <path d='M230 30 q0 -10 10 -10'/>
     <path d='M200 20 h60'/>
-    <path d='M30 20 q10 0 10 10 v40'/>
+    <path d='M30 20 q10 0 10 10 v70'/>
     <path d='M10 20 h60'/>
   </g>
 
-  <g transform='translate(40 190)'>
+  <g transform='translate(40 220)'>
     <text x='-30' y='-10'>ClaimAttribute:</text>
     <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
     <path d='M530.5 14 v12 m 4 0 v-12' class='station'/>
@@ -64,7 +68,7 @@
     <path d='M10 20 h20'/>
   </g>
 
-  <g transform='translate(40 270)'>
+  <g transform='translate(40 300)'>
     <text x='-30' y='-10'>GlobalAttribute:</text>
     <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
     <path d='M590.5 14 v12 m 4 0 v-12' class='station'/>
@@ -107,7 +111,7 @@
     <path d='M10 20 h20'/>
   </g>
 
-  <g transform='translate(40 440)'>
+  <g transform='translate(40 470)'>
     <text x='-30' y='-10'>ReferenceAttribute:</text>
     <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
     <path d='M690.5 14 v12 m 4 0 v-12' class='station'/>
@@ -180,7 +184,28 @@
     <path d='M10 20 h90'/>
   </g>
 
-  <g transform='translate(40 610)'>
+  <g transform='translate(40 640)'>
+    <text x='-30' y='-10'>ClaimPathAttribute:</text>
+    <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
+    <path d='M570.5 14 v12 m 4 0 v-12' class='station'/>
+    <rect x='30' y='10' height='20' width='90' rx='8' ry='8' class='literal'/>
+    <text x='75' y='25' text-anchor='middle' class='literal'>CLAIMPATH</text>
+    <rect x='140' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='165' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='210' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='220' y='25' text-anchor='middle' class='literal'>(</text>
+    <rect x='250' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='275' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='320' y='10' height='20' width='130' rx='0' ry='0' class='rule'/>
+    <text x='385' y='25' text-anchor='middle' class='rule'>ClaimPathLiteral</text>
+    <rect x='470' y='10' height='20' width='50' rx='0' ry='0' class='rule'/>
+    <text x='495' y='25' text-anchor='middle' class='rule'>Ws</text>
+    <rect x='540' y='10' height='20' width='20' rx='8' ry='8' class='literal'/>
+    <text x='550' y='25' text-anchor='middle' class='literal'>)</text>
+    <path d='M120 20 h20 M190 20 h20 M230 20 h20 M300 20 h20 M450 20 h20 M520 20 h20 M560 20 h10 M10 20 h20'/>
+  </g>
+
+  <g transform='translate(40 720)'>
     <text x='-30' y='-10'>ClaimLiteral:</text>
     <path d='M5.5 14 v12 m 4 0 v-12' class='station'/>
     <path d='M160.5 14 v12 m 4 0 v-12' class='station'/>

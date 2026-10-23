@@ -15,6 +15,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 Major Changes:
 
+* added: `CLAIMPATH` selects nested JWT claim values using RFC 6901 JSON Pointer syntax. Direct `$eq` supports scalar-string equality, direct `$contains` supports exact string-array membership, and strict explicit casts make scalar claim values available to other typed operations. Missing or wrongly typed values are indeterminate and final authorization uses deny-unless-permit combination.
 * added: Expanded the informative DPP annex with AAS security mappings and Battery Passport access examples covering claim conventions, paid diagnostics, and delegated element updates. Added linked workflows and a proposed HTTP response-signing approach.
 
 Minor Changes:

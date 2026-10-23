@@ -1,0 +1,16 @@
+ACCESSRULE:
+  ATTRIBUTES:
+    CLAIMPATH("/realm_access/roles")
+    CLAIMPATH("/department/name")
+    CLAIMPATH("/assurance/level")
+  RIGHTS: READ
+  ACCESS: ALLOW
+  OBJECTS:
+    REFERABLE $sme("*").departmentData
+  FORMULA:
+    $and(
+      $contains(CLAIMPATH("/realm_access/roles"), "admin"),
+      CLAIMPATH("/department/name") $eq "engineering",
+      CLAIMPATH("/department/name") $eq str($sme#value),
+      num(CLAIMPATH("/assurance/level")) $ge 3
+    )
