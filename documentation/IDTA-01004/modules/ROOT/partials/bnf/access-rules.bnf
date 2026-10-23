@@ -117,7 +117,7 @@
 <DescriptorObject> ::= "DESCRIPTOR" <Ws> ( "$aasdesc" | "$smdesc" ) <IdentifierInstanceOrAll>
 
 <ObjectGroup> ::=
-    ( <SingleObject> <Ws> )*
+    ( <SingleObject> <Ws> )* |
     ( <UseObjectGroup> <Ws> )*
 
 <UseObjectGroup> ::= "USEOBJECTS" <Ws> <StringLiteral> <Ws>

@@ -515,8 +515,6 @@ For HTTP/REST APIs the examples in xref:annex/route-examples.adoc[] show how ROU
 
 <ObjectGroup> allows to combine a set of objects in pre-defined group (see <<reusable-definitions,Reusable Definitions>>) that can be referenced by USEOBJECTS. Object groups may be recursive, i.e., an object group can be composed of other object groups.
 
-An object group can contain direct objects, USEOBJECTS references to other object groups, or both. In JSON serialization, each DEFOBJECTS entry must contain at least one of the fields `objects` or `USEOBJECTS`; both fields may be present. In the BNF serialization, direct objects precede any USEOBJECTS references.
-
 .Railroad diagram for <ObjectGroup> and <UseObjectGroup>
 [[image-access-control-rules-object-reference]]
 image::access-control-rules-object-reference.svg[width=642]
