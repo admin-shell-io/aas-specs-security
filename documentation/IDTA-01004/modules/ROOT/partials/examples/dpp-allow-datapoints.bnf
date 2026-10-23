@@ -12,9 +12,9 @@ DEFOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update"
    ...
 
 DEFOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints"
+  REFERABLE $sme("*").DateOfPuttingIntoService
   USEOBJECTS "BatteryPassport-Nameplate-Public-DataPoints"
   USEOBJECTS "BatteryPassport-Nameplate-LegitimiteInterest-DataPoints-Update"
-  REFERABLE $sme("*").DateOfPuttingIntoService
   ...
   
 ACCESSRULE:
