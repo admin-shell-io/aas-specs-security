@@ -1,0 +1,60 @@
+
+DEFOBJECTS "BatteryPassport-TechnicalData-Public-DataPoints"
+  REFERABLE $sme("*").BatteryCategory
+  REFERABLE $sme("*").BatteryMass
+  ...
+  
+DEFOBJECTS "BatteryPassport-TechnicalData-LegitimateInterest-DataPoints"
+  USEOBJECTS "BatteryPassport-TechnicalData-Public-DataPoints"
+  ...
+
+DEFOBJECTS "BatteryPassport-Nameplate-Public-DataPoints"
+  ...
+
+DEFOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update"
+   ...
+
+DEFOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints"
+  REFERABLE $sme("*").DateOfPuttingIntoService
+  USEOBJECTS "BatteryPassport-Nameplate-Public-DataPoints"
+  USEOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update"
+  ...
+  
+ACCESSRULE:
+  ATTRIBUTES:
+    GLOBAL(ANONYMOUS)
+  RIGHTS: READ
+  ACCESS: ALLOW
+  OBJECTS:
+    USEOBJECTS "BatteryPassport-TechnicalData-Public-DataPoints"
+  FORMULA:
+     $sm#semanticId $eq "semanticId-BatteryTechnicalData"
+
+ACCESSRULE:
+  ATTRIBUTES:
+      CLAIM("Role")
+  RIGHTS: READ
+  ACCESS: ALLOW
+  OBJECTS:
+    USEOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints"
+  FORMULA:
+   $and(
+      CLAIM("Role") $eq "person with legitimate interest",
+      $sm#semanticId $eq "semanticId-BatteryNameplate"  
+    )
+  
+ACCESSRULE:
+  ATTRIBUTES:
+      CLAIM("Role")
+  RIGHTS: READ UPDATE
+  ACCESS: ALLOW
+  OBJECTS:
+    USEOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update"
+  FORMULA:
+   $and(
+      CLAIM("Role") $eq "person with legitimate interest",
+      $sm#semanticId $eq "semanticId-BatteryNameplate"  
+    )
+  
+
+     

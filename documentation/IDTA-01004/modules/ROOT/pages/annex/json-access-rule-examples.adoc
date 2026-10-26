@@ -104,3 +104,14 @@ include::partial$examples/reference-machine-state-filter.json[]
 ----
 include::partial$examples/nested-claim-path.json[]
 ----
+
+== EXAMPLE 14: Example for access of DPP data points
+
+The empty `objects` arrays represent the public Nameplate and update data points omitted from the
+xref:annex/text-access-rule-examples.adoc#example-dpp[partial BNF example].
+Complete these groups with the appropriate data points before using the policy.
+
+[source,json,linenums]
+----
+include::partial$examples/dpp-allow-datapoints.json[]
+----

@@ -20,6 +20,8 @@
     <inspection_tool class="AsciiDocObsoletePassthrough" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AsciiDocUnresolvedAntoraModule" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SpellCheckingInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <!-- Proofread AsciiDoc prose; grammar keywords and identifiers are validated separately. -->
+      <scope name="Non-AsciiDoc files" level="WARNING" enabled="false" />
       <option name="processCode" value="true" />
       <option name="processLiterals" value="true" />
       <option name="processComments" value="true" />

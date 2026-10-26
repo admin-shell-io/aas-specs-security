@@ -1,0 +1,156 @@
+{
+  "AllAccessPermissionRules": {
+    "DEFOBJECTS": [
+      {
+        "name": "BatteryPassport-TechnicalData-Public-DataPoints",
+        "objects": [
+          {
+            "REFERABLE": "$sme(\"*\").BatteryCategory"
+          },
+          {
+            "REFERABLE": "$sme(\"*\").BatteryMass"
+          }
+        ]
+      },
+      {
+        "name": "BatteryPassport-TechnicalData-LegitimateInterest-DataPoints",
+        "USEOBJECTS": [
+          "BatteryPassport-TechnicalData-Public-DataPoints"
+        ]
+      },
+      {
+        "name": "BatteryPassport-Nameplate-Public-DataPoints",
+        "objects": []
+      },
+      {
+        "name": "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update",
+        "objects": []
+      },
+      {
+        "name": "BatteryPassport-Nameplate-LegitimateInterest-DataPoints",
+        "objects": [
+          {
+            "REFERABLE": "$sme(\"*\").DateOfPuttingIntoService"
+          }
+        ],
+        "USEOBJECTS": [
+          "BatteryPassport-Nameplate-Public-DataPoints",
+          "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "ACL": {
+          "ATTRIBUTES": [
+            {
+              "GLOBAL": "ANONYMOUS"
+            }
+          ],
+          "RIGHTS": [
+            "READ"
+          ],
+          "ACCESS": "ALLOW"
+        },
+        "USEOBJECTS": [
+          "BatteryPassport-TechnicalData-Public-DataPoints"
+        ],
+        "FORMULA": {
+          "$eq": [
+            {
+              "$field": "$sm#semanticId"
+            },
+            {
+              "$strVal": "semanticId-BatteryTechnicalData"
+            }
+          ]
+        }
+      },
+      {
+        "ACL": {
+          "ATTRIBUTES": [
+            {
+              "CLAIM": "Role"
+            }
+          ],
+          "RIGHTS": [
+            "READ"
+          ],
+          "ACCESS": "ALLOW"
+        },
+        "USEOBJECTS": [
+          "BatteryPassport-Nameplate-LegitimateInterest-DataPoints"
+        ],
+        "FORMULA": {
+          "$and": [
+            {
+              "$eq": [
+                {
+                  "$attribute": {
+                    "CLAIM": "Role"
+                  }
+                },
+                {
+                  "$strVal": "person with legitimate interest"
+                }
+              ]
+            },
+            {
+              "$eq": [
+                {
+                  "$field": "$sm#semanticId"
+                },
+                {
+                  "$strVal": "semanticId-BatteryNameplate"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "ACL": {
+          "ATTRIBUTES": [
+            {
+              "CLAIM": "Role"
+            }
+          ],
+          "RIGHTS": [
+            "READ",
+            "UPDATE"
+          ],
+          "ACCESS": "ALLOW"
+        },
+        "USEOBJECTS": [
+          "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update"
+        ],
+        "FORMULA": {
+          "$and": [
+            {
+              "$eq": [
+                {
+                  "$attribute": {
+                    "CLAIM": "Role"
+                  }
+                },
+                {
+                  "$strVal": "person with legitimate interest"
+                }
+              ]
+            },
+            {
+              "$eq": [
+                {
+                  "$field": "$sm#semanticId"
+                },
+                {
+                  "$strVal": "semanticId-BatteryNameplate"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
