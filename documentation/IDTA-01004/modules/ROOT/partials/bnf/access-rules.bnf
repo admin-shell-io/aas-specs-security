@@ -67,9 +67,13 @@
 
 <Access> ::= "ALLOW" | "DISABLED"
 
-<SingleAttribute> ::= <ClaimAttribute> | <GlobalAttribute> | <ReferenceAttribute>
+<SingleAttribute> ::= <ClaimAttribute> | <ClaimPathAttribute> | <GlobalAttribute> | <ReferenceAttribute>
+
+<ScalarAttribute> ::= <ClaimAttribute> | <GlobalAttribute> | <ReferenceAttribute>
 
 <ClaimAttribute> ::= "CLAIM" <Ws> "(" <Ws> <ClaimLiteral> <Ws> ")"
+
+<ClaimPathAttribute> ::= "CLAIMPATH" <Ws> "(" <Ws> <ClaimPathLiteral> <Ws> ")"
 
 <GlobalAttribute> ::=
     "GLOBAL" <Ws> "(" <Ws>
@@ -153,6 +157,7 @@
     ")" <Ws>
 
 <SingleComparison> ::=
+    <ClaimPathEqualityComparison> |
     <StringComparison> |
     <NumericalComparison> |
     <HexComparison> |
@@ -162,13 +167,22 @@
 
 <AllComparisons> ::= "$eq" | "$ne" | "$gt" | "$lt" | "$ge" | "$le"
 
+<ClaimPathEqualityComparison> ::=
+    ( <ClaimPathAttribute> <Ws> "$eq" <Ws> <ClaimPathStringOperand> <Ws> ) |
+    ( <ClaimPathStringOperand> <Ws> "$eq" <Ws> <ClaimPathAttribute> <Ws> )
+
 <StringComparison> ::=
+    <ContainsComparison> |
     (
-        ( "$starts-with" | "$ends-with" | "$contains" | "$regex" )
+        ( "$starts-with" | "$ends-with" | "$regex" )
         <Ws> "(" <Ws> <StringOperand> <Ws> "," <Ws> <StringOperand> <Ws> ")" <Ws>
     ) |
     ( <StringOperand> <Ws> <AllComparisons> <Ws> <StringNonFieldOperand> <Ws> ) |
     ( <StringNonFieldOperand> <Ws> <AllComparisons> <Ws> <StringOperand> <Ws> )
+
+<ContainsComparison> ::=
+    ( "$contains" <Ws> "(" <Ws> <StringOperand> <Ws> "," <Ws> <StringOperand> <Ws> ")" <Ws> ) |
+    ( "$contains" <Ws> "(" <Ws> <ClaimPathAttribute> <Ws> "," <Ws> <ClaimPathStringOperand> <Ws> ")" <Ws> )
 
 <NumericalComparison> ::=
     ( <NumericalOperand> <Ws> <AllComparisons> <Ws> <NumericalOperand> <Ws> ) |
@@ -207,9 +221,11 @@
     <DateTimeOperand> |
     <TimeOperand>
 
-<StringOperand> ::= <FieldIdentifier> | <StringLiteral> | <CastToString> | <SingleAttribute>
+<StringOperand> ::= <FieldIdentifier> | <StringLiteral> | <CastToString> | <ScalarAttribute>
 
-<StringNonFieldOperand> ::= <StringLiteral> | <CastToString> | <SingleAttribute>
+<StringNonFieldOperand> ::= <StringLiteral> | <CastToString> | <ScalarAttribute>
+
+<ClaimPathStringOperand> ::= <StringNonFieldOperand>
 
 <NumericalOperand> ::= <NumericalLiteral> | <CastToNumerical> | <DateTimeToNum>
 
@@ -221,17 +237,21 @@
 
 <TimeOperand> ::= <TimeLiteral> | <CastToTime>
 
-<CastToString> ::= "str" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
+<CastOperand> ::= <Operand> | <ClaimPathAttribute>
 
-<CastToNumerical> ::= "num" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
+<StringCastOperand> ::= <StringOperand> | <ClaimPathAttribute>
 
-<CastToHex> ::= "hex" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
+<CastToString> ::= "str" <Ws> "(" <Ws> <CastOperand> <Ws> ")" <Ws>
 
-<CastToBool> ::= "bool" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
+<CastToNumerical> ::= "num" <Ws> "(" <Ws> <CastOperand> <Ws> ")" <Ws>
 
-<CastToDateTime> ::= "dateTime" <Ws> "(" <Ws> <StringOperand> <Ws> ")" <Ws>
+<CastToHex> ::= "hex" <Ws> "(" <Ws> <CastOperand> <Ws> ")" <Ws>
 
-<CastToTime> ::= "time" <Ws> "(" <Ws> ( <StringOperand> | <DateTimeOperand> ) <Ws> ")" <Ws>
+<CastToBool> ::= "bool" <Ws> "(" <Ws> <CastOperand> <Ws> ")" <Ws>
+
+<CastToDateTime> ::= "dateTime" <Ws> "(" <Ws> <StringCastOperand> <Ws> ")" <Ws>
+
+<CastToTime> ::= "time" <Ws> "(" <Ws> ( <StringCastOperand> | <DateTimeOperand> ) <Ws> ")" <Ws>
 
 <DateTimeLiteral> ::= <Datetime> <Ws>
 <TimeLiteral> ::= <Time> ( <Timezone> )? <Ws>
@@ -264,6 +284,24 @@
     )+
     "\""
 <ClaimLiteral> ::= <StringLiteral>
+<ClaimPathLiteral> ::= "\"" "/" <ClaimPathToken> ( "/" <ClaimPathToken> )* "\""
+<ClaimPathToken> ::=
+    (
+        <ClaimPathUnescapedCharacter> |
+        <ClaimPathJsonEscape> |
+        "~0" |
+        "~1"
+    )*
+<ClaimPathUnescapedCharacter> ::=
+    [\u0020-\u0021] |
+    [\u0023-\u002E] |
+    [\u0030-\u005B] |
+    [\u005D-\u007D] |
+    [\u007F-\u10FFFF]
+<ClaimPathJsonEscape> ::=
+    "\\" ( "\"" | "\\" | "b" | "f" | "n" | "r" | "t" ) |
+    "\\" "u" "0" "0" ( "0" <HexDigit> | "1" <HexDigit> )
+<HexDigit> ::= [0-9] | [A-F] | [a-f]
 <RouteLiteral> ::= <StringLiteral>
 <IdentifiableLiteral> ::= <StringLiteral>
 <ReferableLiteral> ::= <StringLiteral>

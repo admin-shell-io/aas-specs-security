@@ -11,6 +11,7 @@
 <MatchExpression> ::= ( "$match" <Ws> "(" <Ws> ( <SingleComparison> | <MatchExpression> ) ( "," <Ws> ( <SingleComparison> | <MatchExpression> ) )* ")" <Ws> )
 
 <SingleComparison> ::=
+    <ClaimPathEqualityComparison> |
     <StringComparison> |
     <NumericalComparison> |
     <HexComparison> |
@@ -20,10 +21,19 @@
 
 <AllComparisons> ::= ( "$eq" | "$ne" | "$gt" | "$lt" | "$ge" | "$le" )
 
+<ClaimPathEqualityComparison> ::=
+    ( <ClaimPathAttribute> <Ws> "$eq" <Ws> <ClaimPathStringOperand> <Ws> ) |
+    ( <ClaimPathStringOperand> <Ws> "$eq" <Ws> <ClaimPathAttribute> <Ws> )
+
 <StringComparison> ::=
-    ( ( "$starts-with" | "$ends-with" | "$contains" | "$regex") <Ws> "(" <Ws> <StringOperand> <Ws> "," <Ws> <StringOperand> <Ws> ")" <Ws> ) |
+    <ContainsComparison> |
+    ( ( "$starts-with" | "$ends-with" | "$regex") <Ws> "(" <Ws> <StringOperand> <Ws> "," <Ws> <StringOperand> <Ws> ")" <Ws> ) |
     ( <StringOperand> <Ws> <AllComparisons> <Ws> <StringNonFieldOperand> <Ws> ) |
     ( <StringNonFieldOperand> <Ws> <AllComparisons> <Ws> <StringOperand> <Ws> )
+
+<ContainsComparison> ::=
+    ( "$contains" <Ws> "(" <Ws> <StringOperand> <Ws> "," <Ws> <StringOperand> <Ws> ")" <Ws> ) |
+    ( "$contains" <Ws> "(" <Ws> <ClaimPathAttribute> <Ws> "," <Ws> <ClaimPathStringOperand> <Ws> ")" <Ws> )
 
 <NumericalComparison> ::=
     ( <NumericalOperand> <Ws> <AllComparisons> <Ws> <NumericalOperand> <Ws> ) |
@@ -56,10 +66,12 @@
 <Operand> ::= <StringOperand> | <NumericalOperand> | <HexOperand> | <BoolOperand> | <DateTimeOperand> | <TimeOperand>
 
 <StringOperand> ::=
-    <FieldIdentifier> | <StringLiteral> | <CastToString> | <SingleAttribute>
+    <FieldIdentifier> | <StringLiteral> | <CastToString> | <ScalarAttribute>
 
 <StringNonFieldOperand> ::=
-    <StringLiteral> | <CastToString> | <SingleAttribute>
+    <StringLiteral> | <CastToString> | <ScalarAttribute>
+
+<ClaimPathStringOperand> ::= <StringNonFieldOperand>
 
 <NumericalOperand> ::=
     <NumericalLiteral> | <CastToNumerical> | <DateTimeToNum>
@@ -76,20 +88,24 @@
 <TimeOperand> ::=
     <TimeLiteral> | <CastToTime>
 
+<CastOperand> ::= <Operand> | <ClaimPathAttribute>
+
+<StringCastOperand> ::= <StringOperand> | <ClaimPathAttribute>
+
 <CastToString> ::=
-    "str" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
+    "str" <Ws> "(" <Ws> <CastOperand> <Ws> ")" <Ws>
 
 <CastToNumerical> ::=
-    "num" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
+    "num" <Ws> "(" <Ws> <CastOperand> <Ws> ")" <Ws>
 
 <CastToHex> ::=
-    "hex" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
+    "hex" <Ws> "(" <Ws> <CastOperand> <Ws> ")" <Ws>
 
 <CastToBool> ::=
-    "bool" <Ws> "(" <Ws> <Operand> <Ws> ")" <Ws>
+    "bool" <Ws> "(" <Ws> <CastOperand> <Ws> ")" <Ws>
 
 <CastToDateTime> ::=
-    "dateTime" <Ws> "(" <Ws> <StringOperand> <Ws> ")" <Ws>
+    "dateTime" <Ws> "(" <Ws> <StringCastOperand> <Ws> ")" <Ws>
 
 <CastToTime> ::=
-    "time" <Ws> "(" <Ws> ( <StringOperand> | <DateTimeOperand> ) <Ws> ")" <Ws>
+    "time" <Ws> "(" <Ws> ( <StringCastOperand> | <DateTimeOperand> ) <Ws> ")" <Ws>

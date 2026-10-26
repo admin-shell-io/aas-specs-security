@@ -1,0 +1,48 @@
+@startuml
+' Copyright (c) 2026 Industrial Digital Twin Association
+' SPDX-License-Identifier: CC-BY-4.0
+
+top to bottom direction
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam defaultTextAlignment center
+skinparam ArrowColor #444444
+skinparam linetype ortho
+skinparam package {
+  BackgroundColor #FFFFFF
+  BorderColor #444444
+}
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #444444
+  BackgroundColor<<AAS>> #D9EAF7
+  BorderColor<<AAS>> #3A6F8F
+  BackgroundColor<<DPPIntegration>> #FFF2CC
+  BorderColor<<DPPIntegration>> #9C7A00
+  BackgroundColor<<External>> #E6E6E6
+  BorderColor<<External>> #666666
+}
+hide stereotype
+
+package "External verification context" as ExternalArea {
+  component "DPP context\nRequirements, registry, identity" as Context <<External>>
+}
+
+package "DPP-on-AAS integration capabilities" as DPPArea {
+  component "DPP IAM\n--\nAuthenticate requester or\naccept trusted identity\nIssue AAS token" as DPPIam <<DPPIntegration>>
+  component "DPP service\n--\nResolve product ID\nCompose DPP\nRecord changes\nSign responses (proposal)\nSupport verification and recovery" as DPPService <<DPPIntegration>>
+
+  DPPIam -down-> DPPService
+}
+
+package "AAS-defined capabilities" as AASArea {
+  component "AAS protection\n--\nValidate access tokens\nand trusted claims\nEvaluate Access Rules" as Security <<AAS>>
+  component "AAS resources and services\n--\nProtected read and write" as AASResources <<AAS>>
+
+  Security -right-> AASResources
+}
+
+Context -down-> DPPIam
+DPPService -down-> Security
+
+@enduml

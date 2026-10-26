@@ -129,7 +129,11 @@ include::partial$examples/allow-read-submodels-id-pattern.bnf[]
 
 For users authenticated with role "person with legitimate interest":
 
-Allow CREATE of SubmodelElements within Submodels with semanticId "CertificateSet".
+Allow CREATE of SubmodelElements with semanticId "CertificateSet" within Submodels with semanticId "semanticId-Circularity".
+
+====
+Note: This is a typical example for an access rule for digital product passport related updates by recyclers.
+====
 
 [source,bnf,linenums]
 ----
@@ -175,7 +179,7 @@ For users authenticated with role "maintenance":
 Allow READ of maintenance documents within Submodel with id "SubmodelID-Maintenance" 
 (the SubmodelElement with idShort-path "SubmodelID-Maintenance.maintenanceDocuments") 
 but only if machine is running (value of SubmodelElement with idShort-Path "SubmodelID-OperationalData.machineState" equal to "running" 
-within the Submodel with ID "SubmodelID-OperationalData").
+within the Submodel with id "SubmodelID-OperationalData").
 
 Not all maintenance documents are returned but only the maintenance document for the required machine state "running" (i.e. maintenanceDocuments[].requiredMachineState "running")
 
@@ -187,11 +191,43 @@ In case the machine is not running all maintenance documents are returned (no FI
 include::partial$examples/reference-machine-state-filter.bnf[]
 ----
 
+[[example-nested-claim-path]]
+== EXAMPLE 13: Nested and multi-valued access-token claims
+
+For a user whose access token contains the role `admin` in the nested
+`/realm_access/roles` string array, whose department name is `engineering`,
+and whose assurance level is at least `3`:
+
+[source,json]
+----
+{
+  "realm_access": {
+    "roles": ["reader", "admin"]
+  },
+  "department": {
+    "name": "engineering"
+  },
+  "assurance": {
+    "level": 3
+  }
+}
+----
+
+Allow READ access to a `departmentData` SubmodelElement when its value equals
+the department from the access token. The role uses exact array membership,
+the department uses both literal equality and an explicitly string-cast
+FieldIdentifier comparison, and the assurance level is explicitly cast to a
+number before the ordered comparison.
+
+[source,bnf,linenums]
+----
+include::partial$examples/nested-claim-path.bnf[]
+----
 
 [[example-dpp]]
-== EXAMPLE 13: Example for access of DPP data points
+== EXAMPLE 14: Example for access of DPP data points
 
-Delegated acts for digital product passport distinguish between different access roles. 
+Delegated acts for digital product passport distinguish between different access roles.
 For the Battery Passport there are for example "public", "persons with legitimate interest", "Notified bodies, market surveillance authorities and the Commission" or "persons with a legitimate interest and the Commission" (see BatteryPassport-ready DataAttribute Longlist V1.3).
 
 "public" has the same semantics as "ANONYMOUS" in AAS.
@@ -206,4 +242,3 @@ The example proposes to add access rules per Submodel because it cannot be guara
 ----
 include::partial$examples/dpp-allow-datapoints.bnf[]
 ----
-

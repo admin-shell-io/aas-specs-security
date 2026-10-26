@@ -6,6 +6,9 @@
           "ATTRIBUTES": [
             {
               "CLAIM": "companyName"
+            },
+            {
+              "GLOBAL": "UTCNOW"
             }
           ],
           "RIGHTS": [

@@ -4,9 +4,11 @@ ACCESSRULE:
   RIGHTS: CREATE
   ACCESS: ALLOW
   OBJECTS:
-    IDENTIFIABLE $sm("*")
+    ROUTE /submodels/*/submodel-elements
   FORMULA:
     $and(
       CLAIM("Role") $eq "person with legitimate interest",
-      $sme#semanticId $eq "CertificateSet"
+      $sme#semanticId $eq "CertificateSet",
+      $sm#semanticId $eq "semanticId-Circularity"
+
     )
