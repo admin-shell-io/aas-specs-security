@@ -238,6 +238,10 @@ Of course a person with legitimate interest can also access public data.
 
 The example proposes to add access rules per Submodel because it cannot be guaranteed that the idShort of properties are unique across different Submodels.
 
+This is a partial policy example: `...` marks additional data points omitted from the object groups.
+The corresponding JSON example uses empty `objects` arrays for the omitted public Nameplate and update data points.
+Complete these groups with the appropriate data points before using the policy.
+
 [source,bnf,linenums]
 ----
 include::partial$examples/dpp-allow-datapoints.bnf[]

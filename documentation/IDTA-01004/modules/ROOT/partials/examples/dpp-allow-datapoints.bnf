@@ -1,11 +1,14 @@
 
 DEFOBJECTS "BatteryPassport-TechnicalData-Public-DataPoints"
-  REFERABLE $sme(*).BatteryCategory
+  REFERABLE $sme("*").BatteryCategory
   REFERABLE $sme("*").BatteryMass
   ...
   
 DEFOBJECTS "BatteryPassport-TechnicalData-LegitimateInterest-DataPoints"
   USEOBJECTS "BatteryPassport-TechnicalData-Public-DataPoints"
+  ...
+
+DEFOBJECTS "BatteryPassport-Nameplate-Public-DataPoints"
   ...
 
 DEFOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update"
@@ -14,7 +17,7 @@ DEFOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update"
 DEFOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints"
   REFERABLE $sme("*").DateOfPuttingIntoService
   USEOBJECTS "BatteryPassport-Nameplate-Public-DataPoints"
-  USEOBJECTS "BatteryPassport-Nameplate-LegitimiteInterest-DataPoints-Update"
+  USEOBJECTS "BatteryPassport-Nameplate-LegitimateInterest-DataPoints-Update"
   ...
   
 ACCESSRULE:
