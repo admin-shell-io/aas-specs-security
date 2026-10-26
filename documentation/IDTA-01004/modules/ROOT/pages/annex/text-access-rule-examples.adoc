@@ -143,6 +143,8 @@ include::partial$examples/allow-create-only-specific.bnf[]
 [[example-filter-statement]]
 == EXAMPLE 11: Example with FILTER statement
 
+// The following value is a valid example Business Partner Number.
+// suppress inspection "SpellCheckingInspection"
 For users authenticated via "BusinessPartnerNumber", "BusinessPartnerNumber" shall be "BPNL00000000000A":
 
 Allow READ of AssetAdministrationShellDescriptors containing the following specificAssetIds:
@@ -159,6 +161,8 @@ Not all specificAssetIds of the AssetAdministrationShellDescriptors fulfilling t
 
 
 ====
+// The standards body abbreviation is intentional.
+// suppress inspection "SpellCheckingInspection"
 Note: the value "PUBLIC_READABLE" is not standardized in IDTA-01001.
 ====
 
@@ -228,6 +232,8 @@ include::partial$examples/nested-claim-path.bnf[]
 == EXAMPLE 14: Example for access of DPP data points
 
 Delegated acts for digital product passport distinguish between different access roles.
+// The cited publication's title retains its original spelling.
+// suppress inspection "SpellCheckingInspection"
 For the Battery Passport there are for example "public", "persons with legitimate interest", "Notified bodies, market surveillance authorities and the Commission" or "persons with a legitimate interest and the Commission" (see BatteryPassport-ready DataAttribute Longlist V1.3).
 
 "public" has the same semantics as "ANONYMOUS" in AAS.
