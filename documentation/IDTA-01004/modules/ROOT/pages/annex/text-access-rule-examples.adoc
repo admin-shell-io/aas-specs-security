@@ -231,9 +231,9 @@ include::partial$examples/nested-claim-path.bnf[]
 [[example-dpp]]
 == EXAMPLE 14: Example for access of DPP data points
 
-Delegated acts for digital product passport distinguish between different access roles.
 // The cited publication's title retains its original spelling.
 // suppress inspection "SpellCheckingInspection"
+Delegated acts for digital product passport distinguish between different access roles.
 For the Battery Passport there are for example "public", "persons with legitimate interest", "Notified bodies, market surveillance authorities and the Commission" or "persons with a legitimate interest and the Commission" (see BatteryPassport-ready DataAttribute Longlist V1.3).
 
 "public" has the same semantics as "ANONYMOUS" in AAS.
