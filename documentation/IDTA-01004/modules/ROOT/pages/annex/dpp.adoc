@@ -29,6 +29,20 @@ It relates these concerns to existing AAS capabilities and proposes integration 
 The access rules and workflows are examples. The HTTP response-signing approach is a proposal in this annex, not an established AAS API convention or a requirement attributed to EN 18239 or EN 18246.
 Conformity with the referenced standards requires a separate assessment.
 
+[Note]
+====
+Note: Interoperability with the EC DPP Registry
+
+In parallel with standardisation activities under CEN and CENELEC upon which this document is based, the European Commission is developing implementation guidelines, APIs and schemas for the DPP Registry.
+
+To support seamless data exchange between Asset Administration Shell (AAS) environments and the emerging European registry infrastructure, an aligned mapping between this specification and the EC artifacts will be incorporated as the EC technical specifications reach final maturity.
+
+Future iterations of this document will ensure continuous synchronization with published EC guidance and schemas.
+
+Reference: link:https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/resources-documentation_en#dpp-registry-technical-guidelines[EC DPP Registry Technical Guidelines]
+====
+
+
 == Regulatory and specification context
 
 Regulation (EU) 2024/1781 establishes the DPP framework xref:../bibliography.adoc#bib17[[17\]].
